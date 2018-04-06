@@ -4,7 +4,7 @@
 /[Bb]uild/
 /[Bb]uilds/
 /UnityPackageManager/
-/ProjectSettings/
+#/ProjectSettings/
 /Assets/AssetStoreTools*
 /obj/*
 /Temp/*
