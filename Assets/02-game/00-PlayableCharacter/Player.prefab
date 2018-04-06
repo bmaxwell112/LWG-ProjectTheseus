@@ -35,6 +35,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4001388926385082}
+  - component: {fileID: 114837784949216246}
+  - component: {fileID: 114298095096763580}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -49,7 +51,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1987759031399868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.58, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4861382725036900}
@@ -63,12 +65,99 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1429586148710586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06, y: 0.47, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 4001388926385082}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114298095096763580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987759031399868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1caa45db9d097c1419d130d481fc41f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  head:
+    itemID: 0
+    itemName: Basic Head
+    itemDesc: A head taken from the only schematics you have left.
+    itemType: 0
+    itemHitpoints: 10
+    itemAbilityValue: 0
+    itemSpecial: 0
+  body:
+    itemID: 1
+    itemName: Basic Torso
+    itemDesc: A torso taken from the only schematics you have left.
+    itemType: 1
+    itemHitpoints: 50
+    itemAbilityValue: 0
+    itemSpecial: 0
+  leftArm:
+    itemID: 2
+    itemName: Basic Left Arm
+    itemDesc: A left arm taken from the only schematics you have left.
+    itemType: 2
+    itemHitpoints: 10
+    itemAbilityValue: 5
+    itemSpecial: 0
+  rightArm:
+    itemID: 3
+    itemName: Basic Right Arm
+    itemDesc: A right arm taken from the only schematics you have left.
+    itemType: 3
+    itemHitpoints: 10
+    itemAbilityValue: 5
+    itemSpecial: 0
+  leftLeg:
+    itemID: 4
+    itemName: Basic Left Leg
+    itemDesc: A left leg taken from the only schematics you have left.
+    itemType: 6
+    itemHitpoints: 10
+    itemAbilityValue: 0
+    itemSpecial: 0
+  rightLeg:
+    itemID: 5
+    itemName: Basic Right Leg
+    itemDesc: A right leg taken from the only schematics you have left.
+    itemType: 7
+    itemHitpoints: 10
+    itemAbilityValue: 0
+    itemSpecial: 0
+  back:
+    itemID: 6
+    itemName: Basic Back
+    itemDesc: A back taken from the only schematics you have left.
+    itemType: 4
+    itemHitpoints: 20
+    itemAbilityValue: 0
+    itemSpecial: 0
+  core:
+    itemID: 7
+    itemName: Basic AI Core
+    itemDesc: An AI Core taken from the only schematics you have left.
+    itemType: 5
+    itemHitpoints: 0
+    itemAbilityValue: 0
+    itemSpecial: 0
+--- !u!114 &114837784949216246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987759031399868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8266f3ae7c9838f459e728af1497c9b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1.5
 --- !u!212 &212848182097512810
 SpriteRenderer:
   m_ObjectHideFlags: 1
