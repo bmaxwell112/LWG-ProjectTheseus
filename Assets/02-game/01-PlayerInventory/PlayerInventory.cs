@@ -31,25 +31,5 @@ public class PlayerInventory : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-	}
-
-	void AddItemByType(Item item, int id, ItemType type)
-	{		
-		for (int j = 0; j < database.items.Count; j++)
-		{
-			if (database.items[j].itemID == id)
-			{
-				if (database.items[j].itemType == type)
-				{
-					item = database.items[j];
-					print("did this");
-					break;
-				}
-				else
-				{
-					Debug.LogWarning("Item of type " + type + " can not go into " + item);
-				}
-			}			
-		}		
-	}
+	}	
 }
