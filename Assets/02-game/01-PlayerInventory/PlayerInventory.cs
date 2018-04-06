@@ -6,7 +6,7 @@ using UnityEngine;
 // NEEDS DATABASE PREFAB IN SCENE TO FUNCTION
 public class PlayerInventory : MonoBehaviour {
 
-	[SerializeField] Item head, body, leftArm, rightArm, leftLeg, rightLeg, back, core;
+	[SerializeField] Item[] inventory = new Item[8];
 	Database database;
 
 	// Use this for initialization
@@ -18,18 +18,25 @@ public class PlayerInventory : MonoBehaviour {
 	// Resets the player to basic loadout.
 	private void InitializePlayer()
 	{
-		head = database.items[0];
-		body = database.items[1];
-		leftArm = database.items[2];
-		rightArm = database.items[3];
-		leftLeg = database.items[4];
-		rightLeg = database.items[5];
-		back = database.items[6];
-		core = database.items[7];
+		inventory[0] = database.items[0];
+		inventory[1] = database.items[1];
+		inventory[2] = database.items[2];
+		inventory[3] = database.items[3];
+		inventory[4] = database.items[4];
+		inventory[5] = database.items[5];
+		inventory[6] = database.items[6];
+		inventory[7] = database.items[7];
 	}
 
-	// Update is called once per frame
-	void Update () {
-		
-	}	
+	public void ReplacePart(Item item)
+	{
+		for (int i = 0; i < inventory.Length; i++)
+		{
+			if (inventory[i].itemType == item.itemType)
+			{
+				inventory[i] = item;
+				break;
+			}
+		}
+	}
 }

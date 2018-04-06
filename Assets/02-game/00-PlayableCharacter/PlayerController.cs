@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +5,32 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
 	[SerializeField] float speed;
-	
+	[SerializeField] LayerMask drop;
+	PlayerInventory inventory;
+
+	void Start()
+	{
+		inventory = GetComponent<PlayerInventory>();
+	}
+
 	// Update is called once per frame
 	void Update () {
 		MovementCheck();
 		AimAndFireCheck();
+		PickupItemCheck();
+	}
+
+	private void PickupItemCheck()
+	{
+		bool pickup = Input.GetButton("Pickup");
+		if (pickup)
+		{
+			Collider2D itemInRange = Physics2D.OverlapCircle(transform.position, 1, drop);
+			if (itemInRange.GetComponent<Drops>())
+			{
+				inventory.ReplacePart(itemInRange.GetComponent<Drops>().thisItem);
+			}
+		}
 	}
 
 	private void AimAndFireCheck()
