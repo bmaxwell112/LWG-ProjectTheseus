@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType{
+public enum ItemLoc{
 	head,
 	body,
 	leftArm,
@@ -13,6 +13,12 @@ public enum ItemType{
 	rightLeg,
 	consumable
 }
+public enum ItemType
+{
+	asthetic,
+	melee,
+	range
+}
 
 [System.Serializable]
 public class Item {
@@ -20,21 +26,25 @@ public class Item {
 	public int itemID;
 	public string itemName;
 	public string itemDesc;
+	public ItemLoc itemLoc;
 	public ItemType itemType;
 	//public Sprite itemSprite;
 	public int itemHitpoints;
-	public int itemAbilityValue;
+	public int itemValue;
+	public int itemValueTwo;
 	public bool itemSpecial;
 
-	public Item(int id, string name, string desc, ItemType type, int hp, int value, bool special)
+	public Item(int id, string name, string desc, ItemLoc location, ItemType type, int hp, int value, int valueTwo, bool special)
 	{
 		itemID = id;
 		itemName = name;
 		itemDesc = desc;
+		itemLoc = location;
 		itemType = type;
 		//itemSprite = sprite;
 		itemHitpoints = hp;
-		itemAbilityValue = value;
+		itemValue = value;
+		itemValueTwo = value;
 		itemSpecial = special;
 	}
 
