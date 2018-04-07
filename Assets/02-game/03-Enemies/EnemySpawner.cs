@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
+	[SerializeField] float spawnRate;
+	[SerializeField] GameObject enemyToSpawn;
+
 	void OnDrawGizmos()
 	{
 		Gizmos.DrawWireCube(transform.position, Vector3.one);
@@ -11,11 +14,27 @@ public class EnemySpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		if (spawnRate == 0)
+		{
+			Spawn();
+		}
+		else
+		{
+			StartCoroutine(SpawnNow(spawnRate));
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	IEnumerator SpawnNow(float time)
+	{
+		while (true)
+		{
+			Spawn();
+			yield return new WaitForSeconds(time);
+		}
+	}
+
+	void Spawn()
+	{
+		Instantiate(enemyToSpawn, transform.position, Quaternion.identity);		
 	}
 }

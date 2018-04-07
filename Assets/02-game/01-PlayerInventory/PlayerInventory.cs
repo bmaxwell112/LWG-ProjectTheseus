@@ -6,7 +6,7 @@ using UnityEngine;
 // NEEDS DATABASE PREFAB IN SCENE TO FUNCTION
 public class PlayerInventory : MonoBehaviour {
 
-	public Item[] inventory = new Item[8];
+	public Item[] inventory = new Item[7];
 	Database database;
 
 	// Use this for initialization
@@ -25,14 +25,12 @@ public class PlayerInventory : MonoBehaviour {
 		inventory[4] = database.items[4];
 		inventory[5] = database.items[5];
 		inventory[6] = database.items[6];
-		inventory[7] = database.items[7];
 	}
 
 	public void ReplacePart(Item item)
 	{
 		for (int i = 0; i < inventory.Length; i++)
 		{
-			print("looking for parts");
 			if (inventory[i].itemLoc == item.itemLoc)
 			{				
 				inventory[i] = item;
@@ -53,5 +51,5 @@ public class PlayerInventory : MonoBehaviour {
 			}
 		}
 		return tempItem;
-	}
+	}	
 }

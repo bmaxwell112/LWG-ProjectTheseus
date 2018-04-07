@@ -6,13 +6,21 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
 	[SerializeField] float speed;
-	[SerializeField] LayerMask drop;
+	[SerializeField] LayerMask drop, enemyMask;
+	[SerializeField] GameObject bullets;
+	Transform leftArm, rightArm;
 	PlayerInventory inv;
 	Vector3 rotation;
+	// TODO change to private later
+	public int hitPoints;
 
 	void Start()
-	{
+	{		
+		leftArm = transform.Find("LeftArm");
+		rightArm = transform.Find("RightArm");
 		inv = GetComponent<PlayerInventory>();
+		SpeedChangeCheck();
+		hitPoints = inv.inventory[1].itemHitpoints;
 	}
 
 	// Update is called once per frame
@@ -27,7 +35,6 @@ public class PlayerController : MonoBehaviour {
 		bool pickup = Input.GetButtonDown("Pickup");		
 		if (pickup)
 		{
-			print("Attempt Pickup");
 			Collider2D itemInRange = Physics2D.OverlapCircle(transform.position, 1, drop);
 			if (itemInRange)
 			{
@@ -36,18 +43,23 @@ public class PlayerController : MonoBehaviour {
 					Drops drop = itemInRange.gameObject.GetComponent<Drops>();
 					// Identify replacement part and store it in temp
 					Item tempItem = inv.IdentifyReplacePart(drop.thisItem);
+					int tempHP = hitPoints;
 					// replace inventory item with drop
 					inv.ReplacePart(drop.thisItem);
-					print("replaced " + tempItem.itemName + " with " + drop.thisItem.itemName);
+					if (drop.thisItem.itemLoc == ItemLoc.body)
+					{
+						hitPoints = drop.hitPoints;
+					}
 					// replace drop instance with temp item
 					if (tempItem.itemID != -1)
 					{
-						drop.IdentifyItem(tempItem);
+						drop.IdentifyItem(tempItem, tempHP);
 					}
 					else
 					{
 						Debug.LogWarning("No item returned from pickup");
 					}					
+					SpeedChangeCheck();
 				}
 			}
 		}
@@ -57,15 +69,11 @@ public class PlayerController : MonoBehaviour {
 	{
 		float horizontalThrow = Input.GetAxis("HorizontalAim");
 		float verticalThrow = Input.GetAxis("VerticalAim");
-		bool fire = Input.GetButton("Fire1");
-		bool fire2 = Input.GetButton("Fire2");
+		bool fire = Input.GetButtonDown("Fire1");
+		bool fire2 = Input.GetButtonDown("Fire2");
 		if ((horizontalThrow > 0.5f || horizontalThrow < -0.5f) || (verticalThrow > 0.5f || verticalThrow < -0.5f))
 		{
-			rotation = new Vector3(
-				transform.eulerAngles.x,
-				transform.eulerAngles.y,
-				Mathf.Atan2(-horizontalThrow, verticalThrow) * Mathf.Rad2Deg
-				);
+			rotation = MovementFunctions.LookAt2D(transform, horizontalThrow, verticalThrow);
 			
 		}
 		transform.eulerAngles = rotation;
@@ -82,13 +90,36 @@ public class PlayerController : MonoBehaviour {
 	private void PlayerAttack(Item item)
 	{
 		int attackPower = item.itemValue;
-		if (item.itemType == ItemType.melee)
+		Transform fireFrom;
+		if (item.itemLoc == ItemLoc.leftArm)
 		{
-			print("Melee Attack: " + item.itemName);
+			fireFrom = leftArm;
+		}
+		else
+		{
+			fireFrom = rightArm;
+		}
+		SpriteRenderer arm = fireFrom.GetComponent<SpriteRenderer>();
+		StartCoroutine(ChangeColor(arm, Color.white, 0));
+		StartCoroutine(ChangeColor(arm, Color.blue, 0.25f));
+		if (item.itemType == ItemType.melee)
+		{			
+			RaycastHit2D enemy = Physics2D.CircleCast(
+					new Vector2(fireFrom.transform.position.x, leftArm.transform.position.y),
+					0.25f,
+					Vector2.up,
+					0.25f,
+					enemyMask);
+			// TODO this will need to be more universal.
+			if (enemy.collider != null)
+			{
+				enemy.collider.gameObject.GetComponent<BasicEnemy>().TakeDamage(item.itemValue);
+			}
 		}
 		else if (item.itemType == ItemType.range)
 		{
-			print("Range Attack: " + item.itemName);
+			GameObject tempBullet = Instantiate(bullets, fireFrom.transform.position, transform.rotation);
+			tempBullet.GetComponent<PlayerRangeWeapon>().BulletSetup(item.itemValue, item.itemValueTwo);
 		}
 		else
 		{
@@ -111,4 +142,33 @@ public class PlayerController : MonoBehaviour {
 	{
 		// This will be used to change the animation based on direction.
 	}
+
+	void DeathCheck()
+	{
+		if (hitPoints <= 0)
+		{
+			Destroy(gameObject);
+		}		
+	}
+
+	public void TakeDamage(int damage)
+	{
+		hitPoints -= damage;
+		DeathCheck();
+		SpriteRenderer body = transform.Find("Body").GetComponent<SpriteRenderer>();
+		StartCoroutine(ChangeColor(body, Color.red, 0));
+		StartCoroutine(ChangeColor(body, Color.green, 0.25f));
+	}
+
+	// TODO remove this later
+	IEnumerator ChangeColor(SpriteRenderer sr, Color color, float t)
+	{		
+		yield return new WaitForSeconds(t);
+		sr.color = color;
+	}
+
+	void SpeedChangeCheck()
+	{	
+		speed = inv.inventory[4].itemValue;
+	}	
 }

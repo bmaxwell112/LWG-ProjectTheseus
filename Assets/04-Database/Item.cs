@@ -9,8 +9,7 @@ public enum ItemLoc{
 	rightArm,
 	back,
 	core,
-	leftLeg,
-	rightLeg,
+	legs,
 	consumable
 }
 public enum ItemType
@@ -45,7 +44,7 @@ public class Item {
 		//itemSprite = sprite;
 		itemHitpoints = hp;
 		itemValue = value;
-		itemValueTwo = value;
+		itemValueTwo = valueTwo;
 		itemSpecial = special;
 	}
 

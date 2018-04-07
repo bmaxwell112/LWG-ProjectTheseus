@@ -6,14 +6,15 @@ public class Drops : MonoBehaviour {
 
 	Database database;
 	public Item thisItem = new Item();
-	[SerializeField] int databaseItemID;
+	public int databaseItemID;
+	public int hitPoints;
 	[SerializeField] TextMesh text;
 
 
 	void Start()
 	{
 		database = FindObjectOfType<Database>();
-		IdentifyItem(database.items[databaseItemID]);
+		IdentifyItem(database.items[databaseItemID], database.items[databaseItemID].itemHitpoints);
 	}
 
 	void Update()
@@ -21,8 +22,16 @@ public class Drops : MonoBehaviour {
 		text.text = thisItem.itemName;
 	}
 
-	public void IdentifyItem(Item item)
+	public void IdentifyItem(Item item, int hp)
 	{
 		thisItem = item;
+		hitPoints = hp;
+		CancelInvoke();
+		Invoke("DestroyDrop", 5);
+	}
+
+	void DestroyDrop()
+	{
+		Destroy(gameObject);
 	}
 }
