@@ -145,7 +145,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -204,6 +204,7 @@ MonoBehaviour:
     itemValueTwo: 0
     itemSpecial: 0
   databaseItemID: 8
+  hitPoints: 0
   text: {fileID: 102579083172119494}
 --- !u!212 &212503795695336914
 SpriteRenderer:
