@@ -34,8 +34,7 @@ public class PlayerInventory : MonoBehaviour {
 		{
 			print("looking for parts");
 			if (inventory[i].itemLoc == item.itemLoc)
-			{
-				print("replaced part");
+			{				
 				inventory[i] = item;
 				break;
 			}

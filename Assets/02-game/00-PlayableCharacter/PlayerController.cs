@@ -24,9 +24,10 @@ public class PlayerController : MonoBehaviour {
 
 	private void PickupItemCheck()
 	{
-		bool pickup = Input.GetButtonDown("Pickup");
+		bool pickup = Input.GetButtonDown("Pickup");		
 		if (pickup)
 		{
+			print("Attempt Pickup");
 			Collider2D itemInRange = Physics2D.OverlapCircle(transform.position, 1, drop);
 			if (itemInRange)
 			{
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour {
 					Item tempItem = inv.IdentifyReplacePart(drop.thisItem);
 					// replace inventory item with drop
 					inv.ReplacePart(drop.thisItem);
+					print("replaced " + tempItem.itemName + " with " + drop.thisItem.itemName);
 					// replace drop instance with temp item
 					if (tempItem.itemID != -1)
 					{
@@ -45,7 +47,7 @@ public class PlayerController : MonoBehaviour {
 					else
 					{
 						Debug.LogWarning("No item returned from pickup");
-					}
+					}					
 				}
 			}
 		}
@@ -82,11 +84,11 @@ public class PlayerController : MonoBehaviour {
 		int attackPower = item.itemValue;
 		if (item.itemType == ItemType.melee)
 		{
-			print("Melee Attacking");
+			print("Melee Attack: " + item.itemName);
 		}
 		else if (item.itemType == ItemType.range)
 		{
-			print("Range Attacking");
+			print("Range Attack: " + item.itemName);
 		}
 		else
 		{

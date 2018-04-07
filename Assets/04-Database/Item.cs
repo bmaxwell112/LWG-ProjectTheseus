@@ -15,9 +15,10 @@ public enum ItemLoc{
 }
 public enum ItemType
 {
-	asthetic,
+	aesthetic,
 	melee,
-	range
+	range,
+	speed
 }
 
 [System.Serializable]
