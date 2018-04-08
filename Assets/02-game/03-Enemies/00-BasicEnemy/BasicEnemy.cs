@@ -6,29 +6,34 @@ public class BasicEnemy : MonoBehaviour {
 
 	Transform player;
 	bool knockback, attacking;
-	[SerializeField] float speed, knockbackDistance;	
+	[SerializeField] float knockbackDistance;	
 	[SerializeField] GameObject drop;
 	[SerializeField] LayerMask playerMask;
-	Color orange = new Color(0.82f, 0.55f, 0.16f);
-	int hitPoints, attack;
-	[SerializeField] Item[] loadout = new Item[7];
-	Database db;
+	RobotLoadout roLo;
+	int attack;
 
 	void Start()
 	{
-		db = FindObjectOfType<Database>();
 		player = GameObject.FindGameObjectWithTag("Player").transform;
-		loadout[0] = db.RandomItemOut(ItemLoc.head);
-		loadout[1] = db.RandomItemOut(ItemLoc.body);
-		loadout[2] = db.RandomItemOut(ItemLoc.leftArm);
-		loadout[3] = db.RandomItemOut(ItemLoc.rightArm);
-		loadout[4] = db.RandomItemOut(ItemLoc.legs);
-		loadout[5] = db.RandomItemOut(ItemLoc.back);
-		loadout[6] = db.RandomItemOut(ItemLoc.core);
-		hitPoints = Mathf.RoundToInt(loadout[1].itemHitpoints/4);
-		attack = Mathf.RoundToInt((loadout[2].itemValue + loadout[2].itemValue) / 4);
-		speed = loadout[4].itemValue - 0.5f;
-	}	
+		roLo = GetComponent<RobotLoadout>();
+		BasicEnemySetup();
+		attack = Mathf.RoundToInt((roLo.loadout[(int)ItemLoc.rightArm].itemValue + roLo.loadout[(int)ItemLoc.leftArm].itemValue) / 2);
+		roLo.hitPoints = Mathf.RoundToInt(roLo.hitPoints / 2);
+	}
+
+	private void BasicEnemySetup()
+	{
+		Database db = FindObjectOfType<Database>();
+		roLo.InitializeLoadout(
+			db.RandomItemOut(ItemLoc.head),
+			db.RandomItemOut(ItemLoc.body),
+			db.RandomItemOut(ItemLoc.leftArm),
+			db.RandomItemOut(ItemLoc.rightArm),
+			db.RandomItemOut(ItemLoc.legs),
+			db.RandomItemOut(ItemLoc.back),
+			db.RandomItemOut(ItemLoc.core)
+			);
+	}
 
 	// Update is called once per frame
 	void Update ()
@@ -51,7 +56,7 @@ public class BasicEnemy : MonoBehaviour {
 	{
 		if (!knockback)
 		{
-			transform.position += transform.up * speed * Time.deltaTime;
+			transform.position += transform.up * roLo.loadout[(int)ItemLoc.legs].itemValue * Time.deltaTime;
 		}
 	}
 
@@ -69,7 +74,7 @@ public class BasicEnemy : MonoBehaviour {
 		RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 0.55f, playerMask);
 		if (hit.collider != null)
 		{
-			hit.collider.gameObject.GetComponent<PlayerController>().TakeDamage(attack);
+			hit.collider.gameObject.GetComponent<RobotLoadout>().TakeDamage(attack, Color.red, Color.green);
 		}
 		attacking = false;
 	}
@@ -82,20 +87,7 @@ public class BasicEnemy : MonoBehaviour {
 		transform.eulerAngles = MovementFunctions.LookAt2D(transform, diff.x, diff.y);
 	}
 
-	public void TakeDamage(int damage)
-	{
-		hitPoints -= damage;
-		StartCoroutine(ChangeColor(Color.red, 0));
-		StartCoroutine(ChangeColor(orange, 0.25f));
-		StartCoroutine(EnemyKnockback());
-		if (hitPoints <= 0)
-		{
-			EnemyDrop();
-			Destroy(gameObject);
-		}
-	}
-
-	private void EnemyDrop()
+	public void EnemyDrop()
 	{
 		int rand = Random.Range(0, 100);
 		if (rand <= 33)
@@ -103,11 +95,11 @@ public class BasicEnemy : MonoBehaviour {
 			int rand2 = Random.Range(0, 7);
 			GameObject tempDrop = Instantiate(drop, transform.position, Quaternion.identity) as GameObject;
 			print(rand2);
-			tempDrop.GetComponent<Drops>().databaseItemID = loadout[rand2].itemID;
+			tempDrop.GetComponent<Drops>().databaseItemID = roLo.loadout[rand2].itemID;
 		}
 	}
 
-	IEnumerator EnemyKnockback()
+	public IEnumerator EnemyKnockback()
 	{
 		Vector3 endLocation = transform.position - transform.up;
 		float dist = Vector3.Distance(endLocation, transform.position);
@@ -120,12 +112,5 @@ public class BasicEnemy : MonoBehaviour {
 			yield return null;
 		}
 		knockback = false;
-	}
-
-	IEnumerator ChangeColor(Color color, float t)
-	{
-		SpriteRenderer body = transform.Find("Body").GetComponent<SpriteRenderer>();
-		yield return new WaitForSeconds(t);
-		body.color = color;
 	}
 }

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum ItemLoc{
-	head,
-	body,
-	leftArm,
-	rightArm,
-	back,
-	core,
-	legs,
-	consumable
+	head = 0,
+	body = 1,
+	leftArm = 2,
+	rightArm = 3,
+	back = 5,
+	core = 6,
+	legs = 4,
+	consumable = 7
 }
 public enum ItemType
 {

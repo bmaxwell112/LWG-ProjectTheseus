@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class PlayerSpecial : MonoBehaviour {
 
-	Database db;
 	int[] invID = new int[3];
 
 	// Use this for initialization
 	void Start()
-	{
-		db = FindObjectOfType<Database>();
+	{		
 		for (int i = 0; i < invID.Length; i++)
 		{
 			invID[i] = -1;

@@ -7,13 +7,13 @@ using UnityEngine.UI;
 public class Tempui : MonoBehaviour {
 
 	[SerializeField] Text text;
-	PlayerInventory inv;
+	RobotLoadout inv;
 	PlayerController player;
 
 	// Use this for initialization
-	void Start () {
-		inv = FindObjectOfType<PlayerInventory>();
+	void Start () {		
 		player = FindObjectOfType<PlayerController>();
+		inv = player.GetComponent<RobotLoadout>();
 	}
 	
 	// Update is called once per frame
@@ -24,14 +24,14 @@ public class Tempui : MonoBehaviour {
 	private void LoadOutCheck()
 	{
 		text.text =
-			player.hitPoints + "\n\n\n\n" +
-			inv.inventory[0].itemName + "\n" +
-			inv.inventory[1].itemName + "\n" +
-			inv.inventory[2].itemName + "\n" +
-			inv.inventory[3].itemName + "\n" +
-			inv.inventory[4].itemName + "\n" +
-			inv.inventory[5].itemName + "\n" +
-			inv.inventory[6].itemName + "\n" 
+			inv.hitPoints + "\n\n\n\n" +
+			inv.loadout[(int)ItemLoc.head] .itemName + "\n" +
+			inv.loadout[(int)ItemLoc.body] .itemName + "\n" +
+			inv.loadout[(int)ItemLoc.leftArm].itemName + "\n" +
+			inv.loadout[(int)ItemLoc.rightArm].itemName + "\n" +
+			inv.loadout[(int)ItemLoc.legs] .itemName + "\n" +
+			inv.loadout[(int)ItemLoc.back] .itemName + "\n" +
+			inv.loadout[(int)ItemLoc.core].itemName + "\n" 
 			;
 	}
 }
