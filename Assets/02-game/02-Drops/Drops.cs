@@ -26,7 +26,7 @@ public class Drops : MonoBehaviour {
 		thisItem = item;
 		hitPoints = hp;
 		CancelInvoke();
-		Invoke("DestroyDrop", 5);
+		Invoke("DestroyDrop", 7);
 	}
 
 	void DestroyDrop()
