@@ -10,11 +10,10 @@ public class Drops : MonoBehaviour {
 	public int hitPoints;
 	[SerializeField] TextMesh text;
 
-
 	void Start()
 	{
 		database = FindObjectOfType<Database>();
-		IdentifyItem(database.items[databaseItemID], database.items[databaseItemID].itemHitpoints);
+		IdentifyItem(database.items[databaseItemID], database.items[databaseItemID].itemHitpoints);		
 	}
 
 	void Update()

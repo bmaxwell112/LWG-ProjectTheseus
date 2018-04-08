@@ -21,9 +21,15 @@ public class PlayerRangeWeapon : MonoBehaviour {
 		}
 	}
 
-	public void BulletSetup(int dmg, int spd)
+	public void BulletSetup(int dmg, int spd, float life)
 	{
 		damage = dmg;
 		speed = spd;
+		Invoke("EndOfLife", life);
+	}
+
+	void EndOfLife()
+	{
+		Destroy(gameObject);
 	}
 }

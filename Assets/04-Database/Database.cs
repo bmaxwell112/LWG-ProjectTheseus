@@ -15,7 +15,7 @@ public class Database : MonoBehaviour {
 		items.Add(new Item(4, "Basic Legs", "A pair of legs taken from the only schematics you have left.", ItemLoc.legs, ItemType.speed, 10, 2, 0, false));		
 		items.Add(new Item(5, "Basic Back", "A back taken from the only schematics you have left.", ItemLoc.back, ItemType.aesthetic, 20, 0, 0, false));
 		items.Add(new Item(6, "Basic AI Core", "An AI Core taken from the only schematics you have left.", ItemLoc.core, ItemType.aesthetic, 0, 0, 0, false));
-		items.Add(new Item(7, "Head Vulcans", "A head with vulcan guns above the eyes.", ItemLoc.head, ItemType.aesthetic, 10, 0, 0, true));
+		items.Add(new Item(7, "Head Vulcans", "A head with vulcan guns above the eyes.", ItemLoc.head, ItemType.aesthetic, 10, 2, 15, true));
 		items.Add(new Item(8, "Heavy Torso", "A bulkier body capable of taking more punishment.", ItemLoc.body, ItemType.aesthetic, 80, 0, 0, false));
 		items.Add(new Item(9, "Chainsaw Arm L", "A melee arm with a chance to cleanly remove a part.", ItemLoc.leftArm, ItemType.melee, 10, 10, 0, true));
 		items.Add(new Item(10, "Chainsaw Arm R", "A melee arm with a chance to cleanly remove a part.", ItemLoc.rightArm, ItemType.melee, 10, 10, 0, true));

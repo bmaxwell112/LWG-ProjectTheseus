@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,15 @@ using UnityEngine;
 public class PlayerSpecial : MonoBehaviour {
 
 	Database db;
+	PlayerController player;
 	int[] invID = new int[3];
+	bool[] invActive = new bool[3];
 
 	// Use this for initialization
 	void Start()
 	{
 		db = FindObjectOfType<Database>();
+		player = GetComponent<PlayerController>();
 		for (int i = 0; i < invID.Length; i++)
 		{
 			invID[i] = -1;
@@ -26,12 +30,25 @@ public class PlayerSpecial : MonoBehaviour {
 	{
 		for (int i = 0; i < invID.Length; i++)
 		{
-			if (invID[i] == 7)
-			{
-				print("Fireing head cannons");
+			// Vulcan Cannons
+			if (invID[i] == 7 && !invActive[0])
+			{				
+				StartCoroutine(VulcanCannons());				
 			}
 		}
 	}
+
+	private IEnumerator VulcanCannons()
+	{
+		invActive[0] = true;
+		while (invActive[0])
+		{
+			print(db.items[7].itemValue + ", " + db.items[7].itemValueTwo);
+			player.SpawnBullets(db.items[7], transform, 0.25f);
+			yield return new WaitForSeconds(0.25f);
+		}
+	}
+
 	void SpecialPassive()
 	{
 		// activate passive things on pickup.

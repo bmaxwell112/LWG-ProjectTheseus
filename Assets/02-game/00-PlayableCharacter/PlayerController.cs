@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
 	Transform leftArm, rightArm;
 	PlayerInventory inv;
 	Vector3 rotation;
+	[SerializeField] bool mouseInput;
 	// TODO change to private later
 	public int hitPoints;
 
@@ -72,11 +73,13 @@ public class PlayerController : MonoBehaviour {
 		float horizontalThrow = Input.GetAxis("HorizontalAim");
 		float verticalThrow = Input.GetAxis("VerticalAim");
 		bool fire = Input.GetButtonDown("Fire1");
-		bool fire2 = Input.GetButtonDown("Fire2");
+		bool fire2 = Input.GetButtonDown("Fire2");		
 		if ((horizontalThrow > 0.5f || horizontalThrow < -0.5f) || (verticalThrow > 0.5f || verticalThrow < -0.5f))
 		{
-			rotation = MovementFunctions.LookAt2D(transform, horizontalThrow, verticalThrow);
-			
+			if (!mouseInput)
+			{
+				rotation = MovementFunctions.LookAt2D(transform, horizontalThrow, verticalThrow);
+			}
 		}
 		transform.eulerAngles = rotation;
 		if (fire)
@@ -119,13 +122,19 @@ public class PlayerController : MonoBehaviour {
 		}
 		else if (item.itemType == ItemType.range)
 		{
-			GameObject tempBullet = Instantiate(bullets, fireFrom.transform.position, transform.rotation);
-			tempBullet.GetComponent<PlayerRangeWeapon>().BulletSetup(item.itemValue, item.itemValueTwo);
+			SpawnBullets(item, fireFrom, 3);
 		}
 		else
 		{
 			Debug.LogWarning("Could not attack with ItemType " + item.itemType);
 		}
+	}
+
+	public void SpawnBullets(Item item, Transform fireFrom, float life)
+	{
+		GameObject tempBullet = Instantiate(bullets, fireFrom.transform.position, transform.rotation);
+		print(item.itemValue + ", " + item.itemValueTwo);
+		tempBullet.GetComponent<PlayerRangeWeapon>().BulletSetup(item.itemValue, item.itemValueTwo, life);
 	}
 
 	private void MovementCheck()
