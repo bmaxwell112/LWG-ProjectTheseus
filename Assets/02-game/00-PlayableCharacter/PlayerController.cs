@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour {
 					int tempHP = hitPoints;
 					// replace inventory item with drop
 					inv.ReplacePart(drop.thisItem);
+					// Check for specials
+					GetComponent<PlayerSpecial>().SpecialCheck(drop.thisItem);
 					if (drop.thisItem.itemLoc == ItemLoc.body)
 					{
 						hitPoints = drop.hitPoints;
@@ -59,7 +61,7 @@ public class PlayerController : MonoBehaviour {
 					{
 						Debug.LogWarning("No item returned from pickup");
 					}					
-					SpeedChangeCheck();
+					SpeedChangeCheck();					
 				}
 			}
 		}
@@ -89,7 +91,6 @@ public class PlayerController : MonoBehaviour {
 
 	private void PlayerAttack(Item item)
 	{
-		int attackPower = item.itemValue;
 		Transform fireFrom;
 		if (item.itemLoc == ItemLoc.leftArm)
 		{
