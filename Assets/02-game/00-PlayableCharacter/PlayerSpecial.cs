@@ -15,6 +15,7 @@ public class PlayerSpecial : MonoBehaviour {
 	{
 		db = FindObjectOfType<Database>();
 		player = GetComponent<PlayerController>();
+
 		for (int i = 0; i < invID.Length; i++)
 		{
 			invID[i] = -1;
@@ -23,14 +24,15 @@ public class PlayerSpecial : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-		SpecialListener();
+		SpecialListener();		
 	}
 
 	void SpecialListener()
-	{
+	{		
 		for (int i = 0; i < invID.Length; i++)
 		{
 			// Vulcan Cannons
+			print("doing this");
 			if (invID[i] == 7 && !invActive[0])
 			{				
 				StartCoroutine(VulcanCannons());				
