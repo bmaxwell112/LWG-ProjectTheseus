@@ -3,6 +3,7 @@
 /[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/
+/BashScripts/
 /UnityPackageManager/
 #/ProjectSettings/
 /Assets/AssetStoreTools*
