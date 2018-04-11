@@ -9,7 +9,6 @@ public class CursorSetup : MonoBehaviour {
 	[SerializeField] List<Cursor> cursorPositions= new List<Cursor>();
 
 	int currentLocation = 0;
-	float verticalThrow, horizontalThrow;
 	bool moving;
 
 	void Start()
@@ -19,15 +18,13 @@ public class CursorSetup : MonoBehaviour {
 
 	void Update()
 	{
-		horizontalThrow = CrossPlatformInputManager.GetAxis("Horizontal");
-		verticalThrow = CrossPlatformInputManager.GetAxis("Vertical");
 		CursorMovement();
 		CursorAction();
 	}
 
 	void CursorAction()
 	{
-		bool press = CrossPlatformInputManager.GetButton("Fire1");
+		bool press = InputCapture.pickup;
 		if (press)
 		{
 			print("ran Action");
@@ -50,7 +47,7 @@ public class CursorSetup : MonoBehaviour {
 			VerticalMovement();
 			HorizontalMovement();
 		}
-		if (verticalThrow == 0 && horizontalThrow == 0)
+		if (InputCapture.vThrow == 0 && InputCapture.hThrow == 0)
 		{
 			moving = false;
 		}
@@ -59,19 +56,19 @@ public class CursorSetup : MonoBehaviour {
 
 	private void HorizontalMovement()
 	{
-		if (currentLocation > 0 && horizontalThrow < -0.5f && !moving)
+		if (currentLocation > 0 && InputCapture.hThrow < -0.5f && !moving)
 		{
 			currentLocation--;
 			transform.localPosition = cursorPositions[currentLocation].cursorLocation;
 			moving = true;
 		}
-		if (currentLocation < cursorPositions.Count - 1 && horizontalThrow > 0.5f && !moving)
+		if (currentLocation < cursorPositions.Count - 1 && InputCapture.hThrow > 0.5f && !moving)
 		{
 			currentLocation++;
 			transform.localPosition = cursorPositions[currentLocation].cursorLocation;
 			moving = true;
 		}
-		if (verticalThrow > 0.5f && !moving)
+		if (InputCapture.vThrow > 0.5f && !moving)
 		{
 			for (int i = currentLocation; i > 0; i--)
 			{
@@ -84,7 +81,7 @@ public class CursorSetup : MonoBehaviour {
 				}
 			}
 		}
-		if (verticalThrow < -0.5f && !moving)
+		if (InputCapture.vThrow < -0.5f && !moving)
 		{
 			for (int i = currentLocation; i < cursorPositions.Count; i++)
 			{
@@ -101,13 +98,13 @@ public class CursorSetup : MonoBehaviour {
 
 	private void VerticalMovement()
 	{
-		if (currentLocation > 0 && verticalThrow > 0.5f && !moving)
+		if (currentLocation > 0 && InputCapture.vThrow > 0.5f && !moving)
 		{
 			currentLocation--;
 			transform.localPosition = cursorPositions[currentLocation].cursorLocation;
 			moving = true;
 		}
-		if (currentLocation < cursorPositions.Count - 1 && verticalThrow < -0.5f && !moving)
+		if (currentLocation < cursorPositions.Count - 1 && InputCapture.vThrow < -0.5f && !moving)
 		{
 			currentLocation++;
 			transform.localPosition = cursorPositions[currentLocation].cursorLocation;

@@ -51,20 +51,16 @@ public class PlayerController : MonoBehaviour {
 
 	private void AimAndFireCheck()
 	{
-		float horizontalThrow = Input.GetAxis("HorizontalAim");
-		float verticalThrow = Input.GetAxis("VerticalAim");
-		bool fire = Input.GetButtonDown("Fire1");
-		bool fire2 = Input.GetButtonDown("Fire2");		
-		if ((horizontalThrow > 0.5f || horizontalThrow < -0.5f) || (verticalThrow > 0.5f || verticalThrow < -0.5f))
+		if ((InputCapture.hThrow > 0.5f || InputCapture.hThrow < -0.5f) || (InputCapture.vThrow > 0.5f || InputCapture.vThrow < -0.5f))
 		{
-			rotation = MovementFunctions.LookAt2D(transform, horizontalThrow, verticalThrow);
+			rotation = MovementFunctions.LookAt2D(transform, InputCapture.hThrow, InputCapture.vThrow);
 		}
 		transform.eulerAngles = rotation;
-		if (fire)
+		if (InputCapture.fireLeft)
 		{
 			PlayerAttack(roLo.loadout[2]);
 		}
-		if (fire2)
+		if (InputCapture.fireRight)
 		{
 			PlayerAttack(roLo.loadout[3]);
 		}
@@ -116,12 +112,10 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void MovementCheck()
-	{
-		float horizontalThrow = Input.GetAxis("Horizontal");
-		float verticalThrow = Input.GetAxis("Vertical");
+	{		
 		// Sets players speed
-		float xSpeed = horizontalThrow * roLo.loadout[(int)ItemLoc.legs].itemValue * Time.deltaTime;
-		float ySpeed = verticalThrow * roLo.loadout[(int)ItemLoc.legs].itemValue * Time.deltaTime;
+		float xSpeed = InputCapture.hThrow * roLo.loadout[(int)ItemLoc.legs].itemValue * Time.deltaTime;
+		float ySpeed = InputCapture.vThrow * roLo.loadout[(int)ItemLoc.legs].itemValue * Time.deltaTime;
 		// applies movement
 		transform.position += new Vector3(xSpeed, ySpeed, transform.position.z);
 	}
