@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class InputCapture : MonoBehaviour {
 
+	// TODO make this not MonoBehaviour and call it from another script.
 	public static float hThrow, vThrow, hAim, vAim;
 	public static bool pickup, pause, fireLeft, fireRight;
+
+	void Update()
+	{
+		InputCheck();
+	}
 
 	public static void InputCheck()
 	{

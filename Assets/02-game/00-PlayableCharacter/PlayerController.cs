@@ -51,9 +51,9 @@ public class PlayerController : MonoBehaviour {
 
 	private void AimAndFireCheck()
 	{
-		if ((InputCapture.hThrow > 0.5f || InputCapture.hThrow < -0.5f) || (InputCapture.vThrow > 0.5f || InputCapture.vThrow < -0.5f))
+		if ((InputCapture.hAim > 0.5f || InputCapture.hAim < -0.5f) || (InputCapture.vAim > 0.5f || InputCapture.vAim < -0.5f))
 		{
-			rotation = MovementFunctions.LookAt2D(transform, InputCapture.hThrow, InputCapture.vThrow);
+			rotation = MovementFunctions.LookAt2D(transform, InputCapture.hAim, InputCapture.vAim);
 		}
 		transform.eulerAngles = rotation;
 		if (InputCapture.fireLeft)
