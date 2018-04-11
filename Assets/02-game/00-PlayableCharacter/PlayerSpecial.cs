@@ -32,7 +32,6 @@ public class PlayerSpecial : MonoBehaviour {
 		for (int i = 0; i < invID.Length; i++)
 		{
 			// Vulcan Cannons
-			print("doing this");
 			if (invID[i] == 7 && !invActive[0])
 			{				
 				StartCoroutine(VulcanCannons());				
