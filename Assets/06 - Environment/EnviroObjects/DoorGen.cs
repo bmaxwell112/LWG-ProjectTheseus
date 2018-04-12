@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ public class DoorGen : MonoBehaviour {
 
     public bool doorWall;
     SpriteRenderer spriteRenderer;
-
+	[SerializeField] GameObject open, close;
 
 	// Use this for initialization
 	void Start () {
@@ -35,12 +35,26 @@ public class DoorGen : MonoBehaviour {
     void SpawnDoor()
     {
         if (doorWall)
-        {
-            spriteRenderer.color = Color.green;
-        }
+        {            
+			if (close)
+			{
+				close.SetActive(false);
+			}
+			else
+			{
+				spriteRenderer.color = Color.green;
+			}
+		}
         else
         {
-            spriteRenderer.color = Color.red;
-        }
+			if (open)
+			{
+				open.SetActive(false);
+			}
+			else
+			{
+				spriteRenderer.color = Color.red;
+			}
+		}
     }
 }
