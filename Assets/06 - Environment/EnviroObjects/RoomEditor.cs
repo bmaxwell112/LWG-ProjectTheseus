@@ -8,6 +8,10 @@ public class RoomEditor : MonoBehaviour {
 	const int gridSizeX = 12;
 	const int gridSizeY = 4;
 
+	public static Vector2Int GetGridSize()
+	{
+		return new Vector2Int(gridSizeX, gridSizeY);
+	}
 
 	void Update () {
 		SnapToGrid();
