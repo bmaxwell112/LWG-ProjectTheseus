@@ -28,7 +28,6 @@ public class RoomGeneration : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		print(spawnNextRoom);
 		if (spawnNextRoom)
 		{
 			print("Running update");

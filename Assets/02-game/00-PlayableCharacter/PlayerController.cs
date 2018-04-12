@@ -43,7 +43,8 @@ public class PlayerController : MonoBehaviour {
 				if (itemInRange.gameObject.GetComponent<Drops>())
 				{
 					Drops drop = itemInRange.gameObject.GetComponent<Drops>();
-					roLo.ReplaceDropPart(drop);					
+					roLo.ReplaceDropPart(drop);
+					drop.RenameAndReset();
 				}
 			}
 		}
