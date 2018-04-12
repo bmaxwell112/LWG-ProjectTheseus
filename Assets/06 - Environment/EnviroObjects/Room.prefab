@@ -640,7 +640,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41452eacbd38c742a95375b947a5364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: []
+  doors: []
+  room: {fileID: 1935376734419032}
+  spawnNextRoom: 0
+  done: 0
 --- !u!212 &212139575987841972
 SpriteRenderer:
   m_ObjectHideFlags: 1
