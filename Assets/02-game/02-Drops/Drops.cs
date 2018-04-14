@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Drops : MonoBehaviour {
 
-	Database database;
 	public Item thisItem = new Item();
 	public int databaseItemID;
 	public int hitPoints;
@@ -16,7 +15,7 @@ public class Drops : MonoBehaviour {
 
 	void Start()
 	{
-		database = FindObjectOfType<Database>();
+		Database database = Database.instance;
 		IdentifyItem(database.items[databaseItemID], database.items[databaseItemID].itemHitpoints);
 		Invoke("DestroyDrop", 10);
 	}

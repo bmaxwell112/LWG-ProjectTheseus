@@ -10,7 +10,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour {
-
+	public static MusicManager instance = null;
 	//	levelMusicChangeArray's size needs to be set to the number
 	//	of scenes in the Build Index. Each Element in the array
 	//	corresponds to a scene in the build index.
@@ -20,11 +20,14 @@ public class MusicManager : MonoBehaviour {
 	private AudioClip lastLevelMusic;
 	
 	private AudioSource audioSource;
-	
-	void Awake(){
-		DontDestroyOnLoad (gameObject);
 
-        Debug.Log("Don't Destroy on load " + name);
+	void Awake()
+	{
+		if (instance == null)
+			instance = this;
+		else if (instance != this)
+			Destroy(gameObject);
+		DontDestroyOnLoad(gameObject);
 	}
 	// Use this for initialization
 	void Start () {

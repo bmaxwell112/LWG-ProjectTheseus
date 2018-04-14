@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class Database : MonoBehaviour {
 
+	public static Database instance = null;                 //Static instance of Database which allows it to be accessed by any other script.
+	
+	//Awake is always called before any Start functions
+	void Awake()
+	{
+		if (instance == null)
+			instance = this;
+		else if (instance != this)
+			Destroy(gameObject);
+		DontDestroyOnLoad(gameObject);
+	}
+
 	public List<Item> items = new List<Item>();
 
 	// Use this for initialization

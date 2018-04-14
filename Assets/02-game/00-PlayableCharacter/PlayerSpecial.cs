@@ -5,15 +5,14 @@ using UnityEngine;
 
 public class PlayerSpecial : MonoBehaviour {
 
-	Database db;
+	Database db = Database.instance;
 	PlayerController player;
 	int[] invID = new int[3];
 	bool[] invActive = new bool[3];
 
 	// Use this for initialization
 	void Start()
-	{
-		db = FindObjectOfType<Database>();
+	{		
 		player = GetComponent<PlayerController>();
 
 		for (int i = 0; i < invID.Length; i++)

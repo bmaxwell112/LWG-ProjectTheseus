@@ -1,16 +1,24 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	public static GameManager instance = null;                 //Static instance of Database which allows it to be accessed by any other script.
+
+	//Awake is always called before any Start functions
+	void Awake()
+	{
+		if (instance == null)
+			instance = this;
+		else if (instance != this)
+			Destroy(gameObject);
+		DontDestroyOnLoad(gameObject);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	void Update()
+	{
+		InputCapture.InputCheck();
 	}
+
+	public static bool gamePaused;
 }

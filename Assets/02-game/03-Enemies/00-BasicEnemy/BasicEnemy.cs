@@ -23,7 +23,7 @@ public class BasicEnemy : MonoBehaviour {
 
 	private void BasicEnemySetup()
 	{
-		Database db = FindObjectOfType<Database>();
+		Database db = Database.instance;
 		roLo.InitializeLoadout(
 			db.RandomItemOut(ItemLoc.head),
 			db.RandomItemOut(ItemLoc.body),

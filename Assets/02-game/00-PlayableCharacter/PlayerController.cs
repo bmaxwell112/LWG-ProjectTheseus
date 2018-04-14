@@ -21,15 +21,18 @@ public class PlayerController : MonoBehaviour {
 
 	private void PlayerSpawn()
 	{
-		Database db = FindObjectOfType<Database>();
+		Database db = Database.instance;
 		roLo.InitializeLoadout(db.items[0], db.items[1], db.items[2], db.items[3], db.items[4], db.items[5], db.items[6]);
 	}
 
 	// Update is called once per frame
 	void Update () {
-		MovementCheck();
-		AimAndFireCheck();
-		PickupItemCheck();
+		if (!GameManager.gamePaused)
+		{
+			MovementCheck();
+			AimAndFireCheck();
+			PickupItemCheck();
+		}
 	}
 
 	private void PickupItemCheck()
