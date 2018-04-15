@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomGeneration : MonoBehaviour {
-
+	static int spawncap;
     //public bool roomActive;
     public DoorGen[] doors;
     private Vector3Int[] spawnLocation;
@@ -24,8 +24,15 @@ public class RoomGeneration : MonoBehaviour {
             new Vector3Int(-12, -4, 0) ,
             new Vector3Int(12, -4, 0)
         };
-    }
-	
+		if(spawncap < 100)
+			Invoke("SpawnDungeon", 0.5f);
+	}
+	void SpawnDungeon()
+	{
+		spawnNextRoom = true;
+		spawncap++;
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if (spawnNextRoom)

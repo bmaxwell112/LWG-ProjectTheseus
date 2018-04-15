@@ -34,7 +34,7 @@ public class DoorGen : MonoBehaviour {
 
     void RandomizeWall()
     {
-        if(Random.value > 0.5)
+        if(Random.value > 0.66)
         {
             doorWall = true;
         }
