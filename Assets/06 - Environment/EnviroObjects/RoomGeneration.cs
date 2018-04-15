@@ -41,20 +41,38 @@ public class RoomGeneration : MonoBehaviour {
 
     void CheckDoor()
     {
-		print("Ranthis " + doors.Length);
-        for(int i=0; i < doors.Length; i++)
-        {
-			print(doors[i].doorWall);
-            if(doors[i].doorWall)
-            {
-                Instantiate(
-					room, 
-					new Vector3(
-						transform.position.x + spawnLocation[i].x,
-						transform.position.y + spawnLocation[i].y,
-						0), 
-					Quaternion.identity);
-            }
+		RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
+		for (int i=0; i < doors.Length; i++)
+        {			
+			if (CheckForRoomClearance(spawnLocation[i], rooms))
+			{
+				print(doors[i].doorWall);
+				if (doors[i].doorWall)
+				{
+					Instantiate(
+						room,
+						new Vector3(
+							transform.position.x + spawnLocation[i].x,
+							transform.position.y + spawnLocation[i].y,
+							0),
+						Quaternion.identity);
+				}
+			}
         }
     }
+
+	bool CheckForRoomClearance(Vector3 location, RoomGeneration[] rooms)
+	{		
+		foreach (RoomGeneration room in rooms)
+		{
+			if (room.transform.position == new Vector3(
+						transform.position.x + location.x,
+						transform.position.y + location.y,
+						0))
+			{
+				return false;
+			}
+		}		
+		return true;
+	}
 }
