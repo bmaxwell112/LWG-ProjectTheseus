@@ -32,9 +32,11 @@ public class Item {
 	public int itemHitpoints;
 	public int itemValue;
 	public int itemValueTwo;
+	public float itemFltValue;
+	public float itemFltValueTwo;
 	public bool itemSpecial;
 
-	public Item(int id, string name, string desc, ItemLoc location, ItemType type, int hp, int value, int valueTwo, bool special)
+	public Item(int id, string name, string desc, ItemLoc location, ItemType type, int hp, int value, int valueTwo, float fltValue, float fltValueTwo, bool special)
 	{
 		itemID = id;
 		itemName = name;
@@ -45,6 +47,8 @@ public class Item {
 		itemHitpoints = hp;
 		itemValue = value;
 		itemValueTwo = valueTwo;
+		itemFltValue = fltValue;
+		itemFltValueTwo = fltValueTwo;
 		itemSpecial = special;
 	}
 

@@ -23,14 +23,14 @@ public class RobotLoadout : MonoBehaviour {
 		hitPoints = body.itemHitpoints;
 	}
 
-	public void TakeDamage(int damage, Color color1, Color color2)
+	public void TakeDamage(int damage, Color color1, Color color2, bool kb)
 	{
 		hitPoints -= damage;
 		SpriteRenderer body = transform.Find("Body").GetComponent<SpriteRenderer>();
 		StartCoroutine(ChangeColor(body, color1, 0));
 		StartCoroutine(ChangeColor(body, color2, 0.25f));
 		DeathCheck();
-		if (GetComponent<BasicEnemy>())
+		if (GetComponent<BasicEnemy>() && kb)
 		{
 			StartCoroutine(GetComponent<BasicEnemy>().EnemyKnockback());
 		}
@@ -67,7 +67,7 @@ public class RobotLoadout : MonoBehaviour {
 				drop.thisItem = tempItem;
 				if (loadout[i].itemSpecial)
 				{
-					GetComponent<PlayerSpecial>().SpecialCheck(loadout[i]);
+					//GetComponent<PlayerSpecial>().SpecialCheck(loadout[i]);
 				}
 				switch (loadout[i].itemLoc)
 				{

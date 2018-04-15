@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
 	Transform leftArm, rightArm;
 	RobotLoadout roLo;
 	Vector3 rotation;
+	bool fireLeft, fireRight;
 
 	void Start()
 	{		
@@ -60,13 +61,21 @@ public class PlayerController : MonoBehaviour {
 			rotation = MovementFunctions.LookAt2D(transform, InputCapture.hAim, InputCapture.vAim);
 		}
 		transform.eulerAngles = rotation;
-		if (InputCapture.fireLeft)
+		if (InputCapture.fireLeftDown)
 		{
 			PlayerAttack(roLo.loadout[2]);
 		}
-		if (InputCapture.fireRight)
+		if (InputCapture.fireRightDown)
 		{
 			PlayerAttack(roLo.loadout[3]);
+		}
+		if (!InputCapture.firingLeft && fireLeft)
+		{
+			fireLeft = false;
+		}
+		if (!InputCapture.firingRight && fireRight)
+		{
+			fireRight = false;
 		}
 	}
 
@@ -95,12 +104,22 @@ public class PlayerController : MonoBehaviour {
 			// TODO this will need to be more universal.
 			if (enemy.collider != null)
 			{
-				enemy.collider.gameObject.GetComponent<RobotLoadout>().TakeDamage(item.itemValue, Color.red, new Color(0.82f, 0.55f, 0.16f));
+				enemy.collider.gameObject.GetComponent<RobotLoadout>().TakeDamage(item.itemValue, Color.red, new Color(0.82f, 0.55f, 0.16f), true);
 			}
 		}
 		else if (item.itemType == ItemType.range)
 		{
-			SpawnBullets(item, fireFrom, 3);
+			print(InputCapture.firingRight);
+			if (item.itemLoc == ItemLoc.leftArm && !fireLeft)
+			{
+				fireLeft = true;
+				StartCoroutine(SpawnBullets(item, fireFrom));				
+			}
+			if (item.itemLoc == ItemLoc.rightArm && !fireRight)
+			{
+				fireRight = true;
+				StartCoroutine(SpawnBullets(item, fireFrom));				
+			}
 		}
 		else
 		{
@@ -108,11 +127,23 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	public void SpawnBullets(Item item, Transform fireFrom, float life)
+	public IEnumerator SpawnBullets(Item item, Transform fireFrom)
 	{
-		GameObject tempBullet = Instantiate(bullets, fireFrom.transform.position, transform.rotation);
-		print(item.itemValue + ", " + item.itemValueTwo);
-		tempBullet.GetComponent<PlayerRangeWeapon>().BulletSetup(item.itemValue, item.itemValueTwo, life);
+		bool fire = true;
+		while (fire)
+		{
+			GameObject tempBullet = Instantiate(bullets, fireFrom.transform.position, transform.rotation);
+			tempBullet.GetComponent<PlayerRangeWeapon>().BulletSetup(item.itemValue, item.itemValueTwo, item.itemFltValueTwo);
+			if (item.itemLoc == ItemLoc.leftArm)
+			{
+				fire = fireLeft;
+			}
+			if (item.itemLoc == ItemLoc.rightArm)
+			{
+				fire = fireRight;
+			}
+			yield return new WaitForSeconds(item.itemFltValue);
+		}
 	}
 
 	private void MovementCheck()

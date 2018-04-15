@@ -16,7 +16,7 @@ public class PlayerRangeWeapon : MonoBehaviour {
 		print("collided");
 		if (coll.gameObject.tag == "Enemy")
 		{
-			coll.gameObject.GetComponent<RobotLoadout>().TakeDamage(damage, Color.red, new Color(0.82f, 0.55f, 0.16f));
+			coll.gameObject.GetComponent<RobotLoadout>().TakeDamage(damage, Color.red, new Color(0.82f, 0.55f, 0.16f), false);
 			Destroy(gameObject);
 		}
 	}

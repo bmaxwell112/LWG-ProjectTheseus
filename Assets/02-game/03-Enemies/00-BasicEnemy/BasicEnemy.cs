@@ -74,7 +74,7 @@ public class BasicEnemy : MonoBehaviour {
 		RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 0.55f, playerMask);
 		if (hit.collider != null)
 		{
-			hit.collider.gameObject.GetComponent<RobotLoadout>().TakeDamage(attack, Color.red, Color.green);
+			hit.collider.gameObject.GetComponent<RobotLoadout>().TakeDamage(attack, Color.red, Color.green, false);
 		}
 		attacking = false;
 	}
