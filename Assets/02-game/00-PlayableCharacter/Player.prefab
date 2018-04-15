@@ -69,7 +69,6 @@ GameObject:
   - component: {fileID: 4001388926385082}
   - component: {fileID: 114837784949216246}
   - component: {fileID: 114298095096763580}
-  - component: {fileID: 114577931501234066}
   - component: {fileID: 61349401804430116}
   - component: {fileID: 50527218555790112}
   m_Layer: 10
@@ -86,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1987759031399868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4861382725036900}
@@ -200,6 +199,8 @@ MonoBehaviour:
     itemHitpoints: 0
     itemValue: 0
     itemValueTwo: 0
+    itemFltValue: 0
+    itemFltValueTwo: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -209,6 +210,8 @@ MonoBehaviour:
     itemHitpoints: 0
     itemValue: 0
     itemValueTwo: 0
+    itemFltValue: 0
+    itemFltValueTwo: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -218,6 +221,8 @@ MonoBehaviour:
     itemHitpoints: 0
     itemValue: 0
     itemValueTwo: 0
+    itemFltValue: 0
+    itemFltValueTwo: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -227,6 +232,8 @@ MonoBehaviour:
     itemHitpoints: 0
     itemValue: 0
     itemValueTwo: 0
+    itemFltValue: 0
+    itemFltValueTwo: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -236,6 +243,8 @@ MonoBehaviour:
     itemHitpoints: 0
     itemValue: 0
     itemValueTwo: 0
+    itemFltValue: 0
+    itemFltValueTwo: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -245,6 +254,8 @@ MonoBehaviour:
     itemHitpoints: 0
     itemValue: 0
     itemValueTwo: 0
+    itemFltValue: 0
+    itemFltValueTwo: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -254,18 +265,9 @@ MonoBehaviour:
     itemHitpoints: 0
     itemValue: 0
     itemValueTwo: 0
+    itemFltValue: 0
+    itemFltValueTwo: 0
     itemSpecial: 0
---- !u!114 &114577931501234066
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1987759031399868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c49b5ea8c74807c4992f25f9c98411b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114837784949216246
 MonoBehaviour:
   m_ObjectHideFlags: 1
