@@ -24,8 +24,14 @@ public class RoomGeneration : MonoBehaviour {
             new Vector3Int(-12, -4, 0) ,
             new Vector3Int(12, -4, 0)
         };
-		if(spawncap < 100)
+		if (spawncap <= 0)
+		{
+			Invoke("SpawnDungeon", 5f);
+		}
+		else if (spawncap >= 1 && spawncap < 100)
+		{
 			Invoke("SpawnDungeon", 0.5f);
+		}
 	}
 	void SpawnDungeon()
 	{
