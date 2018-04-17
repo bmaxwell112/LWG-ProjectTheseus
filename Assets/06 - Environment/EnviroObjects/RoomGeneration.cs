@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class RoomGeneration : MonoBehaviour {
 	static int spawncap;
-    //public bool roomActive;
+   public bool roomActive;
     public DoorGen[] doors;
     private Vector3Int[] spawnLocation;
-    [SerializeField] GameObject room;
+    [SerializeField] GameObject room, player;
 	public bool spawnNextRoom, done;
+    private RoomManager worldController;
+    private CurrentRoom currentRoom;
 
 	// Use this for initialization
 	void Start () {
 		spawnNextRoom = false;
-		doors = GetComponentsInChildren<DoorGen>();   
+        roomActive = false;
+		doors = GetComponentsInChildren<DoorGen>();
+        worldController = FindObjectOfType<RoomManager>();
+        currentRoom = GetComponentInChildren<CurrentRoom>();
 
         spawnLocation = new Vector3Int[]
         {
@@ -28,7 +33,7 @@ public class RoomGeneration : MonoBehaviour {
 		{
 			Invoke("SpawnDungeon", 5f);
 		}
-		else if (spawncap >= 1 && spawncap < 100)
+		else if (spawncap >= 1 && spawncap < worldController.roomCap)
 		{
 			Invoke("SpawnDungeon", 0.5f);
 		}
@@ -38,6 +43,8 @@ public class RoomGeneration : MonoBehaviour {
 		spawnNextRoom = true;
 		spawncap++;
 	}
+
+    //Another SpawnDungeon with forced minimums
 
 	// Update is called once per frame
 	void Update () {
@@ -50,7 +57,16 @@ public class RoomGeneration : MonoBehaviour {
 				done = true;
 			}
 		}
-	}
+
+      if(currentRoom.currentActive)
+        {
+            roomActive = true;
+        }
+
+        ToggleActiveRooms();
+    }
+
+    //something to differentiate rooms that are spawned
 
     void CheckDoor()
     {
@@ -88,4 +104,28 @@ public class RoomGeneration : MonoBehaviour {
 		}		
 		return true;
 	}
+
+    void ToggleActiveRooms()
+    {
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        if (!roomActive)
+        {
+
+            foreach (Renderer r in renderers)
+            {
+                r.enabled = false;
+            }
+            print("room inactive");
+
+        }
+        else
+        {
+            foreach (Renderer r in renderers)
+            {
+                r.enabled = true;
+            }
+            print("room active");
+        }
+
+    }
 }

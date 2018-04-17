@@ -46,6 +46,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1087177432998442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4339084516442048}
+  - component: {fileID: 60543080749213918}
+  - component: {fileID: 114490187117001572}
+  m_Layer: 0
+  m_Name: roomchecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1263513910374138
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +201,7 @@ GameObject:
   - component: {fileID: 114917109678998762}
   m_Layer: 0
   m_Name: Room
-  m_TagString: Untagged
+  m_TagString: room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,6 +231,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4637908307752574}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4339084516442048
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087177432998442}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4871371030230202}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4437191671847538
 Transform:
@@ -286,6 +316,7 @@ Transform:
   - {fileID: 4583959471044976}
   - {fileID: 4720843541399978}
   - {fileID: 4437191671847538}
+  - {fileID: 4339084516442048}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -405,6 +436,36 @@ PolygonCollider2D:
       - {x: 1.865, y: -2.01}
       - {x: 2.055, y: -2.01}
       - {x: 2.055, y: -1.8299999}
+--- !u!60 &60543080749213918
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087177432998442}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 3.8649113, y: 3.874186}
+      - {x: -3.901031, y: 3.9150567}
+      - {x: -7.788579, y: 0.008937925}
+      - {x: -3.8672237, y: -3.8526793}
+      - {x: 3.8886576, y: -3.9169817}
+      - {x: 7.831447, y: -0.03393069}
 --- !u!60 &60546410603265034
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -544,7 +605,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1703053449967686}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -594,7 +655,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1703053449967686}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -655,7 +716,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 8.17, y: 0.12}
-    newSize: {x: 4.14, y: 3.99}
+    newSize: {x: 8.17, y: 0.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -774,6 +835,18 @@ MonoBehaviour:
   open: {fileID: 0}
   close: {fileID: 0}
   doorLocation: 5
+--- !u!114 &114490187117001572
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087177432998442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6456ae58c1a5f6247b80a3e826ee60c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentActive: 0
 --- !u!114 &114541831388048982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -796,8 +869,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41452eacbd38c742a95375b947a5364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomActive: 0
   doors: []
   room: {fileID: 1935376734419032}
+  player: {fileID: 1987759031399868, guid: 064acb4a45f04a948b9e38c0381af688, type: 2}
   spawnNextRoom: 0
   done: 0
 --- !u!212 &212014160795325250
@@ -834,7 +909,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 238f50960697ff94cb89565c94d4ee35, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -842,7 +917,7 @@ SpriteRenderer:
   m_Size: {x: 8.17, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!212 &212077154385386090
 SpriteRenderer:
@@ -883,7 +958,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.14, y: 3.99}
+  m_Size: {x: 8.17, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1098,7 +1173,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4d29eb1676778e14ca712ada42f3b7f9, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1106,7 +1181,7 @@ SpriteRenderer:
   m_Size: {x: 8.17, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!212 &212619724838871050
 SpriteRenderer:
