@@ -62,6 +62,10 @@ public class RoomGeneration : MonoBehaviour {
         {
             roomActive = true;
         }
+      else
+        {
+            roomActive = false;
+        }
 
         ToggleActiveRooms();
     }
