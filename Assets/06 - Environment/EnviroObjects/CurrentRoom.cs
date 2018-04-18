@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,6 +38,7 @@ public class CurrentRoom : MonoBehaviour {
         if (collision.gameObject.name == "Player")
         {
             currentActive = false;
+			CameraController.move = true;
         }
     }
 }
