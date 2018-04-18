@@ -10,7 +10,6 @@ public class RoomGeneration : MonoBehaviour {
     [SerializeField] GameObject room, player;
 	public bool spawnNextRoom, done;
     private RoomManager worldController;
-    private CurrentRoom currentRoom;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +17,6 @@ public class RoomGeneration : MonoBehaviour {
         roomActive = false;
 		doors = GetComponentsInChildren<DoorGen>();
         worldController = FindObjectOfType<RoomManager>();
-        currentRoom = GetComponentInChildren<CurrentRoom>();
 
         spawnLocation = new Vector3Int[]
         {
@@ -31,7 +29,7 @@ public class RoomGeneration : MonoBehaviour {
         };
 		if (spawncap <= 0)
 		{
-			Invoke("SpawnDungeon", 5f);
+			Invoke("SpawnDungeon", 0.5f);
 		}
 		else if (spawncap >= 1 && spawncap < worldController.roomCap)
 		{
@@ -48,25 +46,17 @@ public class RoomGeneration : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (spawnNextRoom)
+
+        if (spawnNextRoom)
 		{
 			print("Running update");
 			if (!done)
 			{
+                roomActive = false;
 				CheckDoor();
 				done = true;
 			}
 		}
-
-      if(currentRoom.currentActive)
-        {
-            roomActive = true;
-        }
-      else
-        {
-            roomActive = false;
-        }
-
         ToggleActiveRooms();
     }
 

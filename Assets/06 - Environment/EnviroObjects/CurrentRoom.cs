@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CurrentRoom : MonoBehaviour {
 
-    public bool currentActive;
+    private RoomGeneration parentRoom;
 
 	// Use this for initialization
 	void Start () {
-        currentActive = false;
+        parentRoom = GetComponentInParent<RoomGeneration>();
 	}
 	
 	// Update is called once per frame
@@ -16,20 +16,20 @@ public class CurrentRoom : MonoBehaviour {
 		
 	}
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.name == "Player")
-        {
-            currentActive = true;
-            print("activating through trigger");
-        }
-    }
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Player")
         {
-            currentActive = true;
+            parentRoom.roomActive = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.name == "Player")
+        {
+            parentRoom.roomActive = true;
+            print("activating through trigger");
         }
     }
 
@@ -37,8 +37,8 @@ public class CurrentRoom : MonoBehaviour {
     {
         if (collision.gameObject.name == "Player")
         {
-            currentActive = false;
-			CameraController.move = true;
+            parentRoom.roomActive = false;
+            CameraController.move = true;
         }
     }
 }
