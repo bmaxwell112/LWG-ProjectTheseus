@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;                 //Static instance of Database which allows it to be accessed by any other script.
+	public static bool gamePaused, mouseInput;
 
 	//Awake is always called before any Start functions
 	void Awake()
@@ -18,7 +19,5 @@ public class GameManager : MonoBehaviour {
 	void Update()
 	{
 		InputCapture.InputCheck();
-	}
-
-	public static bool gamePaused;
+	}	
 }

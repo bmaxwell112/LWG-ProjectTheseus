@@ -28,6 +28,15 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (GameManager.mouseInput)
+		{
+			InputCapture.MouseAim(MouseDistanceFromPlayer());
+		}
+		else
+		{
+			InputCapture.ControllerAim();
+		}
+
 		if (!GameManager.gamePaused)
 		{
 			MovementCheck();
@@ -159,4 +168,19 @@ public class PlayerController : MonoBehaviour {
 	{
 		// This will be used to change the animation based on direction.
 	}
+
+	// For Mouse Controls
+	Vector2 MouseDistanceFromPlayer()
+	{
+		float mouseX = Input.mousePosition.x;
+		float mouseY = Input.mousePosition.y;
+		float distanceFromCamera = 10f;
+
+		Vector3 weirdTriplet = new Vector3(mouseX, mouseY, distanceFromCamera);
+		Camera cam = FindObjectOfType<Camera>();
+		Vector2 worldPos = cam.ScreenToWorldPoint(weirdTriplet);
+
+		Vector2 distFromPlayer = new Vector2(transform.position.x - worldPos.x, transform.position.y - worldPos.y);
+		return distFromPlayer;
+	}	
 }

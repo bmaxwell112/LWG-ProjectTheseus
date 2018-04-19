@@ -11,13 +11,23 @@ public class InputCapture {
 	{
 		hThrow = Input.GetAxis("Horizontal");
 		vThrow = Input.GetAxis("Vertical");
-		hAim = Input.GetAxis("HorizontalAim");
-		vAim = Input.GetAxis("VerticalAim");
 		fireLeftDown = Input.GetButtonDown("Fire1");
 		fireRightDown = Input.GetButtonDown("Fire2");
 		firingLeft = Input.GetButton("Fire1");
 		firingRight = Input.GetButton("Fire2");
 		pickup = Input.GetButtonDown("Pickup");
 		back = Input.GetButtonDown("Submit");
+	}
+
+	public static void ControllerAim()
+	{
+		hAim = Input.GetAxis("HorizontalAim");
+		vAim = Input.GetAxis("VerticalAim");
+	}
+
+	public static void MouseAim(Vector2 mouseLocation)
+	{
+		hAim = -mouseLocation.x;
+		vAim = -mouseLocation.y;
 	}
 }
