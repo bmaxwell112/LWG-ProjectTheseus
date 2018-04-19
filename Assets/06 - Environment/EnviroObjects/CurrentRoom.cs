@@ -12,7 +12,7 @@ public class CurrentRoom : MonoBehaviour {
 			parentRoom.roomActive = true;
 			CameraController cam = FindObjectOfType<CameraController>();
 			cam.MoveCamera(transform.position);
-			print("activating through trigger");
+            parentRoom.roomActive = true;
         }
     }
 

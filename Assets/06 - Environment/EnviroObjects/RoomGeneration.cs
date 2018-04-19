@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomGeneration : MonoBehaviour {
-	static int spawncap;
-	static bool first;
-	public bool roomActive = false;
+    public static int spawncap;
+    public bool roomActive;
     public DoorGen[] doors;
     private Vector3Int[] spawnLocation;
     [SerializeField] GameObject room, player;
@@ -15,7 +14,7 @@ public class RoomGeneration : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		spawnNextRoom = false;
-		ToggleActiveRooms();
+        roomActive = true;
 		doors = GetComponentsInChildren<DoorGen>();
         worldController = FindObjectOfType<RoomManager>();
 
@@ -28,9 +27,13 @@ public class RoomGeneration : MonoBehaviour {
             new Vector3Int(-12, -4, 0) ,
             new Vector3Int(12, -4, 0)
         };
-		if (spawncap < worldController.roomCap)
+		if (spawncap <= 0)
 		{
-			SpawnDungeon();
+			Invoke("SpawnDungeon", 0.5f);
+		}
+		else if (spawncap >= 1 && spawncap < worldController.roomCap)
+		{
+			Invoke("SpawnDungeon", 0.5f);
 		}
 	}
 	void SpawnDungeon()
@@ -49,15 +52,9 @@ public class RoomGeneration : MonoBehaviour {
 			print("Running update");
 			if (!done)
 			{
-				roomActive = false;
+                
 				CheckDoor();
 				done = true;
-				if (!first)
-				{
-					roomActive = true;
-					first = true;
-				}
-				spawnNextRoom = false;
 			}
 		}
         ToggleActiveRooms();
@@ -72,16 +69,14 @@ public class RoomGeneration : MonoBehaviour {
         {			
 			if (CheckForRoomClearance(spawnLocation[i], rooms))
 			{
-				print(doors[i].doorWall);
-				if (doors[i].doorWall)
 				{
-					GameObject locRoom = Instantiate(
+					Instantiate(
 						room,
 						new Vector3(
 							transform.position.x + spawnLocation[i].x,
 							transform.position.y + spawnLocation[i].y,
 							0),
-						Quaternion.identity) as GameObject;
+						Quaternion.identity);
 				}
 			}
         }
@@ -112,7 +107,6 @@ public class RoomGeneration : MonoBehaviour {
             {
                 r.enabled = false;
             }
-            print("room inactive");
 
         }
         else
@@ -121,8 +115,47 @@ public class RoomGeneration : MonoBehaviour {
             {
                 r.enabled = true;
             }
-            print("room active");
         }
 
     }
+
+    public void DoorsLeft()
+    {
+        List<int> doorsLeft = new List<int>();
+        DoorGen[] Walls = GetComponentsInChildren<DoorGen>();
+
+        for (int i = 0; i < Walls.Length; i++)
+        {
+            //walls that are not doors and not adjacent to other rooms!!!
+            if (!Walls[i].done && !Walls[i].doorWall)
+            {
+                doorsLeft.Add(i);
+			}
+        }
+		for (int i=0; i < doorsLeft.Count; i++)
+		{
+			print(i + " = " + doorsLeft[i] + " = " + Walls[doorsLeft[i]].doorLocation);
+		}
+
+        int doorsOpen = 0;
+
+        foreach(DoorGen Wall in Walls)
+        {
+            if(Wall.doorWall)
+            {
+                doorsOpen++;
+            }
+        }
+
+        for(int i = 2; i >= doorsOpen; i--)
+        {
+            int Rand = Random.Range(0, doorsLeft.Count - 1);
+            Walls[doorsLeft[Rand]].doorWall = true;
+            print("Opening " + Rand + " = " + Walls[doorsLeft[Rand]].doorLocation);
+        }
+
+
+
+    }
+
 }
