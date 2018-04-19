@@ -121,8 +121,7 @@ public class DoorGen : MonoBehaviour {
 			else
 			{
 				spriteRenderer.color = Color.green;
-                cbox.enabled = false;
-               
+                cbox.enabled = false;               
 			}
 		}
         else
@@ -134,8 +133,7 @@ public class DoorGen : MonoBehaviour {
 			else
 			{
 				spriteRenderer.color = Color.red;
-                cbox.enabled = true;
-                
+                cbox.enabled = true;                
             }
 		}
     }

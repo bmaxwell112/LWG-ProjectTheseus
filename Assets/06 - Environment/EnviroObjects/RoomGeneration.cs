@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class RoomGeneration : MonoBehaviour {
 	static int spawncap;
-   public bool roomActive;
+	static bool first;
+	public bool roomActive = false;
     public DoorGen[] doors;
     private Vector3Int[] spawnLocation;
     [SerializeField] GameObject room, player;
@@ -14,7 +15,7 @@ public class RoomGeneration : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		spawnNextRoom = false;
-        roomActive = false;
+		ToggleActiveRooms();
 		doors = GetComponentsInChildren<DoorGen>();
         worldController = FindObjectOfType<RoomManager>();
 
@@ -27,13 +28,9 @@ public class RoomGeneration : MonoBehaviour {
             new Vector3Int(-12, -4, 0) ,
             new Vector3Int(12, -4, 0)
         };
-		if (spawncap <= 0)
+		if (spawncap < worldController.roomCap)
 		{
-			Invoke("SpawnDungeon", 0.5f);
-		}
-		else if (spawncap >= 1 && spawncap < worldController.roomCap)
-		{
-			Invoke("SpawnDungeon", 0.5f);
+			SpawnDungeon();
 		}
 	}
 	void SpawnDungeon()
@@ -52,9 +49,15 @@ public class RoomGeneration : MonoBehaviour {
 			print("Running update");
 			if (!done)
 			{
-                roomActive = false;
+				roomActive = false;
 				CheckDoor();
 				done = true;
+				if (!first)
+				{
+					roomActive = true;
+					first = true;
+				}
+				spawnNextRoom = false;
 			}
 		}
         ToggleActiveRooms();
@@ -72,13 +75,13 @@ public class RoomGeneration : MonoBehaviour {
 				print(doors[i].doorWall);
 				if (doors[i].doorWall)
 				{
-					Instantiate(
+					GameObject locRoom = Instantiate(
 						room,
 						new Vector3(
 							transform.position.x + spawnLocation[i].x,
 							transform.position.y + spawnLocation[i].y,
 							0),
-						Quaternion.identity);
+						Quaternion.identity) as GameObject;
 				}
 			}
         }
