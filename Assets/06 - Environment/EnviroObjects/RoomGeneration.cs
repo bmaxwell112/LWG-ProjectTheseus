@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomGeneration : MonoBehaviour {
-	static int spawncap;
-   public bool roomActive;
+    public static int spawncap;
+    public bool roomActive;
     public DoorGen[] doors;
     private Vector3Int[] spawnLocation;
     [SerializeField] GameObject room, player;
@@ -122,4 +122,41 @@ public class RoomGeneration : MonoBehaviour {
         }
 
     }
+
+    public void DoorsLeft()
+    {
+        List<int> doorsLeft = new List<int>();
+        DoorGen[] Walls = GetComponentsInChildren<DoorGen>();
+
+        for (int i = 0; i < Walls.Length; i++)
+        {
+            //walls that are not doors and not adjacent to other rooms!!!
+            if (!Walls[i].done && !Walls[i].doorWall)
+            {
+                doorsLeft.Add(i);
+            }
+        }
+
+        int doorsOpen = 0;
+
+        foreach(DoorGen Wall in Walls)
+        {
+            if(Wall.doorWall)
+            {
+                doorsOpen++;
+            }
+        }
+
+
+        for(int i = 2; i >= doorsOpen; i--)
+        {
+            int Rand = Random.Range(0, doorsLeft.Count - 1);
+            Walls[doorsLeft[Rand]].doorWall = true;
+            print(Walls[doorsLeft[Rand]].doorLocation);
+        }
+
+
+
+    }
+
 }

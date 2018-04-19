@@ -21,8 +21,6 @@ public class CurrentRoom : MonoBehaviour {
         if (collision.gameObject.name == "Player")
         {
             parentRoom.roomActive = true;
-			CameraController cam = FindObjectOfType<CameraController>();
-			cam.MoveCamera(transform.position);
 			print("activating through trigger");
         }
     }
@@ -31,6 +29,8 @@ public class CurrentRoom : MonoBehaviour {
     {
         if(collision.gameObject.name == "Player")
         {
+            CameraController cam = FindObjectOfType<CameraController>();
+            cam.MoveCamera(transform.position);
             parentRoom.roomActive = true;
             print("activating through trigger");
         }
