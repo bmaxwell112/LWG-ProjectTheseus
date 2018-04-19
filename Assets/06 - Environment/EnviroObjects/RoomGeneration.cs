@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class RoomGeneration : MonoBehaviour {
 	static int spawncap;
-    //public bool roomActive;
+	static bool first;
+	public bool roomActive = false;
     public DoorGen[] doors;
     private Vector3Int[] spawnLocation;
-    [SerializeField] GameObject room;
+    [SerializeField] GameObject room, player;
 	public bool spawnNextRoom, done;
+    private RoomManager worldController;
 
 	// Use this for initialization
 	void Start () {
 		spawnNextRoom = false;
-		doors = GetComponentsInChildren<DoorGen>();   
+		ToggleActiveRooms();
+		doors = GetComponentsInChildren<DoorGen>();
+        worldController = FindObjectOfType<RoomManager>();
 
         spawnLocation = new Vector3Int[]
         {
@@ -24,13 +28,9 @@ public class RoomGeneration : MonoBehaviour {
             new Vector3Int(-12, -4, 0) ,
             new Vector3Int(12, -4, 0)
         };
-		if (spawncap <= 0)
+		if (spawncap < worldController.roomCap)
 		{
-			Invoke("SpawnDungeon", 5f);
-		}
-		else if (spawncap >= 1 && spawncap < 100)
-		{
-			Invoke("SpawnDungeon", 0.5f);
+			SpawnDungeon();
 		}
 	}
 	void SpawnDungeon()
@@ -39,18 +39,31 @@ public class RoomGeneration : MonoBehaviour {
 		spawncap++;
 	}
 
+    //Another SpawnDungeon with forced minimums
+
 	// Update is called once per frame
 	void Update () {
-		if (spawnNextRoom)
+
+        if (spawnNextRoom)
 		{
 			print("Running update");
 			if (!done)
 			{
+				roomActive = false;
 				CheckDoor();
 				done = true;
+				if (!first)
+				{
+					roomActive = true;
+					first = true;
+				}
+				spawnNextRoom = false;
 			}
 		}
-	}
+        ToggleActiveRooms();
+    }
+
+    //something to differentiate rooms that are spawned
 
     void CheckDoor()
     {
@@ -62,13 +75,13 @@ public class RoomGeneration : MonoBehaviour {
 				print(doors[i].doorWall);
 				if (doors[i].doorWall)
 				{
-					Instantiate(
+					GameObject locRoom = Instantiate(
 						room,
 						new Vector3(
 							transform.position.x + spawnLocation[i].x,
 							transform.position.y + spawnLocation[i].y,
 							0),
-						Quaternion.identity);
+						Quaternion.identity) as GameObject;
 				}
 			}
         }
@@ -88,4 +101,28 @@ public class RoomGeneration : MonoBehaviour {
 		}		
 		return true;
 	}
+
+    void ToggleActiveRooms()
+    {
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        if (!roomActive)
+        {
+
+            foreach (Renderer r in renderers)
+            {
+                r.enabled = false;
+            }
+            print("room inactive");
+
+        }
+        else
+        {
+            foreach (Renderer r in renderers)
+            {
+                r.enabled = true;
+            }
+            print("room active");
+        }
+
+    }
 }

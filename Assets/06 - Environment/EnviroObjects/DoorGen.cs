@@ -6,6 +6,7 @@ public class DoorGen : MonoBehaviour {
 
     public bool doorWall;
     SpriteRenderer spriteRenderer;
+    Collider2D cbox;
 	[SerializeField] GameObject open, close;
 	enum DoorLoc { top, bottom, upperLeft, upperRight, lowerLeft, lowerRight };
 	[SerializeField] DoorLoc doorLocation;
@@ -24,6 +25,7 @@ public class DoorGen : MonoBehaviour {
 		};
 		StaticWallCheck();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        cbox = GetComponent<Collider2D>();
         SpawnDoor();
     }
 	
@@ -46,7 +48,8 @@ public class DoorGen : MonoBehaviour {
 
 	void StaticWallCheck()
 	{
-		RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
+
+        RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
 		Transform parent = transform.parent;
 		foreach (RoomGeneration room in rooms)
 		{
@@ -66,8 +69,8 @@ public class DoorGen : MonoBehaviour {
 				return;
 			}
 		}
-		RandomizeWall();
-	}
+        RandomizeWall();
+    }
 
 	private bool IsThereAnOpenDoor(RoomGeneration room)
 	{
@@ -118,6 +121,7 @@ public class DoorGen : MonoBehaviour {
 			else
 			{
 				spriteRenderer.color = Color.green;
+                cbox.enabled = false;               
 			}
 		}
         else
@@ -129,7 +133,8 @@ public class DoorGen : MonoBehaviour {
 			else
 			{
 				spriteRenderer.color = Color.red;
-			}
+                cbox.enabled = true;                
+            }
 		}
     }
 }

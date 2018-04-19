@@ -5,7 +5,8 @@ using UnityEngine;
 public class RoomManager : MonoBehaviour {
 
     enum TileSet {Fabrication, Terraforming, Disposal, Purification, Security, Medical};
-    [SerializeField] GameObject room;
+    [SerializeField] GameObject room, player;
+    public int roomCap;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +15,7 @@ public class RoomManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        
 	}
 
     void SpawnFirstRoom()
