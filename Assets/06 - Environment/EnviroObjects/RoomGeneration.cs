@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RoomGeneration : MonoBehaviour {
     public static int spawncap;
+	public static bool first;
     public bool roomActive;
     public DoorGen[] doors;
     private Vector3Int[] spawnLocation;
@@ -14,7 +15,7 @@ public class RoomGeneration : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		spawnNextRoom = false;
-        roomActive = true;
+		roomActive = false;
 		doors = GetComponentsInChildren<DoorGen>();
         worldController = FindObjectOfType<RoomManager>();
 
@@ -52,10 +53,16 @@ public class RoomGeneration : MonoBehaviour {
 			print("Running update");
 			if (!done)
 			{
-                
+				roomActive = false;
 				CheckDoor();
 				done = true;
 			}
+			if (!first)
+			{
+				roomActive = true;
+				first = true;
+			}
+			spawnNextRoom = false;
 		}
         ToggleActiveRooms();
     }
@@ -67,7 +74,7 @@ public class RoomGeneration : MonoBehaviour {
 		RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
 		for (int i=0; i < doors.Length; i++)
         {			
-			if (CheckForRoomClearance(spawnLocation[i], rooms))
+			if (CheckForRoomClearance(spawnLocation[i], rooms) && doors[i].doorWall)
 			{
 				{
 					Instantiate(
@@ -132,11 +139,7 @@ public class RoomGeneration : MonoBehaviour {
                 doorsLeft.Add(i);
 			}
         }
-		for (int i=0; i < doorsLeft.Count; i++)
-		{
-			print(i + " = " + doorsLeft[i] + " = " + Walls[doorsLeft[i]].doorLocation);
-		}
-
+		
         int doorsOpen = 0;
 
         foreach(DoorGen Wall in Walls)
@@ -149,9 +152,15 @@ public class RoomGeneration : MonoBehaviour {
 
         for(int i = 2; i >= doorsOpen; i--)
         {
-            int Rand = Random.Range(0, doorsLeft.Count - 1);
-            Walls[doorsLeft[Rand]].doorWall = true;
-            print("Opening " + Rand + " = " + Walls[doorsLeft[Rand]].doorLocation);
+			if (doorsLeft.Count > 0)
+			{
+				int Rand = Random.Range(0, doorsLeft.Count - 1);
+				print("Random Value: " + Rand);
+				print("DoorsLeft: " + doorsLeft[Rand]);
+				print("DoorsLeft: " + doorsLeft.Count);
+
+				Walls[doorsLeft[Rand]].doorWall = true;
+			}
         }
 
 

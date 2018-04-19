@@ -171,9 +171,7 @@ void SpawnDoor()
         if(doorLocation == DoorLoc.lowerRight )
         {			
             RoomGeneration room = GetComponentInParent<RoomGeneration>();
-			print("Starting This on " + room.gameObject.name);
 			room.DoorsLeft();
-			print("Starting This");
 		}
 	}
 }
