@@ -8,8 +8,9 @@ public class RoomManager : MonoBehaviour {
     [SerializeField] GameObject room, player;
     public int roomCap;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
         SpawnFirstRoom();
 	}
 	

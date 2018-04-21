@@ -1188,7 +1188,7 @@ Prefab:
     - target: {fileID: 114071580201058400, guid: 80de9e499a0350f468cd39e132bb0850,
         type: 2}
       propertyPath: roomCap
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114071580201058400, guid: 80de9e499a0350f468cd39e132bb0850,
         type: 2}

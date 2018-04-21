@@ -11,14 +11,19 @@ public class RoomGeneration : MonoBehaviour {
     [SerializeField] GameObject room, player;
 	public bool spawnNextRoom, done;
     private RoomManager worldController;
+    private int minDoors, totalRooms;
+    private DoorGen walls;
+    public static bool abyss;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		spawnNextRoom = false;
 		roomActive = false;
+        abyss = false;
 		doors = GetComponentsInChildren<DoorGen>();
         worldController = FindObjectOfType<RoomManager>();
-
+        walls = FindObjectOfType<DoorGen>();
+        SetMinDoors();
         spawnLocation = new Vector3Int[]
         {
             new Vector3Int(0, 8, 0) ,
@@ -28,25 +33,50 @@ public class RoomGeneration : MonoBehaviour {
             new Vector3Int(-12, -4, 0) ,
             new Vector3Int(12, -4, 0)
         };
+
+        if(spawncap > worldController.roomCap )
+        {
+            spawncap = worldController.roomCap;
+        }
+
 		if (spawncap <= 0)
 		{
-			Invoke("SpawnDungeon", 0.5f);
-		}
+            Invoke("SpawnDungeon", 0.5f);
+        }
 		else if (spawncap >= 1 && spawncap < worldController.roomCap)
-		{
-			Invoke("SpawnDungeon", 0.5f);
+		{          
+            Invoke("SpawnDungeon", 0.5f);
 		}
 	}
 	void SpawnDungeon()
 	{
 		spawnNextRoom = true;
-		spawncap++;
-	}
-
-    //Another SpawnDungeon with forced minimums
+        spawncap++;
+    }
+    
+    //sets minimum required doors based on spawncap, NEED to find a way to make that count up min increments, right now because 1-6 doors spawn at a time it skips numbers and checks constantly
+    void SetMinDoors()
+    {
+        if(spawncap <= 0)
+        {
+            minDoors = 2;
+        }
+        else if(spawncap >= 1 && spawncap < (worldController.roomCap -6))
+        {
+            minDoors = 1;
+        }
+        else if(spawncap >= (worldController.roomCap - 6))
+        {
+            minDoors = 0;
+        }
+    }
 
 	// Update is called once per frame
 	void Update () {
+        //print("minDoors: " + minDoors);
+        //print(abyss);
+
+        AbyssTest();
 
         if (spawnNextRoom)
 		{
@@ -73,20 +103,23 @@ public class RoomGeneration : MonoBehaviour {
     {
 		RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
 		for (int i=0; i < doors.Length; i++)
-        {			
-			if (CheckForRoomClearance(spawnLocation[i], rooms) && doors[i].doorWall)
-			{
-				{
-					Instantiate(
-						room,
-						new Vector3(
-							transform.position.x + spawnLocation[i].x,
-							transform.position.y + spawnLocation[i].y,
-							0),
-						Quaternion.identity);
-				}
-			}
+        {
+            if (CheckForRoomClearance(spawnLocation[i], rooms) && doors[i].doorWall)
+            {
+                {
+                    Instantiate(
+                        room,
+                        new Vector3(
+                            transform.position.x + spawnLocation[i].x,
+                            transform.position.y + spawnLocation[i].y,
+                            0),
+                        Quaternion.identity);
+                }
+            }
         }
+
+
+
     }
 
 	bool CheckForRoomClearance(Vector3 location, RoomGeneration[] rooms)
@@ -150,7 +183,8 @@ public class RoomGeneration : MonoBehaviour {
             }
         }
 
-        for(int i = 2; i >= doorsOpen; i--)
+        //minDoors set in SetMinDoors crazily enough
+        for(int i = minDoors; i >= doorsOpen; i--)
         {
 			if (doorsLeft.Count > 0)
 			{
@@ -162,9 +196,20 @@ public class RoomGeneration : MonoBehaviour {
 				Walls[doorsLeft[Rand]].doorWall = true;
 			}
         }
-
-
-
     }
 
+    //this checks if there's space for a room and if the spawncap (number of rooms) is within 12 of the roomcap and makes abyss "yes" (this changes the door chance over at DoorGen)
+    //this makes all external walls red but doesn't work when the number of rooms is higher than 12 because of how spawncap is counting, seems to happen all at once?
+    void AbyssTest()
+    {
+        RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
+        for (int i = 0; i < doors.Length; i++)
+        {
+            if (CheckForRoomClearance(spawnLocation[i], rooms) && spawncap >= (worldController.roomCap -12))
+            {
+                abyss = true;
+                
+            }
+        }
+    }
 }
