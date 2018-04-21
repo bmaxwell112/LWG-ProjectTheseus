@@ -212,4 +212,8 @@ public class RoomGeneration : MonoBehaviour {
             }
         }
     }
+
+    //define an array of objects (how am I going to define them, tag?)
+    //On start pull a random object from the array and instantiate it
+    //Objects will be configurations of spawn locations
 }
