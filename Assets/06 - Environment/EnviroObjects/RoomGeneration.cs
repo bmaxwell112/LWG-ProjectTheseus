@@ -17,10 +17,15 @@ public class RoomGeneration : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		spawnNextRoom = false;
-		roomActive = false;
+        //QueuedStart();
+	}
+
+    public void QueuedStart()
+    {
+        spawnNextRoom = false;
+        roomActive = false;
         abyss = false;
-		doors = GetComponentsInChildren<DoorGen>();
+        doors = GetComponentsInChildren<DoorGen>();
         worldController = FindObjectOfType<RoomManager>();
         walls = FindObjectOfType<DoorGen>();
         SetMinDoors();
@@ -34,20 +39,23 @@ public class RoomGeneration : MonoBehaviour {
             new Vector3Int(12, -4, 0)
         };
 
-        if(spawncap > worldController.roomCap )
+        if (spawncap > worldController.roomCap)
         {
             spawncap = worldController.roomCap;
         }
 
-		if (spawncap <= 0)
-		{
+        if (spawncap <= 0)
+        {
             Invoke("SpawnDungeon", 0.5f);
         }
-		else if (spawncap >= 1 && spawncap < worldController.roomCap)
-		{          
+        else if (spawncap >= 1 && spawncap < worldController.roomCap)
+        {
             Invoke("SpawnDungeon", 0.5f);
-		}
-	}
+        }
+
+        worldController.ManageRoomQueue();
+    }
+
 	void SpawnDungeon()
 	{
 		spawnNextRoom = true;
@@ -78,8 +86,9 @@ public class RoomGeneration : MonoBehaviour {
 
         AbyssTest();
 
+
         if (spawnNextRoom)
-		{
+		{  
 			print("Running update");
 			if (!done)
 			{
@@ -216,4 +225,5 @@ public class RoomGeneration : MonoBehaviour {
     //define an array of objects (how am I going to define them, tag?)
     //On start pull a random object from the array and instantiate it
     //Objects will be configurations of spawn locations
+
 }
