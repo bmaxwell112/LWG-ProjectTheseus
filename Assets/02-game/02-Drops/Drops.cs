@@ -9,6 +9,7 @@ public class Drops : MonoBehaviour {
 	public int databaseItemID;
 	public int hitPoints;
 	bool playerCanPickup;
+	[SerializeField] SpriteRenderer sprite;
 	[SerializeField] Text text;
 	[SerializeField] Transform canvas;
 	[SerializeField] LayerMask playerMask;
@@ -49,6 +50,7 @@ public class Drops : MonoBehaviour {
 	{		
 		thisItem = item;
 		hitPoints = hp;
+		sprite.sprite = item.itemSprite[0];
 		text.text = thisItem.itemName + "\n" + thisItem.itemDesc;
 	}
 	public void RenameAndReset()
@@ -56,6 +58,7 @@ public class Drops : MonoBehaviour {
 		CancelInvoke();
 		Invoke("DestroyDrop", 10);
 		text.text = thisItem.itemName + "\n" + thisItem.itemDesc;
+		sprite.sprite = thisItem.itemSprite[0];
 	}
 
 	void DestroyDrop()

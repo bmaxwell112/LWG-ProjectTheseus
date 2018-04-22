@@ -28,7 +28,7 @@ public class Item {
 	public string itemDesc;
 	public ItemLoc itemLoc;
 	public ItemType itemType;
-	//public Sprite itemSprite;
+	public Sprite[] itemSprite;
 	public int itemHitpoints;
 	public int itemValue;
 	public int itemValueTwo;
@@ -36,14 +36,14 @@ public class Item {
 	public float itemFltValueTwo;
 	public bool itemSpecial;
 
-	public Item(int id, string name, string desc, ItemLoc location, ItemType type, int hp, int value, int valueTwo, float fltValue, float fltValueTwo, bool special)
+	public Item(int id, string name, string desc, ItemLoc location, ItemType type, Sprite[] sprite, int hp, int value, int valueTwo, float fltValue, float fltValueTwo, bool special)
 	{
 		itemID = id;
 		itemName = name;
 		itemDesc = desc;
 		itemLoc = location;
 		itemType = type;
-		//itemSprite = sprite;
+		itemSprite = sprite;
 		itemHitpoints = hp;
 		itemValue = value;
 		itemValueTwo = valueTwo;

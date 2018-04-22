@@ -7,15 +7,14 @@ public class PlayerController : MonoBehaviour {
 
 	[SerializeField] LayerMask drop, enemyMask;
 	[SerializeField] GameObject bullets;
-	Transform leftArm, rightArm;
+	[SerializeField] Transform leftArm, rightArm;
+	public Transform firingArc;
 	RobotLoadout roLo;
 	Vector3 rotation;
 	bool fireLeft, fireRight;
 
 	void Start()
 	{		
-		leftArm = transform.Find("LeftArm");
-		rightArm = transform.Find("RightArm");
 		roLo = GetComponent<RobotLoadout>();
 		PlayerSpawn();
 	}
@@ -69,7 +68,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			rotation = MovementFunctions.LookAt2D(transform, InputCapture.hAim, InputCapture.vAim);
 		}
-		transform.eulerAngles = rotation;
+		firingArc.eulerAngles = rotation;
 		if (InputCapture.fireLeftDown)
 		{
 			PlayerAttack(roLo.loadout[2]);
