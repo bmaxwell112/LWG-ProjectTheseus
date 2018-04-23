@@ -6,70 +6,69 @@ public class RobotAnimationController : MonoBehaviour {
 
 	[SerializeField] SpriteRenderer[] SpriteLoadOut;
 	RobotLoadout roLo;
-	PlayerController player;
+	[SerializeField] Transform firingArc;
 	Animator anim;
 	public static bool UpdatePlayerSprites;
 	enum Facing { upperLeft, left, lowerLeft, down, lowerRight, right, UpperRight, up }
 	Facing currentFacing;
 	// Use this for initialization
 	void Start () {
-		roLo = GetComponent<RobotLoadout>();
-		player = GetComponent<PlayerController>();
+		roLo = GetComponent<RobotLoadout>();		
 		anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (player.firingArc.eulerAngles.z >= 22.5f && player.firingArc.eulerAngles.z < 67.5f)
+		if (firingArc.eulerAngles.z >= 22.5f && firingArc.eulerAngles.z < 67.5f)
 		{
 			// facing upper left
 			currentFacing = Facing.upperLeft;
 			int[] order = new int[] { 4, 7, 1, 4, 3 };
 			UpdateSprites(SpriteSetter(3, 2, 3), order);
 		}
-		else if (player.firingArc.eulerAngles.z >= 67.5f && player.firingArc.eulerAngles.z < 112.5f)
+		else if (firingArc.eulerAngles.z >= 67.5f && firingArc.eulerAngles.z < 112.5f)
 		{
 			// facing left
 			currentFacing = Facing.left;
 			int[] order = new int[] { 6, 7, 1, 4, 3 };
 			UpdateSprites(SpriteSetter(2, 1, 4), order);
 		}
-		else if (player.firingArc.eulerAngles.z >= 112.5f && player.firingArc.eulerAngles.z < 157.5f)
+		else if (firingArc.eulerAngles.z >= 112.5f && firingArc.eulerAngles.z < 157.5f)
 		{
 			// facing lower left
 			currentFacing = Facing.lowerLeft;
-			int[] order = new int[] { 6, 6, 5, 4, 3 };
+			int[] order = new int[] { 6, 6, 4, 4, 3 };
 			UpdateSprites(SpriteSetter(1, 0, 3), order);
 		}
-		else if (player.firingArc.eulerAngles.z >= 157.5f && player.firingArc.eulerAngles.z < 202.5f)
+		else if (firingArc.eulerAngles.z >= 157.5f && firingArc.eulerAngles.z < 202.5f)
 		{
 			// facing down
 			int[] order = new int[] { 6, 4, 4, 4, 3 };
 			currentFacing = Facing.down;
 			UpdateSprites(SpriteSetter(0, 0, 3), order);
 		}
-		else if (player.firingArc.eulerAngles.z >= 202.5f && player.firingArc.eulerAngles.z < 247.5f)
+		else if (firingArc.eulerAngles.z >= 202.5f && firingArc.eulerAngles.z < 247.5f)
 		{
 			// facing lower right
 			int[] order = new int[] { 6, 2, 6, 3, 4 };
 			currentFacing = Facing.lowerRight;
 			UpdateSprites(SpriteSetter(7, 0, 3), order);
 		}
-		else if (player.firingArc.eulerAngles.z >= 247.5f && player.firingArc.eulerAngles.z < 292.5f)
+		else if (firingArc.eulerAngles.z >= 247.5f && firingArc.eulerAngles.z < 292.5f)
 		{
 			// facing right
 			int[] order = new int[] { 6, 2, 6, 3, 4 };
 			currentFacing = Facing.right;
 			UpdateSprites(SpriteSetter(6, 1, 4), order);
 		}
-		else if (player.firingArc.eulerAngles.z >= 292.5f && player.firingArc.eulerAngles.z < 337.5f)
+		else if (firingArc.eulerAngles.z >= 292.5f && firingArc.eulerAngles.z < 337.5f)
 		{
 			// facing upper right
 			int[] order = new int[] { 4, 2, 6, 3, 4 };
 			currentFacing = Facing.UpperRight;
 			UpdateSprites(SpriteSetter(5, 2, 3), order);
 		}
-		else if (player.firingArc.eulerAngles.z >= 337.5f || player.firingArc.eulerAngles.z < 22.5f)
+		else if (firingArc.eulerAngles.z >= 337.5f || firingArc.eulerAngles.z < 22.5f)
 		{
 			// facing up
 			int[] order = new int[] { 4, 4, 4, 4, 3 };
