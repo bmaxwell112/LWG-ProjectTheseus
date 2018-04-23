@@ -48,21 +48,13 @@ public class DoorGen : MonoBehaviour
 			SpawnDoor();
 			doorListener = doorWall;
 		}
-
         //print("Door chance: " + doorChance);
 	}
 
     //checks abyss at the end of RoomGen, 1 means it will never spawn a door
     void SetDoorChance()
     {
-        if (RoomGeneration.abyss == true)
-        {
-            doorChance = 1f;
-        }
-        else
-        {
-            doorChance = 0.66f;
-        }
+        doorChance = 0.66f;
     }
 
     void RandomizeWall()
@@ -145,7 +137,7 @@ public class DoorGen : MonoBehaviour
         }
     }
 
-void SpawnDoor()
+	void SpawnDoor()
     {
         if (doorWall)
         {
@@ -181,6 +173,28 @@ void SpawnDoor()
         {			
             RoomGeneration room = GetComponentInParent<RoomGeneration>();
 			room.DoorsLeft();
+		}
+	}
+
+	public void EndSpawningCheck()
+	{
+		RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
+		Transform parent = transform.parent;
+		bool leaveAlone = false;
+		foreach (RoomGeneration room in rooms)
+		{
+			if (room.transform.position == new Vector3(
+						parent.transform.position.x + roomLocation[(int)doorLocation].x,
+						parent.transform.position.y + roomLocation[(int)doorLocation].y,
+						0))
+			{
+				leaveAlone = true;
+				break;
+			}		
+		}
+		if (!leaveAlone)
+		{
+			doorWall = false;
 		}
 	}
 }
