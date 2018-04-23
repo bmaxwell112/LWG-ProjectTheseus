@@ -99,8 +99,8 @@ public class PlayerController : MonoBehaviour {
 			fireFrom = rightArm;
 		}
 		SpriteRenderer arm = fireFrom.GetComponent<SpriteRenderer>();
-		StartCoroutine(roLo.ChangeColor(arm, Color.white, 0));
-		StartCoroutine(roLo.ChangeColor(arm, Color.blue, 0.25f));
+		StartCoroutine(roLo.ChangeColor(arm, Color.blue, 0));
+		StartCoroutine(roLo.ChangeColor(arm, Color.white, 0.25f));
 		if (item.itemType == ItemType.melee)
 		{			
 			RaycastHit2D enemy = Physics2D.CircleCast(

@@ -6,9 +6,10 @@ public class BasicEnemy : MonoBehaviour {
 
 	Transform player;
 	bool knockback, attacking;
-	[SerializeField] float knockbackDistance;	
+	[SerializeField] float knockbackDistance;
 	[SerializeField] GameObject drop;
 	[SerializeField] LayerMask playerMask;
+	[SerializeField] Transform firingArc;
 	RobotLoadout roLo;
 	int attack;
 
@@ -56,7 +57,7 @@ public class BasicEnemy : MonoBehaviour {
 	{
 		if (!knockback)
 		{
-			transform.position += transform.up * roLo.loadout[(int)ItemLoc.legs].itemValue * Time.deltaTime;
+			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, roLo.loadout[(int)ItemLoc.legs].itemValue * Time.deltaTime);
 		}
 	}
 
@@ -74,7 +75,7 @@ public class BasicEnemy : MonoBehaviour {
 		RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 0.55f, playerMask);
 		if (hit.collider != null)
 		{
-			hit.collider.gameObject.GetComponent<RobotLoadout>().TakeDamage(attack, Color.red, Color.green, false);
+			hit.collider.gameObject.GetComponent<RobotLoadout>().TakeDamage(attack, Color.red, Color.white, false);
 		}
 		attacking = false;
 	}
@@ -84,7 +85,7 @@ public class BasicEnemy : MonoBehaviour {
 		Vector3 diff = player.transform.position - transform.position;
 		diff.Normalize();
 
-		transform.eulerAngles = MovementFunctions.LookAt2D(transform, diff.x, diff.y);
+		firingArc.eulerAngles = MovementFunctions.LookAt2D(transform, diff.x, diff.y);
 	}
 
 	public void EnemyDrop()
