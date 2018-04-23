@@ -13,8 +13,9 @@ public class DoorGen : MonoBehaviour
     public DoorLoc doorLocation;
     Vector3Int[] roomLocation;
     private RoomManager worldController;
-    private float doorChance;
+    public float doorChance;
 	bool doorListener;
+    private RoomGeneration roomgen;
 
     // Use this for initialization
     void Start()
@@ -36,32 +37,30 @@ public class DoorGen : MonoBehaviour
         LastDoorCheck();
         SpawnDoor();
 		doorListener = doorWall;
+        roomgen = GetComponentInParent<RoomGeneration>();
 	}
 
     // Update is called once per frame
     void Update()
     {
-        SetDoorChance();
 		if (doorListener != doorWall)
 		{
 			SpawnDoor();
 			doorListener = doorWall;
 		}
+        //print("Door chance: " + doorChance);
 	}
 
+    //checks abyss at the end of RoomGen, 1 means it will never spawn a door
     void SetDoorChance()
     {
-        if (RoomGeneration.spawncap <= 0)
-        {
-            //something
-        }
+        doorChance = 0.66f;
     }
-
 
     void RandomizeWall()
     {
-        //replace this number with doorChance
-        if (Random.value > 0.66)
+        SetDoorChance();
+        if (Random.value > doorChance)
         {
             doorWall = true;
         }
@@ -69,6 +68,7 @@ public class DoorGen : MonoBehaviour
         {
             doorWall = false;
         }
+
     }
 
     void StaticWallCheck()
@@ -94,6 +94,7 @@ public class DoorGen : MonoBehaviour
                 done = true;
                 return;
             }
+
         }
         RandomizeWall();
     }
@@ -136,7 +137,7 @@ public class DoorGen : MonoBehaviour
         }
     }
 
-void SpawnDoor()
+	void SpawnDoor()
     {
         if (doorWall)
         {
@@ -172,6 +173,28 @@ void SpawnDoor()
         {			
             RoomGeneration room = GetComponentInParent<RoomGeneration>();
 			room.DoorsLeft();
+		}
+	}
+
+	public void EndSpawningCheck()
+	{
+		RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
+		Transform parent = transform.parent;
+		bool leaveAlone = false;
+		foreach (RoomGeneration room in rooms)
+		{
+			if (room.transform.position == new Vector3(
+						parent.transform.position.x + roomLocation[(int)doorLocation].x,
+						parent.transform.position.y + roomLocation[(int)doorLocation].y,
+						0))
+			{
+				leaveAlone = true;
+				break;
+			}		
+		}
+		if (!leaveAlone)
+		{
+			doorWall = false;
 		}
 	}
 }

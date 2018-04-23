@@ -8,62 +8,70 @@ public class RoomGeneration : MonoBehaviour {
     public bool roomActive;
     public DoorGen[] doors;
     private Vector3Int[] spawnLocation;
-    [SerializeField] GameObject room, player;
-	public bool spawnNextRoom, done;
+    [SerializeField] GameObject room, player;	
     private RoomManager worldController;
+    private int minDoors, totalRooms;
+    private DoorGen walls;
 
 	// Use this for initialization
 	void Start () {
-		spawnNextRoom = false;
+		//QueuedStart();
 		roomActive = false;
 		doors = GetComponentsInChildren<DoorGen>();
-        worldController = FindObjectOfType<RoomManager>();
+		worldController = FindObjectOfType<RoomManager>();
+		walls = FindObjectOfType<DoorGen>();
+		spawnLocation = new Vector3Int[]
+		{
+			new Vector3Int(0, 8, 0) ,
+			new Vector3Int(0, -8, 0) ,
+			new Vector3Int(-12, 4, 0) ,
+			new Vector3Int(12, 4, 0) ,
+			new Vector3Int(-12, -4, 0) ,
+			new Vector3Int(12, -4, 0)
+		};
+		RoomManager.AdditionalRoom(this);
+	}
 
-        spawnLocation = new Vector3Int[]
+    public void QueuedStart()
+    {
+		print("Spawned Room");
+        if (spawncap > worldController.roomCap)
         {
-            new Vector3Int(0, 8, 0) ,
-            new Vector3Int(0, -8, 0) ,
-            new Vector3Int(-12, 4, 0) ,
-            new Vector3Int(12, 4, 0) ,
-            new Vector3Int(-12, -4, 0) ,
-            new Vector3Int(12, -4, 0)
-        };
-		if (spawncap <= 0)
+            spawncap = worldController.roomCap;
+        }
+		roomActive = false;
+		if (!first)
 		{
-			Invoke("SpawnDungeon", 0.5f);
-		}
-		else if (spawncap >= 1 && spawncap < worldController.roomCap)
+			roomActive = true;
+			first = true;
+		}		
+		CheckDoor();
+	}
+    
+    //sets minimum required doors based on spawncap, NEED to find a way to make that count up min increments, right now because 1-6 doors spawn at a time it skips numbers and checks constantly
+    void SetMinDoors()
+    {
+		if (worldController == null)
 		{
-			Invoke("SpawnDungeon", 0.5f);
+			worldController = FindObjectOfType<RoomManager>();
 		}
-	}
-	void SpawnDungeon()
-	{
-		spawnNextRoom = true;
-		spawncap++;
-	}
-
-    //Another SpawnDungeon with forced minimums
+        if(spawncap < worldController.roomCap)
+        {
+			if (spawncap < 2)
+			{
+				minDoors = 2;
+			}
+			else if (spawncap >= 2)
+			{
+				minDoors = 1;
+			}
+		}
+    }
 
 	// Update is called once per frame
 	void Update () {
-
-        if (spawnNextRoom)
-		{
-			print("Running update");
-			if (!done)
-			{
-				roomActive = false;
-				CheckDoor();
-				done = true;
-			}
-			if (!first)
-			{
-				roomActive = true;
-				first = true;
-			}
-			spawnNextRoom = false;
-		}
+        //print("minDoors: " + minDoors);
+        //print(abyss);
         ToggleActiveRooms();
     }
 
@@ -74,18 +82,20 @@ public class RoomGeneration : MonoBehaviour {
 		RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
 		for (int i=0; i < doors.Length; i++)
         {			
-			if (CheckForRoomClearance(spawnLocation[i], rooms) && doors[i].doorWall)
-			{
-				{
-					Instantiate(
-						room,
-						new Vector3(
-							transform.position.x + spawnLocation[i].x,
-							transform.position.y + spawnLocation[i].y,
-							0),
-						Quaternion.identity);
-				}
-			}
+			if (CheckForRoomClearance(spawnLocation[i], rooms) && doors[i].doorWall && spawncap < worldController.roomCap-1)
+            {
+                {
+					spawncap++;
+					print("Spawned Room From Gen");
+                    Instantiate(
+                        room,
+                        new Vector3(
+                            transform.position.x + spawnLocation[i].x,
+                            transform.position.y + spawnLocation[i].y,
+                            0),
+                        Quaternion.identity);
+                }
+            }
         }
     }
 
@@ -128,7 +138,8 @@ public class RoomGeneration : MonoBehaviour {
 
     public void DoorsLeft()
     {
-        List<int> doorsLeft = new List<int>();
+		SetMinDoors();
+		List<int> doorsLeft = new List<int>();
         DoorGen[] Walls = GetComponentsInChildren<DoorGen>();
 
         for (int i = 0; i < Walls.Length; i++)
@@ -150,21 +161,24 @@ public class RoomGeneration : MonoBehaviour {
             }
         }
 
-        for(int i = 2; i >= doorsOpen; i--)
+		//minDoors set in SetMinDoors crazily enough
+		print("door min " + minDoors);
+		for (int i = minDoors; i >= doorsOpen; i--)
         {
 			if (doorsLeft.Count > 0)
 			{
 				int Rand = Random.Range(0, doorsLeft.Count - 1);
-				print("Random Value: " + Rand);
-				print("DoorsLeft: " + doorsLeft[Rand]);
-				print("DoorsLeft: " + doorsLeft.Count);
-
-				Walls[doorsLeft[Rand]].doorWall = true;
+				//print("Random Value: " + Rand);
+				//print("DoorsLeft: " + doorsLeft[Rand]);
+				//print("DoorsLeft: " + doorsLeft.Count);
+				//
+				//Walls[doorsLeft[Rand]].doorWall = true;
 			}
         }
-
-
-
     }
+
+	//define an array of objects (how am I going to define them, tag?)
+	//On start pull a random object from the array and instantiate it
+	//Objects will be configurations of spawn locations
 
 }
