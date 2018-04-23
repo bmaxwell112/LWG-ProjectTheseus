@@ -27,20 +27,23 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (GameManager.mouseInput)
+		if (RoomManager.SpawningComplete)
 		{
-			InputCapture.MouseAim(MouseDistanceFromPlayer());
-		}
-		else
-		{
-			InputCapture.ControllerAim();
-		}
+			if (GameManager.mouseInput)
+			{
+				InputCapture.MouseAim(MouseDistanceFromPlayer());
+			}
+			else
+			{
+				InputCapture.ControllerAim();
+			}
 
-		if (!GameManager.gamePaused)
-		{
-			MovementCheck();
-			AimAndFireCheck();
-			PickupItemCheck();
+			if (!GameManager.gamePaused)
+			{
+				MovementCheck();
+				AimAndFireCheck();
+				PickupItemCheck();
+			}
 		}
 	}
 
@@ -98,16 +101,15 @@ public class PlayerController : MonoBehaviour {
 		{
 			fireFrom = rightArm;
 		}
+		fireFrom.rotation = firingArc.rotation;
 		SpriteRenderer arm = fireFrom.GetComponent<SpriteRenderer>();
-		StartCoroutine(roLo.ChangeColor(arm, Color.blue, 0));
-		StartCoroutine(roLo.ChangeColor(arm, Color.white, 0.25f));
 		if (item.itemType == ItemType.melee)
 		{			
 			RaycastHit2D enemy = Physics2D.CircleCast(
 					new Vector2(fireFrom.transform.position.x, leftArm.transform.position.y),
-					0.25f,
+					0.5f,
 					Vector2.up,
-					0.25f,
+					0.5f,
 					enemyMask);
 			// TODO this will need to be more universal.
 			if (enemy.collider != null)

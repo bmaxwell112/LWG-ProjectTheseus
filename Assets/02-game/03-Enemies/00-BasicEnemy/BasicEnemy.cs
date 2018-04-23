@@ -38,11 +38,14 @@ public class BasicEnemy : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update ()
-	{		
-		if (player)
+	{
+		if (RoomManager.SpawningComplete)
 		{
-			DefineRotation();
-			EnemyMovement();
+			if (player)
+			{
+				DefineRotation();
+				EnemyMovement();
+			}
 		}
 	}
 	void FixedUpdate()
@@ -63,7 +66,7 @@ public class BasicEnemy : MonoBehaviour {
 
 	private void EnemyAttackCheck()
 	{
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 0.55f, playerMask);
+		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, transform.right, 1f, playerMask);
 		if (hit.collider != null)
 		{
 			attacking = true;
@@ -72,7 +75,7 @@ public class BasicEnemy : MonoBehaviour {
 	}
 	private void EnemyAttack()
 	{
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 0.55f, playerMask);
+		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, transform.right, 1f, playerMask);
 		if (hit.collider != null)
 		{
 			hit.collider.gameObject.GetComponent<RobotLoadout>().TakeDamage(attack, Color.red, Color.white, false);
