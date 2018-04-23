@@ -48,6 +48,7 @@ public class RoomManager : MonoBehaviour {
 			{
 				door.EndSpawningCheck();
 				print("doors to the void closed");
+                roomQueue.Clear();
 			}
 		}
 	}
