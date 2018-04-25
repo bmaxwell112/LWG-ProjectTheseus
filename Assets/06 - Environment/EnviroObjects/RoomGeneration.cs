@@ -34,7 +34,6 @@ public class RoomGeneration : MonoBehaviour {
 
     public void QueuedStart()
     {
-		print("Spawned Room");
         if (spawncap > worldController.roomCap)
         {
             spawncap = worldController.roomCap;
@@ -86,7 +85,6 @@ public class RoomGeneration : MonoBehaviour {
             {
                 {
 					spawncap++;
-					print("Spawned Room From Gen");
                     Instantiate(
                         room,
                         new Vector3(
@@ -164,7 +162,7 @@ public class RoomGeneration : MonoBehaviour {
 		//minDoors set in SetMinDoors crazily enough
 		print("door min " + minDoors);
 		for (int i = minDoors; i >= doorsOpen; i--)
-        {
+        {			
 			if (doorsLeft.Count > 0)
 			{
 				int Rand = Random.Range(0, doorsLeft.Count - 1);
@@ -172,7 +170,7 @@ public class RoomGeneration : MonoBehaviour {
 				//print("DoorsLeft: " + doorsLeft[Rand]);
 				//print("DoorsLeft: " + doorsLeft.Count);
 				//
-				//Walls[doorsLeft[Rand]].doorWall = true;
+				Walls[doorsLeft[Rand]].doorWall = true;
 			}
         }
     }

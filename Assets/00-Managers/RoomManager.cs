@@ -7,6 +7,7 @@ public class RoomManager : MonoBehaviour {
     enum TileSet {Fabrication, Terraforming, Disposal, Purification, Security, Medical};
     [SerializeField] GameObject room, player;
     public int roomCap;
+	public static bool SpawningComplete;
     private RoomGeneration nextRoom;
 	static Queue<RoomGeneration> roomQueue = new Queue<RoomGeneration>();
 	//spawnConfigs array
@@ -39,7 +40,6 @@ public class RoomManager : MonoBehaviour {
 			}			
 			yield return null;
 		}
-		print("Capped at: " + RoomGeneration.spawncap);
 		RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
 		foreach(RoomGeneration room in rooms)
 		{
@@ -51,6 +51,7 @@ public class RoomManager : MonoBehaviour {
                 roomQueue.Clear();
 			}
 		}
+		SpawningComplete = true;
 	}
 
 	public static void AdditionalRoom(RoomGeneration room)

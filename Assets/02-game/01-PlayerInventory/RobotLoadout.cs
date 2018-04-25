@@ -92,6 +92,7 @@ public class RobotLoadout : MonoBehaviour {
 			if (loadout[i].itemLoc == item.itemLoc)
 			{
 				tempItem = loadout[i];
+				RobotAnimationController.UpdatePlayerSprites = true;
 				return tempItem;
 			}
 		}
