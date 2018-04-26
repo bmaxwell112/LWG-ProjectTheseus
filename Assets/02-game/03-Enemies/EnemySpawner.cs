@@ -35,6 +35,6 @@ public class EnemySpawner : MonoBehaviour {
 
 	void Spawn()
 	{
-		Instantiate(enemyToSpawn, transform.position, Quaternion.identity);		
+		Instantiate(enemyToSpawn, transform.position, Quaternion.identity, transform);		
 	}
 }

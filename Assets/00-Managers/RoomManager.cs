@@ -4,17 +4,28 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour {
 
+    public static RoomManager instance = null;
     enum TileSet {Fabrication, Terraforming, Disposal, Purification, Security, Medical};
     [SerializeField] GameObject room, player;
     public int roomCap;
 	public static bool SpawningComplete;
     private RoomGeneration nextRoom;
 	static Queue<RoomGeneration> roomQueue = new Queue<RoomGeneration>();
-	//spawnConfigs array
+    private int layoutNumber;
+    public GameObject[] spawnConfigs;
+    //spawnConfigs array
 
 
-	// Use this for initialization
-	void Start () {
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+    }
+
+    // Use this for initialization
+    void Start () {
         nextRoom = FindObjectOfType<RoomGeneration>();
         SpawnFirstRoom();
 	}
@@ -23,6 +34,7 @@ public class RoomManager : MonoBehaviour {
 
     void SpawnFirstRoom()
     {
+        RoomGeneration.first = true;
         Instantiate(room, Vector3.zero, Quaternion.identity);
         StartCoroutine(ManageRoomQueue());
     }
@@ -58,6 +70,12 @@ public class RoomManager : MonoBehaviour {
 	{
 		roomQueue.Enqueue(room);
 	}
+
+    public GameObject GetRandomRoom()
+    {
+        layoutNumber = Random.Range(0, spawnConfigs.Length);
+        return spawnConfigs[layoutNumber];
+    }
 
     //Minimap processes here
     //Track number of rooms for special rooms

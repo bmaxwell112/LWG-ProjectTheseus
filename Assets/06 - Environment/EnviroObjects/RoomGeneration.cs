@@ -30,6 +30,7 @@ public class RoomGeneration : MonoBehaviour {
 			new Vector3Int(12, -4, 0)
 		};
 		RoomManager.AdditionalRoom(this);
+        GetSpawnConfigs();
 	}
 
     public void QueuedStart()
@@ -39,10 +40,10 @@ public class RoomGeneration : MonoBehaviour {
             spawncap = worldController.roomCap;
         }
 		roomActive = false;
-		if (!first)
+		if (first)
 		{
 			roomActive = true;
-			first = true;
+			first = false;
 		}		
 		CheckDoor();
 	}
@@ -86,7 +87,7 @@ public class RoomGeneration : MonoBehaviour {
                 {
 					spawncap++;
                     Instantiate(
-                        room,
+                        Resources.Load("room", typeof(GameObject)),
                         new Vector3(
                             transform.position.x + spawnLocation[i].x,
                             transform.position.y + spawnLocation[i].y,
@@ -115,6 +116,7 @@ public class RoomGeneration : MonoBehaviour {
     void ToggleActiveRooms()
     {
         Renderer[] renderers = GetComponentsInChildren<Renderer>();
+       // GameObject[] enemySpawns = GameObject.FindGameObjectsWithTag("SpawnConfig");
         if (!roomActive)
         {
 
@@ -123,6 +125,11 @@ public class RoomGeneration : MonoBehaviour {
                 r.enabled = false;
             }
 
+           // foreach (GameObject s in enemySpawns)
+           // {
+            //    s.SetActive(false);
+            //}
+
         }
         else
         {
@@ -130,6 +137,11 @@ public class RoomGeneration : MonoBehaviour {
             {
                 r.enabled = true;
             }
+
+           // foreach (GameObject s in enemySpawns)
+            //{
+             //   s.SetActive(true);
+            //}
         }
 
     }
@@ -173,6 +185,11 @@ public class RoomGeneration : MonoBehaviour {
 				Walls[doorsLeft[Rand]].doorWall = true;
 			}
         }
+    }
+
+    public void GetSpawnConfigs()
+    {
+        Instantiate(RoomManager.instance.GetRandomRoom(), new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, transform);
     }
 
 	//define an array of objects (how am I going to define them, tag?)

@@ -757,9 +757,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorWall: 0
+  done: 0
   open: {fileID: 0}
   close: {fileID: 0}
   doorLocation: 3
+  doorChance: 0
 --- !u!114 &114297726076891988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -772,9 +774,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorWall: 0
+  done: 0
   open: {fileID: 0}
   close: {fileID: 0}
   doorLocation: 0
+  doorChance: 0
 --- !u!114 &114352595162650532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -787,9 +791,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorWall: 0
+  done: 0
   open: {fileID: 0}
   close: {fileID: 0}
   doorLocation: 2
+  doorChance: 0
 --- !u!114 &114384332507072138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -802,9 +808,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorWall: 0
+  done: 0
   open: {fileID: 0}
   close: {fileID: 0}
   doorLocation: 1
+  doorChance: 0
 --- !u!114 &114388160049412992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -817,9 +825,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorWall: 0
+  done: 0
   open: {fileID: 0}
   close: {fileID: 0}
   doorLocation: 4
+  doorChance: 0
 --- !u!114 &114400269309967206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -832,9 +842,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorWall: 0
+  done: 0
   open: {fileID: 0}
   close: {fileID: 0}
   doorLocation: 5
+  doorChance: 0
 --- !u!114 &114490187117001572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -846,7 +858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6456ae58c1a5f6247b80a3e826ee60c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentActive: 0
 --- !u!114 &114541831388048982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -873,8 +884,6 @@ MonoBehaviour:
   doors: []
   room: {fileID: 1935376734419032}
   player: {fileID: 1987759031399868, guid: 064acb4a45f04a948b9e38c0381af688, type: 2}
-  spawnNextRoom: 0
-  done: 0
 --- !u!212 &212014160795325250
 SpriteRenderer:
   m_ObjectHideFlags: 1
