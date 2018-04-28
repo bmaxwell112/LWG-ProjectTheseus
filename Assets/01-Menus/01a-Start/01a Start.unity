@@ -690,7 +690,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11492952, guid: c9592ddc2c21fe1438eea2ff62ea1109, type: 2}
         m_MethodName: LoadLevel
         m_Mode: 5
         m_Arguments:
@@ -698,7 +698,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 02a Game
+          m_StringArgument: 02b
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,

@@ -9,7 +9,7 @@ public class Drops : MonoBehaviour {
 	public int databaseItemID;
 	public int hitPoints;
 	bool playerCanPickup;
-	[SerializeField] SpriteRenderer sprite;
+	[SerializeField] SpriteRenderer[] sprites;
 	[SerializeField] Text text;
 	[SerializeField] Transform canvas;
 	[SerializeField] LayerMask playerMask;
@@ -47,18 +47,44 @@ public class Drops : MonoBehaviour {
 	}
 
 	void IdentifyItem(Item item, int hp)
-	{		
+	{
 		thisItem = item;
 		hitPoints = hp;
-		sprite.sprite = item.itemSprite[0];
+		SpriteSetter(item);
 		text.text = thisItem.itemName + "\n" + thisItem.itemDesc;
 	}
+
+	private void SpriteSetter(Item item)
+	{
+		sprites[1].sprite = null;
+		sprites[2].sprite = null;
+		switch (item.itemLoc)
+		{
+			case ItemLoc.leftArm:
+				sprites[0].sprite = item.itemSprite[0];				
+				sprites[1].sprite = item.itemSprite[1];
+				break;
+			case ItemLoc.rightArm:
+				sprites[0].sprite = item.itemSprite[0];				
+				sprites[1].sprite = item.itemSprite[1];
+				break;
+			case ItemLoc.legs:
+				sprites[0].sprite = item.itemSprite[0];				
+				sprites[2].sprite = item.itemSprite[0];
+				break;
+			default:
+				sprites[0].sprite = item.itemSprite[0];				
+				break;
+
+		}
+	}
+
 	public void RenameAndReset()
 	{
 		CancelInvoke();
 		//Invoke("DestroyDrop", 10);
 		text.text = thisItem.itemName + "\n" + thisItem.itemDesc;
-		sprite.sprite = thisItem.itemSprite[0];
+		SpriteSetter(thisItem);
 	}
 
 	void DestroyDrop()

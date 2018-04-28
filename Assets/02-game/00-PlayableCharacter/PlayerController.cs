@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
 	public Transform firingArc;
 	RobotLoadout roLo;
 	Vector3 rotation;
-	bool fireLeft, fireRight;
+	bool fireLeft, fireRight;	
 
 	void Start()
 	{		

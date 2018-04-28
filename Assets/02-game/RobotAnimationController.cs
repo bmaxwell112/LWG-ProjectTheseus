@@ -18,12 +18,13 @@ public class RobotAnimationController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		if (firingArc.eulerAngles.z >= 22.5f && firingArc.eulerAngles.z < 67.5f)
 		{
 			// facing upper left
 			currentFacing = Facing.upperLeft;
-			int[] order = new int[] { 4, 7, 1, 4, 3 };
+			int[] order = new int[] { 4, 7, 1, 4, 3 }; // head, left arm, right arm, left leg, right leg
 			UpdateSprites(SpriteSetter(3, 2, 3), order);
 		}
 		else if (firingArc.eulerAngles.z >= 67.5f && firingArc.eulerAngles.z < 112.5f)
@@ -50,7 +51,7 @@ public class RobotAnimationController : MonoBehaviour {
 		else if (firingArc.eulerAngles.z >= 202.5f && firingArc.eulerAngles.z < 247.5f)
 		{
 			// facing lower right
-			int[] order = new int[] { 6, 2, 6, 3, 4 };
+			int[] order = new int[] { 6, 2, 7, 3, 4 };
 			currentFacing = Facing.lowerRight;
 			UpdateSprites(SpriteSetter(7, 0, 3), order);
 		}
@@ -71,10 +72,15 @@ public class RobotAnimationController : MonoBehaviour {
 		else if (firingArc.eulerAngles.z >= 337.5f || firingArc.eulerAngles.z < 22.5f)
 		{
 			// facing up
-			int[] order = new int[] { 4, 4, 4, 4, 3 };
+			int[] order = new int[] { 4, 3, 3, 4, 3 };
 			currentFacing = Facing.up;
 			UpdateSprites(SpriteSetter(4, 2, 3), order);
 		}
+		PlayerTracking();
+	}
+
+	private void PlayerTracking()
+	{
 		anim.SetInteger("facing", (int)currentFacing);
 		if (InputCapture.hThrow != 0 || InputCapture.vThrow != 0)
 		{
@@ -91,7 +97,31 @@ public class RobotAnimationController : MonoBehaviour {
 		else
 		{
 			anim.SetFloat("speed", InputCapture.hThrow);
-		}		
+		}
+		if (InputCapture.fireRightDown && roLo.loadout[3].itemType == ItemType.melee)
+		{
+			anim.SetBool("rightAttack", true);
+		}
+		if (InputCapture.fireLeftDown && roLo.loadout[2].itemType == ItemType.melee)
+		{
+			anim.SetBool("leftAttack", true);
+		}
+		if (InputCapture.firingLeft && roLo.loadout[2].itemType == ItemType.range)
+		{
+			anim.SetBool("leftRangeAttack", true);
+		}
+		else if (!InputCapture.firingLeft && roLo.loadout[2].itemType == ItemType.range)
+		{
+			anim.SetBool("leftRangeAttack", false);
+		}
+		if (InputCapture.firingRight && roLo.loadout[3].itemType == ItemType.range)
+		{
+			anim.SetBool("rightRangeAttack", true);
+		}
+		else if (!InputCapture.firingRight && roLo.loadout[3].itemType == ItemType.range)
+		{
+			anim.SetBool("rightRangeAttack", false);
+		}
 	}
 
 	Sprite[] SpriteSetter(int bodyAndHead, int leg, int foot)
@@ -144,5 +174,16 @@ public class RobotAnimationController : MonoBehaviour {
 					break;
 			}
 		}
+	}
+
+	public void DoneAttacking()
+	{
+		anim.SetBool("rightAttack", false);
+		anim.SetBool("rightRangeAttack", false);
+	}
+	public void DoneAttackingLeft()
+	{
+		anim.SetBool("leftAttack", false);
+		anim.SetBool("leftRangeAttack", false);
 	}
 }

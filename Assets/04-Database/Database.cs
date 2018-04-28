@@ -33,8 +33,8 @@ public class Database : MonoBehaviour {
 		items.Add(new Item(8, "Heavy Torso", "A bulkier body capable of taking more punishment.", ItemLoc.body, ItemType.aesthetic, GetSprite("GreenGuy/torso"), 80, 0, 0, 0, 0, false));
 		items.Add(new Item(9, "Chainsaw Arm L", "A melee arm with a chance to cleanly remove a part.", ItemLoc.leftArm, ItemType.melee, GetSprite("Secondary/arm"), 10, 10, 0, 0, 0, false));
 		items.Add(new Item(10, "Chainsaw Arm R", "A melee arm with a chance to cleanly remove a part.", ItemLoc.rightArm, ItemType.melee, GetSprite("Secondary/arm"), 10, 10, 0, 0, 0, false));
-		items.Add(new Item(11, "Machinegun Arm L", "Fires bullets very quickly at foes.", ItemLoc.leftArm, ItemType.range, GetSprite("GreenGuy/arm"), 10, 1, 10, 0.075f, 1, false));
-		items.Add(new Item(12, "Machinegun Arm R", "Fires bullets very quickly at foes.", ItemLoc.rightArm, ItemType.range, GetSprite("GreenGuy/arm"), 10, 1, 10, 0.075f, 1, false));
+		items.Add(new Item(11, "Machinegun Arm L", "Fires bullets very quickly at foes.", ItemLoc.leftArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 1, 10, 0.075f, 1, false));
+		items.Add(new Item(12, "Machinegun Arm R", "Fires bullets very quickly at foes.", ItemLoc.rightArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 1, 10, 0.075f, 1, false));
 		items.Add(new Item(13, "Rollerblades", "Increased movement speed, also makes you look cool.", ItemLoc.legs, ItemType.speed, GetSprite("Secondary/leg"), 20, 3, 0, 0, 0, false));
 		items.Add(new Item(14, "Backpack", "Increases your max battery capacity.", ItemLoc.back, ItemType.aesthetic, GetSprite("GreenGuy/head"), 20, 0, 0, 0, 0, false));
 		items.Add(new Item(15, "Hacking AI", "Allows you to hack doors and computer systems.", ItemLoc.core, ItemType.aesthetic, GetSprite("GreenGuy/head"), 0, 0, 0, 0, 0, false));
