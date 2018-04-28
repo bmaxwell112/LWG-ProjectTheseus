@@ -57,7 +57,7 @@ public class RobotAnimationController : MonoBehaviour {
 		else if (firingArc.eulerAngles.z >= 247.5f && firingArc.eulerAngles.z < 292.5f)
 		{
 			// facing right
-			int[] order = new int[] { 6, 2, 6, 3, 4 };
+			int[] order = new int[] { 6, 1, 7, 3, 4 };
 			currentFacing = Facing.right;
 			UpdateSprites(SpriteSetter(6, 1, 4), order);
 		}
@@ -76,6 +76,22 @@ public class RobotAnimationController : MonoBehaviour {
 			UpdateSprites(SpriteSetter(4, 2, 3), order);
 		}
 		anim.SetInteger("facing", (int)currentFacing);
+		if (InputCapture.hThrow != 0 || InputCapture.vThrow != 0)
+		{
+			anim.SetInteger("action", 1);
+		}
+		else
+		{
+			anim.SetInteger("action", 0);
+		}
+		if (currentFacing == Facing.down || currentFacing == Facing.up)
+		{
+			anim.SetFloat("speed", InputCapture.vThrow);
+		}
+		else
+		{
+			anim.SetFloat("speed", InputCapture.hThrow);
+		}		
 	}
 
 	Sprite[] SpriteSetter(int bodyAndHead, int leg, int foot)

@@ -18,7 +18,7 @@ public class Drops : MonoBehaviour {
 	{
 		Database database = Database.instance;
 		IdentifyItem(database.items[databaseItemID], database.items[databaseItemID].itemHitpoints);
-		Invoke("DestroyDrop", 10);
+		//Invoke("DestroyDrop", 10);
 	}
 
 	void Update()
@@ -56,7 +56,7 @@ public class Drops : MonoBehaviour {
 	public void RenameAndReset()
 	{
 		CancelInvoke();
-		Invoke("DestroyDrop", 10);
+		//Invoke("DestroyDrop", 10);
 		text.text = thisItem.itemName + "\n" + thisItem.itemDesc;
 		sprite.sprite = thisItem.itemSprite[0];
 	}

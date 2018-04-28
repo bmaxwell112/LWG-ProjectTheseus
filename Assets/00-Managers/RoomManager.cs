@@ -9,9 +9,7 @@ public class RoomManager : MonoBehaviour {
     [SerializeField] GameObject room, player;
     public int roomCap;
 	public static bool SpawningComplete;
-    private RoomGeneration nextRoom;
 	static Queue<RoomGeneration> roomQueue = new Queue<RoomGeneration>();
-    private int layoutNumber;
     public GameObject[] spawnConfigs;
     //spawnConfigs array
 
@@ -26,7 +24,6 @@ public class RoomManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        nextRoom = FindObjectOfType<RoomGeneration>();
         SpawnFirstRoom();
 	}
 	
@@ -73,7 +70,7 @@ public class RoomManager : MonoBehaviour {
 
     public GameObject GetRandomRoom()
     {
-        layoutNumber = Random.Range(0, spawnConfigs.Length);
+        int layoutNumber = Random.Range(0, spawnConfigs.Length);
         return spawnConfigs[layoutNumber];
     }
 

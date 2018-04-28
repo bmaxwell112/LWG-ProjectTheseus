@@ -102,7 +102,6 @@ public class PlayerController : MonoBehaviour {
 			fireFrom = rightArm;
 		}
 		fireFrom.rotation = firingArc.rotation;
-		SpriteRenderer arm = fireFrom.GetComponent<SpriteRenderer>();
 		if (item.itemType == ItemType.melee)
 		{			
 			RaycastHit2D enemy = Physics2D.CircleCast(
@@ -142,7 +141,7 @@ public class PlayerController : MonoBehaviour {
 		bool fire = true;
 		while (fire)
 		{
-			GameObject tempBullet = Instantiate(bullets, fireFrom.transform.position, transform.rotation);
+			GameObject tempBullet = Instantiate(bullets, fireFrom.transform.position, firingArc.transform.rotation);
 			tempBullet.GetComponent<PlayerRangeWeapon>().BulletSetup(item.itemValue, item.itemValueTwo, item.itemFltValueTwo);
 			if (item.itemLoc == ItemLoc.leftArm)
 			{

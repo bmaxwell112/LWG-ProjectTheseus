@@ -8,15 +8,17 @@ public class RoomGeneration : MonoBehaviour {
     public bool roomActive;
     public DoorGen[] doors;
     private Vector3Int[] spawnLocation;
-    [SerializeField] GameObject room, player;	
+    [SerializeField] GameObject room, player, layout;	
     private RoomManager worldController;
     private int minDoors, totalRooms;
     private DoorGen walls;
+	bool roomListener;
 
 	// Use this for initialization
 	void Start () {
 		//QueuedStart();
 		roomActive = false;
+		roomListener = !roomActive;
 		doors = GetComponentsInChildren<DoorGen>();
 		worldController = FindObjectOfType<RoomManager>();
 		walls = FindObjectOfType<DoorGen>();
@@ -30,7 +32,7 @@ public class RoomGeneration : MonoBehaviour {
 			new Vector3Int(12, -4, 0)
 		};
 		RoomManager.AdditionalRoom(this);
-        GetSpawnConfigs();
+		GetSpawnConfigs();
 	}
 
     public void QueuedStart()
@@ -70,9 +72,9 @@ public class RoomGeneration : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        //print("minDoors: " + minDoors);
-        //print(abyss);
-        ToggleActiveRooms();
+		//print("minDoors: " + minDoors);
+		//print(abyss);
+		ToggleActiveRooms();
     }
 
     //something to differentiate rooms that are spawned
@@ -124,12 +126,7 @@ public class RoomGeneration : MonoBehaviour {
             {
                 r.enabled = false;
             }
-
-           // foreach (GameObject s in enemySpawns)
-           // {
-            //    s.SetActive(false);
-            //}
-
+			layout.SetActive(false);
         }
         else
         {
@@ -137,13 +134,8 @@ public class RoomGeneration : MonoBehaviour {
             {
                 r.enabled = true;
             }
-
-           // foreach (GameObject s in enemySpawns)
-            //{
-             //   s.SetActive(true);
-            //}
-        }
-
+			layout.SetActive(true);
+		}
     }
 
     public void DoorsLeft()
@@ -189,7 +181,15 @@ public class RoomGeneration : MonoBehaviour {
 
     public void GetSpawnConfigs()
     {
-        Instantiate(RoomManager.instance.GetRandomRoom(), new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, transform);
+		if (first)
+		{
+			layout = Instantiate(RoomManager.instance.spawnConfigs[0], new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, transform);
+		}
+		else
+		{
+			layout = Instantiate(RoomManager.instance.GetRandomRoom(), new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, transform);
+			layout.SetActive(false);
+		}
     }
 
 	//define an array of objects (how am I going to define them, tag?)

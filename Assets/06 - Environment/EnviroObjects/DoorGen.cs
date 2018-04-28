@@ -12,10 +12,8 @@ public class DoorGen : MonoBehaviour
     public enum DoorLoc { top, bottom, upperLeft, upperRight, lowerLeft, lowerRight };
     public DoorLoc doorLocation;
     Vector3Int[] roomLocation;
-    private RoomManager worldController;
     public float doorChance;
 	bool doorListener;
-    private RoomGeneration roomgen;
 
     // Use this for initialization
     void Start()
@@ -33,11 +31,9 @@ public class DoorGen : MonoBehaviour
         StaticWallCheck();
         spriteRenderer = GetComponent<SpriteRenderer>();
         cbox = GetComponent<Collider2D>();
-        worldController = FindObjectOfType<RoomManager>();
         LastDoorCheck();
         SpawnDoor();
 		doorListener = doorWall;
-        roomgen = GetComponentInParent<RoomGeneration>();
 	}
 
     // Update is called once per frame
@@ -144,7 +140,8 @@ public class DoorGen : MonoBehaviour
             if (close)
             {
                 close.SetActive(false);
-            }
+				open.SetActive(true);
+			}
             else
             {
                 spriteRenderer.color = Color.green;
@@ -157,7 +154,8 @@ public class DoorGen : MonoBehaviour
             if (open)
             {
                 open.SetActive(false);
-            }
+				close.SetActive(true);
+			}
             else
             {
                 spriteRenderer.color = Color.red;
