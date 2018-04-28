@@ -54,7 +54,7 @@ public class RobotLoadout : MonoBehaviour {
 			}
 			if (GetComponent<PlayerController>())
 			{
-				LevelManager.LOADLEVEL("02a Hub");
+				LevelManager.LOADLEVEL("01a Start");
 			}
 			Destroy(gameObject);
 		}		

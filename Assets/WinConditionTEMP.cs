@@ -8,7 +8,7 @@ public class WinConditionTEMP : MonoBehaviour {
 	{
 		if (coll.gameObject.tag == "Player")
 		{
-			print("Win");
+			LevelManager.LOADLEVEL("01a Start");
 		}
 	}
 }
