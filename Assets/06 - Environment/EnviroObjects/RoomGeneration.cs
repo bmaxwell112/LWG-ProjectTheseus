@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomGeneration : MonoBehaviour {
-    public static int spawncap;
+    public static int spawncap, roomsInExistence;
 	public static bool first;
     public bool roomActive;
     public DoorGen[] doors;
@@ -17,6 +17,7 @@ public class RoomGeneration : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//QueuedStart();
+		roomsInExistence++;
 		roomActive = false;
 		roomListener = !roomActive;
 		doors = GetComponentsInChildren<DoorGen>();
@@ -164,7 +165,6 @@ public class RoomGeneration : MonoBehaviour {
         }
 
 		//minDoors set in SetMinDoors crazily enough
-		print("door min " + minDoors);
 		for (int i = minDoors; i >= doorsOpen; i--)
         {			
 			if (doorsLeft.Count > 0)
@@ -184,6 +184,10 @@ public class RoomGeneration : MonoBehaviour {
 		if (first)
 		{
 			layout = Instantiate(RoomManager.instance.spawnConfigs[0], new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, transform);
+		}
+		else if (roomsInExistence == RoomManager.instance.roomCap)
+		{
+			layout = Instantiate(RoomManager.instance.spawnConfigs[4], new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, transform);
 		}
 		else
 		{

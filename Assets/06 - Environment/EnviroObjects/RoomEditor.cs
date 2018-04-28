@@ -49,9 +49,9 @@ public class RoomEditor : MonoBehaviour {
 
 	private void UpdateLabel()
 	{
-		TextMesh textMesh = GetComponent<TextMesh>();			
+		//TextMesh textMesh = GetComponent<TextMesh>();			
 		string labelText = GetGridPos().x + "," + GetGridPos().y;
-		textMesh.text = labelText;
+		//textMesh.text = labelText;
 		gameObject.name = "Room (" + labelText + ")";
 	}
 }

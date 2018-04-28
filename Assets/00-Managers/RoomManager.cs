@@ -24,6 +24,7 @@ public class RoomManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+		RoomGeneration.roomsInExistence = 0;
         SpawnFirstRoom();
 	}
 	
@@ -56,7 +57,6 @@ public class RoomManager : MonoBehaviour {
 			foreach (DoorGen door in doors)
 			{
 				door.EndSpawningCheck();
-				print("doors to the void closed");
                 roomQueue.Clear();
 			}
 		}
@@ -70,7 +70,7 @@ public class RoomManager : MonoBehaviour {
 
     public GameObject GetRandomRoom()
     {
-        int layoutNumber = Random.Range(0, spawnConfigs.Length);
+        int layoutNumber = Random.Range(0, spawnConfigs.Length - 1);
         return spawnConfigs[layoutNumber];
     }
 

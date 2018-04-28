@@ -52,6 +52,10 @@ public class RobotLoadout : MonoBehaviour {
 			{
 				GetComponent<BasicEnemy>().EnemyDrop();
 			}
+			if (GetComponent<PlayerController>())
+			{
+				LevelManager.LOADLEVEL("02a Hub");
+			}
 			Destroy(gameObject);
 		}		
 	}

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Tempui : MonoBehaviour {
 
-	[SerializeField] Text text;
+	[SerializeField] Text[] texts;
 	RobotLoadout inv;
 	PlayerController player;
 
@@ -23,8 +23,7 @@ public class Tempui : MonoBehaviour {
 
 	private void LoadOutCheck()
 	{
-		text.text =
-			inv.hitPoints + "\n\n\n\n" +
+		texts[0].text =			
 			inv.loadout[(int)ItemLoc.head] .itemName + "\n" +
 			inv.loadout[(int)ItemLoc.body] .itemName + "\n" +
 			inv.loadout[(int)ItemLoc.leftArm].itemName + "\n" +
@@ -33,5 +32,6 @@ public class Tempui : MonoBehaviour {
 			inv.loadout[(int)ItemLoc.back] .itemName + "\n" +
 			inv.loadout[(int)ItemLoc.core].itemName + "\n" 
 			;
+		texts[1].text = inv.hitPoints.ToString();
 	}
 }
