@@ -70,7 +70,7 @@ public class RoomManager : MonoBehaviour {
 
     public GameObject GetRandomRoom()
     {
-        int layoutNumber = Random.Range(0, spawnConfigs.Length - 1);
+        int layoutNumber = Random.Range(0, spawnConfigs.Length -1);
         return spawnConfigs[layoutNumber];
     }
 
