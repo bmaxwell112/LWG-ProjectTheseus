@@ -83,6 +83,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4431278382283328}
+  - component: {fileID: 114433773509391532}
   m_Layer: 0
   m_Name: FireFromL
   m_TagString: Untagged
@@ -193,6 +194,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4162590866831690}
+  - component: {fileID: 114519859908026024}
   m_Layer: 0
   m_Name: FireFromR
   m_TagString: Untagged
@@ -651,6 +653,36 @@ MonoBehaviour:
     itemFltValue: 0
     itemFltValueTwo: 0
     itemSpecial: 0
+--- !u!114 &114433773509391532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1450523425838752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08449c314aa113e47b2699e6d7be6fbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 512
+  FiringArc: {fileID: 4849512285907418}
+--- !u!114 &114519859908026024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1761162351073428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08449c314aa113e47b2699e6d7be6fbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 512
+  FiringArc: {fileID: 4849512285907418}
 --- !u!114 &114828169062752192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -694,8 +726,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   bullets: {fileID: 1216279456768122, guid: a2b70d9380ca36c469576dc42a066195, type: 2}
-  leftArm: {fileID: 4431278382283328}
-  rightArm: {fileID: 4162590866831690}
+  leftArm: {fileID: 114433773509391532}
+  rightArm: {fileID: 114519859908026024}
   firingArc: {fileID: 4849512285907418}
 --- !u!212 &212010885788543652
 SpriteRenderer:

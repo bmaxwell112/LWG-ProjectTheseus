@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
 
 	[SerializeField] LayerMask drop, enemyMask;
 	[SerializeField] GameObject bullets;
-	[SerializeField] Transform leftArm, rightArm;
+	[SerializeField] PlayerAttack leftArm, rightArm;
 	public Transform firingArc;
 	RobotLoadout roLo;
 	Vector3 rotation;
@@ -72,94 +72,47 @@ public class PlayerController : MonoBehaviour {
 			rotation = MovementFunctions.LookAt2D(transform, InputCapture.hAim, InputCapture.vAim);
 		}
 		firingArc.eulerAngles = rotation;
-		if (InputCapture.fireLeftDown)
+		if (InputCapture.firingLeft && !fireLeft)
 		{
-			PlayerAttack(roLo.loadout[2]);
+			if (roLo.loadout[2].itemType == ItemType.range)
+			{
+				leftArm.RangedAttack(roLo.loadout[2]);
+			}
+			else
+			{
+				leftArm.MeleeAttack(roLo.loadout[2]);
+			}
+			fireLeft = true;
 		}
-		if (InputCapture.fireRightDown)
-		{
-			PlayerAttack(roLo.loadout[3]);
-		}
-		if (!InputCapture.firingLeft && fireLeft)
+		else if (!InputCapture.firingLeft)
 		{
 			fireLeft = false;
 		}
-		if (!InputCapture.firingRight && fireRight)
+		if (InputCapture.firingRight  && !fireRight)
 		{
-			fireRight = false;
-		}
-	}
-
-	private void PlayerAttack(Item item)
-	{
-		Transform fireFrom;
-		if (item.itemLoc == ItemLoc.leftArm)
-		{
-			fireFrom = leftArm;
-		}
-		else
-		{
-			fireFrom = rightArm;
-		}
-		fireFrom.rotation = firingArc.rotation;
-		if (item.itemType == ItemType.melee)
-		{			
-			RaycastHit2D enemy = Physics2D.CircleCast(
-					new Vector2(fireFrom.transform.position.x, leftArm.transform.position.y),
-					0.5f,
-					Vector2.up,
-					0.5f,
-					enemyMask);
-			// TODO this will need to be more universal.
-			if (enemy.collider != null)
+			if (roLo.loadout[3].itemType == ItemType.range)
 			{
-				enemy.collider.gameObject.GetComponent<RobotLoadout>().TakeDamage(item.itemValue, Color.red, new Color(0.82f, 0.55f, 0.16f), true);
+				rightArm.RangedAttack(roLo.loadout[3]);
 			}
+			else
+			{
+				rightArm.MeleeAttack(roLo.loadout[3]);
+			}
+			fireRight = true;
 		}
-		else if (item.itemType == ItemType.range)
+		else if (!InputCapture.firingRight)
 		{
-			print(InputCapture.firingRight);
-			if (item.itemLoc == ItemLoc.leftArm && !fireLeft)
-			{
-				fireLeft = true;
-				StartCoroutine(SpawnBullets(item, fireFrom));				
-			}
-			if (item.itemLoc == ItemLoc.rightArm && !fireRight)
-			{
-				fireRight = true;
-				StartCoroutine(SpawnBullets(item, fireFrom));				
-			}
+			fireRight = false;			
 		}
-		else
-		{
-			Debug.LogWarning("Could not attack with ItemType " + item.itemType);
-		}
-	}
-
-	public IEnumerator SpawnBullets(Item item, Transform fireFrom)
-	{
-		bool fire = true;
-		while (fire)
-		{
-			GameObject tempBullet = Instantiate(bullets, fireFrom.transform.position, firingArc.transform.rotation);
-			tempBullet.GetComponent<PlayerRangeWeapon>().BulletSetup(item.itemValue, item.itemValueTwo, item.itemFltValueTwo);
-			if (item.itemLoc == ItemLoc.leftArm)
-			{
-				fire = fireLeft;
-			}
-			if (item.itemLoc == ItemLoc.rightArm)
-			{
-				fire = fireRight;
-			}
-			yield return new WaitForSeconds(item.itemFltValue);
-		}
+		rightArm.GetComponent<PlayerAttack>().FiringCheck(fireRight);
+		leftArm.GetComponent<PlayerAttack>().FiringCheck(fireLeft);
 	}
 
 	private void MovementCheck()
 	{		
 		// Sets players speed
-		float xSpeed = InputCapture.hThrow * roLo.loadout[(int)ItemLoc.legs].itemValue * Time.deltaTime;
-		float ySpeed = InputCapture.vThrow * roLo.loadout[(int)ItemLoc.legs].itemValue * Time.deltaTime;
+		float xSpeed = InputCapture.hThrow * roLo.loadout[(int)ItemLoc.legs].itemSpeed * Time.deltaTime;
+		float ySpeed = InputCapture.vThrow * roLo.loadout[(int)ItemLoc.legs].itemSpeed * Time.deltaTime;
 		// applies movement
 		transform.position += new Vector3(xSpeed, ySpeed, transform.position.z);
 	}
