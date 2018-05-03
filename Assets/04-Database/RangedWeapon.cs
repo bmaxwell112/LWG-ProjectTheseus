@@ -11,12 +11,12 @@ public class RangedWeapon {
 	public int rangedWeaponDamage;
 	public float rangedWeaponSpeed;
 	public float rangedWeaponStartOffset;
-	public int rangedWeaponLife;
+	public float rangedWeaponLife;
 	public int rangedWeaponSpread;
 	public float rangedWeaponDirection;
 	public float rangeWeaponRateOfFire;
 
-	public RangedWeapon(int id, int itemID, float speed, float offset, int life, int spread, float direction, float rof)
+	public RangedWeapon(int id, int itemID, float speed, float offset, float life, int spread, float direction, float rof)
 	{
 		rangedWeaponID = id;
 		rangedWeaponItemID = itemID;

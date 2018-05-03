@@ -44,7 +44,7 @@ public class PlayerAttack : MonoBehaviour {
 		while (firing)
 		{
 			GameObject bullet = Instantiate(Resources.Load("bullet", typeof(GameObject))) as GameObject;
-			bullet.GetComponent<BulletWeapon>().BulletSetup(rw, transform.position, FiringArc);
+			bullet.GetComponent<BulletWeapon>().BulletSetup(rw, transform.position, FiringArc, "Enemy", gameObject.tag);
 			yield return new WaitForSeconds(rw.rangeWeaponRateOfFire);
 		}
 		print("End Co-routine");

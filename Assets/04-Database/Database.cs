@@ -43,8 +43,8 @@ public class Database : MonoBehaviour {
 		items.Add(new Item(12, "Heavy Torso", "A bulkier, armored body that is heavy and harder to move in.", ItemLoc.body, ItemType.aesthetic, GetSprite("GreenGuy/torso"), 60, 0, 0, 0, true));
 		items.Add(new Item(13, "Mounted Gun L", "A basic semi-automatic firearm for ranged combat.", ItemLoc.leftArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 10, 0, 0, false));
 		items.Add(new Item(14, "Mounted Gun R", "A basic semi-automatic firearm for ranged combat.", ItemLoc.rightArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 10, 0, 0, false));
-		items.Add(new Item(15, "Shotgun L", "A powerful firearm with restricted range and a cooldown between shots.", ItemLoc.leftArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 2, 0, 0, false));
-		items.Add(new Item(16, "Shotgun R", "A powerful firearm with restricted range and a cooldown between shots.", ItemLoc.rightArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 2, 0, 0, false));
+		items.Add(new Item(15, "Shotgun L", "A powerful firearm with restricted range and a cooldown between shots.", ItemLoc.leftArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 4, 0, 0, false));
+		items.Add(new Item(16, "Shotgun R", "A powerful firearm with restricted range and a cooldown between shots.", ItemLoc.rightArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 4, 0, 0, false));
 		items.Add(new Item(17, "Machinegun L", "A ranged weapon with a rapid rate of fire.", ItemLoc.leftArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 2, 0, 0, false));
 		items.Add(new Item(18, "Machinegun R", "A ranged weapon with a rapid rate of fire.", ItemLoc.rightArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 2, 0, 0, false));
 		items.Add(new Item(19, "Chair Flintlock", "A failed capsule launcher prototype, capsules expand into chairs immediately after firing. Does an unusual amount of damage.", ItemLoc.rightArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 20, 0, 0, false));
@@ -68,8 +68,8 @@ public class Database : MonoBehaviour {
 		rangedWeapons.Add(new RangedWeapon(0, 11, 10, 0, 1, 1, 0, 0.075f));
 		rangedWeapons.Add(new RangedWeapon(1, 13, 10, 0.1f, 1, 1, 0, 0.2f));
 		rangedWeapons.Add(new RangedWeapon(2, 14, 10, 0.1f, 1, 1, 0, 0.2f));
-		rangedWeapons.Add(new RangedWeapon(3, 15, 10, 0.2f, 1, 1, 0, 0.075f));
-		rangedWeapons.Add(new RangedWeapon(4, 16, 10, 0.2f, 1, 1, 0, 0.075f));
+		rangedWeapons.Add(new RangedWeapon(3, 15, 10, 0.2f, 0.25f, 1, 0, 0.5f));
+		rangedWeapons.Add(new RangedWeapon(4, 16, 10, 0.2f, 0.25f, 1, 0, 0.5f));
 		rangedWeapons.Add(new RangedWeapon(5, 17, 10, 0.2f, 1, 1, 0, 0.075f));
 		rangedWeapons.Add(new RangedWeapon(6, 18, 10, 0.2f, 1, 1, 0, 0.075f));
 		rangedWeapons.Add(new RangedWeapon(6, 19, 10, 0.2f, 1, 1, 0, 0.075f));
