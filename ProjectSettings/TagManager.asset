@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - FriendlyBullets
   - room
+  - SpawnConfig
+  - Hole
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - enemy
   - Player
   - FriendlyBullets
-  - 
+  - Hole
   - 
   - 
   - 
