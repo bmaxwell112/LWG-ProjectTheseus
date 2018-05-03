@@ -33,23 +33,46 @@ public class Database : MonoBehaviour {
 		items.Add(new Item(2, "Basic Left Arm", "A left arm taken from the only schematics you have left.", ItemLoc.leftArm, ItemType.melee, GetSprite("GreenGuy/arm"), 10, 5, 0, 0, false));
 		items.Add(new Item(3, "Basic Right Arm", "A right arm taken from the only schematics you have left.", ItemLoc.rightArm, ItemType.melee, GetSprite("GreenGuy/arm"), 10, 5, 0, 0, false));
 		items.Add(new Item(4, "Basic Legs", "A pair of legs taken from the only schematics you have left.", ItemLoc.legs, ItemType.speed, GetSprite("GreenGuy/leg"), 10, 0, 2, 0, false));
-		items.Add(new Item(5, "Basic Back", "A back taken from the only schematics you have left.", ItemLoc.back, ItemType.aesthetic, GetSprite("GreenGuy/head"), 20, 0, 0, 0, false));
+		items.Add(new Item(5, "Basic Back", "A back taken from the only schematics you have left.", ItemLoc.back, ItemType.aesthetic, GetSprite("GreenGuy/torso"), 20, 0, 0, 0, false));
 		items.Add(new Item(6, "Basic AI Core", "An AI Core taken from the only schematics you have left.", ItemLoc.core, ItemType.aesthetic, GetSprite("GreenGuy/head"), 0, 0, 0, 0, false));
-		items.Add(new Item(7, "Head Vulcans", "A head with vulcan guns above the eyes.", ItemLoc.head, ItemType.range, GetSprite("GreenGuy/head"), 10, 2, 0, 0, false));
-		items.Add(new Item(8, "Heavy Torso", "A bulkier body capable of taking more punishment.", ItemLoc.body, ItemType.aesthetic, GetSprite("GreenGuy/torso"), 80, 0, 0, 0, false));
-		items.Add(new Item(9, "Chainsaw Arm L", "A melee arm with a chance to cleanly remove a part.", ItemLoc.leftArm, ItemType.melee, GetSprite("Secondary/arm"), 10, 10, 0, 0, false));
-		items.Add(new Item(10, "Chainsaw Arm R", "A melee arm with a chance to cleanly remove a part.", ItemLoc.rightArm, ItemType.melee, GetSprite("Secondary/arm"), 10, 10, 0, 0, false));
-		items.Add(new Item(11, "Machinegun Arm L", "Fires bullets very quickly at foes.", ItemLoc.leftArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 1, 0, 0, false));
-		items.Add(new Item(12, "Machinegun Arm R", "Fires bullets very quickly at foes.", ItemLoc.rightArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 1, 0, 0, false));
-		items.Add(new Item(13, "Rollerblades", "Increased movement speed, also makes you look cool.", ItemLoc.legs, ItemType.speed, GetSprite("Secondary/leg"), 20, 0, 3, 0, false));
-		items.Add(new Item(14, "Backpack", "Increases your max battery capacity.", ItemLoc.back, ItemType.aesthetic, GetSprite("GreenGuy/head"), 20, 0, 0, 0, false));
-		items.Add(new Item(15, "Hacking AI", "Allows you to hack doors and computer systems.", ItemLoc.core, ItemType.aesthetic, GetSprite("GreenGuy/head"), 0, 0, 0, 0, false));
+		items.Add(new Item(7, "Reinforced Head", "A head created from modifying basic schematics.", ItemLoc.head, ItemType.aesthetic, GetSprite("GreenGuy/head"), 20, 0, 0, 0, false));
+		items.Add(new Item(8, "Reinforced Torso", "A torso created from modifying basic schematics.", ItemLoc.body, ItemType.aesthetic, GetSprite("GreenGuy/torso"), 30, 0, 0, 0, false));
+		items.Add(new Item(9, "Reinforced Legs", "A pair of legs created from modifying basic schematics.", ItemLoc.legs, ItemType.speed, GetSprite("GreenGuy/leg"), 20, 0, 2, 0, false));
+		items.Add(new Item(10, "Reinforced Back", "A back created from modifying basic schematics.", ItemLoc.back, ItemType.aesthetic, GetSprite("GreenGuy/torso"), 10, 0, 0, 0, false));
+		items.Add(new Item(11, "Head Vulcans", "A head with mounted vulcans that fire as you attack.", ItemLoc.head, ItemType.range, GetSprite("GreenGuy/head"), 10, 1, 0, 0, true));
+		items.Add(new Item(12, "Heavy Torso", "A bulkier, armored body that is heavy and harder to move in.", ItemLoc.body, ItemType.aesthetic, GetSprite("GreenGuy/torso"), 60, 0, 0, 0, true));
+		items.Add(new Item(13, "Mounted Gun L", "A basic semi-automatic firearm for ranged combat.", ItemLoc.leftArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 10, 0, 0, false));
+		items.Add(new Item(14, "Mounted Gun R", "A basic semi-automatic firearm for ranged combat.", ItemLoc.rightArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 10, 0, 0, false));
+		items.Add(new Item(15, "Shotgun L", "A powerful firearm with restricted range and a cooldown between shots.", ItemLoc.leftArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 2, 0, 0, false));
+		items.Add(new Item(16, "Shotgun R", "A powerful firearm with restricted range and a cooldown between shots.", ItemLoc.rightArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 2, 0, 0, false));
+		items.Add(new Item(17, "Machinegun L", "A ranged weapon with a rapid rate of fire.", ItemLoc.leftArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 2, 0, 0, false));
+		items.Add(new Item(18, "Machinegun R", "A ranged weapon with a rapid rate of fire.", ItemLoc.rightArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 2, 0, 0, false));
+		items.Add(new Item(19, "Chair Flintlock", "A failed capsule launcher prototype, capsules expand into chairs immediately after firing. Does an unusual amount of damage.", ItemLoc.rightArm, ItemType.range, GetSprite("Secondary/armMachineGun"), 10, 20, 0, 0, false));
+		items.Add(new Item(20, "Shield L", "A defensive item that guards you from damage in the front.", ItemLoc.leftArm, ItemType.aesthetic, GetSprite("GreenGuy/arm"), 20, 0, 0, 0, true));
+		items.Add(new Item(21, "Shield R", "A defensive item that guards you from damage in the front.", ItemLoc.rightArm, ItemType.aesthetic, GetSprite("GreenGuy/arm"), 20, 0, 0, 0, true));
+		items.Add(new Item(22, "Blade L", "A melee weapon that deals decent damage in a swinging arc.", ItemLoc.leftArm, ItemType.melee, GetSprite("Secondary/arm"), 20, 10, 0, 0, false));
+		items.Add(new Item(23, "Blade R", "A melee weapon that deals decent damage in a swinging arc.", ItemLoc.rightArm, ItemType.melee, GetSprite("Secondary/arm"), 20, 10, 0, 0, false));
+		items.Add(new Item(24, "Stun Baton L", "A melee weapon that stuns enemies that get too close.", ItemLoc.leftArm, ItemType.melee, GetSprite("Secondary/arm"), 20, 5, 0, 0, true));
+		items.Add(new Item(25, "Stun Baton R", "A melee weapon that stuns enemies that get too close.", ItemLoc.rightArm, ItemType.melee, GetSprite("Secondary/arm"), 20, 5, 0, 0, true));
+		items.Add(new Item(26, "Chainsaw L", "A melee weapon that deals damage over time and cleaves parts.", ItemLoc.leftArm, ItemType.melee, GetSprite("Secondary/arm"), 20, 3, 0, 0, true));
+		items.Add(new Item(27, "Chainsaw R", "A melee weapon that deals damage over time and cleaves parts.", ItemLoc.rightArm, ItemType.melee, GetSprite("Secondary/arm"), 20, 3, 0, 0, true));
+		items.Add(new Item(28, "Bronze Club R", "A slow but massively powerful melee weapon.", ItemLoc.rightArm, ItemType.melee, GetSprite("Secondary/arm"), 30, 30, 0, 0, false));
+		items.Add(new Item(29, "Rollerblades", "A radical set of legs that let you move faster and look cool.", ItemLoc.legs, ItemType.speed, GetSprite("Secondary/leg"), 10, 0, 3, 0, false));
+		items.Add(new Item(30, "Energy Pack", "A backpack system that increases your energy capacity.", ItemLoc.back, ItemType.aesthetic, GetSprite("GreenGuy/torso"), 10, 0, 0, 0, true));
+		items.Add(new Item(31, "Barrier Pack", "A backpack system that generates a weak, regenerating forcefield.", ItemLoc.back, ItemType.aesthetic, GetSprite("GreenGuy/torso"), 5, 0, 0, 0, true));
+		items.Add(new Item(32, "Hacking Core", "An AI core that enables the hacking of doors and chests.", ItemLoc.core, ItemType.aesthetic, GetSprite("GreenGuy/head"), 0, 0, 0, 0, true));
+		items.Add(new Item(33, "Self-Repair Core", "An AI core that utilizes nanobots to repair chassis damage.", ItemLoc.core, ItemType.aesthetic, GetSprite("GreenGuy/head"), 0, 0, 0, 0, true));
 	}
 	void SetupRangedWeapons()
 	{
-		rangedWeapons.Add(new RangedWeapon(0, 8, 10, 0, 1, 1, 0, 0.075f));
-		rangedWeapons.Add(new RangedWeapon(1, 11, 10, 0.2f, 1, 1, 0, 0.075f));
-		rangedWeapons.Add(new RangedWeapon(2, 12, 10, 0.2f, 1, 1, 0, 0.075f));
+		rangedWeapons.Add(new RangedWeapon(0, 11, 10, 0, 1, 1, 0, 0.075f));
+		rangedWeapons.Add(new RangedWeapon(1, 13, 10, 0.1f, 1, 1, 0, 0.2f));
+		rangedWeapons.Add(new RangedWeapon(2, 14, 10, 0.1f, 1, 1, 0, 0.2f));
+		rangedWeapons.Add(new RangedWeapon(3, 15, 10, 0.2f, 1, 1, 0, 0.075f));
+		rangedWeapons.Add(new RangedWeapon(4, 16, 10, 0.2f, 1, 1, 0, 0.075f));
+		rangedWeapons.Add(new RangedWeapon(5, 17, 10, 0.2f, 1, 1, 0, 0.075f));
+		rangedWeapons.Add(new RangedWeapon(6, 18, 10, 0.2f, 1, 1, 0, 0.075f));
+		rangedWeapons.Add(new RangedWeapon(6, 19, 10, 0.2f, 1, 1, 0, 0.075f));
 	}
 
 
