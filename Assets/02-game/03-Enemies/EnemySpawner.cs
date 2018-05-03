@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour {
 
 	[SerializeField] float spawnRate;
-	[SerializeField] GameObject enemyToSpawn;
+	[SerializeField] int enemyType;
+	[SerializeField] GameObject[] enemyToSpawn;
 
 	void OnDrawGizmos()
 	{
@@ -35,6 +36,6 @@ public class EnemySpawner : MonoBehaviour {
 
 	void Spawn()
 	{
-		Instantiate(enemyToSpawn, transform.position, Quaternion.identity, transform);		
+		Instantiate(enemyToSpawn[enemyType], transform.position, Quaternion.identity, transform);		
 	}
 }

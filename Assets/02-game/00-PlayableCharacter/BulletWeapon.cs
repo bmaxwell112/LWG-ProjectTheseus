@@ -7,6 +7,7 @@ public class BulletWeapon : MonoBehaviour {
 	int damage;
 	float speed;
 	float direction;
+	string target, origin;	
 
 	void Update()
 	{
@@ -15,16 +16,21 @@ public class BulletWeapon : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		print("collided");
-		if (coll.gameObject.tag == "Enemy")
+		if (coll.gameObject.tag == target)
 		{
 			coll.gameObject.GetComponent<RobotLoadout>().TakeDamage(damage, Color.red, new Color(0.82f, 0.55f, 0.16f), false);
 			Destroy(gameObject);
 		}
+		if (coll.gameObject.tag == origin)
+		{
+			Physics2D.IgnoreCollision(coll.collider, GetComponent<Collider2D>());
+		}
 	}
 
-	public void BulletSetup(RangedWeapon weapon, Vector3 startLocation, Transform fireArc)
-	{		
+	public void BulletSetup(RangedWeapon weapon, Vector3 startLocation, Transform fireArc, string targetTag, string originTag)
+	{
+		target = targetTag;
+		origin = originTag;
 		transform.position = startLocation;
 		transform.rotation = fireArc.rotation;
 		if (weapon.rangedWeaponStartOffset != 0)

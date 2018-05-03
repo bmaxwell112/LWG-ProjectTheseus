@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicEnemy : MonoBehaviour {
+public class RangeShortEnemy : MonoBehaviour {
+
 
 	Transform player;
 	bool knockback, attacking;
 	[SerializeField] float knockbackDistance;
-	[SerializeField] GameObject drop;
+	[SerializeField] GameObject drop, leftArm, rightArm;
 	[SerializeField] LayerMask playerMask;
 	[SerializeField] Transform firingArc;
 	RobotLoadout roLo;
@@ -20,6 +21,8 @@ public class BasicEnemy : MonoBehaviour {
 		BasicEnemySetup();
 		attack = Mathf.RoundToInt((roLo.loadout[(int)ItemLoc.rightArm].itemDamage + roLo.loadout[(int)ItemLoc.leftArm].itemDamage) / 2);
 		roLo.hitPoints = Mathf.RoundToInt(roLo.hitPoints / 2);
+		StartCoroutine(SpawnBullets(roLo.loadout[2], leftArm));
+		StartCoroutine(SpawnBullets(roLo.loadout[3], rightArm));
 	}
 
 	private void BasicEnemySetup()
@@ -28,19 +31,19 @@ public class BasicEnemy : MonoBehaviour {
 		roLo.InitializeLoadout(
 			db.RandomItemOut(ItemLoc.head),
 			db.RandomItemOut(ItemLoc.body),
-			db.SudoRandomItemOut(ItemLoc.leftArm, new int[] { 2, 22, 24, 26 }),
-			db.SudoRandomItemOut(ItemLoc.rightArm, new int[] { 3, 23, 25, 27 }),
-			db.SudoRandomItemOut(ItemLoc.legs, new int[] { 4, 9, 29 } ),
+			db.SudoRandomItemOut(ItemLoc.leftArm, new int[] { 15 }),
+			db.SudoRandomItemOut(ItemLoc.rightArm, new int[] { 16 }),
+			db.SudoRandomItemOut(ItemLoc.legs, new int[] { 4 }),
 			db.RandomItemOut(ItemLoc.back),
 			db.RandomItemOut(ItemLoc.core)
 			);
 	}
 
 	// Update is called once per frame
-	void Update ()
+	void Update()
 	{
 		if (RoomManager.SpawningComplete)
-		{			
+		{
 			if (player)
 			{
 				DefineRotation();
@@ -48,41 +51,17 @@ public class BasicEnemy : MonoBehaviour {
 			}
 		}
 	}
-	void FixedUpdate()
-	{
-		if (!attacking)
-		{
-			EnemyAttackCheck();
-		}
-	}
 
 	private void EnemyMovement()
 	{
-		if (!knockback)
-		{		
+		float dist = Vector3.Distance(transform.position, player.transform.position);
+		if (!knockback && dist > 2)
+		{
+			print("Moving");
 			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, roLo.loadout[(int)ItemLoc.legs].itemSpeed * Time.deltaTime);
 		}
 	}
-
-	private void EnemyAttackCheck()
-	{
-		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, transform.right, 1f, playerMask);
-		if (hit.collider != null)
-		{
-			attacking = true;
-			Invoke("EnemyAttack", 0.5f);
-		}
-	}
-	private void EnemyAttack()
-	{
-		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, transform.right, 1f, playerMask);
-		if (hit.collider != null)
-		{
-			hit.collider.gameObject.GetComponent<RobotLoadout>().TakeDamage(attack, Color.red, Color.white, false);
-		}
-		attacking = false;
-	}
-
+	
 	private void DefineRotation()
 	{
 		Vector3 diff = player.transform.position - transform.position;
@@ -133,5 +112,16 @@ public class BasicEnemy : MonoBehaviour {
 			yield return null;
 		}
 		knockback = false;
+	}
+
+	IEnumerator SpawnBullets(Item weapon, GameObject startLocation)
+	{
+		RangedWeapon rw = Database.instance.ItemsRangedWeapon(weapon);
+		while (true)
+		{
+			GameObject bullet = Instantiate(Resources.Load("bullet", typeof(GameObject))) as GameObject;
+			bullet.GetComponent<BulletWeapon>().BulletSetup(rw, startLocation.transform.position, firingArc, "Player", gameObject.tag);
+			yield return new WaitForSeconds(rw.rangeWeaponRateOfFire);
+		}
 	}
 }
