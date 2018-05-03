@@ -513,8 +513,8 @@ MonoBehaviour:
   rightArm: {fileID: 1875584751643136}
   playerMask:
     serializedVersion: 2
-    m_Bits: 0
-  firingArc: {fileID: 0}
+    m_Bits: 1024
+  firingArc: {fileID: 4303227281282454}
 --- !u!114 &114638817266183454
 MonoBehaviour:
   m_ObjectHideFlags: 1

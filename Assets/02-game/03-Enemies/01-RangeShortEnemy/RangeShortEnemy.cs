@@ -23,6 +23,10 @@ public class RangeShortEnemy : MonoBehaviour {
 		roLo.hitPoints = Mathf.RoundToInt(roLo.hitPoints / 2);
 		StartCoroutine(SpawnBullets(roLo.loadout[2], leftArm));
 		StartCoroutine(SpawnBullets(roLo.loadout[3], rightArm));
+		if (player)
+		{
+			StartCoroutine(DefineRotation());
+		}
 	}
 
 	private void BasicEnemySetup()
@@ -45,8 +49,7 @@ public class RangeShortEnemy : MonoBehaviour {
 		if (RoomManager.SpawningComplete)
 		{
 			if (player)
-			{
-				DefineRotation();
+			{				
 				EnemyMovement();
 			}
 		}
@@ -62,12 +65,16 @@ public class RangeShortEnemy : MonoBehaviour {
 		}
 	}
 	
-	private void DefineRotation()
+	IEnumerator DefineRotation()
 	{
-		Vector3 diff = player.transform.position - transform.position;
-		diff.Normalize();
+		while (true)
+		{
+			Vector3 diff = player.transform.position - transform.position;
+			diff.Normalize();
 
-		firingArc.eulerAngles = MovementFunctions.LookAt2D(transform, diff.x, diff.y);
+			firingArc.eulerAngles = MovementFunctions.LookAt2D(transform, diff.x, diff.y);
+			yield return new WaitForSeconds(0.5f);
+		}
 	}
 
 	public void EnemyDrop()

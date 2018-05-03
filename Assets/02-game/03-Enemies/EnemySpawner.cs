@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour {
 
 	[SerializeField] float spawnRate;
-	[SerializeField] int enemyType;
+	[SerializeField] int enemyType = 0;
 	[SerializeField] GameObject[] enemyToSpawn;
 
 	void OnDrawGizmos()

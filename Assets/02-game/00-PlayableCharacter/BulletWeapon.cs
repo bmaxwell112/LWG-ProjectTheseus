@@ -33,6 +33,7 @@ public class BulletWeapon : MonoBehaviour {
 		origin = originTag;
 		transform.position = startLocation;
 		transform.rotation = fireArc.rotation;
+		print("arc: " + fireArc.rotation + "   rotation: " + transform.rotation);
 		if (weapon.rangedWeaponStartOffset != 0)
 		{
 			// New offset position
