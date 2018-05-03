@@ -30,13 +30,12 @@ public class Item {
 	public ItemType itemType;
 	public Sprite[] itemSprite;
 	public int itemHitpoints;
-	public int itemValue;
-	public int itemValueTwo;
-	public float itemFltValue;
-	public float itemFltValueTwo;
+	public int itemDamage;	
+	public float itemSpeed;
+	public float itemPower;
 	public bool itemSpecial;
 
-	public Item(int id, string name, string desc, ItemLoc location, ItemType type, Sprite[] sprite, int hp, int value, int valueTwo, float fltValue, float fltValueTwo, bool special)
+	public Item(int id, string name, string desc, ItemLoc location, ItemType type, Sprite[] sprite, int hp, int damage, float speed, float power, bool special)
 	{
 		itemID = id;
 		itemName = name;
@@ -45,10 +44,9 @@ public class Item {
 		itemType = type;
 		itemSprite = sprite;
 		itemHitpoints = hp;
-		itemValue = value;
-		itemValueTwo = valueTwo;
-		itemFltValue = fltValue;
-		itemFltValueTwo = fltValueTwo;
+		itemDamage = damage;		
+		itemSpeed = speed;
+		itemPower = power;
 		itemSpecial = special;
 	}
 

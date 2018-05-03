@@ -18,7 +18,7 @@ public class BasicEnemy : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 		roLo = GetComponent<RobotLoadout>();
 		BasicEnemySetup();
-		attack = Mathf.RoundToInt((roLo.loadout[(int)ItemLoc.rightArm].itemValue + roLo.loadout[(int)ItemLoc.leftArm].itemValue) / 2);
+		attack = Mathf.RoundToInt((roLo.loadout[(int)ItemLoc.rightArm].itemDamage + roLo.loadout[(int)ItemLoc.leftArm].itemDamage) / 2);
 		roLo.hitPoints = Mathf.RoundToInt(roLo.hitPoints / 2);
 	}
 
@@ -28,9 +28,9 @@ public class BasicEnemy : MonoBehaviour {
 		roLo.InitializeLoadout(
 			db.RandomItemOut(ItemLoc.head),
 			db.RandomItemOut(ItemLoc.body),
-			db.RandomItemOut(ItemLoc.leftArm),
-			db.RandomItemOut(ItemLoc.rightArm),
-			db.RandomItemOut(ItemLoc.legs),
+			db.SudoRandomItemOut(ItemLoc.leftArm, new int[] { 2, 9 }),
+			db.SudoRandomItemOut(ItemLoc.rightArm, new int[] { 3, 10 }),
+			db.SudoRandomItemOut(ItemLoc.legs, new int[] { 4 } ),
 			db.RandomItemOut(ItemLoc.back),
 			db.RandomItemOut(ItemLoc.core)
 			);
@@ -40,7 +40,7 @@ public class BasicEnemy : MonoBehaviour {
 	void Update ()
 	{
 		if (RoomManager.SpawningComplete)
-		{
+		{			
 			if (player)
 			{
 				DefineRotation();
@@ -59,8 +59,8 @@ public class BasicEnemy : MonoBehaviour {
 	private void EnemyMovement()
 	{
 		if (!knockback)
-		{
-			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, roLo.loadout[(int)ItemLoc.legs].itemValue * Time.deltaTime);
+		{		
+			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, roLo.loadout[(int)ItemLoc.legs].itemSpeed * Time.deltaTime);
 		}
 	}
 
