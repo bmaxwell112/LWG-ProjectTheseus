@@ -148,7 +148,7 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
-  - itemID: -1
+  - itemID: 18
     itemName: 
     itemDesc: 
     itemLoc: 0

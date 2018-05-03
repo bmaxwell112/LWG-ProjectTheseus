@@ -65,17 +65,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1339731260022418
+--- !u!1 &1329728663189630
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4446456778906662}
-  - component: {fileID: 114248148477889972}
+  - component: {fileID: 4632065112924512}
+  - component: {fileID: 114355796868958142}
   m_Layer: 0
-  m_Name: Enemy Spawner
+  m_Name: Enemy Spawner (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,7 +168,7 @@ Transform:
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children: []
   m_Father: {fileID: 4738110236632474}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4284182507582776
 Transform:
@@ -181,20 +181,7 @@ Transform:
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children: []
   m_Father: {fileID: 4738110236632474}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4446456778906662
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1339731260022418}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 0.06, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4738110236632474}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4543923834600418
 Transform:
@@ -207,7 +194,7 @@ Transform:
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children: []
   m_Father: {fileID: 4738110236632474}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4592018412378172
 Transform:
@@ -218,6 +205,19 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.03, y: 1.13, z: -0.23046875}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4738110236632474}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4632065112924512
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1329728663189630}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.02, y: 0.02, z: -0.08278114}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4738110236632474}
   m_RootOrder: 6
@@ -232,13 +232,13 @@ Transform:
   m_LocalPosition: {x: -7.211355, y: -1.8029094, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4446456778906662}
   - {fileID: 4853512222882594}
   - {fileID: 4976613503196164}
   - {fileID: 4543923834600418}
   - {fileID: 4284182507582776}
   - {fileID: 4224696345173262}
   - {fileID: 4592018412378172}
+  - {fileID: 4632065112924512}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -253,7 +253,7 @@ Transform:
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children: []
   m_Father: {fileID: 4738110236632474}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4976613503196164
 Transform:
@@ -266,7 +266,7 @@ Transform:
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children: []
   m_Father: {fileID: 4738110236632474}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &60076517793769780
 PolygonCollider2D:
@@ -459,20 +459,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afcdc907150a70b439cdc7c3956ca040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114248148477889972
+--- !u!114 &114355796868958142
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1339731260022418}
+  m_GameObject: {fileID: 1329728663189630}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd14a52091f19c747a62d5dec8747a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRate: 0
-  enemyToSpawn: {fileID: 1076524336823614, guid: 21c52151f3c737a48a995e61697b9e21,
-    type: 2}
+  enemyType: 0
+  enemyToSpawn: []
 --- !u!114 &114397251093305750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -504,10 +504,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -516,10 +515,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -528,10 +526,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -540,10 +537,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -552,10 +548,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -564,10 +559,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -576,10 +570,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
 --- !u!114 &114425381650019930
 MonoBehaviour:
@@ -623,10 +616,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -635,10 +627,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -647,10 +638,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -659,10 +649,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -671,10 +660,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -683,10 +671,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -695,10 +682,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
 --- !u!114 &114822592629092816
 MonoBehaviour:
@@ -720,10 +706,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -732,10 +717,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -744,10 +728,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -756,10 +739,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -768,10 +750,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -780,10 +761,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -792,10 +772,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
 --- !u!114 &114853115136548816
 MonoBehaviour:
@@ -817,10 +796,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -829,10 +807,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -841,10 +818,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -853,10 +829,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -865,10 +840,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -877,10 +851,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -889,10 +862,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
 --- !u!114 &114855579644258828
 MonoBehaviour:
@@ -914,10 +886,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -926,10 +897,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -938,10 +908,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -950,10 +919,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -962,10 +930,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -974,10 +941,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -986,10 +952,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
 --- !u!114 &114906149582218582
 MonoBehaviour:
@@ -1011,10 +976,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -1023,10 +987,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -1035,10 +998,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -1047,10 +1009,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -1059,10 +1020,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -1071,10 +1031,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
   - itemID: -1
     itemName: 
@@ -1083,10 +1042,9 @@ MonoBehaviour:
     itemType: 0
     itemSprite: []
     itemHitpoints: 0
-    itemValue: 0
-    itemValueTwo: 0
-    itemFltValue: 0
-    itemFltValueTwo: 0
+    itemDamage: 0
+    itemSpeed: 0
+    itemPower: 0
     itemSpecial: 0
 --- !u!114 &114919167321338516
 MonoBehaviour:
