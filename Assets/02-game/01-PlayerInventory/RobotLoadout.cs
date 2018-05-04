@@ -7,6 +7,7 @@ using UnityEngine;
 public class RobotLoadout : MonoBehaviour {
 
 	public int hitPoints = 50;
+	public bool attackLeft, attackRight, walk;
 
 	public Item[] loadout = new Item[7];
 
@@ -23,12 +24,9 @@ public class RobotLoadout : MonoBehaviour {
 		hitPoints = body.itemHitpoints;
 	}
 
-	public void TakeDamage(int damage, Color color1, Color color2, bool kb)
+	public void TakeDamage(int damage, bool kb)
 	{
-		hitPoints -= damage;
-		SpriteRenderer body = transform.Find("Body").GetComponent<SpriteRenderer>();
-		StartCoroutine(ChangeColor(body, color1, 0));
-		StartCoroutine(ChangeColor(body, color2, 0.25f));
+		hitPoints -= damage;		
 		DeathCheck();
 		if (GetComponent<BasicEnemy>() && kb)
 		{
@@ -52,9 +50,14 @@ public class RobotLoadout : MonoBehaviour {
 			{
 				GetComponent<BasicEnemy>().EnemyDrop();
 			}
+			if (GetComponent<RangeShortEnemy>())
+			{
+				GetComponent<RangeShortEnemy>().EnemyDrop();
+			}
 			if (GetComponent<PlayerController>())
 			{
-				LevelManager.LOADLEVEL("01a Start");
+				print("Loaded this");
+				LevelManager.LOADLEVEL("02a Game");
 			}
 			Destroy(gameObject);
 		}		

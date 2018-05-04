@@ -186,8 +186,8 @@ public class RoomGeneration : MonoBehaviour {
 			layout = Instantiate(RoomManager.instance.spawnConfigs[0], new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, transform);
 		}
 		else if (roomsInExistence == RoomManager.instance.roomCap)
-		{
-			layout = Instantiate(RoomManager.instance.spawnConfigs[4], new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, transform);
+		{			
+			layout = Instantiate(RoomManager.instance.spawnConfigs[25], new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, transform);
 		}
 		else
 		{

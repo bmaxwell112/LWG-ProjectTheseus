@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;                 //Static instance of Database which allows it to be accessed by any other script.
-	public static bool gamePaused, mouseInput;	
+	public static bool gamePaused, mouseInput, paused;	
 
 	//Awake is always called before any Start functions
 	void Awake()
@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour {
 	private bool MouseCheck()
 	{
 		string[] joysticks = Input.GetJoystickNames();
-		print(joysticks.Length);
 		if (joysticks.Length > 0)
 		{
 			return false;
@@ -39,5 +38,21 @@ public class GameManager : MonoBehaviour {
 	void Update()
 	{
 		InputCapture.InputCheck();
-	}	
+		print(InputCapture.pause);
+	}
+
+	public static void GamePause(bool pause)
+	{
+		paused = pause;
+		if (paused)
+		{
+			Time.timeScale = 0.0f;
+			Time.fixedDeltaTime = 0.0f;
+		}
+		else		
+		{
+			Time.timeScale = 1.0f;
+			Time.fixedDeltaTime = 0.02f;
+		}
+	}
 }

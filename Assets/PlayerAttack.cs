@@ -12,7 +12,6 @@ public class PlayerAttack : MonoBehaviour {
 
 	public void MeleeAttack(Item weapon)
 	{
-		print("Melee Attack");
 		RaycastHit2D enemy = Physics2D.CircleCast(
 					new Vector2(transform.position.x, transform.position.y),
 					0.5f,
@@ -22,7 +21,7 @@ public class PlayerAttack : MonoBehaviour {
 		// TODO this will need to be more universal.
 		if (enemy.collider != null)
 		{
-			enemy.collider.gameObject.GetComponent<RobotLoadout>().TakeDamage(weapon.itemDamage, Color.red, new Color(0.82f, 0.55f, 0.16f), true);
+			enemy.collider.gameObject.GetComponent<RobotLoadout>().TakeDamage(weapon.itemDamage, true);
 		}
 	}
 	public void RangedAttack(Item weapon)
@@ -43,8 +42,11 @@ public class PlayerAttack : MonoBehaviour {
 		firing = true;
 		while (firing)
 		{
-			GameObject bullet = Instantiate(Resources.Load("bullet", typeof(GameObject))) as GameObject;
-			bullet.GetComponent<BulletWeapon>().BulletSetup(rw, transform.position, FiringArc, "Enemy", gameObject.tag);
+			for (int i = 0; i < rw.rangedWeaponSpread; i++)
+			{
+				GameObject bullet = Instantiate(Resources.Load("bulletFriendly", typeof(GameObject))) as GameObject;
+				bullet.GetComponent<BulletWeapon>().BulletSetup(rw, transform.position, FiringArc, "Enemy", gameObject.tag);
+			}
 			yield return new WaitForSeconds(rw.rangeWeaponRateOfFire);
 		}
 		print("End Co-routine");

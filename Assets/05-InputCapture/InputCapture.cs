@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputCapture {
 
 	public static float hThrow, vThrow, hAim, vAim;
-	public static bool pickup, back, fireLeftDown, fireRightDown, firingLeft, firingRight;
+	public static bool pickup, back, fireLeftDown, fireRightDown, firingLeft, firingRight, pause;
 
 	public static void InputCheck()
 	{
@@ -17,6 +17,7 @@ public class InputCapture {
 		firingRight = Input.GetButton("Fire2");
 		pickup = Input.GetButtonDown("Pickup");
 		back = Input.GetButtonDown("Submit");
+		pause = Input.GetButtonDown("Cancel");
 	}
 
 	public static void ControllerAim()

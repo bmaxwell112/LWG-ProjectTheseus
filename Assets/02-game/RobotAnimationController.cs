@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,22 @@ public class RobotAnimationController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update ()
+	{
+		if (!GameManager.paused)
+		{
+			DetectFacingAndSetOrder();
+			if (GetComponent<PlayerController>())
+			{
+				PlayerTracking();
+			}
+			else
+			{
+				EnemyTracking();
+			}
+		}
+	}
+
+	private void DetectFacingAndSetOrder()
 	{
 		if (firingArc.eulerAngles.z >= 22.5f && firingArc.eulerAngles.z < 67.5f)
 		{
@@ -76,7 +93,43 @@ public class RobotAnimationController : MonoBehaviour {
 			currentFacing = Facing.up;
 			UpdateSprites(SpriteSetter(4, 2, 3), order);
 		}
-		PlayerTracking();
+	}
+
+	private void EnemyTracking()
+	{
+		anim.SetInteger("facing", (int)currentFacing);
+		if (roLo.loadout[2].itemType == ItemType.range)
+		{
+			anim.SetBool("leftRangeAttack", true);
+		}
+		if (roLo.loadout[3].itemType == ItemType.range)
+		{
+			anim.SetBool("rightRangeAttack", true);
+		}
+		if (roLo.attackLeft && roLo.loadout[2].itemType == ItemType.melee)
+		{
+			anim.SetBool("leftAttack", true);
+		}
+		else
+		{
+			anim.SetBool("leftAttack", false);
+		}
+		if (roLo.attackRight && roLo.loadout[3].itemType == ItemType.melee)
+		{
+			anim.SetBool("righAttack", true);
+		}
+		else
+		{
+			anim.SetBool("righAttack", false);
+		}
+		if (roLo.walk)
+		{
+			anim.SetInteger("action", 1);
+		}
+		else
+		{
+			anim.SetInteger("action", 0);
+		}
 	}
 
 	private void PlayerTracking()
@@ -123,6 +176,8 @@ public class RobotAnimationController : MonoBehaviour {
 			anim.SetBool("rightRangeAttack", false);
 		}
 	}
+
+
 
 	Sprite[] SpriteSetter(int bodyAndHead, int leg, int foot)
 	{

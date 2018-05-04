@@ -6,8 +6,9 @@ public class BulletWeapon : MonoBehaviour {
 
 	int damage;
 	float speed;
-	float direction;
-	string target, origin;	
+	string target, origin;
+
+	public float damageOffset = 1;
 
 	void Update()
 	{
@@ -18,7 +19,7 @@ public class BulletWeapon : MonoBehaviour {
 	{
 		if (coll.gameObject.tag == target)
 		{
-			coll.gameObject.GetComponent<RobotLoadout>().TakeDamage(damage, Color.red, new Color(0.82f, 0.55f, 0.16f), false);
+			coll.gameObject.GetComponent<RobotLoadout>().TakeDamage(damage, false);
 			Destroy(gameObject);
 		}
 		if (coll.gameObject.tag == origin)
@@ -32,8 +33,12 @@ public class BulletWeapon : MonoBehaviour {
 		target = targetTag;
 		origin = originTag;
 		transform.position = startLocation;
-		transform.rotation = fireArc.rotation;
-		print("arc: " + fireArc.rotation + "   rotation: " + transform.rotation);
+		float randDir = 0;
+		if (weapon.rangedWeaponDirection != 0)
+		{
+			randDir = Random.Range(-weapon.rangedWeaponDirection, weapon.rangedWeaponDirection);
+		}			
+		transform.rotation = Quaternion.Euler(fireArc.eulerAngles.x, fireArc.eulerAngles.y, fireArc.eulerAngles.z + randDir);
 		if (weapon.rangedWeaponStartOffset != 0)
 		{
 			// New offset position
@@ -41,14 +46,12 @@ public class BulletWeapon : MonoBehaviour {
 			transform.position += new Vector3(rand, 0, 0);
 		}
 		speed = weapon.rangedWeaponSpeed;
-		damage = weapon.rangedWeaponDamage;
-		Invoke("EndOfLife", weapon.rangedWeaponLife);
-		direction = weapon.rangedWeaponDirection;
-		BulletWeapon[] bullets = FindObjectsOfType<BulletWeapon>();
-		if (weapon.rangedWeaponSpread > 1 && bullets.Length <= weapon.rangedWeaponSpread)
+		damage = Mathf.RoundToInt(weapon.rangedWeaponDamage * damageOffset);
+		if (damage == 0)
 		{
-			// Spawn More Bullets			
+			damage = 1;
 		}
+		Invoke("EndOfLife", weapon.rangedWeaponLife);
 	}
 
 	void EndOfLife()

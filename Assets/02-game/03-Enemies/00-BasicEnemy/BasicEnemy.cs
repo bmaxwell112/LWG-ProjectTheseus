@@ -5,17 +5,18 @@ using UnityEngine;
 public class BasicEnemy : MonoBehaviour {
 
 	Transform player;
-	bool knockback, attacking;
-	[SerializeField] float knockbackDistance;
+	bool knockback;
 	[SerializeField] GameObject drop;
 	[SerializeField] LayerMask playerMask;
 	[SerializeField] Transform firingArc;
 	RobotLoadout roLo;
+	UniveralActions actions;
 	int attack;
 
 	void Start()
 	{
 		player = GameObject.FindGameObjectWithTag("Player").transform;
+		actions = GetComponent<UniveralActions>();
 		roLo = GetComponent<RobotLoadout>();
 		BasicEnemySetup();
 		attack = Mathf.RoundToInt((roLo.loadout[(int)ItemLoc.rightArm].itemDamage + roLo.loadout[(int)ItemLoc.leftArm].itemDamage) / 2);
@@ -39,7 +40,7 @@ public class BasicEnemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		if (RoomManager.SpawningComplete)
+		if (RoomManager.allActive)
 		{			
 			if (player)
 			{
@@ -50,7 +51,7 @@ public class BasicEnemy : MonoBehaviour {
 	}
 	void FixedUpdate()
 	{
-		if (!attacking)
+		if (!roLo.attackLeft && RoomManager.allActive)
 		{
 			EnemyAttackCheck();
 		}
@@ -58,29 +59,37 @@ public class BasicEnemy : MonoBehaviour {
 
 	private void EnemyMovement()
 	{
-		if (!knockback)
-		{		
+		float dist = Vector3.Distance(transform.position, player.transform.position);
+		if (!knockback && dist > 0.15f)
+		{
+			roLo.walk = true;
 			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, roLo.loadout[(int)ItemLoc.legs].itemSpeed * Time.deltaTime);
+		}
+		else
+		{
+			roLo.walk = false;
 		}
 	}
 
 	private void EnemyAttackCheck()
 	{
-		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, transform.right, 1f, playerMask);
+		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, firingArc.transform.up, 0.25f, playerMask);
 		if (hit.collider != null)
 		{
-			attacking = true;
+			roLo.attackLeft = true;
+			roLo.attackRight = true;
 			Invoke("EnemyAttack", 0.5f);
 		}
 	}
 	private void EnemyAttack()
 	{
-		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, transform.right, 1f, playerMask);
+		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, firingArc.transform.up, 0.25f, playerMask);
 		if (hit.collider != null)
 		{
-			hit.collider.gameObject.GetComponent<RobotLoadout>().TakeDamage(attack, Color.red, Color.white, false);
+			hit.collider.gameObject.GetComponent<RobotLoadout>().TakeDamage(attack, false);
 		}
-		attacking = false;
+		roLo.attackLeft = false;
+		roLo.attackRight = false;
 	}
 
 	private void DefineRotation()

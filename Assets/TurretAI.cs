@@ -35,11 +35,12 @@ public class TurretAI : MonoBehaviour {
         RangedWeapon rw = Database.instance.ItemsRangedWeapon(weapon);
         while (true)
         {
-            GameObject bullet = Instantiate(Resources.Load("bullet", typeof(GameObject))) as GameObject;
-            bullet.GetComponent<BulletWeapon>().BulletSetup(rw, transform.position, firingArc, "Player", gameObject.tag);
-            yield return new WaitForSeconds(rw.rangeWeaponRateOfFire);
-            yield return new WaitForSeconds(0.5f);
-            firing = false;
+			if (RoomManager.allActive)
+			{
+				GameObject bullet = Instantiate(Resources.Load("bulletEnemy", typeof(GameObject))) as GameObject;
+				bullet.GetComponent<BulletWeapon>().BulletSetup(rw, transform.position, firingArc, "Player", gameObject.tag);
+			}
+            yield return new WaitForSeconds(rw.rangeWeaponRateOfFire + 0.5f);            
         }
     }
 }

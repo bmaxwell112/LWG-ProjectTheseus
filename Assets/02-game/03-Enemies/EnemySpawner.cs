@@ -36,6 +36,7 @@ public class EnemySpawner : MonoBehaviour {
 
 	void Spawn()
 	{
+		enemyType = Random.Range(0, 2);
 		Instantiate(enemyToSpawn[enemyType], transform.position, Quaternion.identity, transform);		
 	}
 }

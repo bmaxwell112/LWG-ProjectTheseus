@@ -92,7 +92,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1483039628337928}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1151.1371, y: 917.89294, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4797133017814584}
@@ -129,7 +129,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRate: 0
   enemyType: 0
-  enemyToSpawn: []
+  enemyToSpawn:
+  - {fileID: 1076524336823614, guid: 21c52151f3c737a48a995e61697b9e21, type: 2}
+  - {fileID: 1774056838797098, guid: 5f98ddf3352336a4399e2f709f0b4cc6, type: 2}
 --- !u!212 &212384159586957832
 SpriteRenderer:
   m_ObjectHideFlags: 1

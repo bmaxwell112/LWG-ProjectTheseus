@@ -27,7 +27,6 @@ public class CursorSetup : MonoBehaviour {
 		bool press = InputCapture.pickup;
 		if (press)
 		{
-			print("ran Action");
 			cursorPositions[currentLocation].cursorEvent.Invoke(gameObject);
 		}
 	}

@@ -36,7 +36,7 @@ public class Database : MonoBehaviour {
 		items.Add(new Item(5, "Basic Back", "A back taken from the only schematics you have left.", ItemLoc.back, ItemType.aesthetic, GetSprite("GreenGuy/torso"), 20, 0, 0, 0, false));
 		items.Add(new Item(6, "Basic AI Core", "An AI Core taken from the only schematics you have left.", ItemLoc.core, ItemType.aesthetic, GetSprite("GreenGuy/head"), 0, 0, 0, 0, false));
 		items.Add(new Item(7, "Reinforced Head", "A head created from modifying basic schematics.", ItemLoc.head, ItemType.aesthetic, GetSprite("GreenGuy/head"), 20, 0, 0, 0, false));
-		items.Add(new Item(8, "Reinforced Torso", "A torso created from modifying basic schematics.", ItemLoc.body, ItemType.aesthetic, GetSprite("GreenGuy/torso"), 30, 0, 0, 0, false));
+		items.Add(new Item(8, "Reinforced Torso", "A torso created from modifying basic schematics.", ItemLoc.body, ItemType.aesthetic, GetSprite("GreenGuy/torso"), 80, 0, 0, 0, false));
 		items.Add(new Item(9, "Reinforced Legs", "A pair of legs created from modifying basic schematics.", ItemLoc.legs, ItemType.speed, GetSprite("GreenGuy/leg"), 20, 0, 2, 0, false));
 		items.Add(new Item(10, "Reinforced Back", "A back created from modifying basic schematics.", ItemLoc.back, ItemType.aesthetic, GetSprite("GreenGuy/torso"), 10, 0, 0, 0, false));
 		items.Add(new Item(11, "Head Vulcans", "A head with mounted vulcans that fire as you attack.", ItemLoc.head, ItemType.range, GetSprite("GreenGuy/head"), 10, 1, 0, 0, true));
@@ -65,11 +65,12 @@ public class Database : MonoBehaviour {
 	}
 	void SetupRangedWeapons()
 	{
+		// id, itemID, speed, offset, life, spread, direction, rate of fire
 		rangedWeapons.Add(new RangedWeapon(0, 11, 10, 0, 1, 1, 0, 0.075f));
 		rangedWeapons.Add(new RangedWeapon(1, 13, 10, 0.1f, 1, 1, 0, 0.2f));
 		rangedWeapons.Add(new RangedWeapon(2, 14, 10, 0.1f, 1, 1, 0, 0.2f));
-		rangedWeapons.Add(new RangedWeapon(3, 15, 10, 0.2f, 0.25f, 1, 0, 0.5f));
-		rangedWeapons.Add(new RangedWeapon(4, 16, 10, 0.2f, 0.25f, 1, 0, 0.5f));
+		rangedWeapons.Add(new RangedWeapon(3, 15, 10, 0.2f, 0.25f, 8, 20, 0.5f));
+		rangedWeapons.Add(new RangedWeapon(4, 16, 10, 0.2f, 0.25f, 8, 20, 0.5f));
 		rangedWeapons.Add(new RangedWeapon(5, 17, 10, 0.2f, 1, 1, 0, 0.075f));
 		rangedWeapons.Add(new RangedWeapon(6, 18, 10, 0.2f, 1, 1, 0, 0.075f));
 		rangedWeapons.Add(new RangedWeapon(6, 19, 10, 0.2f, 1, 1, 0, 0.075f));

@@ -6,13 +6,9 @@ public class CurrentRoom : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.name == "Player")
+        if(collision.gameObject.name == "Player" && RoomManager.allActive == true)
         {
-			RoomGeneration parentRoom = GetComponentInParent<RoomGeneration>();
-			parentRoom.roomActive = true;
-			CameraController cam = FindObjectOfType<CameraController>();
-			cam.MoveCamera(transform.position);
-            parentRoom.roomActive = true;
+			StartCoroutine(ActivateRoom(collision.transform));	
         }
     }
 
@@ -24,4 +20,33 @@ public class CurrentRoom : MonoBehaviour {
 			parentRoom.roomActive = false;            
         }
     }
+
+	IEnumerator ActivateRoom(Transform player)
+	{
+		RoomManager.allActive = false;
+		RoomGeneration parentRoom = GetComponentInParent<RoomGeneration>();		
+		parentRoom.roomActive = true;
+		CameraController cam = FindObjectOfType<CameraController>();
+		cam.MoveCamera(transform.position);
+		Vector3 playerStartPos = player.transform.position;
+		BulletWeapon[] bullets = FindObjectsOfType<BulletWeapon>();
+		foreach (BulletWeapon bullet in bullets)
+		{
+			Destroy(bullet.gameObject);
+		}
+		float distance = Vector3.Distance(transform.position, player.position);
+		float endDistance = Vector3.Distance(transform.position, player.position) - 1.5f;
+		while (distance > endDistance)
+		{
+			player.transform.position = Vector3.MoveTowards(player.transform.position, transform.position, 2 * Time.deltaTime);
+			distance = Vector3.Distance(transform.position, player.position);
+			yield return null;
+		}
+		RoomManager.allActive = true;
+	}
+
+	void DeactivateRoom()
+	{
+
+	}
 }

@@ -6,9 +6,9 @@ public class RoomManager : MonoBehaviour {
 
     public static RoomManager instance = null;
     enum TileSet {Fabrication, Terraforming, Disposal, Purification, Security, Medical};
-    [SerializeField] GameObject room, player;
+    [SerializeField] GameObject room, player, userInterface;
     public int roomCap;
-	public static bool SpawningComplete;
+	public static bool allActive;
 	static Queue<RoomGeneration> roomQueue = new Queue<RoomGeneration>();
     public GameObject[] spawnConfigs;
     //spawnConfigs array
@@ -24,7 +24,7 @@ public class RoomManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		RoomGeneration.roomsInExistence = 0;
+		Instantiate(userInterface);
         SpawnFirstRoom();
 	}
 	
@@ -32,7 +32,10 @@ public class RoomManager : MonoBehaviour {
 
     void SpawnFirstRoom()
     {
-        RoomGeneration.first = true;
+		allActive = false;
+		RoomGeneration.roomsInExistence = 0;
+		RoomGeneration.spawncap = 0;
+		RoomGeneration.first = true;
         Instantiate(room, Vector3.zero, Quaternion.identity);
         StartCoroutine(ManageRoomQueue());
     }
@@ -60,7 +63,7 @@ public class RoomManager : MonoBehaviour {
                 roomQueue.Clear();
 			}
 		}
-		SpawningComplete = true;
+		allActive = true;
 	}
 
 	public static void AdditionalRoom(RoomGeneration room)
