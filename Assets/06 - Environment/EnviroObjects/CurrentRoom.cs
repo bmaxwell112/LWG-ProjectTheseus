@@ -35,7 +35,7 @@ public class CurrentRoom : MonoBehaviour {
 			Destroy(bullet.gameObject);
 		}
 		float distance = Vector3.Distance(transform.position, player.position);
-		float endDistance = Vector3.Distance(transform.position, player.position) - 1.5f;
+		float endDistance = Vector3.Distance(transform.position, player.position) - 1f;
 		while (distance > endDistance)
 		{
 			player.transform.position = Vector3.MoveTowards(player.transform.position, transform.position, 2 * Time.deltaTime);
