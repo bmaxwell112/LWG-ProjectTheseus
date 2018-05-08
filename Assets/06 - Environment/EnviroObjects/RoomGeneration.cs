@@ -14,8 +14,8 @@ public class RoomGeneration : MonoBehaviour {
     private DoorGen walls;
 	bool roomListener;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		//QueuedStart();
 		roomsInExistence++;
 		roomActive = false;

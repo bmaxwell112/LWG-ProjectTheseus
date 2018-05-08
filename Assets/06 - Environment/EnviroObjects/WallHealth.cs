@@ -15,18 +15,26 @@ public class WallHealth : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        WallMaint();
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(rolo.hitPoints <= 50)
         {
-            spRender.color = new Color(0, 0, 0);
-
             if (collision.gameObject.tag == "FriendlyBullets")
             {
                 Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
             }
+        }
+    }
+
+    void WallMaint()
+    {
+        if (rolo.hitPoints <= 50)
+        {
+            rolo.hitPoints = 49;
+            spRender.color = new Color(0, 0, 0);
         }
     }
 }
