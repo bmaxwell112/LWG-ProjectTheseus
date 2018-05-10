@@ -45,7 +45,7 @@ public class PlayerAttack : MonoBehaviour {
 			for (int i = 0; i < rw.rangedWeaponSpread; i++)
 			{
 				GameObject bullet = Instantiate(Resources.Load("bulletFriendly", typeof(GameObject))) as GameObject;
-				bullet.GetComponent<BulletWeapon>().BulletSetup(rw, transform.position, FiringArc, "Enemy", gameObject.tag);
+				bullet.GetComponent<BulletWeapon>().BulletSetup(rw, transform.position, FiringArc);
 			}
 			yield return new WaitForSeconds(rw.rangeWeaponRateOfFire);
 		}

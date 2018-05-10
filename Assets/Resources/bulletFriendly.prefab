@@ -99,6 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8a64b8c777c5b14399a970baa25ba20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layersToHit:
+    serializedVersion: 2
+    m_Bits: 16896
   damageOffset: 1
 --- !u!212 &212486914449393030
 SpriteRenderer:

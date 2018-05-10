@@ -159,7 +159,7 @@ public class RangeShortEnemy : MonoBehaviour {
 				{
 					GameObject bullet = Instantiate(bulletPrefab) as GameObject;
 					bullet.GetComponent<BulletWeapon>().damageOffset = 0.5f;
-					bullet.GetComponent<BulletWeapon>().BulletSetup(rw, startLocation.transform.position, firingArc, "Player", gameObject.tag);
+					bullet.GetComponent<BulletWeapon>().BulletSetup(rw, startLocation.transform.position, firingArc);
 				}
 				yield return new WaitForSeconds(rw.rangeWeaponRateOfFire * rateOfFireOffset);
 			}

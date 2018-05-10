@@ -47,7 +47,7 @@ public class TurretAI : MonoBehaviour
             if (RoomManager.allActive)
             {
                 GameObject bullet = Instantiate(Resources.Load("bulletEnemy", typeof(GameObject))) as GameObject;
-                bullet.GetComponent<BulletWeapon>().BulletSetup(rw, transform.position, firingArc, "Player", gameObject.tag);
+                bullet.GetComponent<BulletWeapon>().BulletSetup(rw, transform.position, firingArc);
             }
             yield return new WaitForSeconds(rw.rangeWeaponRateOfFire + 0.5f);
         }

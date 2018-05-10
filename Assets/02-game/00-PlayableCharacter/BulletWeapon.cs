@@ -6,7 +6,7 @@ public class BulletWeapon : MonoBehaviour {
 
 	int damage;
 	float speed;
-	string target, origin;
+	[SerializeField] LayerMask layersToHit;
 
 	public float damageOffset = 1;
 
@@ -17,21 +17,15 @@ public class BulletWeapon : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		if (coll.gameObject.tag == target)
+		if (coll.gameObject.layer == layersToHit)
 		{
 			coll.gameObject.GetComponent<RobotLoadout>().TakeDamage(damage, false);
-			Destroy(gameObject);
 		}
-		if (coll.gameObject.tag == origin)
-		{
-			Physics2D.IgnoreCollision(coll.collider, GetComponent<Collider2D>());
-		}
+		Destroy(gameObject);
 	}
 
-	public void BulletSetup(RangedWeapon weapon, Vector3 startLocation, Transform fireArc, string targetTag, string originTag)
+	public void BulletSetup(RangedWeapon weapon, Vector3 startLocation, Transform fireArc)
 	{
-		target = targetTag;
-		origin = originTag;
 		transform.position = startLocation;
 		float randDir = 0;
 		if (weapon.rangedWeaponDirection != 0)
