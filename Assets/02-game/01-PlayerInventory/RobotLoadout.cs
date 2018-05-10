@@ -72,7 +72,7 @@ public class RobotLoadout : MonoBehaviour {
 
 	public void DeathCheck()
 	{
-		if (hitPoints[0] <= 0 || hitPoints[1] <= 0)
+		if ((hitPoints[0] <= 0 && loadout[0].itemID == -1)|| hitPoints[1] <= 0)
 		{
 			hitPoints[0] = 0;
 			hitPoints[1] = 0;
