@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4038044081149722}
   - component: {fileID: 212621134909816138}
   - component: {fileID: 60829991125834124}
+  - component: {fileID: 114323465947517702}
   m_Layer: 0
   m_Name: Pillar
   m_TagString: Untagged
@@ -71,6 +72,17 @@ PolygonCollider2D:
       - {x: 0.24955925, y: -0.38951367}
       - {x: 0.505, y: -0.0070819855}
       - {x: 0.2605319, y: 0.37902722}
+--- !u!114 &114323465947517702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1040527390137408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f387708c6ea4c4381c20e1294cc339, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212621134909816138
 SpriteRenderer:
   m_ObjectHideFlags: 1

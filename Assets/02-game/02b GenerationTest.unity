@@ -1085,6 +1085,42 @@ Prefab:
       value: 
       objectReference: {fileID: 1841968552829544, guid: 7256b6b332ce38449a10d1f409bb12da,
         type: 2}
+    - target: {fileID: 114071580201058400, guid: 80de9e499a0350f468cd39e132bb0850,
+        type: 2}
+      propertyPath: hole
+      value: 
+      objectReference: {fileID: 114099630092022898, guid: 8d3e04403c0e83f4792577d87d1c0d17,
+        type: 2}
+    - target: {fileID: 114071580201058400, guid: 80de9e499a0350f468cd39e132bb0850,
+        type: 2}
+      propertyPath: internalWall
+      value: 
+      objectReference: {fileID: 114897217999198436, guid: 797a4a7d589031947af85468ca19d107,
+        type: 2}
+    - target: {fileID: 114071580201058400, guid: 80de9e499a0350f468cd39e132bb0850,
+        type: 2}
+      propertyPath: pillar
+      value: 
+      objectReference: {fileID: 114323465947517702, guid: a06bf168625614245bcc7ea8376d319f,
+        type: 2}
+    - target: {fileID: 114071580201058400, guid: 80de9e499a0350f468cd39e132bb0850,
+        type: 2}
+      propertyPath: turretAI
+      value: 
+      objectReference: {fileID: 114689855089614696, guid: f1108e6a77623684188aaf16ca9adb1e,
+        type: 2}
+    - target: {fileID: 114071580201058400, guid: 80de9e499a0350f468cd39e132bb0850,
+        type: 2}
+      propertyPath: enemySpawner
+      value: 
+      objectReference: {fileID: 114815169368089620, guid: 25557f08e60889e4bb4d3bd00d396a4d,
+        type: 2}
+    - target: {fileID: 114071580201058400, guid: 80de9e499a0350f468cd39e132bb0850,
+        type: 2}
+      propertyPath: dropSpawner
+      value: 
+      objectReference: {fileID: 114645552096137702, guid: 14e41d080628c9641ba68ff6f60e380c,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80de9e499a0350f468cd39e132bb0850, type: 2}
   m_IsPrefabParent: 0

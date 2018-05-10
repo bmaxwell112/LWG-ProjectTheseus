@@ -13,6 +13,13 @@ public class RoomManager : MonoBehaviour {
     public GameObject[] spawnConfigs;
     //spawnConfigs array
 
+    //Objects to Spawn
+    public WallHealth internalWall;
+    public EnemySpawner enemySpawner;
+    public TurretAI turretAI;
+    public Pillar pillar;
+    public HoleCollisions hole;
+    public DropSpawner dropSpawner;
 
     void Awake()
     {
