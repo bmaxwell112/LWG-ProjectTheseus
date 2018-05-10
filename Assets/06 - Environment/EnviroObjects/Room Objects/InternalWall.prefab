@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1caa45db9d097c1419d130d481fc41f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 100
+  hitPoints: 
   attackLeft: 0
   attackRight: 0
   walk: 0
@@ -94,6 +94,7 @@ MonoBehaviour:
     itemDesc: 
     itemLoc: 0
     itemType: 0
+    itemRarity: 0
     itemSprite: []
     itemHitpoints: 0
     itemDamage: 0
@@ -105,6 +106,7 @@ MonoBehaviour:
     itemDesc: 
     itemLoc: 0
     itemType: 0
+    itemRarity: 0
     itemSprite: []
     itemHitpoints: 0
     itemDamage: 0
@@ -116,6 +118,7 @@ MonoBehaviour:
     itemDesc: 
     itemLoc: 0
     itemType: 0
+    itemRarity: 0
     itemSprite: []
     itemHitpoints: 0
     itemDamage: 0
@@ -127,6 +130,7 @@ MonoBehaviour:
     itemDesc: 
     itemLoc: 0
     itemType: 0
+    itemRarity: 0
     itemSprite: []
     itemHitpoints: 0
     itemDamage: 0
@@ -138,6 +142,7 @@ MonoBehaviour:
     itemDesc: 
     itemLoc: 0
     itemType: 0
+    itemRarity: 0
     itemSprite: []
     itemHitpoints: 0
     itemDamage: 0
@@ -149,6 +154,7 @@ MonoBehaviour:
     itemDesc: 
     itemLoc: 0
     itemType: 0
+    itemRarity: 0
     itemSprite: []
     itemHitpoints: 0
     itemDamage: 0
@@ -160,6 +166,7 @@ MonoBehaviour:
     itemDesc: 
     itemLoc: 0
     itemType: 0
+    itemRarity: 0
     itemSprite: []
     itemHitpoints: 0
     itemDamage: 0
