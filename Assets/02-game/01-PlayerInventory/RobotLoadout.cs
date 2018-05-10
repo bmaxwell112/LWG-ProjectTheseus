@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,14 +5,16 @@ using UnityEngine;
 // NEEDS DATABASE PREFAB IN SCENE TO FUNCTION
 public class RobotLoadout : MonoBehaviour {
 
-	public int hitPoints = 50;
+	public int[] hitPoints;
 	public bool attackLeft, attackRight, walk;
+	int basicDamage = 5;
 
 	public Item[] loadout = new Item[7];
 
 	// Resets the player to basic loadout.
 	public void InitializeLoadout(Item head, Item body, Item leftArm, Item rightArm, Item legs, Item back, Item core)
 	{
+		hitPoints = new int[7];
 		loadout[(int)ItemLoc.head] = head;
 		loadout[(int)ItemLoc.body] = body;
 		loadout[(int)ItemLoc.leftArm] = leftArm;
@@ -21,16 +22,44 @@ public class RobotLoadout : MonoBehaviour {
 		loadout[(int)ItemLoc.legs] = legs;
 		loadout[(int)ItemLoc.back] = back;
 		loadout[(int)ItemLoc.core] = core;
-		hitPoints = body.itemHitpoints;
+		for (int i = 0; i < loadout.Length; i++)
+		{
+			hitPoints[i] = loadout[i].itemHitpoints;
+		}
+		
 	}
 
 	public void TakeDamage(int damage, bool kb)
 	{
-		hitPoints -= damage;		
+		// Gets a list of live parts to see what can be damaged
+		List<int> liveParts = new List<int>();
+		for(int i=0; i< hitPoints.Length;i++)
+		{
+			if (hitPoints[i] > 0)
+			{
+				liveParts.Add(i);
+				// twice as likely to hit everything but the head
+				if (loadout[i].itemLoc != ItemLoc.head)
+				{
+					liveParts.Add(i);
+				}
+			}
+		}
+		int rand = Random.Range(0, liveParts.Count);
+
+		hitPoints[liveParts[rand]] -= damage;
+		if (hitPoints[liveParts[rand]] < 0)
+		{
+			hitPoints[liveParts[rand]] = 0;
+		}
 		DeathCheck();
-		if (GetComponent<BasicEnemy>() && kb)
+		if ((GetComponent<BasicEnemy>() && kb))
 		{
 			StartCoroutine(GetComponent<BasicEnemy>().EnemyKnockback());
+		}
+		if ((GetComponent<RangeShortEnemy>() && kb))
+		{
+			StartCoroutine(GetComponent<RangeShortEnemy>().EnemyKnockback());
 		}
 	}
 
@@ -43,9 +72,10 @@ public class RobotLoadout : MonoBehaviour {
 
 	public void DeathCheck()
 	{
-		if (hitPoints <= 0)
+		if (hitPoints[0] <= 0 || hitPoints[1] <= 0)
 		{
-			hitPoints = 0;
+			hitPoints[0] = 0;
+			hitPoints[1] = 0;
 			if (GetComponent<BasicEnemy>())
 			{
 				GetComponent<BasicEnemy>().EnemyDrop();
@@ -76,16 +106,9 @@ public class RobotLoadout : MonoBehaviour {
 				{
 					//GetComponent<PlayerSpecial>().SpecialCheck(loadout[i]);
 				}
-				switch (loadout[i].itemLoc)
-				{
-					case ItemLoc.body:
-						int tempHP = hitPoints;
-						hitPoints = drop.hitPoints;
-						drop.hitPoints = tempHP; 
-						break;
-					default:
-						break;
-				}
+				int tempHP = hitPoints[i];
+				hitPoints[i] = drop.hitPoints;
+				drop.hitPoints = tempHP;
 				break;
 			}
 		}

@@ -18,8 +18,11 @@ public class RangeShortEnemy : MonoBehaviour {
 	{
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 		roLo = GetComponent<RobotLoadout>();
-		BasicEnemySetup();		
-		roLo.hitPoints = Mathf.RoundToInt(roLo.hitPoints / 2);
+		BasicEnemySetup();
+		for (int i = 0; i < roLo.loadout.Length; i++)
+		{
+			roLo.hitPoints[i] = Mathf.RoundToInt(roLo.hitPoints[i] / 2);
+		}
 		StartCoroutine(SpawnBullets(roLo.loadout[2], leftArm));
 		StartCoroutine(SpawnBullets(roLo.loadout[3], rightArm));
 		if (player)
@@ -34,12 +37,16 @@ public class RangeShortEnemy : MonoBehaviour {
 		roLo.InitializeLoadout(
 			db.RandomItemOut(ItemLoc.head),
 			db.RandomItemOut(ItemLoc.body),
-			db.SudoRandomItemOut(ItemLoc.leftArm, new int[] { 15 }),
-			db.SudoRandomItemOut(ItemLoc.rightArm, new int[] { 16 }),
+			db.SudoRandomItemOut(ItemLoc.leftArm, new int[] { 2, 13, 15, 17 }),
+			db.SudoRandomItemOut(ItemLoc.rightArm, new int[] { 14, 16, 18 }),
 			db.SudoRandomItemOut(ItemLoc.legs, new int[] { 4 }),
 			db.RandomItemOut(ItemLoc.back),
 			db.RandomItemOut(ItemLoc.core)
 			);
+		if (roLo.loadout[2].itemID != 2)
+		{
+			roLo.loadout[3] = db.items[3];
+		}
 	}
 
 	// Update is called once per frame
@@ -144,15 +151,18 @@ public class RangeShortEnemy : MonoBehaviour {
 	IEnumerator SpawnBullets(Item weapon, GameObject startLocation)
 	{
 		RangedWeapon rw = Database.instance.ItemsRangedWeapon(weapon);
-		while (true)
+		if (rw.rangedWeaponItemID != -1)
 		{
-			for (int i = 0; i < rw.rangedWeaponSpread; i++)
+			while (true)
 			{
-				GameObject bullet = Instantiate(bulletPrefab) as GameObject;
-				bullet.GetComponent<BulletWeapon>().damageOffset = 0.5f;
-				bullet.GetComponent<BulletWeapon>().BulletSetup(rw, startLocation.transform.position, firingArc, "Player", gameObject.tag);
+				for (int i = 0; i < rw.rangedWeaponSpread; i++)
+				{
+					GameObject bullet = Instantiate(bulletPrefab) as GameObject;
+					bullet.GetComponent<BulletWeapon>().damageOffset = 0.5f;
+					bullet.GetComponent<BulletWeapon>().BulletSetup(rw, startLocation.transform.position, firingArc, "Player", gameObject.tag);
+				}
+				yield return new WaitForSeconds(rw.rangeWeaponRateOfFire * rateOfFireOffset);
 			}
-			yield return new WaitForSeconds(rw.rangeWeaponRateOfFire*rateOfFireOffset);
 		}
 	}
 }

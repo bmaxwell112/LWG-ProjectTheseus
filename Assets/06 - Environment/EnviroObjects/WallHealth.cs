@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +11,7 @@ public class WallHealth : MonoBehaviour {
 	void Start () {
         rolo = GetComponent<RobotLoadout>();
         spRender = GetComponent<SpriteRenderer>();
+		rolo.hitPoints[1] = 50;
 	}
 	
 	// Update is called once per frame
@@ -19,7 +20,7 @@ public class WallHealth : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(rolo.hitPoints <= 50)
+        if(rolo.hitPoints[1] <= 50)
         {
             spRender.color = new Color(0, 0, 0);
 

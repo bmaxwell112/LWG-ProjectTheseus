@@ -6,7 +6,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;                 //Static instance of Database which allows it to be accessed by any other script.
-	public static bool gamePaused, mouseInput, paused;	
+	public static bool gamePaused, mouseInput, paused;
+	public static int RandomDropModifier;
 
 	//Awake is always called before any Start functions
 	void Awake()
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour {
 	}
 	void Start()
 	{
+		RandomDropModifier = 0;
 		mouseInput = MouseCheck();
 	}
 

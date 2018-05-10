@@ -20,7 +20,10 @@ public class BasicEnemy : MonoBehaviour {
 		roLo = GetComponent<RobotLoadout>();
 		BasicEnemySetup();
 		attack = Mathf.RoundToInt((roLo.loadout[(int)ItemLoc.rightArm].itemDamage + roLo.loadout[(int)ItemLoc.leftArm].itemDamage) / 2);
-		roLo.hitPoints = Mathf.RoundToInt(roLo.hitPoints / 2);
+		for (int i = 0; i < roLo.loadout.Length; i++)
+		{
+			roLo.hitPoints[i] = Mathf.RoundToInt(roLo.hitPoints[i] / 2);
+		}
 	}
 
 	private void BasicEnemySetup()
@@ -73,17 +76,17 @@ public class BasicEnemy : MonoBehaviour {
 
 	private void EnemyAttackCheck()
 	{
-		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, firingArc.transform.up, 0.25f, playerMask);
+		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, firingArc.transform.up, 0.35f, playerMask);
 		if (hit.collider != null)
 		{
 			roLo.attackLeft = true;
 			roLo.attackRight = true;
-			Invoke("EnemyAttack", 0.5f);
+			Invoke("EnemyAttack", 0.3f);
 		}
 	}
 	private void EnemyAttack()
 	{
-		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, firingArc.transform.up, 0.25f, playerMask);
+		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, firingArc.transform.up, 0.35f, playerMask);
 		if (hit.collider != null)
 		{
 			hit.collider.gameObject.GetComponent<RobotLoadout>().TakeDamage(attack, false);
@@ -102,9 +105,11 @@ public class BasicEnemy : MonoBehaviour {
 
 	public void EnemyDrop()
 	{
+		GameManager.RandomDropModifier += 5;
 		int rand = Random.Range(0, 100);
-		if (rand <= 33)
+		if (rand <= 27 + GameManager.RandomDropModifier)
 		{
+			GameManager.RandomDropModifier = 0;
 			List<int> avalibleItems = new List<int>();
 			Item[] playerInv = player.GetComponent<RobotLoadout>().loadout;
 			for (int i = 0; i < roLo.loadout.Length; i++)
@@ -126,7 +131,7 @@ public class BasicEnemy : MonoBehaviour {
 				GameObject tempDrop = Instantiate(drop, transform.position, Quaternion.identity) as GameObject;
 				tempDrop.GetComponent<Drops>().databaseItemID = avalibleItems[rand2];
 			}
-		}
+		}		
 	}
 
 	public IEnumerator EnemyKnockback()
