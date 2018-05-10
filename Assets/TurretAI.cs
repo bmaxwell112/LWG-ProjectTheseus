@@ -12,7 +12,8 @@ public class TurretAI : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        rolo = GetComponent<RobotLoadout>();
+        rolo.hitPoints[1] = 100;
     }
 
     // Update is called once per frame
