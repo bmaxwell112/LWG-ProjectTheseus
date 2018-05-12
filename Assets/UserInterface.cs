@@ -6,15 +6,21 @@ using UnityEngine.UI;
 public class UserInterface : MonoBehaviour {
 
 	[SerializeField] Text[] names, stats;
+	[SerializeField] Text nameTxt, infoTxt;
 	[SerializeField] Image head, body;
 	[SerializeField] Image[] leftArm, rightArm, leftLeg, rightLeg, liveStats;
 	[SerializeField] GameObject PauseScreen;
-	RobotLoadout playerLo;	
+	[SerializeField] Button startBtn;
+	RobotLoadout playerLo;
+	public bool loadoutCanBeChanged;
+	public int loadoutIndex;
+	int currentIndex;
 
 	// Use this for initialization
 	void Start () {
 
 		playerLo = FindObjectOfType<PlayerController>().GetComponent<RobotLoadout>();
+		currentIndex = -1;
 		PauseSceenUpdate();
 		PauseScreen.SetActive(false);
 	}
@@ -30,7 +36,21 @@ public class UserInterface : MonoBehaviour {
 		{
 			GameManager.GamePause(true);			
 			PauseScreen.SetActive(true);
+			startBtn.Select();
 			PauseSceenUpdate();
+		}
+		if (GameManager.paused)
+		{
+			if (currentIndex != loadoutIndex)
+			{
+				UpdateDisplayDetails();
+				currentIndex = loadoutIndex;
+			}
+			if (loadoutCanBeChanged)
+			{
+				ChangeSelectedItem();
+				PauseSceenUpdate();
+			}
 		}
 		LoadOutCheck();
 	}
@@ -92,6 +112,44 @@ public class UserInterface : MonoBehaviour {
 				else 
 				{
 					liveStats[i].color = Color.green;
+				}
+			}
+		}
+	}
+	void UpdateDisplayDetails()
+	{
+		nameTxt.text = playerLo.loadout[loadoutIndex].itemName;
+		infoTxt.text = playerLo.loadout[loadoutIndex].itemDesc;
+	}
+
+	void ChangeSelectedItem()
+	{
+		if (InputCapture.fireLeftDown)
+		{
+			List<Item> items = Database.instance.ItemsByLocation(playerLo.loadout[loadoutIndex].itemLoc);
+			for (int i = 0; i < items.Count; i++)
+			{
+				if (items[i].itemID == playerLo.loadout[loadoutIndex].itemID && (i - 1) >= 0)
+				{
+					playerLo.loadout[loadoutIndex] = items[i - 1];
+					playerLo.hitPoints[loadoutIndex] = playerLo.loadout[loadoutIndex].itemHitpoints;
+					UpdateDisplayDetails();
+					return;
+				}
+			}
+		}
+		if (InputCapture.fireRightDown)
+		{
+			List<Item> items = Database.instance.ItemsByLocation(playerLo.loadout[loadoutIndex].itemLoc);
+			for (int i = 0; i < items.Count; i++)
+			{
+				if (items[i].itemID == playerLo.loadout[loadoutIndex].itemID && (i + 1) < items.Count)
+				{
+					print("Went Up");
+					playerLo.loadout[loadoutIndex] = items[i + 1];
+					playerLo.hitPoints[loadoutIndex] = playerLo.loadout[loadoutIndex].itemHitpoints;
+					UpdateDisplayDetails();
+					return;
 				}
 			}
 		}

@@ -12,13 +12,4 @@ public class MovementFunctions {
 				);
 		return rotation;
 	}
-	public static Vector3 Knockback2D(Vector3 startLocation, float knockbackDistance, float time)
-	{
-		Vector3 knockback = Vector3.Slerp(
-			startLocation,
-			startLocation - (Vector3.down * knockbackDistance),
-			time
-			);
-		return knockback;
-	}
 }

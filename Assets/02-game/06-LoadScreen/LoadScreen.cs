@@ -19,9 +19,16 @@ public class LoadScreen : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		float num = RoomGeneration.roomsInExistence;
-		
-		float xScale = num / den;	
-		loadingProgress.transform.localScale = new Vector3(xScale, 1, 1);
+		float xScale;
+		if (den > 0)
+		{
+			xScale = num / den;
+			loadingProgress.transform.localScale = new Vector3(xScale, 1, 1);
+		}
+		else
+		{
+			xScale = 1;
+		}
 		if (xScale == 1)
 		{
 			float alphaChange = Time.deltaTime / fadeInTime;

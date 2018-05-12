@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour {
 				if (itemInRange.gameObject.GetComponent<Drops>())
 				{
 					Drops drop = itemInRange.gameObject.GetComponent<Drops>();
-					roLo.ReplaceDropPart(drop);
+					RobotFunctions.ReplaceDropPart(drop, roLo);
 					drop.RenameAndReset();
 				}
 			}

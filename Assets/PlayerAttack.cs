@@ -21,22 +21,20 @@ public class PlayerAttack : MonoBehaviour {
 		// TODO this will need to be more universal.
 		if (enemy.collider != null)
 		{
-			enemy.collider.gameObject.GetComponent<RobotLoadout>().TakeDamage(weapon.itemDamage, true);
+			RobotFunctions.DealDamage(weapon.itemDamage, enemy.collider.gameObject);
+			//StartCoroutine(RobotFunctions.CauseKnockback(5, enemy.collider.gameObject, FiringArc));
 		}
 	}
 	public void RangedAttack(Item weapon)
 	{
-		print("Ranged Attack");
 		if (!localCooldown)
 		{
-			print("Cool down false");
 			StartCoroutine(SpawnBullets(weapon));
 		}
 	}
 
 	IEnumerator SpawnBullets(Item weapon)
-	{
-		print("Start Co-routine");
+	{		
 		RangedWeapon rw = Database.instance.ItemsRangedWeapon(weapon);
 		localCooldown = true;
 		firing = true;
@@ -48,8 +46,7 @@ public class PlayerAttack : MonoBehaviour {
 				bullet.GetComponent<BulletWeapon>().BulletSetup(rw, transform.position, FiringArc);
 			}
 			yield return new WaitForSeconds(rw.rangeWeaponRateOfFire);
-		}
-		print("End Co-routine");
+		}	
 		localCooldown = false;
 	}
 

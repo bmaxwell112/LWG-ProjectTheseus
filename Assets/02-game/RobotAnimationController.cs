@@ -8,8 +8,9 @@ public class RobotAnimationController : MonoBehaviour {
 	[SerializeField] SpriteRenderer[] SpriteLoadOut;
 	RobotLoadout roLo;
 	[SerializeField] Transform firingArc;
+	Transform player;
 	Animator anim;
-	public static bool UpdatePlayerSprites;
+	public static bool UpdatePlayerSprites, layerAbovePlayer;
 	enum Facing { upperLeft, left, lowerLeft, down, lowerRight, right, UpperRight, up }
 	Facing currentFacing;
 	// Use this for initialization
@@ -32,6 +33,7 @@ public class RobotAnimationController : MonoBehaviour {
 			{
 				EnemyTracking();
 			}
+			LayerChange();
 		}
 	}
 
@@ -240,5 +242,40 @@ public class RobotAnimationController : MonoBehaviour {
 	{
 		anim.SetBool("leftAttack", false);
 		anim.SetBool("leftRangeAttack", false);
+	}
+
+	public void LayerChange()
+	{
+		if (!GetComponent<PlayerController>())
+		{
+			if (!player)
+			{
+				if (FindObjectOfType<PlayerController>())
+				{
+					player = FindObjectOfType<PlayerController>().transform;
+				}
+				else
+				{
+					return;
+				}
+			}
+			
+			if (transform.position.y < player.transform.position.y && layerAbovePlayer)
+			{
+				foreach (SpriteRenderer sr in SpriteLoadOut)
+				{
+					sr.sortingLayerName = "BelowPlayer";
+				}
+				layerAbovePlayer = false;
+			}
+			else if (transform.position.y > player.transform.position.y && !layerAbovePlayer)
+			{
+				foreach (SpriteRenderer sr in SpriteLoadOut)
+				{
+					sr.sortingLayerName = "AbovePlayer";
+				}
+				layerAbovePlayer = true;
+			}
+		}
 	}
 }

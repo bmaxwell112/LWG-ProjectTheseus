@@ -15,12 +15,11 @@ public class BulletWeapon : MonoBehaviour {
 		transform.position += transform.up * speed * Time.deltaTime;
 	}
 
-	void OnCollisionEnter2D(Collision2D coll)
+	void OnTriggerEnter2D(Collider2D coll)
 	{
-		if (coll.gameObject.layer == layersToHit)
-		{
-			coll.gameObject.GetComponent<RobotLoadout>().TakeDamage(damage, false);
-		}
+		print(coll.gameObject.layer);
+		print("running this");
+		RobotFunctions.DealDamage(damage, coll.gameObject);			
 		Destroy(gameObject);
 	}
 

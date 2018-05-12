@@ -44,7 +44,7 @@ public class BasicEnemy : MonoBehaviour {
 	void Update ()
 	{
 		if (RoomManager.allActive)
-		{			
+		{
 			if (player)
 			{
 				DefineRotation();
@@ -66,7 +66,7 @@ public class BasicEnemy : MonoBehaviour {
 		if (!knockback && dist > 0.15f)
 		{
 			roLo.walk = true;
-			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, roLo.loadout[(int)ItemLoc.legs].itemSpeed * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, (roLo.loadout[(int)ItemLoc.legs].itemSpeed - 0.5f) * Time.deltaTime);
 		}
 		else
 		{
@@ -89,7 +89,7 @@ public class BasicEnemy : MonoBehaviour {
 		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, firingArc.transform.up, 0.35f, playerMask);
 		if (hit.collider != null)
 		{
-			hit.collider.gameObject.GetComponent<RobotLoadout>().TakeDamage(attack, false);
+			RobotFunctions.DealDamage(attack, hit.collider.gameObject);
 		}
 		roLo.attackLeft = false;
 		roLo.attackRight = false;
@@ -103,36 +103,7 @@ public class BasicEnemy : MonoBehaviour {
 		firingArc.eulerAngles = MovementFunctions.LookAt2D(transform, diff.x, diff.y);
 	}
 
-	public void EnemyDrop()
-	{
-		GameManager.RandomDropModifier += 5;
-		int rand = Random.Range(0, 100);
-		if (rand <= 27 + GameManager.RandomDropModifier)
-		{
-			GameManager.RandomDropModifier = 0;
-			List<int> avalibleItems = new List<int>();
-			Item[] playerInv = player.GetComponent<RobotLoadout>().loadout;
-			for (int i = 0; i < roLo.loadout.Length; i++)
-			{
-				// If the item is not one of the basics.
-				if (roLo.loadout[i].itemID > 6)
-				{
-					// If the player doesn't have the item
-					if (roLo.loadout[i].itemID != playerInv[i].itemID)
-					{
-						// add that items ID to a List
-						avalibleItems.Add(roLo.loadout[i].itemID);
-					}
-				}
-			}
-			if (avalibleItems.Count > 0)
-			{
-				int rand2 = Random.Range(0, avalibleItems.Count);
-				GameObject tempDrop = Instantiate(drop, transform.position, Quaternion.identity) as GameObject;
-				tempDrop.GetComponent<Drops>().databaseItemID = avalibleItems[rand2];
-			}
-		}		
-	}
+	
 
 	public IEnumerator EnemyKnockback()
 	{

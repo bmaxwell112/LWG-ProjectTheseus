@@ -6,7 +6,9 @@ public class RoomManager : MonoBehaviour {
 
     public static RoomManager instance = null;
     enum TileSet {Fabrication, Terraforming, Disposal, Purification, Security, Medical};
-    [SerializeField] GameObject room, player, userInterface;
+	[SerializeField] bool hub;
+	[SerializeField] GameObject room, player, userInterface;
+	
     public int roomCap;
 	public static bool allActive;
 	static Queue<RoomGeneration> roomQueue = new Queue<RoomGeneration>();
@@ -32,7 +34,14 @@ public class RoomManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		Instantiate(userInterface);
-        SpawnFirstRoom();
+		if (!hub)
+		{
+			SpawnFirstRoom();
+		}
+		else
+		{
+			allActive = true;
+		}
 	}
 	
 	// Update is called once per frame

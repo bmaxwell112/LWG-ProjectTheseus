@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RangeShortEnemy : MonoBehaviour {
-
-
+	
 	Transform player;
 	bool knockback, attacking;
 	[SerializeField] float knockbackDistance, rateOfFireOffset=1;
@@ -102,50 +101,6 @@ public class RangeShortEnemy : MonoBehaviour {
 			}			
 			yield return null;
 		}
-	}
-
-	public void EnemyDrop()
-	{
-		int rand = Random.Range(0, 100);
-		if (rand <= 33)
-		{
-			List<int> avalibleItems = new List<int>();
-			Item[] playerInv = player.GetComponent<RobotLoadout>().loadout;
-			for (int i = 0; i < roLo.loadout.Length; i++)
-			{
-				// If the item is not one of the basics.
-				if (roLo.loadout[i].itemID > 6)
-				{
-					// If the player doesn't have the item
-					if (roLo.loadout[i].itemID != playerInv[i].itemID)
-					{
-						// add that items ID to a List
-						avalibleItems.Add(roLo.loadout[i].itemID);
-					}
-				}
-			}
-			if (avalibleItems.Count > 0)
-			{
-				int rand2 = Random.Range(0, avalibleItems.Count);
-				GameObject tempDrop = Instantiate(drop, transform.position, Quaternion.identity) as GameObject;
-				tempDrop.GetComponent<Drops>().databaseItemID = avalibleItems[rand2];
-			}
-		}
-	}
-
-	public IEnumerator EnemyKnockback()
-	{
-		Vector3 endLocation = transform.position - transform.up;
-		float dist = Vector3.Distance(endLocation, transform.position);
-		float startTime = Time.time;
-		knockback = true;
-		while (dist > 0.2f)
-		{
-			transform.position = Vector3.Lerp(transform.position, endLocation, (Time.time - startTime) / 1f);
-			dist = Vector3.Distance(endLocation, transform.position);
-			yield return null;
-		}
-		knockback = false;
 	}
 
 	IEnumerator SpawnBullets(Item weapon, GameObject startLocation)

@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour {
 	void Update()
 	{
 		InputCapture.InputCheck();
-		print(InputCapture.pause);
 	}
 
 	public static void GamePause(bool pause)

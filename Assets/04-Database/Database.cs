@@ -6,7 +6,6 @@ using System.Linq;
 public class Database : MonoBehaviour {
 
 	public static Database instance = null;   //Static instance of Database which allows it to be accessed by any other script.
-	[SerializeField] TextAsset csvFile;
 
 	//Awake is always called before any Start functions
 	void Awake()
@@ -150,5 +149,18 @@ public class Database : MonoBehaviour {
 			}
 		}
 		return rw;
+	}
+
+	public List<Item> ItemsByLocation(ItemLoc loc)
+	{
+		List<Item> itemsOfLoc = new List<Item>();
+		foreach (Item item in items)
+		{
+			if (item.itemLoc == loc)
+			{
+				itemsOfLoc.Add(item);
+			}
+		}
+		return itemsOfLoc;
 	}
 }
