@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UserInterface : MonoBehaviour {
 
 	[SerializeField] Text[] names, stats;
-	[SerializeField] Text nameTxt, infoTxt;
+	[SerializeField] Text nameTxt, infoTxt, pageTitle;
 	[SerializeField] Image head, body;
 	[SerializeField] Image[] leftArm, rightArm, leftLeg, rightLeg, liveStats;
 	[SerializeField] GameObject PauseScreen;
@@ -29,15 +29,11 @@ public class UserInterface : MonoBehaviour {
 	void Update () {
 		if (InputCapture.pause && GameManager.paused)
 		{
-			GameManager.GamePause(false);
-			PauseScreen.SetActive(false);
+			ResumeGame();
 		}
 		else if (InputCapture.pause && !GameManager.paused)
 		{
-			GameManager.GamePause(true);			
-			PauseScreen.SetActive(true);
-			startBtn.Select();
-			PauseSceenUpdate();
+			PauseGame();
 		}
 		if (GameManager.paused)
 		{
@@ -54,6 +50,29 @@ public class UserInterface : MonoBehaviour {
 		}
 		LoadOutCheck();
 	}
+
+	private void ResumeGame()
+	{
+		GameManager.GamePause(false);
+		PauseScreen.SetActive(false);
+		loadoutCanBeChanged = false;
+	}
+
+	public void PauseGame()
+	{
+		GameManager.GamePause(true);
+		PauseScreen.SetActive(true);
+		startBtn.Select();
+		PauseSceenUpdate();
+		if (loadoutCanBeChanged)
+		{
+			pageTitle.text = "Choose\nLoadout";
+		}
+		else
+		{
+			pageTitle.text = "Paused";			
+		}
+	}	
 
 	void PauseSceenUpdate()
 	{
@@ -145,7 +164,6 @@ public class UserInterface : MonoBehaviour {
 			{
 				if (items[i].itemID == playerLo.loadout[loadoutIndex].itemID && (i + 1) < items.Count)
 				{
-					print("Went Up");
 					playerLo.loadout[loadoutIndex] = items[i + 1];
 					playerLo.hitPoints[loadoutIndex] = playerLo.loadout[loadoutIndex].itemHitpoints;
 					UpdateDisplayDetails();

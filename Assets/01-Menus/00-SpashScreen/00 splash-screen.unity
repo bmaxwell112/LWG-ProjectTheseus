@@ -194,6 +194,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 20853925483888716, guid: 97079d7f96ad1ca43a75cfe01499928c,
+        type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20853925483888716, guid: 97079d7f96ad1ca43a75cfe01499928c,
+        type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20853925483888716, guid: 97079d7f96ad1ca43a75cfe01499928c,
+        type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97079d7f96ad1ca43a75cfe01499928c, type: 2}
   m_IsPrefabParent: 0
@@ -457,7 +472,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 1800, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &611411160
 MonoBehaviour:
@@ -478,9 +493,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: c645c3f86fe0eff42bc5de9bcba7630f, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -533,7 +548,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11492952, guid: c9592ddc2c21fe1438eea2ff62ea1109, type: 2}
       propertyPath: autoLoadNextLevelAfter
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c9592ddc2c21fe1438eea2ff62ea1109, type: 2}

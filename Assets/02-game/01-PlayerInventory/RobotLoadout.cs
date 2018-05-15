@@ -24,6 +24,7 @@ public class RobotLoadout : MonoBehaviour {
 		loadout[(int)ItemLoc.legs] = legs;
 		loadout[(int)ItemLoc.back] = back;
 		loadout[(int)ItemLoc.core] = core;
+
 		for (int i = 0; i < loadout.Length; i++)
 		{
 			hitPoints[i] = loadout[i].itemHitpoints;
@@ -72,7 +73,8 @@ public class RobotLoadout : MonoBehaviour {
 		}
 		else
 		{
-			LevelManager.LOADLEVEL("02a Game");
+			GameManager.playerAlive = false;
+			LevelManager.LOADLEVEL("02a Hub");
 		}
 	}
 

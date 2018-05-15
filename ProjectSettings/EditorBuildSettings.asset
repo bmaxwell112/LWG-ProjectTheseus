@@ -15,7 +15,10 @@ EditorBuildSettings:
     path: Assets/01-Menus/01b-Options/01b Options.unity
     guid: a4f8bd5c9cdcba443be407eacfbed54d
   - enabled: 1
-    path: Assets/02-game/02a Game.unity
+    path: Assets/02-game/02a Hub.unity
+    guid: 90f9938e60ad5c04d8860e403f3e3bc4
+  - enabled: 1
+    path: Assets/02-game/02a Game-1.unity
     guid: 7847e01ac7996a24fa9df6f48e59e61f
   - enabled: 1
     path: Assets/01-Menus/03a-Win/03a Win.unity

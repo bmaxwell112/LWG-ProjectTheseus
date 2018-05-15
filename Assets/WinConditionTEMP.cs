@@ -8,7 +8,7 @@ public class WinConditionTEMP : MonoBehaviour {
 	{
 		if (coll.gameObject.tag == "Player")
 		{
-			LevelManager.LOADLEVEL("01a Start");
+			GameManager.LoadLevelInGame("02a Hub");
 		}
 	}
 }

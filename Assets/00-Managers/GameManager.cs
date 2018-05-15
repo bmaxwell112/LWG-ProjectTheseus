@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance = null;                 //Static instance of Database which allows it to be accessed by any other script.
 	public static bool gamePaused, mouseInput, paused;
 	public static int RandomDropModifier;
+	public static bool playerAlive;
+	public static Item[] playerLoadout = new Item[7];
 
 	//Awake is always called before any Start functions
 	void Awake()
@@ -55,5 +57,19 @@ public class GameManager : MonoBehaviour {
 			Time.timeScale = 1.0f;
 			Time.fixedDeltaTime = 0.02f;
 		}
+	}
+
+	public static void SetSavedLoadout(Item[] loadout)
+	{
+		for (int i = 0; i < loadout.Length; i++)
+		{
+			playerLoadout[i] = loadout[i];
+		}
+	}
+
+	public static void LoadLevelInGame(string level)
+	{
+		SetSavedLoadout(FindObjectOfType<PlayerController>().GetComponent<RobotLoadout>().loadout);
+		LevelManager.LOADLEVEL(level);
 	}
 }

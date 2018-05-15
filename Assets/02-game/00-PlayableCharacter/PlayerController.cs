@@ -22,7 +22,23 @@ public class PlayerController : MonoBehaviour {
 	private void PlayerSpawn()
 	{
 		Database db = Database.instance;
-		roLo.InitializeLoadout(db.items[0], db.items[1], db.items[2], db.items[3], db.items[4], db.items[5], db.items[6]);
+		if (!GameManager.playerAlive)
+		{
+			roLo.InitializeLoadout(db.items[0], db.items[1], db.items[2], db.items[3], db.items[4], db.items[5], db.items[6]);
+			GameManager.playerAlive = true;
+		}
+		else
+		{
+			roLo.InitializeLoadout(
+				GameManager.playerLoadout[0],
+				GameManager.playerLoadout[1],
+				GameManager.playerLoadout[2],
+				GameManager.playerLoadout[3],
+				GameManager.playerLoadout[4],
+				GameManager.playerLoadout[5],
+				GameManager.playerLoadout[6]
+				);
+		}
 	}
 
 	// Update is called once per frame
