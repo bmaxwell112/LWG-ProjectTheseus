@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 50410969305163808}
   - component: {fileID: 95124261455280880}
   - component: {fileID: 70706481712699350}
+  - component: {fileID: 114866912879592592}
   m_Layer: 9
   m_Name: RangeEnemy
   m_TagString: Enemy
@@ -660,6 +661,21 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
+--- !u!114 &114866912879592592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1774056838797098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77b6ceed5c43ef4391d0353b03d5b74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 1
+  basic: {fileID: 0}
+  rangeShort: {fileID: 0}
+  stunned: 0
 --- !u!212 &212032829675478064
 SpriteRenderer:
   m_ObjectHideFlags: 1

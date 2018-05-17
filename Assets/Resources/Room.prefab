@@ -2190,6 +2190,14 @@ MonoBehaviour:
   doors: []
   room: {fileID: 1935376734419032}
   layout: {fileID: 0}
+  closedDoors:
+  - {fileID: 114066891001382332}
+  - {fileID: 114471740436608424}
+  - {fileID: 114076958027781368}
+  - {fileID: 114727059056998918}
+  - {fileID: 114664077771271232}
+  - {fileID: 114789166453200320}
+  manualUnlock: 0
 --- !u!212 &212014160795325250
 SpriteRenderer:
   m_ObjectHideFlags: 1

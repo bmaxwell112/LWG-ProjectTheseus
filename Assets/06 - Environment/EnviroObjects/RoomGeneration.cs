@@ -8,14 +8,17 @@ public class RoomGeneration : MonoBehaviour {
     public bool roomActive;
     public DoorGen[] doors;
     private Vector3Int[] spawnLocation;
-    [SerializeField] GameObject room, layout;	
+    [SerializeField] GameObject room, layout;
+	[SerializeField] ClosedDoor[] closedDoors;
     private RoomManager worldController;
     private int minDoors, totalRooms;
     private DoorGen walls;
 	bool roomListener;
+	[SerializeField] bool manualUnlock;
 
     // Use this for initialization
     void Start () {
+		
 		//QueuedStart();
 		roomsInExistence++;
 		roomActive = false;
@@ -34,9 +37,18 @@ public class RoomGeneration : MonoBehaviour {
 		};
 		RoomManager.AdditionalRoom(this);
 		GetSpawnConfigs();
+		DisableDoors();
 	}
 
-    public void QueuedStart()
+	private void DisableDoors()
+	{
+		foreach (ClosedDoor doors in closedDoors)
+		{
+			doors.gameObject.SetActive(false);
+		}
+	}
+
+	public void QueuedStart()
     {
         if (spawncap > worldController.roomCap)
         {
@@ -74,42 +86,28 @@ public class RoomGeneration : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		ToggleActiveRooms();
-        ToggleRoomUnlock();
-    }
+		if (manualUnlock)
+		{
+			ToggleRoomUnlock();
+			manualUnlock = false;
+		}
+	}
 
-    void ToggleRoomUnlock()
+    public void ToggleRoomUnlock()
     {
-            ClosedDoor[] closedDoors = GetComponentsInChildren<ClosedDoor>();
-            //OpenDoor[] openDoors = GetComponentsInChildren<OpenDoor>();
-
             if (GetComponentInChildren<BasicEnemy>() != null)
             {
                 foreach (ClosedDoor doors in closedDoors)
                 {
-                    doors.GetComponent<Renderer>().enabled = true;
-                    doors.GetComponent<Collider2D>().enabled = true;
-                    print("There are enemies in this room!");
-                }
-
-                //foreach (OpenDoor doors in openDoors)
-                //{
-                    //doors.GetComponent<Renderer>().enabled = false;
-                //}
-
+					doors.gameObject.SetActive(true);
+				}
             }
             else
             {
                 foreach (ClosedDoor doors in closedDoors)
                 {
-                    doors.GetComponent<Renderer>().enabled = false;
-                    doors.GetComponent<Collider2D>().enabled = false;
-                    print("No enemies.");
-                }
-
-                //foreach (OpenDoor doors in openDoors)
-                //{
-                    //doors.GetComponent<Renderer>().enabled = true;
-                //}
+					doors.gameObject.SetActive(false);
+				}
             }
     }
 
