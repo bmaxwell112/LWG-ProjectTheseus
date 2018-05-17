@@ -8,7 +8,7 @@ public class RoomGeneration : MonoBehaviour {
     public bool roomActive;
     public DoorGen[] doors;
     private Vector3Int[] spawnLocation;
-    [SerializeField] GameObject room, player, layout;	
+    [SerializeField] GameObject room, layout;	
     private RoomManager worldController;
     private int minDoors, totalRooms;
     private DoorGen walls;
@@ -73,12 +73,45 @@ public class RoomGeneration : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		//print("minDoors: " + minDoors);
-		//print(abyss);
 		ToggleActiveRooms();
+        ToggleRoomUnlock();
     }
 
-    //something to differentiate rooms that are spawned
+    void ToggleRoomUnlock()
+    {
+            ClosedDoor[] closedDoors = GetComponentsInChildren<ClosedDoor>();
+            //OpenDoor[] openDoors = GetComponentsInChildren<OpenDoor>();
+
+            if (GetComponentInChildren<BasicEnemy>() != null)
+            {
+                foreach (ClosedDoor doors in closedDoors)
+                {
+                    doors.GetComponent<Renderer>().enabled = true;
+                    doors.GetComponent<Collider2D>().enabled = true;
+                    print("There are enemies in this room!");
+                }
+
+                //foreach (OpenDoor doors in openDoors)
+                //{
+                    //doors.GetComponent<Renderer>().enabled = false;
+                //}
+
+            }
+            else
+            {
+                foreach (ClosedDoor doors in closedDoors)
+                {
+                    doors.GetComponent<Renderer>().enabled = false;
+                    doors.GetComponent<Collider2D>().enabled = false;
+                    print("No enemies.");
+                }
+
+                //foreach (OpenDoor doors in openDoors)
+                //{
+                    //doors.GetComponent<Renderer>().enabled = true;
+                //}
+            }
+    }
 
     void CheckDoor()
     {
