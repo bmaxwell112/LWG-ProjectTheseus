@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class CurrentRoom : MonoBehaviour {
 
+    private RoomGeneration roomGen;
+
+    private void Start()
+    {
+        roomGen = GetComponentInParent<RoomGeneration>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.name == "Player" && RoomManager.allActive == true)
@@ -21,6 +28,7 @@ public class CurrentRoom : MonoBehaviour {
         }
     }
 
+    //grab this
 	IEnumerator ActivateRoom(Transform player)
 	{
 		RoomManager.allActive = false;
@@ -44,6 +52,8 @@ public class CurrentRoom : MonoBehaviour {
 		}
 		parentRoom.ToggleRoomUnlock();
 		RoomManager.allActive = true;
+
+        roomGen.ToggleRoomUnlock();
 	}
 
 	void DeactivateRoom()

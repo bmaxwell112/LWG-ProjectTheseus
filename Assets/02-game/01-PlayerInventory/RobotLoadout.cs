@@ -86,7 +86,7 @@ public class RobotLoadout : MonoBehaviour {
 
 	public void DropItem(int dropItemInt)
 	{
-		print("tired to drop at " + (GameManager.RandomDropModifier + 27));
+		print("tried to drop at " + (GameManager.RandomDropModifier + 27));
 		if (dropItemInt != -1)
 		{
 			print("Dropped");
