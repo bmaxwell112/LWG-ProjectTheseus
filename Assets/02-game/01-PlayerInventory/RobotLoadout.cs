@@ -86,10 +86,8 @@ public class RobotLoadout : MonoBehaviour {
 
 	public void DropItem(int dropItemInt)
 	{
-		print("tired to drop at " + (GameManager.RandomDropModifier + 27));
 		if (dropItemInt != -1)
 		{
-			print("Dropped");
 			GameObject tempDrop = Instantiate(Resources.Load("Drops"), transform.position, Quaternion.identity) as GameObject;
 			tempDrop.GetComponent<Drops>().databaseItemID = dropItemInt;
 		}

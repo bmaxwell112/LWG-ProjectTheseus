@@ -9,6 +9,12 @@ public class PlayerAttack : MonoBehaviour {
 	//[SerializeField] GameObject bulletPrefab;
 
 	bool firing, localCooldown;
+	PlayerSpecial special;
+
+	void Start()
+	{
+		special = FindObjectOfType<PlayerSpecial>();
+	}
 
 	public void MeleeAttack(Item weapon)
 	{
@@ -21,8 +27,12 @@ public class PlayerAttack : MonoBehaviour {
 		// TODO this will need to be more universal.
 		if (enemy.collider != null)
 		{
-			RobotFunctions.DealDamage(weapon.itemDamage, enemy.collider.gameObject);
-			//StartCoroutine(RobotFunctions.CauseKnockback(5, enemy.collider.gameObject, FiringArc));
+			if (weapon.itemSpecial)
+			{
+				print(weapon.itemName + " " + enemy.collider.gameObject.name);
+				special.ActivateSpecialActive(weapon, enemy.collider.gameObject);
+			}
+			RobotFunctions.DealDamage(weapon.itemDamage, enemy.collider.gameObject);					
 		}
 	}
 	public void RangedAttack(Item weapon)

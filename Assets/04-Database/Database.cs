@@ -19,11 +19,13 @@ public class Database : MonoBehaviour {
 
 	public List<Item> items = new List<Item>();
 	public List<RangedWeapon> rangedWeapons = new List<RangedWeapon>();
+	public List<SpecialItems> specialItems = new List<SpecialItems>();
 
 	// Use this for initialization
 	void Start () {
 		SetupItems();
 		SetupRangedWeapons();
+		SetupSpecialItems();
 	}
 	private void SetupItems()
 	{
@@ -74,7 +76,15 @@ public class Database : MonoBehaviour {
 		rangedWeapons.Add(new RangedWeapon(6, 18, 15, 0.2f, 2, 1, 0, 0.075f));
 		rangedWeapons.Add(new RangedWeapon(6, 19, 10, 0.2f, 2, 1, 0, 1f));
 	}
-
+	void SetupSpecialItems()
+	{
+		specialItems.Add(new SpecialItems(0, 20, new SpecialProp[] { SpecialProp.shield }, 0, 0, 10, 0.25f));
+		specialItems.Add(new SpecialItems(1, 21, new SpecialProp[] { SpecialProp.shield }, 0, 0, 10, 0.25f));
+		specialItems.Add(new SpecialItems(2, 24, new SpecialProp[] { SpecialProp.stun }, 1f, 0, 0, 0.25f));
+		specialItems.Add(new SpecialItems(3, 25, new SpecialProp[] { SpecialProp.stun }, 1f, 0, 0, 0.25f));
+		specialItems.Add(new SpecialItems(4, 26, new SpecialProp[] { SpecialProp.bleed, SpecialProp.cleave }, 2f, 1, 0, 0.25f));
+		specialItems.Add(new SpecialItems(5, 27, new SpecialProp[] { SpecialProp.bleed, SpecialProp.cleave }, 2f, 1, 0, 0.25f));
+	}
 
 	public Item RandomItemOut(ItemLoc loc)
 	{
@@ -149,6 +159,20 @@ public class Database : MonoBehaviour {
 			}
 		}
 		return rw;
+	}
+
+	public SpecialItems ItemSpecialItem(Item item)
+	{
+		SpecialItems si = new SpecialItems();
+		for (int i = 0; i < specialItems.Count; i++)
+		{
+			if (specialItems[i].specialItemID == item.itemID)
+			{
+				si = specialItems[i];
+				break;
+			}
+		}
+		return si;
 	}
 
 	public List<Item> ItemsByLocation(ItemLoc loc)

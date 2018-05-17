@@ -47,14 +47,13 @@ public class RangeShortEnemy : MonoBehaviour {
 			roLo.loadout[3] = db.items[3];
 		}
 	}
-
-	// Update is called once per frame
-	void Update()
+	
+	public void EnemyUpdate()
 	{
 		if (RoomManager.allActive)
 		{
 			if (player)
-			{				
+			{
 				EnemyMovement();
 			}
 		}

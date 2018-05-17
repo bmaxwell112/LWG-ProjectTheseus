@@ -10,12 +10,14 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] PlayerAttack leftArm, rightArm;
 	public Transform firingArc;
 	RobotLoadout roLo;
+	PlayerSpecial special;
 	Vector3 rotation;
 	bool fireLeft, fireRight;	
 
 	void Start()
 	{		
 		roLo = GetComponent<RobotLoadout>();
+		special = GetComponent<PlayerSpecial>();
 		PlayerSpawn();
 	}
 

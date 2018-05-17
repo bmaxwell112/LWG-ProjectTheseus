@@ -40,8 +40,7 @@ public class BasicEnemy : MonoBehaviour {
 			);
 	}
 
-	// Update is called once per frame
-	void Update ()
+	public void EnemyUpdate()
 	{
 		if (RoomManager.allActive)
 		{
@@ -50,13 +49,10 @@ public class BasicEnemy : MonoBehaviour {
 				DefineRotation();
 				EnemyMovement();
 			}
-		}
-	}
-	void FixedUpdate()
-	{
-		if (!roLo.attackLeft && RoomManager.allActive)
-		{
-			EnemyAttackCheck();
+			if (!roLo.attackLeft && RoomManager.allActive)
+			{
+				EnemyAttackCheck();
+			}
 		}
 	}
 
