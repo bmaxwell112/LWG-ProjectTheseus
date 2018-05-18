@@ -26,7 +26,6 @@ public class PlayerSpecial : MonoBehaviour {
 	}
 	public void ActivateSpecialActive(Item item, GameObject enemy)
 	{
-		print("RAN THIS");
 		SpecialItems special = Database.instance.ItemSpecialItem(item);
 		for (int i = 0; i < special.specialProps.Length; i++)
 		{
@@ -36,10 +35,10 @@ public class PlayerSpecial : MonoBehaviour {
 					StunEnemy(special, enemy);
 					break;
 				case SpecialProp.bleed:
-					// Damage over time
+					BleedEnemy(special, enemy);
 					break;
 				case SpecialProp.cleave:
-					// break off parts
+					CleaveEnemy(enemy);
 					break;
 				default:
 					Debug.LogWarning(item.itemName + " does not have an active special");
@@ -73,5 +72,39 @@ public class PlayerSpecial : MonoBehaviour {
 		enemy.stunned = true;
 		yield return new WaitForSeconds(special.specialDuration);
 		enemy.stunned = false;
+	}
+
+	void CleaveEnemy(GameObject enemy)
+	{
+		enemy.GetComponent<RobotLoadout>().dropOffset += 5;
+	}
+
+	void BleedEnemy(SpecialItems special, GameObject enemy)
+	{
+		RobotLoadout enemyLo = enemy.GetComponent<RobotLoadout>();
+		StartCoroutine(Bleed(special, enemyLo));
+
+	}
+	IEnumerator Bleed(SpecialItems special, RobotLoadout enemyLo)
+	{
+		List<int> liveParts = new List<int>();
+		for (int i = 0; i < enemyLo.hitPoints.Length; i++)
+		{
+			if (enemyLo.hitPoints[i] > 0)
+			{
+				liveParts.Add(i);
+				// twice as likely to hit everything but the head
+				if (enemyLo.loadout[i].itemLoc != ItemLoc.head)
+				{
+					liveParts.Add(i);
+				}
+			}
+		}
+		int rand = Random.Range(0, liveParts.Count);		
+		while (enemyLo.hitPoints[liveParts[rand]] > 0 || enemyLo)
+		{
+			enemyLo.hitPoints[liveParts[rand]] -= special.specialDamage;
+			yield return new WaitForSeconds(special.specialDuration);
+		}
 	}
 }

@@ -9,7 +9,9 @@ public class RobotLoadout : MonoBehaviour {
 	[SerializeField] bool doesItDrop;
 	public int[] hitPoints;
 	public bool attackLeft, attackRight, walk;
+	public int dropOffset = 0;
 	int basicDamage = 5;
+	
 
 	public Item[] loadout = new Item[7];
 
@@ -65,7 +67,7 @@ public class RobotLoadout : MonoBehaviour {
 		// Add if player later
 		if (doesItDrop)
 		{
-			DropItem(RobotFunctions.DropByID(FindObjectOfType<PlayerController>().gameObject, this));
+			DropItem(RobotFunctions.DropByID(FindObjectOfType<PlayerController>().gameObject, this, dropOffset));
 		}
 		if (!GetComponent<PlayerController>())
 		{

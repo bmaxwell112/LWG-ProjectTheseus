@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 50557004957233960}
   - component: {fileID: 95241232177884768}
   - component: {fileID: 70353488487723502}
+  - component: {fileID: 114025225282881878}
   m_Layer: 9
   m_Name: BasicEnemy
   m_TagString: Enemy
@@ -512,6 +513,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114025225282881878
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1076524336823614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77b6ceed5c43ef4391d0353b03d5b74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 0
+  stunned: 0
 --- !u!114 &114459451790913426
 MonoBehaviour:
   m_ObjectHideFlags: 1

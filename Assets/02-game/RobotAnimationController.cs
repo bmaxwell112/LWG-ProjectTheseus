@@ -118,11 +118,11 @@ public class RobotAnimationController : MonoBehaviour {
 		}
 		if (roLo.attackRight && roLo.loadout[3].itemType == ItemType.melee)
 		{
-			anim.SetBool("righAttack", true);
+			anim.SetBool("rightAttack", true);
 		}
 		else
 		{
-			anim.SetBool("righAttack", false);
+			anim.SetBool("rightAttack", false);
 		}
 		if (roLo.walk)
 		{
