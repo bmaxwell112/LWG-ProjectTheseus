@@ -7,7 +7,7 @@ public class RoomGeneration : MonoBehaviour {
 	public static bool first;
     public bool roomActive;
     public DoorGen[] doors;
-    private Vector3Int[] spawnLocation;
+    public static Vector3Int[] spawnLocation;
     [SerializeField] GameObject room, layout;
 	[SerializeField] ClosedDoor[] closedDoors;
     [SerializeField] OpenDoor[] openDoors;
@@ -16,6 +16,8 @@ public class RoomGeneration : MonoBehaviour {
     private DoorGen walls;
 	bool roomListener, enemyListener;
 	[SerializeField] bool manualUnlock;
+
+    public bool adjCheckedTrue;
 
     // Use this for initialization
     void Start () {
@@ -101,7 +103,7 @@ public class RoomGeneration : MonoBehaviour {
         //condensed into enemy controller on next update
         BasicEnemy[] livingEnemies = GetComponentsInChildren<BasicEnemy>();
         RangeShortEnemy[] livingRanged = GetComponentsInChildren<RangeShortEnemy>();
-        print(livingEnemies.Length);
+        //print(livingEnemies.Length);
 
         if(livingEnemies.Length > 0 && livingRanged.Length > 0)
         {
@@ -263,8 +265,8 @@ public class RoomGeneration : MonoBehaviour {
 		}
     }
 
-	//define an array of objects (how am I going to define them, tag?)
-	//On start pull a random object from the array and instantiate it
-	//Objects will be configurations of spawn locations
+    //define an array of objects (how am I going to define them, tag?)
+    //On start pull a random object from the array and instantiate it
+    //Objects will be configurations of spawn locations
 
 }
