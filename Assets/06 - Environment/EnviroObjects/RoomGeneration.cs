@@ -170,7 +170,7 @@ public class RoomGeneration : MonoBehaviour {
         }
     }
 
-	bool CheckForRoomClearance(Vector3 location, RoomGeneration[] rooms)
+	public bool CheckForRoomClearance(Vector3 location, RoomGeneration[] rooms)
 	{		
 		foreach (RoomGeneration room in rooms)
 		{
