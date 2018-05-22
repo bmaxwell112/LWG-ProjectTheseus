@@ -10,12 +10,14 @@ public class NewCurrentRoom : MonoBehaviour {
     public RoomGeneration[] rooms;
     [SerializeField] Vector3 adjOffset;
     private DoorGen parentWall;
-    public RoomGeneration nextRoom;
+    public Vector3 nextRoom;
 
     // Use this for initialization
     void Start () {
         roomGen = GetComponentInParent<RoomGeneration>();
         parentWall = GetComponentInParent<DoorGen>();
+
+        List<RoomGeneration> adjacentRooms = new List<RoomGeneration>();
 
         StartCoroutine(WarmUpTime(0.1f));
     }
@@ -27,8 +29,7 @@ public class NewCurrentRoom : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SetOffset();
-        print(nextRoom.transform.position);
+        print(nextRoom);
 
         if (collision.gameObject.name == "Player" && RoomManager.allActive == true)
         {
@@ -40,14 +41,12 @@ public class NewCurrentRoom : MonoBehaviour {
     {
         if (collision.gameObject.name == "Player")
         {
-            RoomGeneration parentRoom = GetComponentInParent<RoomGeneration>();
-            parentRoom.roomActive = false;
+            roomGen.roomActive = false;
         }
     }
 
     public void GetAdjRooms()
     {
-        List<RoomGeneration> adjacentRooms = new List<RoomGeneration>();
         RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
 
         foreach (RoomGeneration room in rooms)
@@ -60,49 +59,83 @@ public class NewCurrentRoom : MonoBehaviour {
                 }
             }
         }
-        print(adjacentRooms.Count);
-    }
-
-    public RoomGeneration SetOffset()
-    {
-        if(parentWall.name == "WallTop")
+    
+        foreach (RoomGeneration adj in adjacentRooms)
         {
-            for (int i = 0; i < adjacentRooms.Count; i++)
+            if(parentWall.name == "WallTop")
             {
-                if(adjacentRooms[i].transform.position == (roomGen.transform.position + RoomGeneration.spawnLocation[0]))
+                if (adj.transform.position == (roomGen.transform.position + RoomGeneration.spawnLocation[0]))
                 {
-                    nextRoom = adjacentRooms[i];
+                    nextRoom = adj.transform.position;
+                    break;
                 }
             }
-        }
+            if (parentWall.name == "WallBottom")
+            {
+                if (adj.transform.position == (roomGen.transform.position + RoomGeneration.spawnLocation[1]))
+                {
+                    nextRoom = adj.transform.position;
+                    break;
+                }
+            }
+            if (parentWall.name == "WallTL")
+            {
+                if (adj.transform.position == (roomGen.transform.position + RoomGeneration.spawnLocation[2]))
+                {
+                    nextRoom = adj.transform.position;
+                    break;
+                }
+            }
+            if (parentWall.name == "WallTR")
+            {
+                if (adj.transform.position == (roomGen.transform.position + RoomGeneration.spawnLocation[3]))
+                {
+                    nextRoom = adj.transform.position;
+                    break;
+                }
+            }
+            if (parentWall.name == "WallBL")
+            {
+                if (adj.transform.position == (roomGen.transform.position + RoomGeneration.spawnLocation[4]))
+                {
+                    nextRoom = adj.transform.position;
+                    break;
+                }
+            }
+            if (parentWall.name == "WallBR")
+            {
+                if (adj.transform.position == (roomGen.transform.position + RoomGeneration.spawnLocation[5]))
+                {
+                    nextRoom = adj.transform.position;
+                    break;
+                }
+            }
 
-        return nextRoom;
+        }
     }
 
 
     IEnumerator ActivateRoom(Transform player)
     {
        RoomManager.allActive = false;
-        RoomGeneration parentRoom = GetComponentInParent<RoomGeneration>();
-        parentRoom.roomActive = true;
+        roomGen.roomActive = true;
         CameraController cam = FindObjectOfType<CameraController>();
-        cam.MoveCamera(transform.position);
+        cam.MoveCamera(nextRoom);
         Vector3 playerStartPos = player.transform.position;
         BulletWeapon[] bullets = FindObjectsOfType<BulletWeapon>();
         foreach (BulletWeapon bullet in bullets)
         {
             Destroy(bullet.gameObject);
         }
-        //transform position needs to be grabbed from the room from the list (nextRoom)
-        float distance = Vector3.Distance(transform.position, player.position);
-        float endDistance = Vector3.Distance(transform.position, player.position) - 1.5f;
+        float distance = Vector3.Distance(nextRoom, player.position);
+        float endDistance = Vector3.Distance(nextRoom, player.position) - 1.5f;
         while (distance > endDistance)
         {
-            player.transform.position = Vector3.MoveTowards(player.transform.position, transform.position, 2 * Time.deltaTime);
-            distance = Vector3.Distance(transform.position, player.position);
+            player.transform.position = Vector3.MoveTowards(player.transform.position, nextRoom, 2 * Time.deltaTime);
+            distance = Vector3.Distance(nextRoom, player.position);
             yield return null;
         }
-        parentRoom.ToggleRoomUnlock();
+        roomGen.ToggleRoomUnlock();
         RoomManager.allActive = true;
     }
 
