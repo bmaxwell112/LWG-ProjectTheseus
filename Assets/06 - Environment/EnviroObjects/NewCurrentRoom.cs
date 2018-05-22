@@ -11,6 +11,7 @@ public class NewCurrentRoom : MonoBehaviour {
     [SerializeField] Vector3 adjOffset;
     private DoorGen parentWall;
     public Vector3 nextRoom;
+    private BoxCollider2D thisColl;
 
     // Use this for initialization
     void Start () {
@@ -24,7 +25,7 @@ public class NewCurrentRoom : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -117,7 +118,7 @@ public class NewCurrentRoom : MonoBehaviour {
 
     IEnumerator ActivateRoom(Transform player)
     {
-       RoomManager.allActive = false;
+        RoomManager.allActive = false;
         roomGen.roomActive = true;
         CameraController cam = FindObjectOfType<CameraController>();
         cam.MoveCamera(nextRoom);
@@ -128,15 +129,16 @@ public class NewCurrentRoom : MonoBehaviour {
             Destroy(bullet.gameObject);
         }
         float distance = Vector3.Distance(nextRoom, player.position);
-        float endDistance = Vector3.Distance(nextRoom, player.position) - 1.5f;
+        float endDistance = Vector3.Distance(nextRoom, player.position);
         while (distance > endDistance)
         {
             player.transform.position = Vector3.MoveTowards(player.transform.position, nextRoom, 2 * Time.deltaTime);
             distance = Vector3.Distance(nextRoom, player.position);
             yield return null;
         }
-        roomGen.ToggleRoomUnlock();
         RoomManager.allActive = true;
+
+        roomGen.ToggleRoomUnlock();
     }
 
     IEnumerator WarmUpTime(float wait)

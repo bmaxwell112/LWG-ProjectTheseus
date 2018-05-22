@@ -196,6 +196,7 @@ public class RoomGeneration : MonoBehaviour {
             {
                 r.enabled = false;
             }
+
 			layout.SetActive(false);
         }
         else
@@ -204,7 +205,8 @@ public class RoomGeneration : MonoBehaviour {
             {
                 r.enabled = true;
             }
-			layout.SetActive(true);
+
+            layout.SetActive(true);
 		}
     }
 
