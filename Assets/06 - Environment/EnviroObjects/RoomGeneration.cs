@@ -95,10 +95,10 @@ public class RoomGeneration : MonoBehaviour {
 			ToggleRoomUnlock();
 			manualUnlock = false;
 		}
-        CheckEnemies();
+        //CheckEnemies();
 	}
 
-    void CheckEnemies()
+    public void CheckEnemies()
     {
         //condensed into enemy controller on next update
         BasicEnemy[] livingEnemies = GetComponentsInChildren<BasicEnemy>();
@@ -123,7 +123,7 @@ public class RoomGeneration : MonoBehaviour {
 
     public void ToggleRoomUnlock()
     {
-            if (GetComponentInChildren<BasicEnemy>() != null || GetComponentInChildren<RangeShortEnemy>() != null)
+		if (GetComponentInChildren<BasicEnemy>() != null || GetComponentInChildren<RangeShortEnemy>() != null)
             {
                 foreach (ClosedDoor doors in closedDoors)
                 {
@@ -135,7 +135,7 @@ public class RoomGeneration : MonoBehaviour {
                     doors.gameObject.SetActive(false);
                 }
             }
-            else
+         else
             {
                 foreach (ClosedDoor doors in closedDoors)
                 {
@@ -148,6 +148,18 @@ public class RoomGeneration : MonoBehaviour {
                 }
         }
     }
+	public void RoomUnlock()
+	{
+		foreach (ClosedDoor doors in closedDoors)
+		{
+			doors.gameObject.SetActive(false);
+		}
+
+		foreach (OpenDoor doors in openDoors)
+		{
+			doors.gameObject.SetActive(true);
+		}
+	}
 
     void CheckDoor()
     {
