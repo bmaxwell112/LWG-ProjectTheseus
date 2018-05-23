@@ -96,9 +96,10 @@ public class UserInterface : MonoBehaviour {
 		rightLeg[1].sprite = playerLo.loadout[4].itemSprite[0];
 		for (int i = 0; i < playerLo.loadout.Length; i++)
 		{
+			int currentPower = Mathf.RoundToInt(playerLo.power[i] * 100);
 			stats[i].text =
 				"Integrity: " + playerLo.hitPoints[i] + "/" + playerLo.loadout[i].itemHitpoints + "\n" +
-				"Power: " + "ERR" + "/" + playerLo.loadout[i].itemPower;
+				"Power: " + currentPower + "/100";
 		}
 	}
 
@@ -152,6 +153,7 @@ public class UserInterface : MonoBehaviour {
 				{
 					playerLo.loadout[loadoutIndex] = items[i - 1];
 					playerLo.hitPoints[loadoutIndex] = playerLo.loadout[loadoutIndex].itemHitpoints;
+					playerLo.power[loadoutIndex] = playerLo.loadout[loadoutIndex].itemPower;
 					UpdateDisplayDetails();
 					return;
 				}
@@ -166,6 +168,7 @@ public class UserInterface : MonoBehaviour {
 				{
 					playerLo.loadout[loadoutIndex] = items[i + 1];
 					playerLo.hitPoints[loadoutIndex] = playerLo.loadout[loadoutIndex].itemHitpoints;
+					playerLo.power[loadoutIndex] = playerLo.loadout[loadoutIndex].itemPower;
 					UpdateDisplayDetails();
 					return;
 				}

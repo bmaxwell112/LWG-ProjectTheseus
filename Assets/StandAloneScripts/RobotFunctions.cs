@@ -28,10 +28,15 @@ public class RobotFunctions {
 			if (player.loadout[i].itemLoc == drop.thisItem.itemLoc)
 			{
 				player.loadout[i] = drop.thisItem;
+				// switch players items heath with drops health
 				drop.thisItem = tempItem;
 				int tempHP = player.hitPoints[i];
 				player.hitPoints[i] = drop.hitPoints;
 				drop.hitPoints = tempHP;
+				// switch players items power with drops power
+				float tempPower = player.power[i];
+				player.power[i] = drop.power;
+				drop.power = tempPower;
 				break;
 			}
 		}
@@ -56,22 +61,22 @@ public class RobotFunctions {
 		GameManager.RandomDropModifier += 5;
 		int dropItemID = -1;
 		int rand = Random.Range(0, 100);
-		if (rand <= 27 + GameManager.RandomDropModifier + dropOffset)
+		if (rand <= 35 + GameManager.RandomDropModifier + dropOffset)
 		{
 			GameManager.RandomDropModifier = 0;
 			List<int> avalibleItems = new List<int>();
-			Item[] playerInv = player.GetComponent<RobotLoadout>().loadout;
+			//Item[] playerInv = player.GetComponent<RobotLoadout>().loadout;
 			for (int i = 0; i < roLo.loadout.Length; i++)
 			{
 				// If the item is not one of the basics.
 				if (roLo.loadout[i].itemID > 6)
 				{
-					// If the player doesn't have the item
-					if (roLo.loadout[i].itemID != playerInv[i].itemID)
-					{
+					// If the player doesn't have the item TODO remove this maybe. 
+					//if (roLo.loadout[i].itemID != playerInv[i].itemID)
+					//{
 						// add that items ID to a List
 						avalibleItems.Add(roLo.loadout[i].itemID);
-					}
+					//}
 				}
 			}
 			if (avalibleItems.Count > 0)

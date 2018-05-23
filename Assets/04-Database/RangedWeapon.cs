@@ -15,8 +15,9 @@ public class RangedWeapon {
 	public int rangedWeaponSpread;
 	public float rangedWeaponDirection;
 	public float rangeWeaponRateOfFire;
+	public float rangeWeaponPowerUse;
 
-	public RangedWeapon(int id, int itemID, float speed, float offset, float life, int spread, float direction, float rof)
+	public RangedWeapon(int id, int itemID, float speed, float offset, float life, int spread, float direction, float rof, float powerUse)
 	{
 		rangedWeaponID = id;
 		rangedWeaponItemID = itemID;
@@ -28,6 +29,7 @@ public class RangedWeapon {
 		rangedWeaponSpread = spread;
 		rangedWeaponDirection = direction;
 		rangeWeaponRateOfFire = rof;
+		rangeWeaponPowerUse = powerUse;
 	}
 
 	public RangedWeapon()

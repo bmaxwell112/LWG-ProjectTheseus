@@ -43,7 +43,7 @@ public class PlayerSpecial : MonoBehaviour {
 				default:
 					Debug.LogWarning(item.itemName + " does not have an active special");
 					break;
-			}
+			}			
 		}
 	}
 	void CreateShield()

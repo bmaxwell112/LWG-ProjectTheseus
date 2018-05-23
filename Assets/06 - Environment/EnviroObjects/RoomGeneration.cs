@@ -13,6 +13,7 @@ public class RoomGeneration : MonoBehaviour {
     private int minDoors, totalRooms;
     private DoorGen walls;
 	bool roomListener;
+	CustomNavMesh navMesh;
 
     // Use this for initialization
     void Start () {
@@ -23,6 +24,7 @@ public class RoomGeneration : MonoBehaviour {
 		doors = GetComponentsInChildren<DoorGen>();
 		worldController = FindObjectOfType<RoomManager>();
 		walls = FindObjectOfType<DoorGen>();
+		navMesh = GetComponent<CustomNavMesh>();
 		spawnLocation = new Vector3Int[]
 		{
 			new Vector3Int(0, 8, 0) ,
@@ -48,7 +50,7 @@ public class RoomGeneration : MonoBehaviour {
 			roomActive = true;
 			first = false;
 		}		
-		CheckDoor();
+		CheckDoor();		
 	}
     
     //sets minimum required doors based on spawncap, NEED to find a way to make that count up min increments, right now because 1-6 doors spawn at a time it skips numbers and checks constantly
@@ -118,7 +120,7 @@ public class RoomGeneration : MonoBehaviour {
 
     void ToggleActiveRooms()
     {
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+		Renderer[] renderers = GetComponentsInChildren<Renderer>();
        // GameObject[] enemySpawns = GameObject.FindGameObjectsWithTag("SpawnConfig");
         if (!roomActive)
         {

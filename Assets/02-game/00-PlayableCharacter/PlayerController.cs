@@ -10,14 +10,12 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] PlayerAttack leftArm, rightArm;
 	public Transform firingArc;
 	RobotLoadout roLo;
-	PlayerSpecial special;
 	Vector3 rotation;
 	bool fireLeft, fireRight;	
 
 	void Start()
 	{		
 		roLo = GetComponent<RobotLoadout>();
-		special = GetComponent<PlayerSpecial>();
 		PlayerSpawn();
 	}
 
@@ -92,13 +90,20 @@ public class PlayerController : MonoBehaviour {
 		firingArc.eulerAngles = rotation;
 		if (InputCapture.firingLeft && !fireLeft)
 		{
-			if (roLo.loadout[2].itemType == ItemType.range)
-			{
+			if (roLo.loadout[2].itemType == ItemType.range && roLo.power[2] > 0)
+			{				
 				leftArm.RangedAttack(roLo.loadout[2]);
 			}
 			else
 			{
-				leftArm.MeleeAttack(roLo.loadout[2]);
+				if (roLo.hitPoints[3] > 0 && roLo.power[3] > 0)
+				{
+					leftArm.MeleeAttack(roLo.loadout[2], roLo);
+				}
+				else
+				{
+					leftArm.MeleeAttack(Database.instance.items[2], roLo);
+				}
 			}
 			fireLeft = true;
 		}
@@ -108,13 +113,20 @@ public class PlayerController : MonoBehaviour {
 		}
 		if (InputCapture.firingRight  && !fireRight)
 		{
-			if (roLo.loadout[3].itemType == ItemType.range)
+			if (roLo.loadout[3].itemType == ItemType.range && roLo.power[3] > 0)
 			{
 				rightArm.RangedAttack(roLo.loadout[3]);
 			}
 			else
 			{
-				rightArm.MeleeAttack(roLo.loadout[3]);
+				if (roLo.hitPoints[3] > 0 && roLo.power[3] > 0)
+				{
+					leftArm.MeleeAttack(roLo.loadout[3], roLo);
+				}
+				else
+				{
+					leftArm.MeleeAttack(Database.instance.items[3], roLo);
+				}
 			}
 			fireRight = true;
 		}
@@ -127,10 +139,15 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void MovementCheck()
-	{		
+	{
 		// Sets players speed
-		float xSpeed = InputCapture.hThrow * roLo.loadout[(int)ItemLoc.legs].itemSpeed * Time.deltaTime;
-		float ySpeed = InputCapture.vThrow * roLo.loadout[(int)ItemLoc.legs].itemSpeed * Time.deltaTime;
+		float speed = 1.5f;
+		if (roLo.hitPoints[(int)ItemLoc.legs] > 0)
+		{
+			speed = roLo.loadout[(int)ItemLoc.legs].itemSpeed;
+		}
+		float xSpeed = InputCapture.hThrow * speed * Time.deltaTime;
+		float ySpeed = InputCapture.vThrow * speed * Time.deltaTime;
 		// applies movement
 		transform.position += new Vector3(xSpeed, ySpeed, transform.position.z);
 	}

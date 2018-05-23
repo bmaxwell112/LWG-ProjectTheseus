@@ -8,10 +8,19 @@ public class RobotLoadout : MonoBehaviour {
 	[Tooltip("This bool indicates whether the robot drops items")]
 	[SerializeField] bool doesItDrop;
 	public int[] hitPoints;
+	public float[] power;
+	[HideInInspector]
 	public bool attackLeft, attackRight, walk;
+	[HideInInspector]
 	public int dropOffset = 0;
 	int basicDamage = 5;
-	
+	int basicSpeed = 5;
+	bool isPlayer;
+
+	void Start()
+	{
+		isPlayer = GetComponent<PlayerController>();
+	}
 
 	public Item[] loadout = new Item[7];
 
@@ -19,6 +28,7 @@ public class RobotLoadout : MonoBehaviour {
 	public void InitializeLoadout(Item head, Item body, Item leftArm, Item rightArm, Item legs, Item back, Item core)
 	{
 		hitPoints = new int[7];
+		power = new float[7];
 		loadout[(int)ItemLoc.head] = head;
 		loadout[(int)ItemLoc.body] = body;
 		loadout[(int)ItemLoc.leftArm] = leftArm;
@@ -30,7 +40,11 @@ public class RobotLoadout : MonoBehaviour {
 		for (int i = 0; i < loadout.Length; i++)
 		{
 			hitPoints[i] = loadout[i].itemHitpoints;
-		}		
+		}
+		for (int i = 0; i < loadout.Length; i++)
+		{
+			power[i] = loadout[i].itemPower;
+		}
 	}
 
 	public void TakeDamage(int damage)
@@ -69,7 +83,7 @@ public class RobotLoadout : MonoBehaviour {
 		{
 			DropItem(RobotFunctions.DropByID(FindObjectOfType<PlayerController>().gameObject, this, dropOffset));
 		}
-		if (!GetComponent<PlayerController>())
+		if (!isPlayer)
 		{
 			Destroy(gameObject);
 		}
@@ -89,8 +103,10 @@ public class RobotLoadout : MonoBehaviour {
 	public void DropItem(int dropItemInt)
 	{
 		if (dropItemInt != -1)
-		{
-			GameObject tempDrop = Instantiate(Resources.Load("Drops"), transform.position, Quaternion.identity) as GameObject;
+		{			
+			Transform currentRoom = RoomManager.GetCurrentActiveRoom().transform;
+
+			GameObject tempDrop = Instantiate(Resources.Load("Drops"), transform.position, Quaternion.identity, currentRoom) as GameObject;
 			tempDrop.GetComponent<Drops>().databaseItemID = dropItemInt;
 		}
 	}
