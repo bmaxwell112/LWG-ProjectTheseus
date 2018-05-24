@@ -14,7 +14,7 @@ public class RoomGeneration : MonoBehaviour {
     private RoomManager worldController;
     private int minDoors, totalRooms;
     private DoorGen walls;
-	bool roomListener, enemyListener;
+	public bool roomListener, enemyListener;
 	[SerializeField] bool manualUnlock;
 
     public bool adjCheckedTrue;
@@ -90,41 +90,43 @@ public class RoomGeneration : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		ToggleActiveRooms();
-		if (manualUnlock)
-		{
-			ToggleRoomUnlock();
-			manualUnlock = false;
-		}
-        //CheckEnemies();
+        TrackEnemies();
 	}
+
+    public void TrackEnemies()
+    {
+        if (roomActive)
+        {
+            BasicEnemy[] livingEnemies = GetComponentsInChildren<BasicEnemy>();
+            RangeShortEnemy[] livingRanged = GetComponentsInChildren<RangeShortEnemy>();
+
+            if(livingEnemies.Length > 0 || livingRanged.Length > 0)
+            {
+                enemyListener = true;
+            }
+            else
+            {
+                enemyListener = false;
+            }
+        }
+
+    }
 
     public void CheckEnemies()
     {
-        //condensed into enemy controller on next update
-        BasicEnemy[] livingEnemies = GetComponentsInChildren<BasicEnemy>();
-        RangeShortEnemy[] livingRanged = GetComponentsInChildren<RangeShortEnemy>();
-        //print(livingEnemies.Length);
 
-        if(livingEnemies.Length > 0 && livingRanged.Length > 0)
+        if(enemyListener == false)
         {
-            enemyListener = true;
+            RoomUnlock();
         }
         else
         {
-            enemyListener = false;
-        }
-
-        if(!enemyListener)
-        {
-            ToggleRoomUnlock();
-            enemyListener = true;
+            RoomLock();
         }
     }
 
-    public void ToggleRoomUnlock()
+    public void RoomLock()
     {
-		if (GetComponentInChildren<BasicEnemy>() != null || GetComponentInChildren<RangeShortEnemy>() != null)
-            {
                 foreach (ClosedDoor doors in closedDoors)
                 {
 					doors.gameObject.SetActive(true);
@@ -134,22 +136,11 @@ public class RoomGeneration : MonoBehaviour {
                 {
                     doors.gameObject.SetActive(false);
                 }
-            }
-         else
-            {
-                foreach (ClosedDoor doors in closedDoors)
-                {
-					doors.gameObject.SetActive(false);
-				}
-
-                foreach (OpenDoor doors in openDoors)
-                {
-                    doors.gameObject.SetActive(true);
-                }
-        }
     }
+
 	public void RoomUnlock()
 	{
+        print("Room unlocked");
 		foreach (ClosedDoor doors in closedDoors)
 		{
 			doors.gameObject.SetActive(false);

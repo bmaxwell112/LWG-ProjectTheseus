@@ -716,7 +716,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1393756411793416}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4706251159382666}
@@ -787,7 +787,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1052817404096956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4643738786320746}
@@ -855,7 +855,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1136358038783728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4597634965703628}
@@ -925,7 +925,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1725954356272882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4368642812767510}
@@ -980,7 +980,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1469178423694690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4948906914628878}
@@ -1051,7 +1051,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1778605146699952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4757902796120922}
@@ -1492,7 +1492,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8, y: 0.5}
+  m_Size: {x: 1.8, y: 0.4}
   m_EdgeRadius: 0
 --- !u!61 &61085628077982604
 BoxCollider2D:
@@ -1742,7 +1742,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8, y: 0.5}
+  m_Size: {x: 1.8, y: 0.4}
   m_EdgeRadius: 0
 --- !u!61 &61362983218548086
 BoxCollider2D:
@@ -1867,7 +1867,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8, y: 0.5}
+  m_Size: {x: 1.8, y: 0.4}
   m_EdgeRadius: 0
 --- !u!61 &61607676696626128
 BoxCollider2D:
@@ -1967,7 +1967,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8, y: 0.5}
+  m_Size: {x: 1.8, y: 0.4}
   m_EdgeRadius: 0
 --- !u!61 &61672444843151924
 BoxCollider2D:
@@ -2042,7 +2042,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8, y: 0.5}
+  m_Size: {x: 1.8, y: 0.4}
   m_EdgeRadius: 0
 --- !u!61 &61718670839260372
 BoxCollider2D:
@@ -2067,7 +2067,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8, y: 0.5}
+  m_Size: {x: 1.8, y: 0.4}
   m_EdgeRadius: 0
 --- !u!61 &61746659042910204
 BoxCollider2D:
@@ -2266,7 +2266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717509d6314f24547ab2ceb5d7397352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adjOffset: {x: 0, y: 0, z: 0}
+  adjOffset: {x: -12, y: -4, z: 0}
 --- !u!114 &114223043821088808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2374,7 +2374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717509d6314f24547ab2ceb5d7397352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adjOffset: {x: 0, y: 0, z: 0}
+  adjOffset: {x: 0, y: -8, z: 0}
 --- !u!114 &114471740436608424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2408,7 +2408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717509d6314f24547ab2ceb5d7397352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adjOffset: {x: 0, y: 0, z: 0}
+  adjOffset: {x: 12, y: 4, z: 0}
 --- !u!114 &114662839286414554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2486,7 +2486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717509d6314f24547ab2ceb5d7397352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adjOffset: {x: 0, y: 0, z: 0}
+  adjOffset: {x: 12, y: -4, z: 0}
 --- !u!114 &114917109678998762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2529,7 +2529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717509d6314f24547ab2ceb5d7397352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adjOffset: {x: 0, y: 0, z: 0}
+  adjOffset: {x: -12, y: 4, z: 0}
 --- !u!114 &114983964260908890
 MonoBehaviour:
   m_ObjectHideFlags: 1

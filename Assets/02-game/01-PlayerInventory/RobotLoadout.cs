@@ -33,8 +33,8 @@ public class RobotLoadout : MonoBehaviour {
 
 	public void TakeDamage(int damage)
 	{
-		// Gets a list of live parts to see what can be damaged
-		List<int> liveParts = new List<int>();
+        // Gets a list of live parts to see what can be damaged
+        List<int> liveParts = new List<int>();
 		for (int i = 0; i < hitPoints.Length; i++)
 		{
 			if (hitPoints[i] > 0)
@@ -57,26 +57,29 @@ public class RobotLoadout : MonoBehaviour {
 		if ((hitPoints[0] <= 0 && loadout[0].itemID != -1) || hitPoints[1] <= 0)
 		{
 			Die();
-		}
+        }
 	}
 
 	private void Die()
 	{
-		// Add if player later
-		if (doesItDrop)
+        RoomGeneration parentRoom = GetComponentInParent<RoomGeneration>();
+        print("enemy died and checked");
+        // Add if player later
+        if (doesItDrop)
 		{
 			DropItem(RobotFunctions.DropByID(FindObjectOfType<PlayerController>().gameObject, this));
 		}
 		if (!GetComponent<PlayerController>())
 		{
-			Destroy(gameObject);
-		}
+            Destroy(gameObject);
+        }
 		else
 		{
 			GameManager.playerAlive = false;
 			LevelManager.LOADLEVEL("02a Hub");
 		}
-	}
+        parentRoom.Invoke("CheckEnemies", 0.1f);
+    }
 
 	public static IEnumerator ChangeColor(SpriteRenderer sr, Color color, float t)
 	{

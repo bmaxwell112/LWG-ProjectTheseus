@@ -50,10 +50,8 @@ public class CurrentRoom : MonoBehaviour {
 			distance = Vector3.Distance(transform.position, player.position);
 			yield return null;
 		}
-		parentRoom.ToggleRoomUnlock();
 		RoomManager.allActive = true;
 
-        roomGen.ToggleRoomUnlock();
 	}
 
 	void DeactivateRoom()
