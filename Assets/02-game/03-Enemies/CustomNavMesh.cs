@@ -7,7 +7,7 @@ public class CustomNavMesh : MonoBehaviour {
 
 	[SerializeField] int yOffset, yMax;
 	[SerializeField] int[] xOffset, xMax;
-	[SerializeField] LayerMask canNotMovePast;
+	public LayerMask canNotMovePast;
 	public static Vector2Int[] directions = new Vector2Int[] {
 		new Vector2Int(0,1),
 		new Vector2Int(1,1),
@@ -20,12 +20,11 @@ public class CustomNavMesh : MonoBehaviour {
 		};
 
 	public List<Vector2Int> points = new List<Vector2Int>();
+
 	void Start()
 	{
-		SetPoints();
-		Invoke("CheckAllDirections", 1f);
+		SetPoints();		
 	}
-
 
 	void OnDrawGizmos()
 	{
@@ -41,22 +40,23 @@ public class CustomNavMesh : MonoBehaviour {
 
 	private void SetPoints()
 	{
-		int yPos = yOffset;
+		Vector2Int roomPos = new Vector2Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
+		int yPos = yOffset + roomPos.y;
 		for (int i = 0; i < yMax; i++)
 		{			
 			for (int j = 0; j < xMax[i]; j++)
 			{
-				int xPos = xOffset[i] + j;
+				int xPos = xOffset[i] + roomPos.x + j;
 				if (i % 2 != 0)
 				{
-					xPos = xOffset[i] + j;
+					xPos = xOffset[i] + roomPos.x + j;
 				}
 				points.Add(new Vector2Int(xPos, yPos));
 			}
 			yPos -= 1;
 		}
 	}
-	private void CheckAllDirections()
+	public void CheckAllDirections()
 	{
 		List<Vector2Int> badPoints = new List<Vector2Int>();
 		Collider2D[] colls = GetComponentsInChildren<Collider2D>();

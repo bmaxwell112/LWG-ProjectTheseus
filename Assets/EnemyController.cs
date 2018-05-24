@@ -5,21 +5,27 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour {
 
 	[SerializeField] int enemyType;
+	public float stoppingDistance;
 	BasicEnemy basic;
 	RangeShortEnemy rangeShort;
 	PlayerController player;
 	Pathfinding pathfinding;
+	CustomNavMesh cNavMesh;
+	RoomGeneration myRoom;
+	RobotLoadout roLo;
 	public bool stunned;
-	bool recalculate;
+	bool recalculate, startMovement;
 	Vector3 tracking;
+	Vector3 heightOffset = new Vector3(0, 0.45f, 0);
 
 	// Use this for initialization
 	void Start () {
 		tracking = transform.position;
 		player = FindObjectOfType<PlayerController>();
 		pathfinding = GetComponent<Pathfinding>();
-		StartCoroutine(UpdateMovement());
-		StartCoroutine(RecalculateTime());
+		cNavMesh = GetComponentInParent<CustomNavMesh>();
+		myRoom = GetComponentInParent<RoomGeneration>();
+		roLo = GetComponent<RobotLoadout>();
 		if (enemyType == 0)
 		{
 			basic = GetComponent<BasicEnemy>();
@@ -36,7 +42,7 @@ public class EnemyController : MonoBehaviour {
 		{
 			if (enemyType == 0)
 			{				
-				//basic.EnemyUpdate();
+				basic.EnemyUpdate();
 			}
 			if (enemyType == 1)
 			{
@@ -46,6 +52,18 @@ public class EnemyController : MonoBehaviour {
 		else if (!player)
 		{
 			player = FindObjectOfType<PlayerController>();
+		}
+		if (myRoom.roomActive && !startMovement)
+		{
+			StopAllCoroutines();
+			StartCoroutine(UpdateMovement());
+			StartCoroutine(RecalculateTime());
+			startMovement = true;
+		}
+		if (!myRoom.roomActive && startMovement)
+		{
+			StopAllCoroutines();
+			startMovement = false;
 		}
 	}
 	public void ChangeBehaviour(int enemy)
@@ -62,25 +80,42 @@ public class EnemyController : MonoBehaviour {
 
 	IEnumerator UpdateMovement()
 	{
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(2);
+		Waypoint currentNodePos = pathfinding.TransformToWaypoint(transform);
 		while (true)
 		{
 			recalculate = false;
-			print("starting");
-			var path = pathfinding.GetPath(player.transform);
-			foreach (Waypoint node in path)
-			{
-				Vector3 pos = new Vector3(node.position.x, node.position.y);
-				while (Vector3.Distance(pos, transform.position) > 0.05f)
+			if (player && cNavMesh)
+			{				
+				List<Waypoint> path = pathfinding.GetPath(player.transform, cNavMesh, currentNodePos);
+				if (path.Count > 1)
 				{
-					transform.position = Vector3.MoveTowards(transform.position, pos, (2 - 0.5f) * Time.deltaTime);
-					yield return null;
-				}
-				if (recalculate)
-				{
-					break;
+					foreach (Waypoint node in path)
+					{
+						Vector3 pos = new Vector3(node.position.x, node.position.y + 0.45f);
+						float checkTime = Time.time;
+						while (Vector3.Distance(pos, transform.position) > stoppingDistance)
+						{
+							currentNodePos = node;
+							transform.position = Vector3.MoveTowards(transform.position, pos, (roLo.loadout[(int)ItemLoc.legs].itemSpeed - 0.5f) * Time.deltaTime);
+							roLo.walk = true;
+							if (Time.time > (checkTime + 5))
+							{
+								print("break");
+								path = pathfinding.GetPath(player.transform, cNavMesh, node);
+								break;
+							}
+							yield return null;
+						}
+						roLo.walk = false;
+						if (recalculate)
+						{
+							break;
+						}
+					}
 				}
 			}
+			roLo.walk = false;
 			yield return null;
 		}
 	}

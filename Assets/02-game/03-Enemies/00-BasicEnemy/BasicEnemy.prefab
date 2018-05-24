@@ -263,7 +263,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1887476051432860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4684074940770718}
@@ -388,7 +388,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1076524336823614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4444356, y: -0.85192186, z: 0}
+  m_LocalPosition: {x: -12.030572, y: 10.409611, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4328547211092380}
@@ -526,6 +526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
+  stoppingDistance: 0.25
   stunned: 0
 --- !u!114 &114459451790913426
 MonoBehaviour:
@@ -682,6 +683,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff22d519fec25ad48a8d1d1a3f207b0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startWaypoint:
+    isExplored: 0
+    position: {x: 0, y: 0}
+  endWaypoint:
+    isExplored: 0
+    position: {x: 0, y: 0}
 --- !u!212 &212011768981923076
 SpriteRenderer:
   m_ObjectHideFlags: 1

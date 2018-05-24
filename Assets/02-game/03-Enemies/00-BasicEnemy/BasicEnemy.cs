@@ -47,9 +47,9 @@ public class BasicEnemy : MonoBehaviour {
 			if (player)
 			{
 				DefineRotation();
-				EnemyMovement();
 			}
-			if (!roLo.attackLeft && RoomManager.allActive)
+
+			if (!roLo.attackLeft)
 			{
 				EnemyAttackCheck();
 			}

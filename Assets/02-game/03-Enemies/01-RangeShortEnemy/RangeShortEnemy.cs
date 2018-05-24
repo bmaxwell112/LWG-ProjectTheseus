@@ -56,13 +56,8 @@ public class RangeShortEnemy : MonoBehaviour {
 		{
 			if (player)
 			{
-				if (!noPower)
+				if (noPower)
 				{
-					EnemyMovement();
-				}
-				else
-				{
-					EnemyMovementMelee();
 					EnemyAttackCheck();
 				}
 			}
@@ -129,6 +124,7 @@ public class RangeShortEnemy : MonoBehaviour {
 				yield return new WaitForSeconds(rw.rangeWeaponRateOfFire * rateOfFireOffset);
 			}
 			noPower = true;
+			GetComponent<EnemyController>().stoppingDistance = 0.25f;
 		}
 	}
 

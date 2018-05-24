@@ -137,6 +137,8 @@ public class RoomGeneration : MonoBehaviour {
             {
                 r.enabled = true;
             }
+			// TODO remove this
+			GetComponent<CustomNavMesh>().CheckAllDirections();
 			layout.SetActive(true);
 		}
     }

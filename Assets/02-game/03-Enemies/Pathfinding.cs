@@ -13,19 +13,38 @@ public class Pathfinding : MonoBehaviour {
 	List<Waypoint> path = new List<Waypoint>(); //todo make private
 
 
-	public List<Waypoint> GetPath(Transform end)
+	public List<Waypoint> GetPath(Transform end, CustomNavMesh cNavMesh, Waypoint currentNodePos)
 	{
-		startWaypoint = TransformToWaypoint(transform);
+		startWaypoint = currentNodePos;
 		endWaypoint = TransformToWaypoint(end);
 		ClearAll();
-		LoadNodes();
-		BreathFirstSearch();
+		LoadNodes(cNavMesh);
+		BreathFirstSearch(cNavMesh);
 		CreatePath();
 		return path;
 	}
-	Waypoint TransformToWaypoint(Transform pos)
+	public Waypoint TransformToWaypoint(Transform pos)
 	{
-		return new Waypoint(new Vector2Int(Mathf.RoundToInt(pos.position.x), Mathf.RoundToInt(pos.position.y)));
+		Vector2Int posV = new Vector2Int(Mathf.RoundToInt(pos.position.x), Mathf.RoundToInt(pos.position.y));
+		Waypoint shortestWaypoint = new Waypoint(posV);
+		float shortestDistance = -1;
+		if (grid.ContainsKey(posV))
+		{
+			shortestWaypoint = grid[posV];
+		}
+		else
+		{
+			foreach (var node in grid)
+			{
+				float distance = Vector2.Distance(posV, node.Key);
+				if (distance <= shortestDistance || shortestDistance < 0)
+				{
+					shortestDistance = distance;
+					shortestWaypoint = node.Value;
+				}
+			}
+		}
+		return shortestWaypoint;
 	}
 
 	private void ClearAll()
@@ -38,13 +57,13 @@ public class Pathfinding : MonoBehaviour {
 
 	private void CreatePath()
 	{		
-		path.Add(endWaypoint);
+		path.Add(endWaypoint);		
 		if (startWaypoint.position != endWaypoint.position)
 		{
 			Waypoint previous = endWaypoint.exploredFrom;
 			while (previous != startWaypoint)
 			{
-				path.Add(previous);
+				path.Add(previous);				
 				previous = previous.exploredFrom;
 			}
 			path.Add(startWaypoint);
@@ -52,7 +71,7 @@ public class Pathfinding : MonoBehaviour {
 		path.Reverse();
 	}
 
-	private void BreathFirstSearch()
+	private void BreathFirstSearch(CustomNavMesh cNavMesh)
 	{
 		queue.Enqueue(startWaypoint);
 
@@ -60,7 +79,7 @@ public class Pathfinding : MonoBehaviour {
 		{
 			searchCenter = queue.Dequeue();
 			HaltIfEndFound();
-			ExploreNeighbors();
+			ExploreNeighbors(cNavMesh.canNotMovePast);
 			searchCenter.isExplored = true;
 		}
 	}
@@ -69,13 +88,12 @@ public class Pathfinding : MonoBehaviour {
 	{
 		if (searchCenter.position == endWaypoint.position)
 		{
-			print("found end");
 			endWaypoint = searchCenter;
 			isRunning = false;
 		}
 	}
 
-	private void ExploreNeighbors()
+	private void ExploreNeighbors(LayerMask canNotMovePast)
 	{
 		if (isRunning)
 		{
@@ -84,7 +102,10 @@ public class Pathfinding : MonoBehaviour {
 				Vector2Int neighborCoordinate = searchCenter.position + direction;
 				if (grid.ContainsKey(neighborCoordinate))
 				{
-					QueueNewNeighbors(neighborCoordinate);
+					if (!Physics2D.Raycast(searchCenter.position, direction, 1, canNotMovePast))
+					{
+						QueueNewNeighbors(neighborCoordinate);
+					}
 				}
 			}
 		}
@@ -98,15 +119,15 @@ public class Pathfinding : MonoBehaviour {
 			//do nothing
 		}
 		else
-		{
+		{			
 			queue.Enqueue(neighbor);
 			neighbor.exploredFrom = searchCenter;
 		}
 	}
 
-	private void LoadNodes()
+	private void LoadNodes(CustomNavMesh cNavMesh)
 	{
-		var waypoints = FindObjectOfType<CustomNavMesh>().points;		
+		var waypoints = cNavMesh.points;		
 		foreach (Vector2Int waypoint in waypoints)
 		{
 			// overlapping blocks?			
