@@ -8,6 +8,7 @@ public class Drops : MonoBehaviour {
 	public Item thisItem = new Item();
 	public int databaseItemID;
 	public int hitPoints;
+	public float power;
 	bool playerCanPickup;
 	[SerializeField] SpriteRenderer[] sprites;
 	[SerializeField] Text text;
@@ -17,7 +18,7 @@ public class Drops : MonoBehaviour {
 	void Start()
 	{
 		Database database = Database.instance;
-		IdentifyItem(database.items[databaseItemID], database.items[databaseItemID].itemHitpoints);
+		IdentifyItem(database.items[databaseItemID], database.items[databaseItemID].itemHitpoints, database.items[databaseItemID].itemPower);
 		//Invoke("DestroyDrop", 10);
 	}
 
@@ -46,10 +47,11 @@ public class Drops : MonoBehaviour {
 		}
 	}
 
-	void IdentifyItem(Item item, int hp)
+	void IdentifyItem(Item item, int hp, float pwr)
 	{
 		thisItem = item;
 		hitPoints = hp;
+		power = pwr;
 		SpriteSetter(item);
 		text.text = thisItem.itemName + "\n" + thisItem.itemDesc;
 	}

@@ -93,6 +93,19 @@ public class RoomManager : MonoBehaviour {
         return spawnConfigs[layoutNumber];
     }
 
+	public static GameObject GetCurrentActiveRoom()
+	{
+		RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
+		foreach (RoomGeneration room in rooms)
+		{
+			if (room.roomActive)
+			{
+				return room.gameObject;
+			}
+		}
+		Debug.LogWarning("No active room");
+		return null;
+	}
     //Minimap processes here
     //Track number of rooms for special rooms
 

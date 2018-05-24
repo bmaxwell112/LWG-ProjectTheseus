@@ -40,30 +40,26 @@ public class BasicEnemy : MonoBehaviour {
 			);
 	}
 
-	// Update is called once per frame
-	void Update ()
+	public void EnemyUpdate()
 	{
 		if (RoomManager.allActive)
 		{
 			if (player)
 			{
 				DefineRotation();
-				EnemyMovement();
 			}
-		}
-	}
-	void FixedUpdate()
-	{
-		if (!roLo.attackLeft && RoomManager.allActive)
-		{
-			EnemyAttackCheck();
+
+			if (!roLo.attackLeft)
+			{
+				EnemyAttackCheck();
+			}
 		}
 	}
 
 	private void EnemyMovement()
 	{
 		float dist = Vector3.Distance(transform.position, player.transform.position);
-		if (!knockback && dist > 0.15f)
+		if (!knockback && dist > 0.35f)
 		{
 			roLo.walk = true;
 			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, (roLo.loadout[(int)ItemLoc.legs].itemSpeed - 0.5f) * Time.deltaTime);
@@ -77,11 +73,11 @@ public class BasicEnemy : MonoBehaviour {
 	private void EnemyAttackCheck()
 	{
 		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, firingArc.transform.up, 0.35f, playerMask);
-		if (hit.collider != null)
+		if (hit.collider != null && !roLo.attackLeft)
 		{
 			roLo.attackLeft = true;
 			roLo.attackRight = true;
-			Invoke("EnemyAttack", 0.3f);
+			Invoke("EnemyAttack", 0.5f);
 		}
 	}
 	private void EnemyAttack()
@@ -99,7 +95,6 @@ public class BasicEnemy : MonoBehaviour {
 	{
 		Vector3 diff = player.transform.position - transform.position;
 		diff.Normalize();
-
 		firingArc.eulerAngles = MovementFunctions.LookAt2D(transform, diff.x, diff.y);
 	}
 

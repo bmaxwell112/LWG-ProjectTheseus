@@ -21,7 +21,7 @@ public class RoomGeneration : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+
 		//QueuedStart();
 		roomsInExistence++;
 		roomActive = false;
@@ -173,6 +173,7 @@ public class RoomGeneration : MonoBehaviour {
         }
     }
 
+
 	public bool CheckForRoomClearance(Vector3 location, RoomGeneration[] rooms)
 	{		
 		foreach (RoomGeneration room in rooms)
@@ -199,7 +200,6 @@ public class RoomGeneration : MonoBehaviour {
             {
                 r.enabled = false;
             }
-
 			layout.SetActive(false);
         }
         else
@@ -210,6 +210,9 @@ public class RoomGeneration : MonoBehaviour {
             }
 
             layout.SetActive(true);
+			// TODO remove this
+			GetComponent<CustomNavMesh>().CheckAllDirections();
+			layout.SetActive(true);
 		}
     }
 
@@ -269,9 +272,4 @@ public class RoomGeneration : MonoBehaviour {
 			layout.SetActive(false);
 		}
     }
-
-    //define an array of objects (how am I going to define them, tag?)
-    //On start pull a random object from the array and instantiate it
-    //Objects will be configurations of spawn locations
-
 }

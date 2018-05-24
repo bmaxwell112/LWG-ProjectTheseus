@@ -5,13 +5,15 @@ using UnityEngine;
 public class RangeShortEnemy : MonoBehaviour {
 	
 	Transform player;
-	bool knockback, attacking;
+	bool knockback, attacking, noPower, melee;
 	[SerializeField] float knockbackDistance, rateOfFireOffset=1;
 	[SerializeField] GameObject drop, leftArm, rightArm, bulletPrefab;
 	[SerializeField] LayerMask playerMask;
 	[SerializeField] Transform firingArc;
+	[SerializeField] int defaultDamage = 3;
 	RobotLoadout roLo;
 	int attack;
+	
 
 	void Start()
 	{
@@ -47,15 +49,17 @@ public class RangeShortEnemy : MonoBehaviour {
 			roLo.loadout[3] = db.items[3];
 		}
 	}
-
-	// Update is called once per frame
-	void Update()
+	
+	public void EnemyUpdate()
 	{
 		if (RoomManager.allActive)
 		{
 			if (player)
-			{				
-				EnemyMovement();
+			{
+				if (noPower)
+				{
+					EnemyAttackCheck();
+				}
 			}
 		}
 	}
@@ -108,16 +112,54 @@ public class RangeShortEnemy : MonoBehaviour {
 		RangedWeapon rw = Database.instance.ItemsRangedWeapon(weapon);
 		if (rw.rangedWeaponItemID != -1)
 		{
-			while (true)
+			while (roLo.power[(int)weapon.itemLoc] > 0)
 			{
 				for (int i = 0; i < rw.rangedWeaponSpread; i++)
 				{
 					GameObject bullet = Instantiate(bulletPrefab) as GameObject;
 					bullet.GetComponent<BulletWeapon>().damageOffset = 0.5f;
-					bullet.GetComponent<BulletWeapon>().BulletSetup(rw, startLocation.transform.position, firingArc);
+					bullet.GetComponent<BulletWeapon>().BulletSetup(rw, startLocation.transform.position, firingArc);					
 				}
+				roLo.power[(int)weapon.itemLoc] -= rw.rangeWeaponPowerUse * 2;
 				yield return new WaitForSeconds(rw.rangeWeaponRateOfFire * rateOfFireOffset);
 			}
+			noPower = true;
+			GetComponent<EnemyController>().stoppingDistance = 0.25f;
 		}
+	}
+
+	private void EnemyMovementMelee()
+	{
+		float dist = Vector3.Distance(transform.position, player.transform.position);
+		if (!knockback && dist > 0.35f)
+		{
+			roLo.walk = true;
+			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, (roLo.loadout[(int)ItemLoc.legs].itemSpeed - 0.5f) * Time.deltaTime);
+		}
+		else
+		{
+			roLo.walk = false;
+		}
+	}
+	private void EnemyAttackCheck()
+	{
+		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, firingArc.transform.up, 0.35f, playerMask);
+		if (hit.collider != null && !roLo.attackLeft)
+		{
+			roLo.attackLeft = true;
+			roLo.attackRight = true;
+			Invoke("EnemyAttack", 0.5f);
+		}
+	}
+	private void EnemyAttack()
+	{
+		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, firingArc.transform.up, 0.35f, playerMask);
+		if (hit.collider != null)
+		{
+			print("dealing damage");
+			RobotFunctions.DealDamage(defaultDamage, hit.collider.gameObject);
+		}
+		roLo.attackLeft = false;
+		roLo.attackRight = false;
 	}
 }
