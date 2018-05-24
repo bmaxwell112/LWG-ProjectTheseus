@@ -594,6 +594,7 @@ GameObject:
   - component: {fileID: 114541831388048982}
   - component: {fileID: 23808292782134236}
   - component: {fileID: 114917109678998762}
+  - component: {fileID: 114715099959435176}
   m_Layer: 15
   m_Name: Room
   m_TagString: room
@@ -2431,6 +2432,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d4a60cf805757c4db4df1693ab87df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114715099959435176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1935376734419032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 504a498d096dccd44a3b329b30abf6c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yOffset: 3
+  yMax: 7
+  xOffset: fdfffffffcfffffffbfffffffafffffffbfffffffcfffffffdffffff
+  xMax: 07000000090000000b0000000d0000000b0000000900000007000000
+  canNotMovePast:
+    serializedVersion: 2
+    m_Bits: 20480
+  points: []
 --- !u!114 &114727059056998918
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2516,6 +2536,8 @@ MonoBehaviour:
   - {fileID: 114662839286414554}
   - {fileID: 114011377117613230}
   - {fileID: 114780930064844710}
+  roomListener: 0
+  enemyListener: 0
   manualUnlock: 0
   adjCheckedTrue: 0
 --- !u!114 &114937177444256048
