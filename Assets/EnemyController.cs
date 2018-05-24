@@ -94,7 +94,7 @@ public class EnemyController : MonoBehaviour {
 					{
 						Vector3 pos = new Vector3(node.position.x, node.position.y + 0.45f);
 						float checkTime = Time.time;
-						while (Vector3.Distance(pos, transform.position) > stoppingDistance)
+						while (Vector3.Distance(pos, transform.position) > 0.2f)
 						{
 							currentNodePos = node;
 							transform.position = Vector3.MoveTowards(transform.position, pos, (roLo.loadout[(int)ItemLoc.legs].itemSpeed - 0.5f) * Time.deltaTime);
@@ -108,7 +108,7 @@ public class EnemyController : MonoBehaviour {
 							yield return null;
 						}
 						roLo.walk = false;
-						if (recalculate)
+						if (recalculate || Vector3.Distance(player.transform.position, transform.position) < stoppingDistance)
 						{
 							break;
 						}

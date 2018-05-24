@@ -6,7 +6,7 @@ public class EnterDungeonTrigger : MonoBehaviour {
 
 	[SerializeField] int dungeon;
 	// Use this for initialization
-	void OnCollisionStay2D(Collision2D collision)
+	void OnTriggerStay2D(Collider2D collision)
 	{
 		if (InputCapture.pickup && !GameManager.gamePaused && collision.gameObject.CompareTag("Player"))
 		{
