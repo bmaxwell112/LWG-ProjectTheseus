@@ -2516,6 +2516,8 @@ MonoBehaviour:
   - {fileID: 114662839286414554}
   - {fileID: 114011377117613230}
   - {fileID: 114780930064844710}
+  roomListener: 0
+  enemyListener: 0
   manualUnlock: 0
   adjCheckedTrue: 0
 --- !u!114 &114937177444256048
