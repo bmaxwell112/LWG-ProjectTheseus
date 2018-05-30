@@ -7,15 +7,17 @@ public class PlayerController : MonoBehaviour {
 
 	[SerializeField] LayerMask drop, enemyMask;
 	[SerializeField] GameObject bullets;
-	[SerializeField] PlayerAttack leftArm, rightArm;
+	[SerializeField] RobotAttack leftArm, rightArm;
 	public Transform firingArc;
 	RobotLoadout roLo;
+	PlayerSpecial special;
 	Vector3 rotation;
 	bool fireLeft, fireRight;	
 
 	void Start()
 	{		
 		roLo = GetComponent<RobotLoadout>();
+		special = GetComponent<PlayerSpecial>();
 		PlayerSpawn();
 	}
 
@@ -88,22 +90,12 @@ public class PlayerController : MonoBehaviour {
 			rotation = MovementFunctions.LookAt2D(transform, InputCapture.hAim, InputCapture.vAim);
 		}
 		firingArc.eulerAngles = rotation;
+		// ATTACKING LEFT ARM
 		if (InputCapture.firingLeft && !fireLeft)
 		{
 			if (roLo.loadout[2].itemType == ItemType.range && roLo.power[2] > 0)
 			{				
 				leftArm.RangedAttack(roLo.loadout[2]);
-			}
-			else
-			{
-				if (roLo.hitPoints[3] > 0 && roLo.power[3] > 0)
-				{
-					leftArm.MeleeAttack(roLo.loadout[2], roLo);
-				}
-				else
-				{
-					leftArm.MeleeAttack(Database.instance.items[2], roLo);
-				}
 			}
 			fireLeft = true;
 		}
@@ -111,22 +103,12 @@ public class PlayerController : MonoBehaviour {
 		{
 			fireLeft = false;
 		}
+		// ATTACKING RIGHT ARM
 		if (InputCapture.firingRight  && !fireRight)
 		{
 			if (roLo.loadout[3].itemType == ItemType.range && roLo.power[3] > 0)
 			{
 				rightArm.RangedAttack(roLo.loadout[3]);
-			}
-			else
-			{
-				if (roLo.hitPoints[3] > 0 && roLo.power[3] > 0)
-				{
-					leftArm.MeleeAttack(roLo.loadout[3], roLo);
-				}
-				else
-				{
-					leftArm.MeleeAttack(Database.instance.items[3], roLo);
-				}
 			}
 			fireRight = true;
 		}
@@ -134,8 +116,8 @@ public class PlayerController : MonoBehaviour {
 		{
 			fireRight = false;			
 		}
-		rightArm.GetComponent<PlayerAttack>().FiringCheck(fireRight);
-		leftArm.GetComponent<PlayerAttack>().FiringCheck(fireLeft);
+		rightArm.GetComponent<RobotAttack>().FiringCheck(fireRight);
+		leftArm.GetComponent<RobotAttack>().FiringCheck(fireLeft);
 	}
 
 	private void MovementCheck()

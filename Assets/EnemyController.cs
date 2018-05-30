@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour {
 
 	[SerializeField] int enemyType;
+	[SerializeField] LayerMask walls;
+	[SerializeField] Transform firingArc;
 	public float stoppingDistance;
 	BasicEnemy basic;
 	RangeShortEnemy rangeShort;
@@ -13,13 +15,15 @@ public class EnemyController : MonoBehaviour {
 	CustomNavMesh cNavMesh;
 	RoomGeneration myRoom;
 	RobotLoadout roLo;
+	Collider2D coll;	
 	public bool stunned;
-	bool recalculate, startMovement;
+	bool recalculate, startMovement, reStartMovement;
 	Vector3 tracking;
 	Vector3 heightOffset = new Vector3(0, 0.45f, 0);
 
 	// Use this for initialization
 	void Start () {
+		coll = GetComponent<CapsuleCollider2D>();
 		tracking = transform.position;
 		player = FindObjectOfType<PlayerController>();
 		pathfinding = GetComponent<Pathfinding>();
@@ -38,10 +42,10 @@ public class EnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!stunned && player)
+		if (!stunned && player && !roLo.stopped)
 		{
 			if (enemyType == 0)
-			{				
+			{
 				basic.EnemyUpdate();
 			}
 			if (enemyType == 1)
@@ -52,7 +56,7 @@ public class EnemyController : MonoBehaviour {
 		else if (!player)
 		{
 			player = FindObjectOfType<PlayerController>();
-		}
+		}				
 		if (myRoom.roomActive && !startMovement)
 		{
 			StopAllCoroutines();
@@ -65,16 +69,17 @@ public class EnemyController : MonoBehaviour {
 			StopAllCoroutines();
 			startMovement = false;
 		}
-	}
-	public void ChangeBehaviour(int enemy)
-	{
-		enemyType = enemy;
-		if (enemyType == 0)
+		if (roLo.stopped && !reStartMovement)
 		{
-			if(rangeShort)
-				Destroy(rangeShort);
-			if (!basic)
-				basic = gameObject.AddComponent<BasicEnemy>();
+			StopAllCoroutines();
+			reStartMovement = true;
+		}
+		if (!roLo.stopped && reStartMovement)
+		{
+
+			reStartMovement = false;
+			StartCoroutine(UpdateMovement());
+			StartCoroutine(RecalculateTime());
 		}
 	}
 
@@ -126,5 +131,21 @@ public class EnemyController : MonoBehaviour {
 			yield return new WaitForSeconds(1);
 			recalculate = true;
 		}
+	}
+
+	public IEnumerator EnemyKnockback()
+	{
+		print("this");
+		Vector3 endLocation = firingArc.position - transform.up;
+		float dist = Vector3.Distance(endLocation, transform.position);
+		float startTime = Time.time;		
+		while (dist > 0.2f && !coll.IsTouchingLayers(walls))
+		{
+			transform.position = Vector3.Lerp(transform.position, endLocation, (Time.time - startTime) / 1f);
+			dist = Vector3.Distance(endLocation, transform.position);
+			yield return null;
+		}
+		StartCoroutine(UpdateMovement());
+		StartCoroutine(RecalculateTime());
 	}
 }

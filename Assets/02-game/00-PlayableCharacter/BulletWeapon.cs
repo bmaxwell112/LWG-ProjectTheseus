@@ -17,7 +17,7 @@ public class BulletWeapon : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D coll)
 	{
-		RobotFunctions.DealDamage(damage, coll.gameObject);			
+		RobotFunctions.DealDamage(damage, coll.gameObject, false);			
 		Destroy(gameObject);
 	}
 

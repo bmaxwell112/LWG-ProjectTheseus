@@ -8,11 +8,11 @@ public class RobotFunctions {
 	 * as well as the hitpoints and loadout of the affected object and a bool for 
 	 * if the effected object should be knocked back and one for if it drops an item. 
 	 */
-	public static void DealDamage(int damage, GameObject target)
+	public static void DealDamage(int damage, GameObject target, bool stopActions)
 	{
 		if (target.GetComponent<RobotLoadout>())
 		{
-			target.GetComponent<RobotLoadout>().TakeDamage(damage);
+			target.GetComponent<RobotLoadout>().TakeDamage(damage, stopActions);
 		}
 	}
 	//public static IEnumerator CauseKnockback(int value, GameObject target, Transform origin)
@@ -86,5 +86,5 @@ public class RobotFunctions {
 			}
 		}
 		return dropItemID;
-	}	
+	}		
 }

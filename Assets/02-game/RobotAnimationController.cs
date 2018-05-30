@@ -9,10 +9,11 @@ public class RobotAnimationController : MonoBehaviour {
 	RobotLoadout roLo;
 	[SerializeField] Transform firingArc;
 	Transform player;
+	[SerializeField] Animator leftArm;
 	Animator anim;
 	public static bool UpdatePlayerSprites, layerAbovePlayer;
-	enum Facing { upperLeft, left, lowerLeft, down, lowerRight, right, UpperRight, up }
-	Facing currentFacing;
+	public enum Facing { upperLeft, left, lowerLeft, down, lowerRight, right, UpperRight, up }
+	public Facing currentFacing;
 	bool isPlayer;
 	// Use this for initialization
 	void Start () {
@@ -59,7 +60,7 @@ public class RobotAnimationController : MonoBehaviour {
 		{
 			// facing lower left
 			currentFacing = Facing.lowerLeft;
-			int[] order = new int[] { 6, 6, 4, 4, 3 };
+			int[] order = new int[] { 6, 7, 4, 4, 3 };
 			UpdateSprites(SpriteSetter(1, 0, 3), order);
 		}
 		else if (firingArc.eulerAngles.z >= 157.5f && firingArc.eulerAngles.z < 202.5f)
@@ -86,7 +87,7 @@ public class RobotAnimationController : MonoBehaviour {
 		else if (firingArc.eulerAngles.z >= 292.5f && firingArc.eulerAngles.z < 337.5f)
 		{
 			// facing upper right
-			int[] order = new int[] { 4, 2, 6, 3, 4 };
+			int[] order = new int[] { 4, 2, 7, 3, 4 };
 			currentFacing = Facing.UpperRight;
 			UpdateSprites(SpriteSetter(5, 2, 3), order);
 		}
@@ -101,38 +102,9 @@ public class RobotAnimationController : MonoBehaviour {
 
 	private void EnemyTracking()
 	{
-		anim.SetInteger("facing", (int)currentFacing);
-		if (roLo.loadout[2].itemType == ItemType.range && (roLo.power[2] > 0 && roLo.hitPoints[2] > 0))
+		if (!anim.GetBool("hit"))
 		{
-			anim.SetBool("leftRangeAttack", true);
-		}
-		else
-		{
-			anim.SetBool("leftRangeAttack", false);
-		}
-		if (roLo.loadout[3].itemType == ItemType.range && (roLo.power[3] > 0 && roLo.hitPoints[3] > 0))
-		{
-			anim.SetBool("rightRangeAttack", true);
-		}
-		else
-		{
-			anim.SetBool("rightRangeAttack", false);
-		}
-		if (roLo.attackLeft && (roLo.loadout[2].itemType == ItemType.melee || (roLo.power[2] <= 0 || roLo.hitPoints[2] <= 0)))
-		{
-			anim.SetBool("leftAttack", true);
-		}
-		else
-		{
-			anim.SetBool("leftAttack", false);
-		}
-		if (roLo.attackRight && (roLo.loadout[3].itemType == ItemType.melee || (roLo.power[3] <= 0 || roLo.hitPoints[3] <= 0)))
-		{
-			anim.SetBool("rightAttack", true);
-		}
-		else
-		{
-			anim.SetBool("rightAttack", false);
+			anim.SetInteger("facing", (int)currentFacing);
 		}
 		if (roLo.walk)
 		{
@@ -162,31 +134,7 @@ public class RobotAnimationController : MonoBehaviour {
 		else
 		{
 			anim.SetFloat("speed", InputCapture.hThrow);
-		}
-		if (InputCapture.fireRightDown && (roLo.loadout[3].itemType == ItemType.melee || (roLo.power[3] <= 0 || roLo.hitPoints[3] <= 0)))
-		{
-			anim.SetBool("rightAttack", true);
-		}
-		if (InputCapture.fireLeftDown && (roLo.loadout[2].itemType == ItemType.melee || (roLo.power[2] <= 0 || roLo.hitPoints[2] <= 0)))
-		{
-			anim.SetBool("leftAttack", true);
-		}
-		if (InputCapture.firingLeft && roLo.loadout[2].itemType == ItemType.range && (roLo.power[2] > 0 && roLo.hitPoints[2] > 0))
-		{
-			anim.SetBool("leftRangeAttack", true);
-		}
-		else if ((!InputCapture.firingLeft && roLo.loadout[2].itemType == ItemType.range) || (roLo.power[2] <= 0 || roLo.hitPoints[2] <= 0))
-		{
-			anim.SetBool("leftRangeAttack", false);
-		}
-		if (InputCapture.firingRight && roLo.loadout[3].itemType == ItemType.range && (roLo.power[3] > 0 && roLo.hitPoints[3] > 0))
-		{
-			anim.SetBool("rightRangeAttack", true);
-		}
-		else if ((!InputCapture.firingRight && roLo.loadout[3].itemType == ItemType.range) || (roLo.power[3] <= 0 || roLo.hitPoints[3] <= 0))
-		{
-			anim.SetBool("rightRangeAttack", false);
-		}
+		}	
 	}
 
 
@@ -243,16 +191,6 @@ public class RobotAnimationController : MonoBehaviour {
 		}
 	}
 
-	public void DoneAttacking()
-	{
-		anim.SetBool("rightAttack", false);
-		anim.SetBool("rightRangeAttack", false);
-	}
-	public void DoneAttackingLeft()
-	{
-		anim.SetBool("leftAttack", false);
-		anim.SetBool("leftRangeAttack", false);
-	}
 
 	public void LayerChange()
 	{
@@ -287,5 +225,16 @@ public class RobotAnimationController : MonoBehaviour {
 				layerAbovePlayer = true;
 			}
 		}
+	}
+
+	public void EndHitStall()
+	{
+		roLo.stopped = false;
+		anim.SetBool("hit", false);
+	}
+	public void StartHitStall()
+	{
+		roLo.stopped = true;
+		anim.SetBool("hit", true);
 	}
 }

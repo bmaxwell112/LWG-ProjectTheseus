@@ -20,12 +20,14 @@ public class Database : MonoBehaviour {
 	public List<Item> items = new List<Item>();
 	public List<RangedWeapon> rangedWeapons = new List<RangedWeapon>();
 	public List<SpecialItems> specialItems = new List<SpecialItems>();
+	public List<MeleeWeapon> meleeWeapons = new List<MeleeWeapon>();
 
 	// Use this for initialization
 	void Start () {
 		SetupItems();
 		SetupRangedWeapons();
 		SetupSpecialItems();
+		SetupMeleeWeapons();
 	}
 	private void SetupItems()
 	{
@@ -84,6 +86,17 @@ public class Database : MonoBehaviour {
 		specialItems.Add(new SpecialItems(3, 25, new SpecialProp[] { SpecialProp.stun }, 1f, 0, 0, 0.25f));
 		specialItems.Add(new SpecialItems(4, 26, new SpecialProp[] { SpecialProp.bleed, SpecialProp.cleave }, 2f, 1, 0, 0.25f));
 		specialItems.Add(new SpecialItems(5, 27, new SpecialProp[] { SpecialProp.bleed, SpecialProp.cleave }, 2f, 1, 0, 0.25f));
+	}
+	void SetupMeleeWeapons()
+	{
+		meleeWeapons.Add(new MeleeWeapon(0, 2, 0.3f, 0.5f, false, true));
+		meleeWeapons.Add(new MeleeWeapon(1, 3, 0.3f, 0.5f, false, true));
+		meleeWeapons.Add(new MeleeWeapon(2, 22, 1.5f, 2, true, true));
+		meleeWeapons.Add(new MeleeWeapon(3, 23, 1.5f, 2, true, true));
+		meleeWeapons.Add(new MeleeWeapon(4, 24, 0.5f, 1, false, true));
+		meleeWeapons.Add(new MeleeWeapon(5, 25, 0.5f, 1, false, true));
+		meleeWeapons.Add(new MeleeWeapon(6, 26, 0.5f, 1, true, false));
+		meleeWeapons.Add(new MeleeWeapon(7, 27, 0.5f, 1, true, false));
 	}
 
 	public Item RandomItemOut(ItemLoc loc)
@@ -160,7 +173,19 @@ public class Database : MonoBehaviour {
 		}
 		return rw;
 	}
-
+	public MeleeWeapon ItemsMeleeWeapon(Item item)
+	{
+		MeleeWeapon mw = new MeleeWeapon();
+		for (int i = 0; i < meleeWeapons.Count; i++)
+		{
+			if (meleeWeapons[i].meleeWeaponItemID == item.itemID)
+			{
+				mw = meleeWeapons[i];
+				break;
+			}
+		}
+		return mw;
+	}
 	public SpecialItems ItemSpecialItem(Item item)
 	{
 		SpecialItems si = new SpecialItems();

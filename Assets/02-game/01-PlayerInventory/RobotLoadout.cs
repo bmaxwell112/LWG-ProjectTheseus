@@ -11,18 +11,18 @@ public class RobotLoadout : MonoBehaviour {
 	public float[] power;
 	[HideInInspector]
 	public bool attackLeft, attackRight, walk;
+	public bool stopped;
 	[HideInInspector]
 	public int dropOffset = 0;
 	int basicDamage = 5;
 	int basicSpeed = 5;
 	bool isPlayer;
+	public Item[] loadout = new Item[7];
 
 	void Start()
 	{
 		isPlayer = GetComponent<PlayerController>();
-	}
-
-	public Item[] loadout = new Item[7];
+	}	
 
 	// Resets the player to basic loadout.
 	public void InitializeLoadout(Item head, Item body, Item leftArm, Item rightArm, Item legs, Item back, Item core)
@@ -44,13 +44,15 @@ public class RobotLoadout : MonoBehaviour {
 		for (int i = 0; i < loadout.Length; i++)
 		{
 			power[i] = loadout[i].itemPower;
-		}
+		}		
 	}
 
-	public void TakeDamage(int damage)
+	public void TakeDamage(int damage, bool stopAction)
 	{
-        // Gets a list of live parts to see what can be damaged
-        List<int> liveParts = new List<int>();
+		print(stopAction);
+		stopped = stopAction;
+		List<int> liveParts = new List<int>();
+		//StartCoroutine(ChangeColor(transform.Find("Body").GetComponent<SpriteRenderer>()));
 		for (int i = 0; i < hitPoints.Length; i++)
 		{
 			if (hitPoints[i] > 0)
@@ -74,12 +76,22 @@ public class RobotLoadout : MonoBehaviour {
 		{
 			Die();
         }
+		if (stopAction)
+		{
+			print("Ran This");
+			RobotArmsAnim[] anims = GetComponentsInChildren<RobotArmsAnim>();
+			foreach (RobotArmsAnim a in anims)
+			{
+				a.DoneAttacking();
+			}
+			RobotAnimationController roAn = GetComponent<RobotAnimationController>();
+			roAn.StartHitStall();
+		}
 	}
 
 	private void Die()
 	{
         RoomGeneration parentRoom = GetComponentInParent<RoomGeneration>();
-        print("enemy died and checked");
         // Add if player later
         if (doesItDrop)
 		{
@@ -98,10 +110,12 @@ public class RobotLoadout : MonoBehaviour {
         
     }
 
-	public static IEnumerator ChangeColor(SpriteRenderer sr, Color color, float t)
+	public static IEnumerator ChangeColor(SpriteRenderer sr)
 	{
-		yield return new WaitForSeconds(t);
-		sr.color = color;
+		Color currentColor = sr.color;
+		sr.color = Color.red;
+		yield return new WaitForSeconds(0.5f);
+		sr.color = currentColor;
 	}
 
 	public void DropItem(int dropItemInt)
@@ -111,6 +125,7 @@ public class RobotLoadout : MonoBehaviour {
 			Transform currentRoom = RoomManager.GetCurrentActiveRoom().transform;
 
 			GameObject tempDrop = Instantiate(Resources.Load("Drops"), transform.position, Quaternion.identity, currentRoom) as GameObject;
+
 			tempDrop.GetComponent<Drops>().databaseItemID = dropItemInt;
 		}
 	}

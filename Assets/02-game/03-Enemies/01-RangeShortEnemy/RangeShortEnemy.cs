@@ -157,7 +157,8 @@ public class RangeShortEnemy : MonoBehaviour {
 		if (hit.collider != null)
 		{
 			print("dealing damage");
-			RobotFunctions.DealDamage(defaultDamage, hit.collider.gameObject);
+			// TODO change this to not always be false
+			RobotFunctions.DealDamage(defaultDamage, hit.collider.gameObject, false);
 		}
 		roLo.attackLeft = false;
 		roLo.attackRight = false;

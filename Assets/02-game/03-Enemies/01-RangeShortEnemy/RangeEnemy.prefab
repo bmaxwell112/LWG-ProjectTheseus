@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4055321326565530}
   - component: {fileID: 212408098252703944}
+  - component: {fileID: 114328018276732204}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -100,6 +101,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4142991097788750}
   - component: {fileID: 212759060068657556}
+  - component: {fileID: 114371997259905434}
+  - component: {fileID: 95201832805672424}
   m_Layer: 0
   m_Name: RightArmUpper
   m_TagString: Untagged
@@ -219,6 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4259628915399428}
   - component: {fileID: 212270631578713240}
+  - component: {fileID: 114751294146264002}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -235,6 +239,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4918621779337902}
   - component: {fileID: 212272695777648470}
+  - component: {fileID: 114272046480737808}
+  - component: {fileID: 95804930157453170}
   m_Layer: 0
   m_Name: LeftArmUpper
   m_TagString: Untagged
@@ -344,7 +350,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1777687158631406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4159298847152544}
@@ -514,6 +520,40 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95201832805672424
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1559754673327406}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d648c741663a98440a28911a8a65d81f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95804930157453170
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1958378088218352}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 793d24713650cbd44a81e416d8623a3b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114031938269478662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -531,6 +571,47 @@ MonoBehaviour:
   endWaypoint:
     isExplored: 0
     position: {x: 0, y: 0}
+--- !u!114 &114272046480737808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1958378088218352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb2f3cddd7864240bbc93a1f971cb2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armLocation: 2
+--- !u!114 &114328018276732204
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1105036969557512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08449c314aa113e47b2699e6d7be6fbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 512
+  FiringArc: {fileID: 4303227281282454}
+  armLocation: 2
+  meleeAttacking: 0
+--- !u!114 &114371997259905434
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1559754673327406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb2f3cddd7864240bbc93a1f971cb2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armLocation: 3
 --- !u!114 &114527185708413454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -579,6 +660,25 @@ MonoBehaviour:
   - {fileID: 212812773564032654}
   - {fileID: 212639654189091968}
   firingArc: {fileID: 4303227281282454}
+  leftArm: {fileID: 0}
+  currentFacing: 0
+--- !u!114 &114751294146264002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1875584751643136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08449c314aa113e47b2699e6d7be6fbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 512
+  FiringArc: {fileID: 4303227281282454}
+  armLocation: 3
+  meleeAttacking: 0
 --- !u!114 &114755111295193708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -596,6 +696,7 @@ MonoBehaviour:
   attackLeft: 0
   attackRight: 0
   walk: 0
+  stopped: 0
   dropOffset: 0
   loadout:
   - itemID: -1
@@ -694,6 +795,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 1
+  walls:
+    serializedVersion: 2
+    m_Bits: 0
   stoppingDistance: 2
   stunned: 0
 --- !u!212 &212032829675478064

@@ -63,8 +63,15 @@ public class Pathfinding : MonoBehaviour {
 			Waypoint previous = endWaypoint.exploredFrom;
 			while (previous != startWaypoint)
 			{
-				path.Add(previous);				
-				previous = previous.exploredFrom;
+				path.Add(previous);
+				if (previous.exploredFrom != null)
+				{
+					previous = previous.exploredFrom;
+				}
+				else
+				{
+					break;
+				}
 			}
 			path.Add(startWaypoint);
 		}

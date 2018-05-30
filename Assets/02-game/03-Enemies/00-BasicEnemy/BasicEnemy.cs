@@ -48,8 +48,7 @@ public class BasicEnemy : MonoBehaviour {
 			{
 				DefineRotation();
 			}
-
-			if (!roLo.attackLeft)
+			if (RoomManager.allActive)
 			{
 				EnemyAttackCheck();
 			}
@@ -72,23 +71,14 @@ public class BasicEnemy : MonoBehaviour {
 
 	private void EnemyAttackCheck()
 	{
-		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, firingArc.transform.up, 0.35f, playerMask);
-		if (hit.collider != null && !roLo.attackLeft)
+		RaycastHit2D hit = Physics2D.CircleCast(firingArc.transform.position, 0.45f, firingArc.transform.up, 0.45f, playerMask);
+		if (hit.collider != null && !roLo.attackLeft && !roLo.stopped)
 		{
+			print("Hit " + hit.collider.gameObject.name);
 			roLo.attackLeft = true;
 			roLo.attackRight = true;
-			Invoke("EnemyAttack", 0.5f);
+			Invoke("EndAttack", 2);
 		}
-	}
-	private void EnemyAttack()
-	{
-		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, firingArc.transform.up, 0.35f, playerMask);
-		if (hit.collider != null)
-		{
-			RobotFunctions.DealDamage(attack, hit.collider.gameObject);
-		}
-		roLo.attackLeft = false;
-		roLo.attackRight = false;
 	}
 
 	private void DefineRotation()
@@ -98,20 +88,9 @@ public class BasicEnemy : MonoBehaviour {
 		firingArc.eulerAngles = MovementFunctions.LookAt2D(transform, diff.x, diff.y);
 	}
 
-	
-
-	public IEnumerator EnemyKnockback()
-	{
-		Vector3 endLocation = transform.position - transform.up;
-		float dist = Vector3.Distance(endLocation, transform.position);
-		float startTime = Time.time;
-		knockback = true;
-		while (dist > 0.2f)
-		{
-			transform.position = Vector3.Lerp(transform.position, endLocation, (Time.time - startTime) / 1f);
-			dist = Vector3.Distance(endLocation, transform.position);
-			yield return null;
-		}
-		knockback = false;
+	private void EndAttack()
+	{	
+		roLo.attackLeft = false;
+		roLo.attackRight = false;
 	}
 }

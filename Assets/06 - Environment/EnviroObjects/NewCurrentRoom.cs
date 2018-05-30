@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -91,7 +91,6 @@ public class NewCurrentRoom : MonoBehaviour {
     {
         GetAdjustment();
 
-		print("Room Active");
         RoomManager.allActive = false;
         roomGen.roomActive = false;
 		RoomGeneration nextRoom = FindNearbyRoom();
@@ -113,7 +112,6 @@ public class NewCurrentRoom : MonoBehaviour {
             yield return null;
         }
         nextRoom.CheckEnemies();
-		print("Finished");
 		RoomManager.allActive = true;
     }
 }
