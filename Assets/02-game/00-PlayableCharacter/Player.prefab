@@ -262,14 +262,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4001388926385082}
-  - component: {fileID: 114837784949216246}
   - component: {fileID: 114298095096763580}
+  - component: {fileID: 114837784949216246}
+  - component: {fileID: 114828169062752192}
+  - component: {fileID: 114005937728216510}
   - component: {fileID: 61349401804430116}
   - component: {fileID: 50527218555790112}
-  - component: {fileID: 114828169062752192}
   - component: {fileID: 95689564433708926}
   - component: {fileID: 70256726274634092}
-  - component: {fileID: 114005937728216510}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -634,6 +634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doesItDrop: 0
+  damageOffset: 1
   hitPoints: 
   power: []
   attackLeft: 0

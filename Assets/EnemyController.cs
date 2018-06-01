@@ -7,6 +7,8 @@ public class EnemyController : MonoBehaviour {
 	[SerializeField] int enemyType;
 	[SerializeField] LayerMask walls;
 	[SerializeField] Transform firingArc;
+	[SerializeField] float attackDelay, timeBetweenAttacks;
+	[SerializeField] LayerMask playerMask;
 	public float stoppingDistance;
 	BasicEnemy basic;
 	RangeShortEnemy rangeShort;
@@ -52,6 +54,7 @@ public class EnemyController : MonoBehaviour {
 			{
 				rangeShort.EnemyUpdate();
 			}
+			EnemyAttackCheck();
 		}
 		else if (!player)
 		{
@@ -84,13 +87,12 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	IEnumerator UpdateMovement()
-	{
-		yield return new WaitForSeconds(2);
+	{		
 		Waypoint currentNodePos = pathfinding.TransformToWaypoint(transform);
 		while (true)
 		{
 			recalculate = false;
-			if (player && cNavMesh)
+			if (player && cNavMesh && RoomManager.allActive)
 			{				
 				List<Waypoint> path = pathfinding.GetPath(player.transform, cNavMesh, currentNodePos);
 				if (path.Count > 1)
@@ -147,5 +149,25 @@ public class EnemyController : MonoBehaviour {
 		}
 		StartCoroutine(UpdateMovement());
 		StartCoroutine(RecalculateTime());
+	}
+
+	private void EnemyAttackCheck()
+	{
+		RaycastHit2D hit = Physics2D.CircleCast(firingArc.transform.position, 0.45f, firingArc.transform.up, 0.45f, playerMask);
+		if (hit.collider != null && !roLo.attackLeft && !roLo.stopped)
+		{
+			print("Hit " + hit.collider.gameObject.name);
+			StartCoroutine(EnemyAttack());
+		}
+	}
+
+	private IEnumerator EnemyAttack()
+	{
+		yield return new WaitForSeconds(attackDelay);
+		roLo.attackLeft = true;
+		roLo.attackRight = true;
+		yield return new WaitForSeconds(timeBetweenAttacks - attackDelay);
+		roLo.attackLeft = false;
+		roLo.attackRight = false;
 	}
 }

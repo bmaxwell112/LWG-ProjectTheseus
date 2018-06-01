@@ -29,6 +29,7 @@ public class Database : MonoBehaviour {
 		SetupSpecialItems();
 		SetupMeleeWeapons();
 	}
+	
 	private void SetupItems()
 	{
 		items.Add(new Item(0, "Basic Head", "A head taken from the only schematics you have left.", ItemLoc.head, ItemType.aesthetic, 1, GetSprite("GreenGuy/head"), 10, 0, 0, 1, false));
@@ -53,10 +54,10 @@ public class Database : MonoBehaviour {
 		items.Add(new Item(19, "Chair Flintlock", "A failed capsule launcher prototype, capsules expand into chairs immediately after firing. Does an unusual amount of damage.", ItemLoc.rightArm, ItemType.range, 5, GetSprite("Secondary/armMachineGun"), 10, 20, 0, 1, false));
 		items.Add(new Item(20, "Shield L", "A defensive item that guards you from damage in the front.", ItemLoc.leftArm, ItemType.aesthetic, 3, GetSprite("GreenGuy/arm"), 20, 0, 0, 1, true));
 		items.Add(new Item(21, "Shield R", "A defensive item that guards you from damage in the front.", ItemLoc.rightArm, ItemType.aesthetic, 3, GetSprite("GreenGuy/arm"), 20, 0, 0, 1, true));
-		items.Add(new Item(22, "Blade L", "A melee weapon that deals decent damage in a swinging arc.", ItemLoc.leftArm, ItemType.melee, 2, GetSprite("Secondary/arm"), 20, 10, 0, 1, false));
-		items.Add(new Item(23, "Blade R", "A melee weapon that deals decent damage in a swinging arc.", ItemLoc.rightArm, ItemType.melee, 2, GetSprite("Secondary/arm"), 20, 10, 0, 1, false));
-		items.Add(new Item(24, "Stun Baton L", "A melee weapon that stuns enemies that get too close.", ItemLoc.leftArm, ItemType.melee, 3, GetSprite("Secondary/arm"), 20, 5, 0, 1, true));
-		items.Add(new Item(25, "Stun Baton R", "A melee weapon that stuns enemies that get too close.", ItemLoc.rightArm, ItemType.melee, 3, GetSprite("Secondary/arm"), 20, 5, 0, 1, true));
+		items.Add(new Item(22, "Blade L", "A melee weapon that deals decent damage in a swinging arc.", ItemLoc.leftArm, ItemType.melee, 2, GetSprite("armBlade/sprites"), 20, 10, 0, 1, false));
+		items.Add(new Item(23, "Blade R", "A melee weapon that deals decent damage in a swinging arc.", ItemLoc.rightArm, ItemType.melee, 2, GetSprite("armBlade/sprites"), 20, 10, 0, 1, false));
+		items.Add(new Item(24, "Stun Baton L", "A melee weapon that stuns enemies that get too close.", ItemLoc.leftArm, ItemType.melee, 3, GetSprite("stunBaton/sprites"), 20, 5, 0, 1, true));
+		items.Add(new Item(25, "Stun Baton R", "A melee weapon that stuns enemies that get too close.", ItemLoc.rightArm, ItemType.melee, 3, GetSprite("stunBaton/sprites"), 20, 5, 0, 1, true));
 		items.Add(new Item(26, "Chainsaw L", "A melee weapon that deals damage over time and cleaves parts.", ItemLoc.leftArm, ItemType.melee, 4, GetSprite("Secondary/arm"), 20, 6, 0, 1, true));
 		items.Add(new Item(27, "Chainsaw R", "A melee weapon that deals damage over time and cleaves parts.", ItemLoc.rightArm, ItemType.melee, 4, GetSprite("Secondary/arm"), 20, 6, 0, 1, true));
 		items.Add(new Item(28, "Bronze Club R", "A slow but massively powerful melee weapon.", ItemLoc.rightArm, ItemType.melee, 5,GetSprite("Secondary/arm"), 30, 30, 0, 1, false));
@@ -91,7 +92,7 @@ public class Database : MonoBehaviour {
 	{
 		meleeWeapons.Add(new MeleeWeapon(0, 2, 0.3f, 0.5f, false, true));
 		meleeWeapons.Add(new MeleeWeapon(1, 3, 0.3f, 0.5f, false, true));
-		meleeWeapons.Add(new MeleeWeapon(2, 22, 1.5f, 2, true, true));
+		meleeWeapons.Add(new MeleeWeapon(2, 22, 1.5f, 2, true, true, GetAnim("armBlade/anim/BladeLeft")));
 		meleeWeapons.Add(new MeleeWeapon(3, 23, 1.5f, 2, true, true));
 		meleeWeapons.Add(new MeleeWeapon(4, 24, 0.5f, 1, false, true));
 		meleeWeapons.Add(new MeleeWeapon(5, 25, 0.5f, 1, false, true));
@@ -158,6 +159,11 @@ public class Database : MonoBehaviour {
 		var newSprites = Resources.LoadAll(name, typeof(Sprite)).Cast<Sprite>().ToArray();
 		return newSprites;
 
+	}
+	AnimatorOverrideController GetAnim(string name)
+	{
+		AnimatorOverrideController newAnim = Resources.Load(name) as AnimatorOverrideController;
+		return newAnim;
 	}
 
 	public RangedWeapon ItemsRangedWeapon(Item item)

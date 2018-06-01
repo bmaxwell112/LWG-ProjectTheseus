@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,9 +27,7 @@ public class RobotAttack : MonoBehaviour {
 	{
 		if (!meleeAttacking)
 		{
-			print(roLo.loadout[armLocation].itemName);
 			MeleeWeapon mw = Database.instance.ItemsMeleeWeapon(roLo.loadout[armLocation]);
-			print(roLo.loadout[armLocation].itemName + " " + mw.meleeWeaponItemID);
 			RaycastHit2D enemy = Physics2D.CircleCast(
 						new Vector2(transform.position.x, transform.position.y),
 						0.5f,
@@ -46,11 +45,16 @@ public class RobotAttack : MonoBehaviour {
 						special.ActivateSpecialActive(roLo.loadout[armLocation], enemy.collider.gameObject);
 					}
 				}
-				print(mw.meleeWeaponItemID + " " + mw.meleeWeaponStopTarget);
-				RobotFunctions.DealDamage(roLo.loadout[armLocation].itemDamage, enemy.collider.gameObject, mw.meleeWeaponStopTarget);
+				RobotFunctions.DealDamage(Damage(), enemy.collider.gameObject, mw.meleeWeaponStopTarget);
 			}
 			meleeAttacking = true;
 		}
+	}
+
+	private int Damage()
+	{
+		int dmg = Mathf.RoundToInt(roLo.loadout[armLocation].itemDamage * roLo.damageOffset);
+		return dmg;
 	}
 
 	public void RangedAttack(Item weapon)

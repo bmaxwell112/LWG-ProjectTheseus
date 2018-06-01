@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeWeapon : MonoBehaviour {
+[System.Serializable]
+public class MeleeWeapon {
 
 	public int meleeWeaponID;
 	public int meleeWeaponItemID;
@@ -10,7 +11,18 @@ public class MeleeWeapon : MonoBehaviour {
 	public float meleeWeaponAttackTime;
 	public bool meleeWeaponStopMovement;
 	public bool meleeWeaponStopTarget;
+	public AnimatorOverrideController meleeWeaponAnim;
 
+	public MeleeWeapon(int id, int itemID, float timeInSecondsToHit, float attackTimeInSeconds, bool stopMovement, bool stopTarget, AnimatorOverrideController anim)
+	{
+		meleeWeaponID = id;
+		meleeWeaponItemID = itemID;
+		meleeWeaponAnticipation = timeInSecondsToHit;
+		meleeWeaponAttackTime = attackTimeInSeconds;
+		meleeWeaponStopMovement = stopMovement;
+		meleeWeaponStopTarget = stopTarget;
+		meleeWeaponAnim = anim;
+	}
 	public MeleeWeapon(int id, int itemID, float timeInSecondsToHit, float attackTimeInSeconds, bool stopMovement, bool stopTarget)
 	{
 		meleeWeaponID = id;

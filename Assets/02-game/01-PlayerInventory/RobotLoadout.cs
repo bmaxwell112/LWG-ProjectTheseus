@@ -7,6 +7,7 @@ public class RobotLoadout : MonoBehaviour {
 
 	[Tooltip("This bool indicates whether the robot drops items")]
 	[SerializeField] bool doesItDrop;
+	public float damageOffset = 1;
 	public int[] hitPoints;
 	public float[] power;
 	[HideInInspector]

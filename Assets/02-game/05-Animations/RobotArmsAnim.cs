@@ -7,11 +7,14 @@ public class RobotArmsAnim : MonoBehaviour {
 	RobotLoadout roLo;
 	Animator anim;
 	RobotAnimationController animCont;
+	//AnimatorOverrideController aoc;
 	// 2 left 3 right
-	[SerializeField] int armLocation;
+	[SerializeField] int armLocation;	
 	RobotAttack attack;
 	int rotationNum;
 	bool isPlayer;
+	protected List<KeyValuePair<AnimationClip, AnimationClip>> overrides;
+	protected AnimatorOverrideController aoc;
 
 	void Start()
 	{
@@ -20,6 +23,9 @@ public class RobotArmsAnim : MonoBehaviour {
 		anim = GetComponent<Animator>();
 		roLo = GetComponentInParent<RobotLoadout>();
 		isPlayer = GetComponentInParent<PlayerController>();
+		aoc = new AnimatorOverrideController(anim.runtimeAnimatorController);
+		anim.runtimeAnimatorController = aoc;
+		//print(aoc.overridesCount);
 	}
 
 	void Update()
@@ -117,5 +123,20 @@ public class RobotArmsAnim : MonoBehaviour {
 	public void MeleeAttack()
 	{
 		attack.MeleeAttack();
+	}
+
+	public void SwapWeapons(AnimatorOverrideController rac)
+	{
+		
+		//anim.runtimeAnimatorController = rac;		
+		overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>(rac.overridesCount);
+		rac.GetOverrides(overrides);
+		for (int i = 0; i < overrides.Count; ++i)
+		{
+			overrides[i] = new KeyValuePair<AnimationClip, AnimationClip>(overrides[i].Key, overrides[i].Value);
+			print(overrides[i].Value);
+		}		
+		aoc.ApplyOverrides(overrides);
+		anim.Update(0f);
 	}
 }

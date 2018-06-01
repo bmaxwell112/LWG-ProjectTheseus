@@ -37,6 +37,22 @@ public class RobotFunctions {
 				float tempPower = player.power[i];
 				player.power[i] = drop.power;
 				drop.power = tempPower;
+				if (player.loadout[i].itemType == ItemType.melee)
+				{
+					MeleeWeapon mw = Database.instance.ItemsMeleeWeapon(player.loadout[i]);
+					RobotArmsAnim[] anim = player.GetComponentsInChildren<RobotArmsAnim>();
+					if (player.loadout[i].itemLoc == ItemLoc.leftArm)
+					{
+						try
+						{
+							anim[0].SwapWeapons(mw.meleeWeaponAnim);							
+						}
+						catch (UnityException e)
+						{
+							Debug.LogException(e);
+						}
+					}
+				}
 				break;
 			}
 		}
@@ -86,5 +102,7 @@ public class RobotFunctions {
 			}
 		}
 		return dropItemID;
-	}		
+	}
 }
+
+

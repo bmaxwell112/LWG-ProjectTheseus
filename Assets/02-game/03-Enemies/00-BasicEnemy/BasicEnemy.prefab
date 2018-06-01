@@ -628,6 +628,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   firingArc: {fileID: 4120682850555158}
+  attackDelay: 0
+  timeBetweenAttacks: 0
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 1024
   stoppingDistance: 0.25
   stunned: 0
 --- !u!114 &114092057759797174
@@ -676,9 +681,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drop: {fileID: 1090207910700034, guid: dd2fed08fca70e146877d9b4fdefd994, type: 2}
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 1024
   firingArc: {fileID: 4120682850555158}
 --- !u!114 &114466242008262472
 MonoBehaviour:
@@ -719,6 +721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doesItDrop: 1
+  damageOffset: 0.5
   hitPoints: 
   power: []
   attackLeft: 0

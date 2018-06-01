@@ -5,13 +5,11 @@ using UnityEngine;
 public class RangeShortEnemy : MonoBehaviour {
 	
 	Transform player;
-	bool knockback, attacking, noPower, melee;
-	[SerializeField] float knockbackDistance, rateOfFireOffset=1;
+	bool knockback, attacking, noPower, melee, walkTo;
+	[SerializeField] float rateOfFireOffset=1;
 	[SerializeField] GameObject drop, leftArm, rightArm, bulletPrefab;
-	[SerializeField] LayerMask playerMask;
 	[SerializeField] Transform firingArc;
-	[SerializeField] int defaultDamage = 3;
-	RobotLoadout roLo;
+	RobotLoadout roLo;	
 	int attack;
 	
 
@@ -56,25 +54,12 @@ public class RangeShortEnemy : MonoBehaviour {
 		{
 			if (player)
 			{
-				if (noPower)
+				if (noPower && !walkTo)
 				{
-					EnemyAttackCheck();
+					GetComponent<EnemyController>().stoppingDistance = 0.5f;
+					walkTo = true;
 				}
 			}
-		}
-	}
-
-	private void EnemyMovement()
-	{
-		float dist = Vector3.Distance(transform.position, player.transform.position);
-		if (!knockback && dist > 2)
-		{
-			roLo.walk = true;
-			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, (roLo.loadout[(int)ItemLoc.legs].itemSpeed - 0.5f) * Time.deltaTime);
-		}
-		else
-		{
-			roLo.walk = false;
 		}
 	}
 	
@@ -126,41 +111,5 @@ public class RangeShortEnemy : MonoBehaviour {
 			noPower = true;
 			GetComponent<EnemyController>().stoppingDistance = 0.25f;
 		}
-	}
-
-	private void EnemyMovementMelee()
-	{
-		float dist = Vector3.Distance(transform.position, player.transform.position);
-		if (!knockback && dist > 0.35f)
-		{
-			roLo.walk = true;
-			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, (roLo.loadout[(int)ItemLoc.legs].itemSpeed - 0.5f) * Time.deltaTime);
-		}
-		else
-		{
-			roLo.walk = false;
-		}
-	}
-	private void EnemyAttackCheck()
-	{
-		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, firingArc.transform.up, 0.35f, playerMask);
-		if (hit.collider != null && !roLo.attackLeft)
-		{
-			roLo.attackLeft = true;
-			roLo.attackRight = true;
-			Invoke("EnemyAttack", 0.5f);
-		}
-	}
-	private void EnemyAttack()
-	{
-		RaycastHit2D hit = Physics2D.Raycast(firingArc.transform.position, firingArc.transform.up, 0.35f, playerMask);
-		if (hit.collider != null)
-		{
-			print("dealing damage");
-			// TODO change this to not always be false
-			RobotFunctions.DealDamage(defaultDamage, hit.collider.gameObject, false);
-		}
-		roLo.attackLeft = false;
-		roLo.attackRight = false;
 	}
 }

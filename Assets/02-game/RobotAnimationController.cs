@@ -11,14 +11,16 @@ public class RobotAnimationController : MonoBehaviour {
 	Transform player;
 	[SerializeField] Animator leftArm;
 	Animator anim;
+	Animator[] arms;
 	public static bool UpdatePlayerSprites, layerAbovePlayer;
 	public enum Facing { upperLeft, left, lowerLeft, down, lowerRight, right, UpperRight, up }
-	public Facing currentFacing;
-	bool isPlayer;
+	public Facing currentFacing;	
+	bool isPlayer, attacking;
 	// Use this for initialization
 	void Start () {
 		roLo = GetComponent<RobotLoadout>();		
 		anim = GetComponent<Animator>();
+		arms = GetComponentsInChildren<Animator>();
 		isPlayer = GetComponent<PlayerController>();
 	}
 	
@@ -27,7 +29,14 @@ public class RobotAnimationController : MonoBehaviour {
 	{
 		if (!GameManager.paused)
 		{
-			DetectFacingAndSetOrder();
+			print(arms[1].GetBool("attackingMelee"));
+			if (!arms[1].GetBool("attackingMelee"))
+			{
+				if (!arms[2].GetBool("attackingMelee"))
+				{
+					DetectFacingAndSetOrder();
+				}
+			}
 			if (isPlayer)
 			{
 				PlayerTracking();

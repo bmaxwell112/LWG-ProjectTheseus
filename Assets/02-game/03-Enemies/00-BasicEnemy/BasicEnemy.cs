@@ -7,7 +7,6 @@ public class BasicEnemy : MonoBehaviour {
 	Transform player;
 	bool knockback;
 	[SerializeField] GameObject drop;
-	[SerializeField] LayerMask playerMask;
 	[SerializeField] Transform firingArc;
 	RobotLoadout roLo;
 	UniveralActions actions;
@@ -48,36 +47,6 @@ public class BasicEnemy : MonoBehaviour {
 			{
 				DefineRotation();
 			}
-			if (RoomManager.allActive)
-			{
-				EnemyAttackCheck();
-			}
-		}
-	}
-
-	private void EnemyMovement()
-	{
-		float dist = Vector3.Distance(transform.position, player.transform.position);
-		if (!knockback && dist > 0.35f)
-		{
-			roLo.walk = true;
-			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, (roLo.loadout[(int)ItemLoc.legs].itemSpeed - 0.5f) * Time.deltaTime);
-		}
-		else
-		{
-			roLo.walk = false;
-		}
-	}
-
-	private void EnemyAttackCheck()
-	{
-		RaycastHit2D hit = Physics2D.CircleCast(firingArc.transform.position, 0.45f, firingArc.transform.up, 0.45f, playerMask);
-		if (hit.collider != null && !roLo.attackLeft && !roLo.stopped)
-		{
-			print("Hit " + hit.collider.gameObject.name);
-			roLo.attackLeft = true;
-			roLo.attackRight = true;
-			Invoke("EndAttack", 2);
 		}
 	}
 
@@ -88,9 +57,4 @@ public class BasicEnemy : MonoBehaviour {
 		firingArc.eulerAngles = MovementFunctions.LookAt2D(transform, diff.x, diff.y);
 	}
 
-	private void EndAttack()
-	{	
-		roLo.attackLeft = false;
-		roLo.attackRight = false;
-	}
 }
