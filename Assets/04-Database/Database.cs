@@ -90,7 +90,7 @@ public class Database : MonoBehaviour {
 	}
 	void SetupMeleeWeapons()
 	{
-		meleeWeapons.Add(new MeleeWeapon(0, 2, 0.3f, 0.5f, false, true));
+		meleeWeapons.Add(new MeleeWeapon(0, 2, 0.3f, 0.5f, false, true, GetAnim("GreenGuy/armLeft")));
 		meleeWeapons.Add(new MeleeWeapon(1, 3, 0.3f, 0.5f, false, true));
 		meleeWeapons.Add(new MeleeWeapon(2, 22, 1.5f, 2, true, true, GetAnim("armBlade/anim/BladeLeft")));
 		meleeWeapons.Add(new MeleeWeapon(3, 23, 1.5f, 2, true, true));
