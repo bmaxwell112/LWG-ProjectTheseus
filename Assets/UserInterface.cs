@@ -10,19 +10,30 @@ public class UserInterface : MonoBehaviour {
 	[SerializeField] Image head, body;
 	[SerializeField] Image[] leftArm, rightArm, leftLeg, rightLeg, liveStats;
 	[SerializeField] GameObject PauseScreen;
+    [SerializeField] GameObject TechTree;
+    [SerializeField] GameObject TopBtns;
+    [SerializeField] GameObject PlayerLoadOut;
 	[SerializeField] Button startBtn;
 	RobotLoadout playerLo;
 	public bool loadoutCanBeChanged;
+    public bool pointsAvailable;
 	public int loadoutIndex;
 	int currentIndex;
+    public int abilitySet;
+    public bool loadOutUp;
 
 	// Use this for initialization
 	void Start () {
 
 		playerLo = FindObjectOfType<PlayerController>().GetComponent<RobotLoadout>();
 		currentIndex = -1;
-		PauseSceenUpdate();
+		PauseScreenUpdate();
 		PauseScreen.SetActive(false);
+        TechTree.SetActive(false);
+        TopBtns.SetActive(false);
+        pointsAvailable = false;
+
+        int abilitySet = 0;
 	}
 	
 	// Update is called once per frame
@@ -37,6 +48,8 @@ public class UserInterface : MonoBehaviour {
 		}
 		if (GameManager.paused)
 		{
+            NavigateMenu();
+
 			if (currentIndex != loadoutIndex)
 			{
 				UpdateDisplayDetails();
@@ -45,36 +58,59 @@ public class UserInterface : MonoBehaviour {
 			if (loadoutCanBeChanged)
 			{
 				ChangeSelectedItem();
-				PauseSceenUpdate();
+				PauseScreenUpdate();
 			}
-		}
+        }
 		LoadOutCheck();
 	}
 
-	private void ResumeGame()
+	public void ResumeGame()
 	{
 		GameManager.GamePause(false);
 		PauseScreen.SetActive(false);
+        TechTree.SetActive(false);
+        TopBtns.SetActive(false);
+        PlayerLoadOut.SetActive(true);
 		loadoutCanBeChanged = false;
+        pointsAvailable = false;
 	}
 
 	public void PauseGame()
 	{
 		GameManager.GamePause(true);
-		PauseScreen.SetActive(true);
-		startBtn.Select();
-		PauseSceenUpdate();
+        TopBtns.SetActive(true);
+        PlayerLoadOut.SetActive(false);
+        if (pointsAvailable)
+        {
+            TechTree.SetActive(true);
+        }
+        else
+        {
+            PauseScreen.SetActive(true);
+        }
+
+        startBtn.Select();
+		PauseScreenUpdate();
 		if (loadoutCanBeChanged)
 		{
-			pageTitle.text = "Choose\nLoadout";
+			pageTitle.text = "Choose Loadout";
 		}
-		else
+		else if(pointsAvailable)
+        {
+            pageTitle.text = "Tech Tree"; 
+        }
+        else
 		{
 			pageTitle.text = "Paused";			
 		}
 	}	
 
-	void PauseSceenUpdate()
+    void NavigateMenu()
+    {
+
+    }
+
+	void PauseScreenUpdate()
 	{
 		for (int i = 0; i < playerLo.loadout.Length; i++)
 		{
