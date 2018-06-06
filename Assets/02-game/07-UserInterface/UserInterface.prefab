@@ -3776,7 +3776,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Rogue\t"
+  m_Text: Locked
 --- !u!114 &114230459775217950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4923,7 +4923,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Mage
+  m_Text: Locked
 --- !u!114 &114449109141752026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7132,7 +7132,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Warrior
+  m_Text: Locked
 --- !u!114 &114927154825556792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9931,7 +9931,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.56, y: 0}
+  m_AnchoredPosition: {x: 0.39, y: 0}
   m_SizeDelta: {x: 375, y: 102}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224146136634610908
@@ -10248,7 +10248,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.52, y: 0}
+  m_AnchoredPosition: {x: 0.35, y: 0}
   m_SizeDelta: {x: 375, y: 102}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224307564044258878
@@ -12022,7 +12022,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.17, y: 0}
+  m_AnchoredPosition: {x: 0.34, y: 0}
   m_SizeDelta: {x: 375, y: 102}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224998866442149356

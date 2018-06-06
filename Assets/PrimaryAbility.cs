@@ -20,17 +20,19 @@ public class PrimaryAbility : MonoBehaviour {
 
     void CheckSet()
     {
+        // Block, Hacking, Dodge Roll
+
         if(ui.abilitySet == 0)
         {
-            abtext.text = "Block";
+            abtext.text = "Locked";
         }
         else if(ui.abilitySet == 1)
         {
-            abtext.text = "Hacking";
+            abtext.text = "Locked";
         }
         else if(ui.abilitySet == 2)
         {
-            abtext.text = "Dodge Roll";
+            abtext.text = "Locked";
         }
     }
 }
