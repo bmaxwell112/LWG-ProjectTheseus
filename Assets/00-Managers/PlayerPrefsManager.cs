@@ -17,6 +17,9 @@ public class PlayerPrefsManager : MonoBehaviour {
 	const string MASTER_VOLUME_KEY = "master_volume";
 	const string SFX_VOLUME_KEY = "SFX_volume";
 
+    const string POINT_VALUE = "point_value";
+    const string TREE_KEY = "techtree_unlocked_";
+
 	public static void SetGameCheck(int playedBool)
 	{
 		PlayerPrefs.SetInt(GAME_CHECK, playedBool);
@@ -52,4 +55,21 @@ public class PlayerPrefsManager : MonoBehaviour {
 	{
 		return PlayerPrefs.GetFloat(SFX_VOLUME_KEY);
 	}
+
+    public static void SetPointValue(int value)
+    {
+        PlayerPrefs.SetInt(POINT_VALUE, value);
+    }
+
+    public static int GetPointValue()
+    {
+        return PlayerPrefs.GetInt(POINT_VALUE);
+    }
+
+    public static void ResetPointValue()
+    {
+        PlayerPrefs.SetInt(POINT_VALUE, 0);
+    }
+
+
 }

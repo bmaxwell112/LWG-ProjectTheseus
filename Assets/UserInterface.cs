@@ -10,34 +10,46 @@ public class UserInterface : MonoBehaviour {
 	[SerializeField] Image head, body;
 	[SerializeField] Image[] leftArm, rightArm, leftLeg, rightLeg, liveStats;
 	[SerializeField] GameObject PauseScreen;
+    [SerializeField] GameObject TechTree;
+    [SerializeField] GameObject TopBtns;
+    [SerializeField] GameObject PlayerLoadOut;
 	[SerializeField] Button startBtn;
 	RobotLoadout playerLo;
 	public bool loadoutCanBeChanged;
+    public bool pointsAvailable;
 	public int loadoutIndex;
 	int currentIndex;
+    public int abilitySet;
+    public bool loadOutUp;
 
 	// Use this for initialization
 	void Start () {
-		print("ran start");
+
 		playerLo = FindObjectOfType<PlayerController>().GetComponent<RobotLoadout>();
 		currentIndex = -1;
-		//PauseSceenUpdate();
-		print("ran this");
+		PauseScreenUpdate();
 		PauseScreen.SetActive(false);
+        TechTree.SetActive(false);
+        TopBtns.SetActive(false);
+        pointsAvailable = false;
+
+        abilitySet = 0;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () {			
 		if (InputCapture.pause && GameManager.paused)
 		{
 			ResumeGame();
 		}
 		else if (InputCapture.pause && !GameManager.paused)
-		{			
+		{
 			PauseGame();
 		}
 		if (GameManager.paused)
 		{
+            NavigateMenu();
+
 			if (currentIndex != loadoutIndex)
 			{
 				UpdateDisplayDetails();
@@ -46,42 +58,60 @@ public class UserInterface : MonoBehaviour {
 			if (loadoutCanBeChanged)
 			{
 				ChangeSelectedItem();
-				PauseSceenUpdate();
+				PauseScreenUpdate();
 			}
-		}
+        }
 		LoadOutCheck();
 	}
 
-	private void ResumeGame()
+	public void ResumeGame()
 	{
-		GameManager.GamePause(false);
 		PauseScreen.SetActive(false);
+        TechTree.SetActive(false);
+        TopBtns.SetActive(false);
+        PlayerLoadOut.SetActive(true);
 		loadoutCanBeChanged = false;
+        pointsAvailable = false;
+		GameManager.GamePause(false);
 	}
 
 	public void PauseGame()
 	{
-		print("Step 1");
 		GameManager.GamePause(true);
-		print("Step 2");
-		PauseScreen.SetActive(true);
-		print("Step 3");
-		startBtn.Select();
-		print("Step 4");
-		PauseSceenUpdate();
-		print("Step 5");
+		
+		TopBtns.SetActive(true);
+        PlayerLoadOut.SetActive(false);
+        if (pointsAvailable)
+        {
+            TechTree.SetActive(true);
+        }
+        else
+        {
+            PauseScreen.SetActive(true);
+        }
+
+        startBtn.Select();
+		PauseScreenUpdate();
 		if (loadoutCanBeChanged)
 		{
-			pageTitle.text = "Choose\nLoadout";
+			pageTitle.text = "Choose Loadout";
 		}
-		else
+		else if(pointsAvailable)
+        {
+            pageTitle.text = "Tech Tree"; 
+        }
+        else
 		{
 			pageTitle.text = "Paused";			
 		}
-		print("Step Done");
 	}	
 
-	void PauseSceenUpdate()
+    void NavigateMenu()
+    {
+
+    }
+
+	void PauseScreenUpdate()
 	{
 		for (int i = 0; i < playerLo.loadout.Length; i++)
 		{
@@ -158,10 +188,9 @@ public class UserInterface : MonoBehaviour {
 			{
 				if (items[i].itemID == playerLo.loadout[loadoutIndex].itemID && (i - 1) >= 0)
 				{
-					RobotFunctions.ReplacePart(items[i-1], playerLo);
-					//playerLo.loadout[loadoutIndex] = items[i - 1];
-					//playerLo.hitPoints[loadoutIndex] = playerLo.loadout[loadoutIndex].itemHitpoints;
-					//playerLo.power[loadoutIndex] = playerLo.loadout[loadoutIndex].itemPower;
+					playerLo.loadout[loadoutIndex] = items[i - 1];
+					playerLo.hitPoints[loadoutIndex] = playerLo.loadout[loadoutIndex].itemHitpoints;
+					playerLo.power[loadoutIndex] = playerLo.loadout[loadoutIndex].itemPower;
 					UpdateDisplayDetails();
 					return;
 				}
@@ -174,10 +203,9 @@ public class UserInterface : MonoBehaviour {
 			{
 				if (items[i].itemID == playerLo.loadout[loadoutIndex].itemID && (i + 1) < items.Count)
 				{
-					RobotFunctions.ReplacePart(items[i + 1], playerLo);
-					//playerLo.loadout[loadoutIndex] = items[i + 1];
-					//playerLo.hitPoints[loadoutIndex] = playerLo.loadout[loadoutIndex].itemHitpoints;
-					//playerLo.power[loadoutIndex] = playerLo.loadout[loadoutIndex].itemPower;
+					playerLo.loadout[loadoutIndex] = items[i + 1];
+					playerLo.hitPoints[loadoutIndex] = playerLo.loadout[loadoutIndex].itemHitpoints;
+					playerLo.power[loadoutIndex] = playerLo.loadout[loadoutIndex].itemPower;
 					UpdateDisplayDetails();
 					return;
 				}

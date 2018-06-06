@@ -9,7 +9,7 @@ public class EnterDungeonTrigger : MonoBehaviour {
 	// Use this for initialization
 	void OnTriggerStay2D(Collider2D collision)
 	{
-		if (InputCapture.pickup && !GameManager.gamePaused && collision.gameObject.CompareTag("Player") && !loading)
+		if (InputCapture.pickup && !GameManager.paused && collision.gameObject.CompareTag("Player") && !loading)
 		{			
 			StartCoroutine(LoadDungeon());
 			loading = true;

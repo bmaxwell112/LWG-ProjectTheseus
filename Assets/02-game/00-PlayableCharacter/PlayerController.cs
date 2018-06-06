@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour {
 				InputCapture.ControllerAim();
 			}
 
-			if (!GameManager.gamePaused)
+			if (!GameManager.paused)
 			{
 				//if (!roLo.AreYouStopped())
 				//{

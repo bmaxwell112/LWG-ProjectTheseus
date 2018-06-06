@@ -8,21 +8,31 @@ public class Terminal : MonoBehaviour {
 	bool touchingMe;
 	// Use this for initialization
 	void Start () {
-		bc2D = GetComponent<BoxCollider2D>();		
+		bc2D = GetComponent<BoxCollider2D>();
 	}
 
 	void OnCollisionStay2D(Collision2D collision)
 	{
 		print("Colliding");
-		if (InputCapture.pickup && !GameManager.gamePaused && collision.gameObject.CompareTag("Player") && !touchingMe)
+		if (InputCapture.pickup && !GameManager.paused && collision.gameObject.CompareTag("Player") && !touchingMe)
 		{
-			print("Triggered");
+            //PlayerPrefsManager.SetPointValue(1);
+            PlayerPrefsManager.ResetPointValue();
 			UserInterface ui = FindObjectOfType<UserInterface>();
-			ui.loadoutCanBeChanged = true;
+            if(PlayerPrefsManager.GetPointValue() > 0)
+            {
+                ui.pointsAvailable = true;
+                print("Points Available!");
+            }
+            else
+            {
+                ui.loadoutCanBeChanged = true;
+            }
+
 			ui.PauseGame();
 			touchingMe = true;
 		}
-		if (GameManager.gamePaused && touchingMe)
+		if (GameManager.paused && touchingMe)
 		{
 			touchingMe = false;
 		}
