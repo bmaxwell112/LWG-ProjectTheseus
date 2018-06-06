@@ -196,11 +196,12 @@ public class DoorGen : MonoBehaviour
 				}
 				leaveAlone = true;
 				break;
-			}		
+			}			
 		}
 		if (!leaveAlone)
 		{
 			doorWall = false;
 		}
+		GetComponentInParent<RoomGeneration>().ToggleActiveRooms();
 	}
 }
