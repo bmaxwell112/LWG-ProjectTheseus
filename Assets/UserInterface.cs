@@ -66,6 +66,7 @@ public class UserInterface : MonoBehaviour {
 
 	public void ResumeGame()
 	{
+		print("running unpause");
 		PauseScreen.SetActive(false);
         TechTree.SetActive(false);
         TopBtns.SetActive(false);
@@ -77,6 +78,7 @@ public class UserInterface : MonoBehaviour {
 
 	public void PauseGame()
 	{
+		print("running pause");
 		GameManager.GamePause(true);
 		
 		TopBtns.SetActive(true);
