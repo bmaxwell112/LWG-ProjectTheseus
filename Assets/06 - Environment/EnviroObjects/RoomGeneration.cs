@@ -39,7 +39,7 @@ public class RoomGeneration : MonoBehaviour {
 			new Vector3Int(-12, -4, 0) ,
 			new Vector3Int(12, -4, 0)
 		};
-		RoomManager.AdditionalRoom(this);
+		RoomManager.instance.AdditionalRoom(this);
 		GetSpawnConfigs();
 		DisableDoors();
 	}
@@ -88,8 +88,7 @@ public class RoomGeneration : MonoBehaviour {
     }
 
 	// Update is called once per frame
-	void Update () {
-		ToggleActiveRooms();
+	void Update () {		
         TrackEnemies();
 	}
 
@@ -140,7 +139,6 @@ public class RoomGeneration : MonoBehaviour {
 
 	public void RoomUnlock()
 	{
-        print("Room unlocked");
 		foreach (ClosedDoor doors in closedDoors)
 		{
 			doors.gameObject.SetActive(false);
@@ -154,10 +152,10 @@ public class RoomGeneration : MonoBehaviour {
 
     void CheckDoor()
     {
-		RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
+		//RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();		
 		for (int i=0; i < doors.Length; i++)
         {			
-			if (CheckForRoomClearance(spawnLocation[i], rooms) && doors[i].doorWall && spawncap < worldController.roomCap-1)
+			if (CheckForRoomClearance(spawnLocation[i]) && doors[i].doorWall && spawncap < worldController.roomCap-1)
             {
                 {
 					spawncap++;
@@ -174,9 +172,9 @@ public class RoomGeneration : MonoBehaviour {
     }
 
 
-	public bool CheckForRoomClearance(Vector3 location, RoomGeneration[] rooms)
+	public bool CheckForRoomClearance(Vector3 location)
 	{		
-		foreach (RoomGeneration room in rooms)
+		foreach (RoomGeneration room in RoomManager.instance.allRooms)
 		{
 			if (room.transform.position == new Vector3(
 						transform.position.x + location.x,
@@ -189,28 +187,26 @@ public class RoomGeneration : MonoBehaviour {
 		return true;
 	}
 
-    void ToggleActiveRooms()
-    {
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
-       // GameObject[] enemySpawns = GameObject.FindGameObjectsWithTag("SpawnConfig");
-        if (!roomActive)
+    public void ToggleActiveRooms()
+    {        
+		// GameObject[] enemySpawns = GameObject.FindGameObjectsWithTag("SpawnConfig");
+		if (!roomActive)
         {
-
-            foreach (Renderer r in renderers)
+			layout.SetActive(false);
+			Renderer[] renderers = GetComponentsInChildren<Renderer>();
+			foreach (Renderer r in renderers)
             {
                 r.enabled = false;
-            }
-			layout.SetActive(false);
+            }			
         }
         else
-        {
-            foreach (Renderer r in renderers)
+        {			
+			Renderer[] renderers = GetComponentsInChildren<Renderer>();
+			foreach (Renderer r in renderers)
             {
                 r.enabled = true;
             }
-
-            layout.SetActive(true);
-			// TODO remove this
+			// TODO remove this		
 			GetComponent<CustomNavMesh>().CheckAllDirections();
 			layout.SetActive(true);
 		}

@@ -5,12 +5,14 @@ using UnityEngine;
 public class EnterDungeonTrigger : MonoBehaviour {
 
 	[SerializeField] int dungeon;
+	bool loading;
 	// Use this for initialization
 	void OnTriggerStay2D(Collider2D collision)
 	{
-		if (InputCapture.pickup && !GameManager.gamePaused && collision.gameObject.CompareTag("Player"))
-		{
+		if (InputCapture.pickup && !GameManager.gamePaused && collision.gameObject.CompareTag("Player") && !loading)
+		{			
 			StartCoroutine(LoadDungeon());
+			loading = true;
 		}
 	}
 	IEnumerator LoadDungeon()
@@ -18,6 +20,6 @@ public class EnterDungeonTrigger : MonoBehaviour {
 		GameManager.paused = true;
 		yield return new WaitForSeconds(0.5f);
 		GameManager.paused = false;
-		GameManager.LoadLevelInGame("02a Game-" + dungeon);
+		GameManager.LoadLevelInGame("02a Game-" + dungeon);		
 	}
 }

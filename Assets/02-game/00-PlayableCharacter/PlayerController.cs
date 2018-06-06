@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour {
 	RobotLoadout roLo;
 	PlayerSpecial special;
 	Vector3 rotation;
-	bool fireLeft, fireRight;	
+	bool fireLeft, fireRight;
 
 	void Start()
 	{		
@@ -58,7 +58,10 @@ public class PlayerController : MonoBehaviour {
 
 			if (!GameManager.gamePaused)
 			{
-				MovementCheck();
+				if (!roLo.AreYouStopped())
+				{
+					MovementCheck();
+				}
 				AimAndFireCheck();
 				PickupItemCheck();
 			}

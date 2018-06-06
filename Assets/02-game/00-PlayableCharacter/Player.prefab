@@ -634,13 +634,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doesItDrop: 0
+  damageColor: {r: 0, g: 0.7058824, b: 0, a: 0}
   damageOffset: 1
   hitPoints: 
   power: []
-  attackLeft: 0
-  attackRight: 0
-  walk: 0
   stopped: 0
+  walk: 0
+  stopWhileAttackingLeft: 0
+  stopWhileAttackingRight: 0
   dropOffset: 0
   loadout:
   - itemID: -1

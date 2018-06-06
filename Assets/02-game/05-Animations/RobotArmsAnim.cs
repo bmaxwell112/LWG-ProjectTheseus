@@ -56,6 +56,7 @@ public class RobotArmsAnim : MonoBehaviour {
 		anim.SetBool("attackingMelee", false);
 		anim.SetBool("attackingRange", false);
 		attack.meleeAttacking = false;
+		attack.StartMovement();
 	}
 	
 
@@ -70,14 +71,6 @@ public class RobotArmsAnim : MonoBehaviour {
 		{
 			anim.SetBool("attackingRange", false);
 		}		
-		if (roLo.attackLeft && (roLo.loadout[armLocation].itemType == ItemType.melee || (roLo.power[armLocation] <= 0 || roLo.hitPoints[armLocation] <= 0)))
-		{
-			anim.SetBool("attackingMelee", true);
-		}
-		else
-		{
-			anim.SetBool("attackingMelee", false);
-		}
 	}
 
 	bool PlayerMelee()
@@ -108,6 +101,7 @@ public class RobotArmsAnim : MonoBehaviour {
 		if (PlayerMelee() && (roLo.loadout[armLocation].itemType == ItemType.melee || (roLo.power[armLocation] <= 0 || roLo.hitPoints[armLocation] <= 0)))
 		{
 			anim.SetBool("attackingMelee", true);
+			attack.StopMovementCheck();
 		}
 		if (PlayerRanged() && roLo.loadout[armLocation].itemType == ItemType.range && (roLo.power[armLocation] > 0 && roLo.hitPoints[armLocation] > 0))
 		{
@@ -126,15 +120,13 @@ public class RobotArmsAnim : MonoBehaviour {
 	}
 
 	public void SwapWeapons(AnimatorOverrideController rac)
-	{
-		
+	{		
 		//anim.runtimeAnimatorController = rac;		
 		overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>(rac.overridesCount);
 		rac.GetOverrides(overrides);
 		for (int i = 0; i < overrides.Count; ++i)
 		{
 			overrides[i] = new KeyValuePair<AnimationClip, AnimationClip>(overrides[i].Key, overrides[i].Value);
-			print(overrides[i].Value);
 		}		
 		aoc.ApplyOverrides(overrides);
 		anim.Update(0f);

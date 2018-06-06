@@ -70,9 +70,9 @@ public class DoorGen : MonoBehaviour
     void StaticWallCheck()
     {
 
-        RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
+        //RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
         Transform parent = transform.parent;
-        foreach (RoomGeneration room in rooms)
+        foreach (RoomGeneration room in RoomManager.instance.allRooms)
         {
             if (room.transform.position == new Vector3(
                             parent.transform.position.x + roomLocation[(int)doorLocation].x,
@@ -176,10 +176,10 @@ public class DoorGen : MonoBehaviour
 
 	public void EndSpawningCheck()
 	{
-		RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
+		//RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
 		Transform parent = transform.parent;
 		bool leaveAlone = false;
-		foreach (RoomGeneration room in rooms)
+		foreach (RoomGeneration room in RoomManager.instance.allRooms)
 		{
 			if (room.transform.position == new Vector3(
 						parent.transform.position.x + roomLocation[(int)doorLocation].x,

@@ -32,7 +32,7 @@ public class UserInterface : MonoBehaviour {
 			ResumeGame();
 		}
 		else if (InputCapture.pause && !GameManager.paused)
-		{
+		{			
 			PauseGame();
 		}
 		if (GameManager.paused)
@@ -60,10 +60,15 @@ public class UserInterface : MonoBehaviour {
 
 	public void PauseGame()
 	{
+		print("Step 1");
 		GameManager.GamePause(true);
+		print("Step 2");
 		PauseScreen.SetActive(true);
+		print("Step 3");
 		startBtn.Select();
+		print("Step 4");
 		PauseSceenUpdate();
+		print("Step 5");
 		if (loadoutCanBeChanged)
 		{
 			pageTitle.text = "Choose\nLoadout";
@@ -72,6 +77,7 @@ public class UserInterface : MonoBehaviour {
 		{
 			pageTitle.text = "Paused";			
 		}
+		print("Step Done");
 	}	
 
 	void PauseSceenUpdate()
@@ -151,9 +157,10 @@ public class UserInterface : MonoBehaviour {
 			{
 				if (items[i].itemID == playerLo.loadout[loadoutIndex].itemID && (i - 1) >= 0)
 				{
-					playerLo.loadout[loadoutIndex] = items[i - 1];
-					playerLo.hitPoints[loadoutIndex] = playerLo.loadout[loadoutIndex].itemHitpoints;
-					playerLo.power[loadoutIndex] = playerLo.loadout[loadoutIndex].itemPower;
+					RobotFunctions.ReplacePart(items[i-1], playerLo);
+					//playerLo.loadout[loadoutIndex] = items[i - 1];
+					//playerLo.hitPoints[loadoutIndex] = playerLo.loadout[loadoutIndex].itemHitpoints;
+					//playerLo.power[loadoutIndex] = playerLo.loadout[loadoutIndex].itemPower;
 					UpdateDisplayDetails();
 					return;
 				}
@@ -166,9 +173,10 @@ public class UserInterface : MonoBehaviour {
 			{
 				if (items[i].itemID == playerLo.loadout[loadoutIndex].itemID && (i + 1) < items.Count)
 				{
-					playerLo.loadout[loadoutIndex] = items[i + 1];
-					playerLo.hitPoints[loadoutIndex] = playerLo.loadout[loadoutIndex].itemHitpoints;
-					playerLo.power[loadoutIndex] = playerLo.loadout[loadoutIndex].itemPower;
+					RobotFunctions.ReplacePart(items[i + 1], playerLo);
+					//playerLo.loadout[loadoutIndex] = items[i + 1];
+					//playerLo.hitPoints[loadoutIndex] = playerLo.loadout[loadoutIndex].itemHitpoints;
+					//playerLo.power[loadoutIndex] = playerLo.loadout[loadoutIndex].itemPower;
 					UpdateDisplayDetails();
 					return;
 				}

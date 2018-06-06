@@ -6,5 +6,21 @@ AnimatorOverrideController:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: BladeRight
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: d648c741663a98440a28911a8a65d81f, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: ab5a3345b23b9f542ba44d3eba2636fe, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 47b99d85f85ef37449500b90a93eb872, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 1b1d1f74f211b2048846748b335f906d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 597938c3979c9804eb21d66815b69f3b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 32150b82fe617de41a6593ba0fbffffa, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5d062512c17b6f8439496b4af2d6f7f3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 14a023062e9150b44a38e07a09310a5c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 98bceb0d1de43e74dbfdc70aab1cb685, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ca3ee03fc460a1b4295fb376e519fb4e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3741a7d67c672874280653daf0ab514b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9774eb8b669ed104c862cfd52a9b44bb, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1e3f99d4776523d46b682b5c62f34d64, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 66d52c1047bc6514c8106f66ca947a2d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 601776b0b8e7bd24ea00ed79efa8db1e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: aa6f9e046756cbb4f92510fc0e204022, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c58abb0e9c63a7849868a6f2269d2714, type: 2}

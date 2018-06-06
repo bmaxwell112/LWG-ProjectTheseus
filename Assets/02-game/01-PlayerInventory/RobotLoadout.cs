@@ -7,12 +7,12 @@ public class RobotLoadout : MonoBehaviour {
 
 	[Tooltip("This bool indicates whether the robot drops items")]
 	[SerializeField] bool doesItDrop;
+	[SerializeField] Color damageColor;
 	public float damageOffset = 1;
 	public int[] hitPoints;
 	public float[] power;
 	[HideInInspector]
-	public bool attackLeft, attackRight, walk;
-	public bool stopped;
+	public bool stopped, walk, stopWhileAttackingLeft, stopWhileAttackingRight;
 	[HideInInspector]
 	public int dropOffset = 0;
 	int basicDamage = 5;
@@ -22,9 +22,8 @@ public class RobotLoadout : MonoBehaviour {
 
 	void Start()
 	{
-		isPlayer = GetComponent<PlayerController>();
-	}	
-
+		isPlayer = GetComponent<PlayerController>();		
+	}
 	// Resets the player to basic loadout.
 	public void InitializeLoadout(Item head, Item body, Item leftArm, Item rightArm, Item legs, Item back, Item core)
 	{
@@ -45,33 +44,42 @@ public class RobotLoadout : MonoBehaviour {
 		for (int i = 0; i < loadout.Length; i++)
 		{
 			power[i] = loadout[i].itemPower;
-		}		
+		}
+		if(loadout[(int)ItemLoc.leftArm].itemType == ItemType.melee)
+			RobotFunctions.MeleeAnimationSwap(this, (int)ItemLoc.leftArm);
+		if (loadout[(int)ItemLoc.rightArm].itemType == ItemType.melee)
+			RobotFunctions.MeleeAnimationSwap(this, (int)ItemLoc.rightArm);
 	}
 
 	public void TakeDamage(int damage, bool stopAction)
 	{
-		print(stopAction);
 		stopped = stopAction;
-		List<int> liveParts = new List<int>();
-		//StartCoroutine(ChangeColor(transform.Find("Body").GetComponent<SpriteRenderer>()));
-		for (int i = 0; i < hitPoints.Length; i++)
+		if (isPlayer)
 		{
-			if (hitPoints[i] > 0)
+			List<int> liveParts = new List<int>();
+			//StartCoroutine(ChangeColor(transform.Find("Body").GetComponent<SpriteRenderer>()));
+			for (int i = 0; i < hitPoints.Length; i++)
 			{
-				liveParts.Add(i);
-				// twice as likely to hit everything but the head
-				if (loadout[i].itemLoc != ItemLoc.head)
+				if (hitPoints[i] > 0)
 				{
 					liveParts.Add(i);
+					// twice as likely to hit everything but the head
+					if (loadout[i].itemLoc != ItemLoc.head)
+					{
+						liveParts.Add(i);
+					}
 				}
 			}
+			int rand = Random.Range(0, liveParts.Count);
+			hitPoints[liveParts[rand]] -= damage;
+			if (hitPoints[liveParts[rand]] < 0)
+			{
+				hitPoints[liveParts[rand]] = 0;
+			}
 		}
-		int rand = Random.Range(0, liveParts.Count);
-
-		hitPoints[liveParts[rand]] -= damage;
-		if (hitPoints[liveParts[rand]] < 0)
+		else
 		{
-			hitPoints[liveParts[rand]] = 0;
+			hitPoints[(int)ItemLoc.body] -= damage;
 		}
 		if ((hitPoints[0] <= 0 && loadout[0].itemID != -1) || hitPoints[1] <= 0)
 		{
@@ -88,6 +96,10 @@ public class RobotLoadout : MonoBehaviour {
 			RobotAnimationController roAn = GetComponent<RobotAnimationController>();
 			roAn.StartHitStall();
 		}
+		// Creates damage text
+		GameObject damageText = Instantiate(Resources.Load("DamageText"), transform.position, Quaternion.identity) as GameObject;
+		damageText.GetComponent<DamageText>().DamageSetup(damage, damageColor, transform.position);
+		
 	}
 
 	private void Die()
@@ -106,10 +118,15 @@ public class RobotLoadout : MonoBehaviour {
 		else
 		{
 			GameManager.playerAlive = false;
-			LevelManager.LOADLEVEL("02a Hub");
+			//Invoke("LoadToHub", 2);
+			LoadToHub();
 		}
         
     }
+	void LoadToHub()
+	{
+		LevelManager.LOADLEVEL("02a Hub");
+	}
 
 	public static IEnumerator ChangeColor(SpriteRenderer sr)
 	{
@@ -129,5 +146,18 @@ public class RobotLoadout : MonoBehaviour {
 
 			tempDrop.GetComponent<Drops>().databaseItemID = dropItemInt;
 		}
+	}
+
+	public bool AreYouStopped()
+	{
+		if (stopWhileAttackingLeft)
+		{
+			return true;
+		}
+		if (stopWhileAttackingRight)
+		{
+			return true;
+		}
+		return false;
 	}
 }

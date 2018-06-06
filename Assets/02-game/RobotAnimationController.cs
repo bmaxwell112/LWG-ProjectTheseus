@@ -25,11 +25,10 @@ public class RobotAnimationController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void Update()
 	{
-		if (!GameManager.paused)
+		if (!GameManager.paused && RoomManager.allActive)
 		{
-			print(arms[1].GetBool("attackingMelee"));
 			if (!arms[1].GetBool("attackingMelee"))
 			{
 				if (!arms[2].GetBool("attackingMelee"))
@@ -62,7 +61,7 @@ public class RobotAnimationController : MonoBehaviour {
 		{
 			// facing left
 			currentFacing = Facing.left;
-			int[] order = new int[] { 6, 7, 1, 4, 3 };
+			int[] order = new int[] { 6, 8, 1, 6, 3 };
 			UpdateSprites(SpriteSetter(2, 1, 4), order);
 		}
 		else if (firingArc.eulerAngles.z >= 112.5f && firingArc.eulerAngles.z < 157.5f)
@@ -82,14 +81,14 @@ public class RobotAnimationController : MonoBehaviour {
 		else if (firingArc.eulerAngles.z >= 202.5f && firingArc.eulerAngles.z < 247.5f)
 		{
 			// facing lower right
-			int[] order = new int[] { 6, 2, 7, 3, 4 };
+			int[] order = new int[] { 6, 2, 8, 3, 4 };
 			currentFacing = Facing.lowerRight;
 			UpdateSprites(SpriteSetter(7, 0, 3), order);
 		}
 		else if (firingArc.eulerAngles.z >= 247.5f && firingArc.eulerAngles.z < 292.5f)
 		{
 			// facing right
-			int[] order = new int[] { 6, 1, 7, 3, 4 };
+			int[] order = new int[] { 6, 1, 8, 3, 4 };
 			currentFacing = Facing.right;
 			UpdateSprites(SpriteSetter(6, 1, 4), order);
 		}
@@ -115,7 +114,7 @@ public class RobotAnimationController : MonoBehaviour {
 		{
 			anim.SetInteger("facing", (int)currentFacing);
 		}
-		if (roLo.walk)
+		if (roLo.walk && !roLo.AreYouStopped())
 		{
 			anim.SetInteger("action", 1);
 		}
@@ -128,7 +127,7 @@ public class RobotAnimationController : MonoBehaviour {
 	private void PlayerTracking()
 	{
 		anim.SetInteger("facing", (int)currentFacing);
-		if (InputCapture.hThrow != 0 || InputCapture.vThrow != 0)
+		if ((InputCapture.hThrow != 0 || InputCapture.vThrow != 0) && !roLo.AreYouStopped())
 		{
 			anim.SetInteger("action", 1);
 		}
@@ -149,7 +148,7 @@ public class RobotAnimationController : MonoBehaviour {
 
 
 	Sprite[] SpriteSetter(int bodyAndHead, int leg, int foot)
-	{
+	{		
 		return new Sprite[] {
 				roLo.loadout[0].itemSprite[bodyAndHead],
 				roLo.loadout[1].itemSprite[bodyAndHead],

@@ -39,24 +39,45 @@ public class RobotFunctions {
 				drop.power = tempPower;
 				if (player.loadout[i].itemType == ItemType.melee)
 				{
-					MeleeWeapon mw = Database.instance.ItemsMeleeWeapon(player.loadout[i]);
-					RobotArmsAnim[] anim = player.GetComponentsInChildren<RobotArmsAnim>();
-					if (player.loadout[i].itemLoc == ItemLoc.leftArm)
-					{
-						try
-						{
-							anim[0].SwapWeapons(mw.meleeWeaponAnim);							
-						}
-						catch (UnityException e)
-						{
-							Debug.LogException(e);
-						}
-					}
+					MeleeAnimationSwap(player, i);
 				}
 				break;
 			}
 		}
 	}
+	public static void ReplacePart(Item item, RobotLoadout robot)
+	{		
+		for (int i = 0; i < robot.loadout.Length; i++)
+		{
+			if (robot.loadout[i].itemLoc == item.itemLoc)
+			{
+				robot.loadout[i] = item;
+				robot.hitPoints[i] = item.itemHitpoints;
+				// switch players items power with drops power				
+				robot.power[i] = item.itemPower;
+				if (robot.loadout[i].itemType == ItemType.melee)
+				{
+					MeleeAnimationSwap(robot, i);
+				}
+				break;
+			}
+		}
+	}
+
+	public static void MeleeAnimationSwap(RobotLoadout robot, int i)
+	{
+		MeleeWeapon mw = Database.instance.ItemsMeleeWeapon(robot.loadout[i]);
+		RobotArmsAnim[] anim = robot.GetComponentsInChildren<RobotArmsAnim>();
+		if (robot.loadout[i].itemLoc == ItemLoc.leftArm)
+		{
+			anim[0].SwapWeapons(mw.meleeWeaponAnim);			
+		}
+		else if (robot.loadout[i].itemLoc == ItemLoc.rightArm)
+		{
+			anim[1].SwapWeapons(mw.meleeWeaponAnim);			
+		}
+	}
+
 	static Item IdentifyReplacePart(Item item, RobotLoadout player)
 	{
 		Item tempItem = new Item();

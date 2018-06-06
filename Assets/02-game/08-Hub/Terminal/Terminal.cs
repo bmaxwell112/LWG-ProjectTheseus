@@ -13,11 +13,18 @@ public class Terminal : MonoBehaviour {
 
 	void OnCollisionStay2D(Collision2D collision)
 	{
-		if (InputCapture.pickup && !GameManager.gamePaused && collision.gameObject.CompareTag("Player"))
+		print("Colliding");
+		if (InputCapture.pickup && !GameManager.gamePaused && collision.gameObject.CompareTag("Player") && !touchingMe)
 		{
+			print("Triggered");
 			UserInterface ui = FindObjectOfType<UserInterface>();
 			ui.loadoutCanBeChanged = true;
 			ui.PauseGame();
+			touchingMe = true;
+		}
+		if (GameManager.gamePaused && touchingMe)
+		{
+			touchingMe = false;
 		}
 	}
 

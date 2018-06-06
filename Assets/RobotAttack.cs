@@ -21,6 +21,7 @@ public class RobotAttack : MonoBehaviour {
 		special = GetComponentInParent<PlayerSpecial>();
 		canSpecial = GetComponentInParent<PlayerSpecial>();
 		roLo = GetComponentInParent<RobotLoadout>();
+		StartMovement();
 	}
 
 	public void MeleeAttack()
@@ -28,11 +29,12 @@ public class RobotAttack : MonoBehaviour {
 		if (!meleeAttacking)
 		{
 			MeleeWeapon mw = Database.instance.ItemsMeleeWeapon(roLo.loadout[armLocation]);
+			// Stop movement if applicable			
 			RaycastHit2D enemy = Physics2D.CircleCast(
 						new Vector2(transform.position.x, transform.position.y),
-						0.5f,
+						0.15f,
 						Vector2.up,
-						0.5f,
+						0.15f,
 						enemyMask);
 			// TODO this will need to be more universal.
 			if (enemy.collider != null)
@@ -48,6 +50,21 @@ public class RobotAttack : MonoBehaviour {
 				RobotFunctions.DealDamage(Damage(), enemy.collider.gameObject, mw.meleeWeaponStopTarget);
 			}
 			meleeAttacking = true;
+		}
+	}
+
+	public void StopMovementCheck()
+	{
+		MeleeWeapon mw = Database.instance.ItemsMeleeWeapon(roLo.loadout[armLocation]);
+		if (armLocation == 2)
+		{
+			roLo.stopWhileAttackingLeft = mw.meleeWeaponStopMovement;
+			print(roLo.stopWhileAttackingLeft);
+		}
+		else
+		{
+			roLo.stopWhileAttackingRight = mw.meleeWeaponStopMovement;
+			print(roLo.stopWhileAttackingRight);
 		}
 	}
 
@@ -89,5 +106,17 @@ public class RobotAttack : MonoBehaviour {
 	public void FiringCheck(bool playerFiring)
 	{
 		firing = playerFiring;
-	}	
+	}
+
+	public void StartMovement()
+	{
+		if (armLocation == 2)
+		{
+			roLo.stopWhileAttackingLeft = false;
+		}
+		else
+		{
+			roLo.stopWhileAttackingRight = false;
+		}
+	}
 }

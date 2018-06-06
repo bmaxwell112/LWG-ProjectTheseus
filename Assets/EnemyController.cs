@@ -19,9 +19,10 @@ public class EnemyController : MonoBehaviour {
 	RobotLoadout roLo;
 	Collider2D coll;	
 	public bool stunned;
-	bool recalculate, startMovement, reStartMovement;
+	bool recalculate, startMovement, reStartMovement, attacking;
 	Vector3 tracking;
 	Vector3 heightOffset = new Vector3(0, 0.45f, 0);
+	Animator[] anims;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +33,7 @@ public class EnemyController : MonoBehaviour {
 		cNavMesh = GetComponentInParent<CustomNavMesh>();
 		myRoom = GetComponentInParent<RoomGeneration>();
 		roLo = GetComponent<RobotLoadout>();
+		anims = GetComponentsInChildren<Animator>();
 		if (enemyType == 0)
 		{
 			basic = GetComponent<BasicEnemy>();
@@ -66,6 +68,7 @@ public class EnemyController : MonoBehaviour {
 			StartCoroutine(UpdateMovement());
 			StartCoroutine(RecalculateTime());
 			startMovement = true;
+			attacking = false;
 		}
 		if (!myRoom.roomActive && startMovement)
 		{
@@ -76,6 +79,7 @@ public class EnemyController : MonoBehaviour {
 		{
 			StopAllCoroutines();
 			reStartMovement = true;
+			attacking = false;
 		}
 		if (!roLo.stopped && reStartMovement)
 		{
@@ -111,6 +115,11 @@ public class EnemyController : MonoBehaviour {
 								print("break");
 								path = pathfinding.GetPath(player.transform, cNavMesh, node);
 								break;
+							}
+							// Stop movement while attacking
+							while (roLo.AreYouStopped())
+							{
+								yield return null;
 							}
 							yield return null;
 						}
@@ -152,22 +161,25 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	private void EnemyAttackCheck()
-	{
-		RaycastHit2D hit = Physics2D.CircleCast(firingArc.transform.position, 0.45f, firingArc.transform.up, 0.45f, playerMask);
-		if (hit.collider != null && !roLo.attackLeft && !roLo.stopped)
+	{		
+		if (!attacking)
 		{
-			print("Hit " + hit.collider.gameObject.name);
-			StartCoroutine(EnemyAttack());
+			Vector2 checkFrom = new Vector2(firingArc.transform.position.x, firingArc.transform.position.y - 0.45f);
+			RaycastHit2D hit = Physics2D.CircleCast(checkFrom, 0.45f, firingArc.transform.up, 0.45f, playerMask);
+			if (hit.collider != null && !anims[1].GetBool("attackingMelee") && !roLo.stopped)
+			{				
+				StartCoroutine(EnemyAttack());
+				attacking = true;
+			}
 		}
 	}
 
 	private IEnumerator EnemyAttack()
 	{
 		yield return new WaitForSeconds(attackDelay);
-		roLo.attackLeft = true;
-		roLo.attackRight = true;
-		yield return new WaitForSeconds(timeBetweenAttacks - attackDelay);
-		roLo.attackLeft = false;
-		roLo.attackRight = false;
+		anims[1].SetBool("attackingMelee", true);
+		anims[2].SetBool("attackingMelee", true);
+		yield return new WaitForSeconds(timeBetweenAttacks - attackDelay);		
+		attacking = false;
 	}
 }

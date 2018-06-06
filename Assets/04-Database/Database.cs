@@ -90,14 +90,14 @@ public class Database : MonoBehaviour {
 	}
 	void SetupMeleeWeapons()
 	{
-		meleeWeapons.Add(new MeleeWeapon(0, 2, 0.3f, 0.5f, false, true, GetAnim("GreenGuy/armLeft")));
-		meleeWeapons.Add(new MeleeWeapon(1, 3, 0.3f, 0.5f, false, true));
+		meleeWeapons.Add(new MeleeWeapon(0, 2, 0.3f, 0.5f, false, false, GetAnim("GreenGuy/armLeft")));
+		meleeWeapons.Add(new MeleeWeapon(1, 3, 0.3f, 0.5f, false, false, GetAnim("GreenGuy/armRight")));
 		meleeWeapons.Add(new MeleeWeapon(2, 22, 1.5f, 2, true, true, GetAnim("armBlade/anim/BladeLeft")));
-		meleeWeapons.Add(new MeleeWeapon(3, 23, 1.5f, 2, true, true));
-		meleeWeapons.Add(new MeleeWeapon(4, 24, 0.5f, 1, false, true));
-		meleeWeapons.Add(new MeleeWeapon(5, 25, 0.5f, 1, false, true));
-		meleeWeapons.Add(new MeleeWeapon(6, 26, 0.5f, 1, true, false));
-		meleeWeapons.Add(new MeleeWeapon(7, 27, 0.5f, 1, true, false));
+		meleeWeapons.Add(new MeleeWeapon(3, 23, 1.5f, 2, true, true, GetAnim("armBlade/anim/BladeRight")));
+		meleeWeapons.Add(new MeleeWeapon(4, 24, 0.5f, 1, false, true, GetAnim("GreenGuy/armRight")));
+		meleeWeapons.Add(new MeleeWeapon(5, 25, 0.5f, 1, false, true, GetAnim("GreenGuy/armLeft")));
+		meleeWeapons.Add(new MeleeWeapon(6, 26, 0.5f, 1, true, false, GetAnim("GreenGuy/armRight")));
+		meleeWeapons.Add(new MeleeWeapon(7, 27, 0.5f, 1, true, false, GetAnim("GreenGuy/armRight")));
 	}
 
 	public Item RandomItemOut(ItemLoc loc)

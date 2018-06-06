@@ -5,6 +5,7 @@ using UnityEngine;
 public class RoomManager : MonoBehaviour {
 
     public static RoomManager instance = null;
+	public List<RoomGeneration> allRooms = new List<RoomGeneration>();
     enum TileSet {Fabrication, Terraforming, Disposal, Purification, Security, Medical};
 	[SerializeField] bool hub;
 	[SerializeField] GameObject room, player, userInterface;
@@ -63,14 +64,14 @@ public class RoomManager : MonoBehaviour {
 		{
 			if (roomQueue.Count > 0)
 			{
-				RoomGeneration thisRoom = roomQueue.Peek();
+				RoomGeneration thisRoom = roomQueue.Peek();				
 				thisRoom.QueuedStart();
 				roomQueue.Dequeue();				
 			}			
 			yield return null;
 		}
-		RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
-		foreach(RoomGeneration room in rooms)
+		//RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
+		foreach(RoomGeneration room in allRooms)
 		{
 			DoorGen[] doors = room.GetComponentsInChildren<DoorGen>();
 			foreach (DoorGen door in doors)
@@ -79,12 +80,22 @@ public class RoomManager : MonoBehaviour {
                 roomQueue.Clear();
 			}
 		}
+		CheckAllActiveRooms();
 		allActive = true;
 	}
 
-	public static void AdditionalRoom(RoomGeneration room)
+	private void CheckAllActiveRooms()
+	{
+		foreach (RoomGeneration r in allRooms)
+		{
+			r.ToggleActiveRooms();
+		}
+	}
+
+	public void AdditionalRoom(RoomGeneration room)
 	{
 		roomQueue.Enqueue(room);
+		allRooms.Add(room);
 	}
 
     public GameObject GetRandomRoom()
@@ -95,8 +106,8 @@ public class RoomManager : MonoBehaviour {
 
 	public static GameObject GetCurrentActiveRoom()
 	{
-		RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
-		foreach (RoomGeneration room in rooms)
+		//RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
+		foreach (RoomGeneration room in RoomManager.instance.allRooms)
 		{
 			if (room.roomActive)
 			{

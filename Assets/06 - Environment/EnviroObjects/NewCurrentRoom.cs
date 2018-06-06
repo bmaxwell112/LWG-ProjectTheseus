@@ -44,9 +44,9 @@ public class NewCurrentRoom : MonoBehaviour {
 
 	RoomGeneration FindNearbyRoom()
 	{
-		RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
+		//RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
 		RoomGeneration nearbyRoom = roomGen;
-		foreach (RoomGeneration room in rooms)
+		foreach (RoomGeneration room in RoomManager.instance.allRooms)
 		{
 			for (int i = 0; i < RoomGeneration.spawnLocation.Length; i++)
 			{				
@@ -93,13 +93,15 @@ public class NewCurrentRoom : MonoBehaviour {
 
         RoomManager.allActive = false;
         roomGen.roomActive = false;
+		roomGen.ToggleActiveRooms();
 		RoomGeneration nextRoom = FindNearbyRoom();
-		nextRoom.roomActive = true;
+		nextRoom.roomActive = true;		
 		CameraController cam = FindObjectOfType<CameraController>();
         cam.MoveCamera(nextRoomPos);
         Vector3 playerStartPos = player.transform.position;
         BulletWeapon[] bullets = FindObjectsOfType<BulletWeapon>();
-        foreach (BulletWeapon bullet in bullets)
+		nextRoom.ToggleActiveRooms();
+		foreach (BulletWeapon bullet in bullets)
         {
             Destroy(bullet.gameObject);
         }
@@ -111,7 +113,7 @@ public class NewCurrentRoom : MonoBehaviour {
             distance = Vector3.Distance(nextRoomPos, player.position);
             yield return null;
         }
-        nextRoom.CheckEnemies();
+        nextRoom.CheckEnemies();		
 		RoomManager.allActive = true;
     }
 }
