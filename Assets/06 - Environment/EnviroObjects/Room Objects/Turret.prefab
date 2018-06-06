@@ -113,10 +113,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1caa45db9d097c1419d130d481fc41f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doesItDrop: 0
+  damageColor: {r: 0.78431374, g: 0, b: 0, a: 0}
+  damageOffset: 1
   hitPoints: 00000000000000000000000000000000000000000000000000000000
-  attackLeft: 0
-  attackRight: 0
+  power: []
+  stopped: 0
   walk: 0
+  stopWhileAttackingLeft: 0
+  stopWhileAttackingRight: 0
+  dropOffset: 0
   loadout:
   - itemID: -1
     itemName: 

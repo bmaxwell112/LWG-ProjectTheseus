@@ -133,21 +133,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelMusicChangeArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 95297becc8874984aa87609f53026a9d, type: 3}
+  - {fileID: 8300000, guid: 95297becc8874984aa87609f53026a9d, type: 3}
+  - {fileID: 8300000, guid: 95297becc8874984aa87609f53026a9d, type: 3}
+  - {fileID: 8300000, guid: 95297becc8874984aa87609f53026a9d, type: 3}
+  - {fileID: 8300000, guid: 95297becc8874984aa87609f53026a9d, type: 3}
+  - {fileID: 8300000, guid: 95297becc8874984aa87609f53026a9d, type: 3}
+  - {fileID: 8300000, guid: 95297becc8874984aa87609f53026a9d, type: 3}
+  - {fileID: 8300000, guid: 95297becc8874984aa87609f53026a9d, type: 3}
+  - {fileID: 8300000, guid: 95297becc8874984aa87609f53026a9d, type: 3}
