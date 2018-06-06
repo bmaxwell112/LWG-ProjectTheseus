@@ -48,7 +48,7 @@ public class RobotAnimationController : MonoBehaviour {
 		}
 	}
 
-	private void DetectFacingAndSetOrder()
+	public void DetectFacingAndSetOrder()
 	{
 		if (firingArc.eulerAngles.z >= 22.5f && firingArc.eulerAngles.z < 67.5f)
 		{

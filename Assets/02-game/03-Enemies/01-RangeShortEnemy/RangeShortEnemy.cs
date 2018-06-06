@@ -6,7 +6,7 @@ public class RangeShortEnemy : MonoBehaviour {
 	
 	Transform player;
 	bool knockback, attacking, noPower, melee, walkTo;
-	[SerializeField] float rateOfFireOffset=1;
+	[SerializeField] float rateOfFireOffset=1, healthOffset=0.5f;
 	[SerializeField] GameObject drop, leftArm, rightArm, bulletPrefab;
 	[SerializeField] Transform firingArc;
 	RobotLoadout roLo;	
@@ -46,6 +46,7 @@ public class RangeShortEnemy : MonoBehaviour {
 		{
 			roLo.loadout[3] = db.items[3];
 		}
+		roLo.hitPoints[1] = Mathf.RoundToInt(roLo.hitPoints[1] * healthOffset);
 	}
 	
 	public void EnemyUpdate()

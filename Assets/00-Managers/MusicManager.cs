@@ -61,6 +61,10 @@ public class MusicManager : MonoBehaviour {
 		//	it loads the new music
 		if (thisLevelMusic && thisLevelMusic != lastLevelMusic)
 		{
+			if (!audioSource)
+			{
+				audioSource = GetComponent<AudioSource>();
+			}
 			audioSource.clip = thisLevelMusic;
 			audioSource.loop = true;
 			audioSource.Play();

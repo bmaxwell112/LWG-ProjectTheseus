@@ -57,6 +57,7 @@ public class RobotArmsAnim : MonoBehaviour {
 		anim.SetBool("attackingRange", false);
 		attack.meleeAttacking = false;
 		attack.StartMovement();
+		animCont.DetectFacingAndSetOrder();
 	}
 	
 
