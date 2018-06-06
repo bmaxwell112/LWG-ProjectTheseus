@@ -93,11 +93,12 @@ public class RobotFunctions {
 		return tempItem;
 	}
 
-	public static int DropByID(GameObject player, RobotLoadout roLo, int dropOffset)
+	public static int DropByID(RobotLoadout roLo, int dropOffset)
 	{
-		GameManager.RandomDropModifier += 5;
+		GameManager.RandomDropModifier += 5;		
 		int dropItemID = -1;
 		int rand = Random.Range(0, 100);
+		Debug.Log(rand + GameManager.RandomDropModifier + dropOffset);
 		if (rand <= 35 + GameManager.RandomDropModifier + dropOffset)
 		{
 			GameManager.RandomDropModifier = 0;

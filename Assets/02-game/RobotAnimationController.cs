@@ -12,10 +12,10 @@ public class RobotAnimationController : MonoBehaviour {
 	[SerializeField] Animator leftArm;
 	Animator anim;
 	Animator[] arms;
-	public static bool UpdatePlayerSprites, layerAbovePlayer;
+	public static bool UpdatePlayerSprites;
 	public enum Facing { upperLeft, left, lowerLeft, down, lowerRight, right, UpperRight, up }
 	public Facing currentFacing;	
-	bool isPlayer, attacking;
+	bool isPlayer, attacking, layerAbovePlayer;
 	// Use this for initialization
 	void Start () {
 		roLo = GetComponent<RobotLoadout>();		

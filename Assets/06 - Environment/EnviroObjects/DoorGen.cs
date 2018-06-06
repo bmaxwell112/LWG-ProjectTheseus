@@ -186,6 +186,14 @@ public class DoorGen : MonoBehaviour
 						parent.transform.position.y + roomLocation[(int)doorLocation].y,
 						0))
 			{
+				if (IsThereAnOpenDoor(room))
+				{
+					doorWall = true;
+				}
+				else
+				{
+					doorWall = false;
+				}
 				leaveAlone = true;
 				break;
 			}		

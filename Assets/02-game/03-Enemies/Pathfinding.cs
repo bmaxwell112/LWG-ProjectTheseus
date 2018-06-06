@@ -64,13 +64,15 @@ public class Pathfinding : MonoBehaviour {
 			while (previous != startWaypoint)
 			{
 				path.Add(previous);
-				if (previous.exploredFrom == null)
-				{
-					break;
-				}
-				else
+				//Debug.Log(previous.position);
+				//Debug.Log(previous.exploredFrom);
+				try
 				{
 					previous = previous.exploredFrom;
+				}
+				catch
+				{
+					break;
 				}
 			}
 			path.Add(startWaypoint);

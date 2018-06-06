@@ -8,7 +8,7 @@ public class WinConditionTEMP : MonoBehaviour {
 	{
 		if (coll.gameObject.tag == "Player")
 		{
-			GameManager.LoadLevelInGame("02a Hub");
+			GameManager.LoadLevelInGame("03c Subscribe");
 		}
 	}
 }

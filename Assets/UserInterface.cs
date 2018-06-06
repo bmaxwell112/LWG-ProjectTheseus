@@ -18,10 +18,11 @@ public class UserInterface : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		print("ran start");
 		playerLo = FindObjectOfType<PlayerController>().GetComponent<RobotLoadout>();
 		currentIndex = -1;
-		PauseSceenUpdate();
+		//PauseSceenUpdate();
+		print("ran this");
 		PauseScreen.SetActive(false);
 	}
 	

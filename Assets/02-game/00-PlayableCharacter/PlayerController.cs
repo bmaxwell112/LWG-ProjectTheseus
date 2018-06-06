@@ -58,10 +58,10 @@ public class PlayerController : MonoBehaviour {
 
 			if (!GameManager.gamePaused)
 			{
-				if (!roLo.AreYouStopped())
-				{
+				//if (!roLo.AreYouStopped())
+				//{
 					MovementCheck();
-				}
+				//}
 				AimAndFireCheck();
 				PickupItemCheck();
 			}

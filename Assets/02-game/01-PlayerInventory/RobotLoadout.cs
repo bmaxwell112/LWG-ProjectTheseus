@@ -108,7 +108,7 @@ public class RobotLoadout : MonoBehaviour {
         // Add if player later
         if (doesItDrop)
 		{
-			DropItem(RobotFunctions.DropByID(FindObjectOfType<PlayerController>().gameObject, this, dropOffset));
+			DropItem(RobotFunctions.DropByID(this, dropOffset));
 		}
 		if (!isPlayer)
 		{
@@ -125,7 +125,7 @@ public class RobotLoadout : MonoBehaviour {
     }
 	void LoadToHub()
 	{
-		LevelManager.LOADLEVEL("02a Hub");
+		LevelManager.LOADLEVEL("03c Subscribe");
 	}
 
 	public static IEnumerator ChangeColor(SpriteRenderer sr)

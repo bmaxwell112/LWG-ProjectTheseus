@@ -26,3 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01-Menus/03b-Lose/03b Lose.unity
     guid: 2e8b4fd6c78187c40a2920f93125d954
+  - enabled: 1
+    path: Assets/01-Menus/03c-Subscibe/03c Subscribe.unity
+    guid: 20b487c5335ff4d4c9a0694d401822ff
+  - enabled: 1
+    path: Assets/01-Menus/03d-Paused/03d Paused.unity
+    guid: d61cdf8f91b467c4c8eac8c8dcc213e4
