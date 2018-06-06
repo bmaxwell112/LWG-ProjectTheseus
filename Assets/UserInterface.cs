@@ -20,7 +20,6 @@ public class UserInterface : MonoBehaviour {
 	public int loadoutIndex;
 	int currentIndex;
     public int abilitySet;
-    public bool loadOutUp;
 
 	// Use this for initialization
 	void Start () {

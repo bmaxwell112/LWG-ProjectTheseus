@@ -13,14 +13,14 @@ public class TurretAI : MonoBehaviour
     void Start()
     {
         rolo = GetComponent<RobotLoadout>();
-        rolo.hitPoints[1] = 100;
+        rolo.hitPoints[1] = 40;
+        StartCoroutine(DefineRotation());
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        DefineRotation();
     }
 
     private void OnEnable()
@@ -30,12 +30,33 @@ public class TurretAI : MonoBehaviour
         StartCoroutine(SpawnBullets(rolo.loadout[3]));
     }
 
-    private void DefineRotation()
-    { 
-        Vector3 diff = player.transform.position - transform.position;
-        diff.Normalize();
-
-        firingArc.eulerAngles = MovementFunctions.LookAt2D(transform, diff.x, diff.y);
+    IEnumerator DefineRotation()
+    {
+        while (true)
+        {
+            Vector3 diff = player.transform.position - transform.position;
+            diff.Normalize();
+            // delay to rotate in seconds
+            yield return new WaitForSeconds(0.5f);
+            Quaternion toLoc = Quaternion.Euler(MovementFunctions.LookAt2D(transform, diff.x, diff.y));
+            Quaternion fromLoc = firingArc.rotation;
+            // Speed of rotation
+            while (firingArc.rotation != toLoc)
+            {
+                if (RoomManager.allActive)
+                {
+                    firingArc.rotation = Quaternion.Lerp(fromLoc, toLoc, Time.time * 0.5f);
+                    float angle = Quaternion.Angle(firingArc.rotation, toLoc);
+                    // if angle diffence is less than 5 set it to end location to break loop.
+                    if (angle < 5)
+                    {
+                        firingArc.rotation = toLoc;
+                    }
+                }
+                yield return null;
+            }
+            yield return null;
+        }
     }
 
     IEnumerator SpawnBullets(Item weapon)
@@ -49,7 +70,7 @@ public class TurretAI : MonoBehaviour
                 GameObject bullet = Instantiate(Resources.Load("bulletEnemy", typeof(GameObject))) as GameObject;
                 bullet.GetComponent<BulletWeapon>().BulletSetup(rw, transform.position, firingArc);
             }
-            yield return new WaitForSeconds(rw.rangeWeaponRateOfFire + 0.5f);
+            yield return new WaitForSeconds(rw.rangeWeaponRateOfFire + 2f);
         }
     }
 }
