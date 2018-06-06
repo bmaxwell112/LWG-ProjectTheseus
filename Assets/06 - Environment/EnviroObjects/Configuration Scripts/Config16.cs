@@ -14,8 +14,6 @@ public class Config16 : MonoBehaviour {
 
         Instantiate(wController.pillar, new Vector3(transform.position.x + 0f, transform.position.y + 0f, 0), Quaternion.identity, transform);
 
-        Instantiate(wController.hole, new Vector3(transform.position.x + 0f, transform.position.y + 2.2f, 0), Quaternion.identity, transform);
-        Instantiate(wController.hole, new Vector3(transform.position.x + 0f, transform.position.y - 2.2f, 0), Quaternion.identity, transform);
         Instantiate(wController.hole, new Vector3(transform.position.x + 1.09f, transform.position.y + 1.65f, 0), Quaternion.identity, transform);
         Instantiate(wController.hole, new Vector3(transform.position.x + 1.09f, transform.position.y - 1.65f, 0), Quaternion.identity, transform);
         Instantiate(wController.hole, new Vector3(transform.position.x - 1.09f, transform.position.y + 1.65f, 0), Quaternion.identity, transform);
