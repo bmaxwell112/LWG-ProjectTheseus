@@ -201,7 +201,6 @@ public class DoorGen : MonoBehaviour
 		if (!leaveAlone)
 		{
 			doorWall = false;
-		}
-		GetComponentInParent<RoomGeneration>().ToggleActiveRooms();
+		}		
 	}
 }

@@ -95,15 +95,15 @@ public class UserInterface : MonoBehaviour {
 		PauseScreenUpdate();
 		if (loadoutCanBeChanged)
 		{
-			pageTitle.text = "Choose Loadout";
+			pageTitle.text = "CHOOSE LOADOUT";
 		}
 		else if(pointsAvailable)
         {
-            pageTitle.text = "Tech Tree"; 
+            pageTitle.text = "TECH TREE"; 
         }
         else
 		{
-			pageTitle.text = "Paused";			
+			pageTitle.text = "PAUSED";			
 		}
 	}	
 
@@ -136,8 +136,8 @@ public class UserInterface : MonoBehaviour {
 		{
 			int currentPower = Mathf.RoundToInt(playerLo.power[i] * 100);
 			stats[i].text =
-				"Integrity: " + playerLo.hitPoints[i] + "/" + playerLo.loadout[i].itemHitpoints + "\n" +
-				"Power: " + currentPower + "/100";
+				"INTEGRITY: " + playerLo.hitPoints[i] + "/" + playerLo.loadout[i].itemHitpoints + "\n" +
+				"POWER: " + currentPower + "/100";
 		}
 	}
 

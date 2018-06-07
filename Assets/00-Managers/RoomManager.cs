@@ -81,6 +81,7 @@ public class RoomManager : MonoBehaviour {
 			}
 		}
 		CheckAllActiveRooms();
+		Invoke("CheckAllActiveRooms", 0.25f);
 		allActive = true;
 	}
 
