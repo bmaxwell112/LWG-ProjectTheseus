@@ -37,16 +37,16 @@ public class Database : MonoBehaviour {
 		items.Add(new Item(2, "Basic Left Arm", "A left arm taken from the only schematics you have left.", ItemLoc.leftArm, ItemType.melee, 1, GetSprite("GreenGuy/arm"), 10, 5, 0, 1, false));
 		items.Add(new Item(3, "Basic Right Arm", "A right arm taken from the only schematics you have left.", ItemLoc.rightArm, ItemType.melee, 1, GetSprite("GreenGuy/arm"), 10, 5, 0, 1, false));
 		items.Add(new Item(4, "Basic Legs", "A pair of legs taken from the only schematics you have left.", ItemLoc.legs, ItemType.speed, 1, GetSprite("GreenGuy/leg"), 10, 0, 2, 1, false));
-		items.Add(new Item(5, "Basic Back", "A back taken from the only schematics you have left.", ItemLoc.back, ItemType.aesthetic, 1, GetSprite("GreenGuy/torso"), 20, 0, 0, 1, false));
-		items.Add(new Item(6, "Basic AI Core", "An AI Core taken from the only schematics you have left.", ItemLoc.core, ItemType.aesthetic, 1, GetSprite("GreenGuy/head"), 0, 0, 0, 1, false));
+		items.Add(new Item(5, "Basic Back", "A back taken from the only schematics you have left.", ItemLoc.back, ItemType.aesthetic, 1, GetSprite("basicBackpack"), 20, 0, 0, 1, false));
+		items.Add(new Item(6, "Basic AI Core", "An AI Core taken from the only schematics you have left.", ItemLoc.core, ItemType.aesthetic, 1, GetSprite("aiCore"), 0, 0, 0, 1, false));
 		items.Add(new Item(7, "Reinforced Head", "A head created from modifying basic schematics.", ItemLoc.head, ItemType.aesthetic, 2, GetSprite("GreenGuy/head"), 20, 0, 0, 1, false));
 		items.Add(new Item(8, "Reinforced Torso", "A torso created from modifying basic schematics.", ItemLoc.body, ItemType.aesthetic, 2, GetSprite("GreenGuy/torso"), 80, 0, 0, 1, false));
 		items.Add(new Item(9, "Reinforced Legs", "A pair of legs created from modifying basic schematics.", ItemLoc.legs, ItemType.speed, 2, GetSprite("GreenGuy/leg"), 20, 0, 2, 1, false));
-		items.Add(new Item(10, "Reinforced Back", "A back created from modifying basic schematics.", ItemLoc.back, ItemType.aesthetic, 2, GetSprite("GreenGuy/torso"), 10, 0, 0, 1, false));
+		items.Add(new Item(10, "Reinforced Back", "A back created from modifying basic schematics.", ItemLoc.back, ItemType.aesthetic, 2, GetSprite("basicBackpack"), 10, 0, 0, 1, false));
 		items.Add(new Item(11, "Head Vulcans", "A head with mounted vulcans that fire as you attack.", ItemLoc.head, ItemType.range, 2, GetSprite("GreenGuy/head"), 10, 1, 0, 1, true));
 		items.Add(new Item(12, "Heavy Torso", "A bulkier, armored body that is heavy and harder to move in.", ItemLoc.body, ItemType.aesthetic, 4, GetSprite("GreenGuy/torso"), 120, 0, 0, 1, true));
-		items.Add(new Item(13, "Mounted Gun L", "A basic semi-automatic firearm for ranged combat.", ItemLoc.leftArm, ItemType.range, 2, GetSprite("Secondary/armMachineGun"), 10, 3, 0, 1, false));
-		items.Add(new Item(14, "Mounted Gun R", "A basic semi-automatic firearm for ranged combat.", ItemLoc.rightArm, ItemType.range, 2, GetSprite("Secondary/armMachineGun"), 10, 3, 0, 1, false));
+		items.Add(new Item(13, "Mounted Gun L", "A basic semi-automatic firearm for ranged combat.", ItemLoc.leftArm, ItemType.range, 2, GetSprite("machineGun"), 10, 3, 0, 1, false));
+		items.Add(new Item(14, "Mounted Gun R", "A basic semi-automatic firearm for ranged combat.", ItemLoc.rightArm, ItemType.range, 2, GetSprite("machineGun"), 10, 3, 0, 1, false));
 		items.Add(new Item(15, "Shotgun L", "A powerful firearm with restricted range and a cooldown between shots.", ItemLoc.leftArm, ItemType.range, 3, GetSprite("Secondary/armMachineGun"), 10, 2, 0, 1, false));
 		items.Add(new Item(16, "Shotgun R", "A powerful firearm with restricted range and a cooldown between shots.", ItemLoc.rightArm, ItemType.range, 3,GetSprite("Secondary/armMachineGun"), 10, 2, 0, 1, false));
 		items.Add(new Item(17, "Machinegun L", "A ranged weapon with a rapid rate of fire.", ItemLoc.leftArm, ItemType.range, 3, GetSprite("Secondary/armMachineGun"), 10, 1, 0, 1, false));
@@ -62,10 +62,10 @@ public class Database : MonoBehaviour {
 		items.Add(new Item(27, "Chainsaw R", "A melee weapon that deals damage over time and cleaves parts.", ItemLoc.rightArm, ItemType.melee, 4, GetSprite("Secondary/arm"), 20, 6, 0, 1, true));
 		items.Add(new Item(28, "Bronze Club R", "A slow but massively powerful melee weapon.", ItemLoc.rightArm, ItemType.melee, 5,GetSprite("Secondary/arm"), 30, 30, 0, 1, false));
 		items.Add(new Item(29, "Rollerblades", "A radical set of legs that let you move faster and look cool.", ItemLoc.legs, ItemType.speed, 3, GetSprite("Secondary/leg"), 10, 0, 3, 1, false));
-		items.Add(new Item(30, "Energy Pack", "A backpack system that increases your energy capacity.", ItemLoc.back, ItemType.aesthetic, 3, GetSprite("GreenGuy/torso"), 10, 0, 0, 1, true));
-		items.Add(new Item(31, "Barrier Pack", "A backpack system that generates a weak, regenerating forcefield.", ItemLoc.back, ItemType.aesthetic, 4,GetSprite("GreenGuy/torso"), 5, 0, 0, 1, true));
-		items.Add(new Item(32, "Hacking Core", "An AI core that enables the hacking of doors and chests.", ItemLoc.core, ItemType.aesthetic, 3, GetSprite("GreenGuy/head"), 0, 0, 0, 1, true));
-		items.Add(new Item(33, "Self-Repair Core", "An AI core that utilizes nanobots to repair chassis damage.", ItemLoc.core, ItemType.aesthetic, 4, GetSprite("GreenGuy/head"), 0, 0, 0, 1, true));
+		items.Add(new Item(30, "Energy Pack", "A backpack system that increases your energy capacity.", ItemLoc.back, ItemType.aesthetic, 3, GetSprite("basicBackpack"), 10, 0, 0, 1, true));
+		items.Add(new Item(31, "Barrier Pack", "A backpack system that generates a weak, regenerating forcefield.", ItemLoc.back, ItemType.aesthetic, 4,GetSprite("basicBackpack"), 5, 0, 0, 1, true));
+		items.Add(new Item(32, "Hacking Core", "An AI core that enables the hacking of doors and chests.", ItemLoc.core, ItemType.aesthetic, 3, GetSprite("hackingCore"), 0, 0, 0, 1, true));
+		items.Add(new Item(33, "Self-Repair Core", "An AI core that utilizes nanobots to repair chassis damage.", ItemLoc.core, ItemType.aesthetic, 4, GetSprite("aiCore"), 0, 0, 0, 1, true));
 	}
 	void SetupRangedWeapons()
 	{

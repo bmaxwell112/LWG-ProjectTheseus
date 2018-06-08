@@ -7,9 +7,9 @@ public class EnterDungeonTrigger : MonoBehaviour {
 	[SerializeField] int dungeon;
 	bool loading;
 	// Use this for initialization
-	void OnTriggerStay2D(Collider2D collision)
+	void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (InputCapture.pickup && !GameManager.paused && collision.gameObject.CompareTag("Player") && !loading)
+		if (!loading)
 		{			
 			StartCoroutine(LoadDungeon());
 			loading = true;

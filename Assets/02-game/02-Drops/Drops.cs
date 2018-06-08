@@ -9,40 +9,38 @@ public class Drops : MonoBehaviour {
 	public int databaseItemID;
 	public int hitPoints;
 	public float power;
-	bool playerCanPickup;
+	bool playerCanPickup, panelEnabled;
+	ItemPanel itemPanel;
 	[SerializeField] SpriteRenderer[] sprites;
-	[SerializeField] Text text;
-	[SerializeField] Transform canvas;
 	[SerializeField] LayerMask playerMask;
 
 	void Start()
 	{
 		Database database = Database.instance;
 		IdentifyItem(database.items[databaseItemID], database.items[databaseItemID].itemHitpoints, database.items[databaseItemID].itemPower);
+		itemPanel = FindObjectOfType<ItemPanel>();
 		//Invoke("DestroyDrop", 10);
-	}
-
-	void Update()
-	{		
-		if (playerCanPickup && !canvas.gameObject.activeSelf)
-		{
-			canvas.gameObject.SetActive(true);
-		}
-		if (!playerCanPickup && canvas.gameObject.activeSelf)
-		{
-			canvas.gameObject.SetActive(false);
-		}
 	}
 	void FixedUpdate()
 	{
-		Collider2D playerInRange = Physics2D.OverlapCircle(transform.position, 1, playerMask);
+		Collider2D playerInRange = Physics2D.OverlapCircle(transform.position, 0.25f, playerMask);
 		if (playerInRange)
 		{
-			DescPosition(playerInRange.transform);
+			if (!panelEnabled)
+			{
+				var newText = thisItem.itemName + "\n" + thisItem.itemDesc;
+				itemPanel.ItemPanelSetEnable(newText);
+				panelEnabled = true;
+			}
 			playerCanPickup = true;
 		}
 		else
 		{
+			if (panelEnabled)
+			{
+				itemPanel.ItemPanelDisabled();
+				panelEnabled = false;
+			}
 			playerCanPickup = false;
 		}
 	}
@@ -53,7 +51,6 @@ public class Drops : MonoBehaviour {
 		hitPoints = hp;
 		power = pwr;
 		SpriteSetter(item);
-		text.text = thisItem.itemName + "\n" + thisItem.itemDesc;
 	}
 
 	private void SpriteSetter(Item item)
@@ -85,24 +82,11 @@ public class Drops : MonoBehaviour {
 	{
 		CancelInvoke();
 		//Invoke("DestroyDrop", 10);
-		text.text = thisItem.itemName + "\n" + thisItem.itemDesc;
 		SpriteSetter(thisItem);
 	}
 
 	void DestroyDrop()
 	{
 		Destroy(gameObject);
-	}
-
-	void DescPosition(Transform player)
-	{
-		if (player.transform.position.x < transform.position.x)
-		{
-			canvas.transform.localPosition = new Vector3(2.5f, 1.25f, 0);
-		}
-		else
-		{
-			canvas.transform.localPosition = new Vector3(-2.5f, 1.25f, 0);
-		}
 	}
 }

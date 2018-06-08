@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] LayerMask drop, enemyMask;
 	[SerializeField] GameObject bullets;
 	[SerializeField] RobotAttack leftArm, rightArm;
+	NotificationsPanel np;
 	public Transform firingArc;
 	RobotLoadout roLo;
 	PlayerSpecial special;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour {
 	{		
 		roLo = GetComponent<RobotLoadout>();
 		special = GetComponent<PlayerSpecial>();
+		np = FindObjectOfType<NotificationsPanel>();
 		PlayerSpawn();
 	}
 
@@ -77,9 +79,11 @@ public class PlayerController : MonoBehaviour {
 			if (itemInRange)
 			{
 				if (itemInRange.gameObject.GetComponent<Drops>())
-				{
+				{					
 					Drops drop = itemInRange.gameObject.GetComponent<Drops>();
+					string newText = roLo.loadout[(int)drop.thisItem.itemLoc].itemName + "\nSwitched for\n" + drop.thisItem.itemName;
 					RobotFunctions.ReplaceDropPart(drop, roLo);
+					np.NotificationsPanelSetEnable(newText);
 					drop.RenameAndReset();
 				}
 			}
