@@ -21,15 +21,16 @@ public class PlayerController : MonoBehaviour {
 		special = GetComponent<PlayerSpecial>();
 		np = FindObjectOfType<NotificationsPanel>();
 		PlayerSpawn();
+
 	}
 
 	private void PlayerSpawn()
 	{
 		Database db = Database.instance;
-		if (!GameManager.playerAlive)
+		if (!GameManager.instance.playerAlive)
 		{
 			roLo.InitializeLoadout(db.items[0], db.items[1], db.items[2], db.items[3], db.items[4], db.items[5], db.items[6]);
-			GameManager.playerAlive = true;
+			GameManager.instance.playerAlive = true;
 		}
 		else
 		{
@@ -82,8 +83,8 @@ public class PlayerController : MonoBehaviour {
 				{					
 					Drops drop = itemInRange.gameObject.GetComponent<Drops>();
 					string newText = roLo.loadout[(int)drop.thisItem.itemLoc].itemName + "\nSwitched for\n" + drop.thisItem.itemName;
+					np.NotificationsPanelSetEnable(newText);					
 					RobotFunctions.ReplaceDropPart(drop, roLo);
-					np.NotificationsPanelSetEnable(newText);
 					drop.RenameAndReset();
 				}
 			}

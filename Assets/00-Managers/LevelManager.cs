@@ -28,6 +28,14 @@ public class LevelManager : MonoBehaviour {
 	public void LoadLevel(string name){
 		SceneManager.LoadScene (name);
 	}
+	public void LoadLevelInGame(string name)
+	{
+		// TODO remove these stupid and redundent things.
+		GameManager.GamePause(false);
+		GameManager.instance.playerAlive = false;
+		SceneManager.LoadScene(name);
+	}
+	
 	public void LoadLevel(int number)
 	{
 		SceneManager.LoadScene(number);
@@ -56,5 +64,10 @@ public class LevelManager : MonoBehaviour {
 	public void LoadExternalURL(string url)
 	{
 		Application.OpenURL(url);
+	}
+
+	public int GetLevelNumber()
+	{
+		return SceneManager.GetActiveScene().buildIndex;
 	}
 }

@@ -83,6 +83,8 @@ public class Drops : MonoBehaviour {
 		CancelInvoke();
 		//Invoke("DestroyDrop", 10);
 		SpriteSetter(thisItem);
+		var newText = thisItem.itemName + "\n" + thisItem.itemDesc;
+		itemPanel.ItemPanelSetEnable(newText);
 	}
 
 	void DestroyDrop()

@@ -10,13 +10,13 @@ public class NewPlayerListener : MonoBehaviour {
 	void Start()
 	{
 		levelManager = FindObjectOfType<LevelManager>();
-		GameManager.playerAlive = false;
+		GameManager.instance.playerAlive = false;
 	}
 
 	void Update () {
 		if (Input.anyKey && !loading)
 		{
-			levelManager.LoadLevel("02a Game-1");
+			levelManager.LoadLevel("02a Hub");
 			loading = true;
 		}
 	}

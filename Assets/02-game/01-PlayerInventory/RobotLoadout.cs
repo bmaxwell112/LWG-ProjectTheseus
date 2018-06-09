@@ -117,7 +117,7 @@ public class RobotLoadout : MonoBehaviour {
 		}
 		else
 		{
-			GameManager.playerAlive = false;
+			GameManager.instance.playerAlive = false;
 			//Invoke("LoadToHub", 2);
 			LoadToHub();
 		}

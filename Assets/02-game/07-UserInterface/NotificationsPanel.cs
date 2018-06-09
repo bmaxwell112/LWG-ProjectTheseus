@@ -12,7 +12,7 @@ public class NotificationsPanel : MonoBehaviour {
 	void Start()
 	{
 		FetchAnim();
-		text = GetComponentInChildren<Text>();
+		text = GetComponentInChildren<Text>();		
 	}
 
 	public void NotificationsPanelSetEnable(string newText)
@@ -20,7 +20,7 @@ public class NotificationsPanel : MonoBehaviour {
 		CancelInvoke();
 		FetchAnim();
 		anim.SetBool("active", true);
-		text.text = newText;
+		text.text = newText;		
 		Invoke("NotificationsPanelDisabled", 3);
 	}
 	public void NotificationsPanelDisabled()
