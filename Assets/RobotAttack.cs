@@ -55,8 +55,11 @@ public class RobotAttack : MonoBehaviour {
 
 	public void StopMovementCheck()
 	{
-		MeleeWeapon mw = Database.instance.ItemsMeleeWeapon(roLo.loadout[armLocation]);
-		if (armLocation == 2)
+
+        bool blockDodge = Input.GetButton("BlockDodge");
+
+        MeleeWeapon mw = Database.instance.ItemsMeleeWeapon(roLo.loadout[armLocation]);
+		if (armLocation == 2 && !blockDodge)
 		{
 			roLo.stopWhileAttackingLeft = mw.meleeWeaponStopMovement;
 			print(roLo.stopWhileAttackingLeft);

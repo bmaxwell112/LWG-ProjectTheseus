@@ -13,14 +13,18 @@ public class PlayerController : MonoBehaviour {
 	RobotLoadout roLo;
 	PlayerSpecial special;
 	Vector3 rotation;
-	bool fireLeft, fireRight;
+	bool fireLeft, fireRight, blockDodge, stationary;
+    public bool activeDodge, activeBlock;
+    Rigidbody2D rb;
+    float xSpeed, ySpeed;
 
 	void Start()
 	{		
 		roLo = GetComponent<RobotLoadout>();
 		special = GetComponent<PlayerSpecial>();
 		np = FindObjectOfType<NotificationsPanel>();
-		PlayerSpawn();
+        rb = GetComponent<Rigidbody2D>();
+        PlayerSpawn();
 
 	}
 
@@ -48,7 +52,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (RoomManager.allActive)
+        if (RoomManager.allActive)
 		{
 			if (GameManager.mouseInput)
 			{
@@ -61,14 +65,17 @@ public class PlayerController : MonoBehaviour {
 
 			if (!GameManager.paused)
 			{
-				//if (!roLo.AreYouStopped())
-				//{
-					MovementCheck();
-				//}
-				AimAndFireCheck();
-				PickupItemCheck();
+                BlockDodgeCheck();
+                MovementCheck();
+                if (!activeBlock && !activeDodge)
+                {
+                    AimAndFireCheck();
+                    PickupItemCheck();
+                }
+                
 			}
 		}
+
 	}
 
 	private void PickupItemCheck()
@@ -91,55 +98,87 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+    public void BlockDodgeCheck()
+    {
+        bool blockDodge = Input.GetButton("BlockDodge");
+        if (blockDodge && stationary)
+        {
+            activeBlock = true;
+            //set something to negate some damage
+                print("Blocking");
+
+        }
+        else if (blockDodge)
+        {
+            activeDodge = true;
+            print("Dodging");
+            //do the dodge thing
+            //set this back to false, start a cooldown before you can dodge again
+        }
+        else
+        {
+            activeBlock = false;
+            activeDodge = false;
+        }
+    }
+
 	private void AimAndFireCheck()
 	{
-		if ((InputCapture.hAim > 0.5f || InputCapture.hAim < -0.5f) || (InputCapture.vAim > 0.5f || InputCapture.vAim < -0.5f))
-		{
-			rotation = MovementFunctions.LookAt2D(transform, InputCapture.hAim, InputCapture.vAim);
-		}
-		firingArc.eulerAngles = rotation;
-		// ATTACKING LEFT ARM
-		if (InputCapture.firingLeft && !fireLeft)
-		{
-			if (roLo.loadout[2].itemType == ItemType.range && roLo.power[2] > 0)
-			{				
-				leftArm.RangedAttack(roLo.loadout[2]);
-			}
-			fireLeft = true;
-		}
-		else if (!InputCapture.firingLeft)
-		{
-			fireLeft = false;
-		}
-		// ATTACKING RIGHT ARM
-		if (InputCapture.firingRight  && !fireRight)
-		{
-			if (roLo.loadout[3].itemType == ItemType.range && roLo.power[3] > 0)
-			{
-				rightArm.RangedAttack(roLo.loadout[3]);
-			}
-			fireRight = true;
-		}
-		else if (!InputCapture.firingRight)
-		{
-			fireRight = false;			
-		}
-		rightArm.GetComponent<RobotAttack>().FiringCheck(fireRight);
-		leftArm.GetComponent<RobotAttack>().FiringCheck(fireLeft);
+            if ((InputCapture.hAim > 0.5f || InputCapture.hAim < -0.5f) || (InputCapture.vAim > 0.5f || InputCapture.vAim < -0.5f))
+            {
+                rotation = MovementFunctions.LookAt2D(transform, InputCapture.hAim, InputCapture.vAim);
+            }
+            firingArc.eulerAngles = rotation;
+            // ATTACKING LEFT ARM
+            if (InputCapture.firingLeft && !fireLeft)
+            {
+                if (roLo.loadout[2].itemType == ItemType.range && roLo.power[2] > 0)
+                {
+                    leftArm.RangedAttack(roLo.loadout[2]);
+                }
+                fireLeft = true;
+            }
+            else if (!InputCapture.firingLeft)
+            {
+                fireLeft = false;
+            }
+            // ATTACKING RIGHT ARM
+            if (InputCapture.firingRight && !fireRight)
+            {
+                if (roLo.loadout[3].itemType == ItemType.range && roLo.power[3] > 0)
+                {
+                    rightArm.RangedAttack(roLo.loadout[3]);
+                }
+                fireRight = true;
+            }
+            else if (!InputCapture.firingRight)
+            {
+                fireRight = false;
+            }
+            rightArm.GetComponent<RobotAttack>().FiringCheck(fireRight);
+            leftArm.GetComponent<RobotAttack>().FiringCheck(fireLeft);
 	}
-
 	private void MovementCheck()
 	{
-		// Sets players speed
-		float speed = 1.5f;
-		if (roLo.hitPoints[(int)ItemLoc.legs] > 0)
-		{
-			speed = roLo.loadout[(int)ItemLoc.legs].itemSpeed;
-		}
-		float xSpeed = InputCapture.hThrow * speed * Time.deltaTime;
-		float ySpeed = InputCapture.vThrow * speed * Time.deltaTime;
-		// applies movement
-		transform.position += new Vector3(xSpeed, ySpeed, transform.position.z);
+        float speed = 1.5f;
+        // Sets players speed
+        if (roLo.hitPoints[(int)ItemLoc.legs] > 0)
+            {
+                speed = roLo.loadout[(int)ItemLoc.legs].itemSpeed;
+            }
+        // applies movement
+        float xSpeed = InputCapture.hThrow * speed * Time.deltaTime;
+        float ySpeed = InputCapture.vThrow * speed * Time.deltaTime;
+        transform.position += new Vector3(xSpeed, ySpeed, transform.position.z);
+
+        if(xSpeed == 0 && ySpeed == 0)
+        {
+            stationary = true;
+        }
+        else
+        {
+            stationary = false;
+        }
 	}
 
 	private void AnimationChangeCheck()
