@@ -79,7 +79,9 @@ public class RobotAttack : MonoBehaviour {
 
 	public void RangedAttack(Item weapon)
 	{
-		if (!localCooldown)
+        bool blockDodge = Input.GetButton("BlockDodge");
+
+        if (!localCooldown && !blockDodge)
 		{
 			StartCoroutine(SpawnBullets(weapon));
 		}

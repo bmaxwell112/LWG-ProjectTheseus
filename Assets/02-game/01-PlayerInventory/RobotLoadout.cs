@@ -73,7 +73,7 @@ public class RobotLoadout : MonoBehaviour {
 				}
 			}
 			int rand = Random.Range(0, liveParts.Count);
-            if(!player.activeBlock)
+            if(!player.activeBlock && !player.activeDodge)
             {
                 hitPoints[liveParts[rand]] -= damage;
             }

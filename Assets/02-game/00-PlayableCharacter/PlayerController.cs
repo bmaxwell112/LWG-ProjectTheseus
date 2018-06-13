@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 	RobotLoadout roLo;
 	PlayerSpecial special;
 	Vector3 rotation;
-	bool fireLeft, fireRight, blockDodge, stationary;
+	bool fireLeft, fireRight, blockDodge, stationary, dodgeAvailable;
     public bool activeDodge, activeBlock;
     Rigidbody2D rb;
     float xSpeed, ySpeed;
@@ -66,9 +66,9 @@ public class PlayerController : MonoBehaviour {
 			if (!GameManager.paused)
 			{
                 BlockDodgeCheck();
-                MovementCheck();
                 if (!activeBlock && !activeDodge)
                 {
+                    MovementCheck();
                     AimAndFireCheck();
                     PickupItemCheck();
                 }
@@ -100,25 +100,95 @@ public class PlayerController : MonoBehaviour {
 
     public void BlockDodgeCheck()
     {
+        float xDodge = InputCapture.hThrow;
+        float yDodge = InputCapture.vThrow;
+
+        print("activeDodge: " + activeDodge);
+        print("activeBlock: " + activeBlock);
+
         bool blockDodge = Input.GetButton("BlockDodge");
+
+        activeBlock = false;
+        activeDodge = false;
+
+        //stationary is found in the movement check
         if (blockDodge && stationary)
         {
+            dodgeAvailable = true;
             activeBlock = true;
-            //set something to negate some damage
+            if(xDodge != 0 || yDodge != 0)
+            {
+                activeBlock = false;
+                activeDodge = true;
+                print("block into dodge");
+            }
                 print("Blocking");
+        }
 
-        }
-        else if (blockDodge)
+        if(blockDodge && !stationary && !activeDodge)
         {
-            activeDodge = true;
-            print("Dodging");
-            //do the dodge thing
-            //set this back to false, start a cooldown before you can dodge again
+            //tie running dodge into animation
         }
-        else
+
+        if (activeDodge)
+        { 
+            if (dodgeAvailable)
+            {
+                CalcDodge();
+                dodgeAvailable = false;
+                activeDodge = false;
+                print("Dodging");
+
+            }
+        }
+    }
+
+    public void CalcDodge()
+    {
+        float xDodge = InputCapture.hThrow;
+        float yDodge = InputCapture.vThrow;
+
+        float dodgeRoll = 0.5f;
+
+        if (xDodge > 0)
         {
-            activeBlock = false;
-            activeDodge = false;
+            //right dodge
+            transform.position += new Vector3(dodgeRoll, 0, transform.position.z);
+        }
+        if (xDodge > 0 && yDodge > 0)
+        {
+            //upright dodge
+            transform.position += new Vector3(dodgeRoll, dodgeRoll, transform.position.z);
+        }
+        if (xDodge > 0 && yDodge < 0)
+        {
+            //downright dodge
+            transform.position += new Vector3(dodgeRoll, -dodgeRoll, transform.position.z);
+        }
+        if (xDodge < 0)
+        {
+            //left dodge
+            transform.position += new Vector3(-dodgeRoll, 0, transform.position.z);
+        }
+        if (xDodge < 0 && yDodge > 0)
+        {
+            //upleft dodge
+            transform.position += new Vector3(-dodgeRoll, dodgeRoll, transform.position.z);
+        }
+        if (xDodge < 0 && yDodge < 0)
+        {
+            //downleft dodge
+            transform.position += new Vector3(-dodgeRoll, -dodgeRoll, transform.position.z);
+        }
+        if (yDodge > 0)
+        {
+            //up dodge
+            transform.position += new Vector3(0, dodgeRoll, transform.position.z);
+        }
+        if (yDodge < 0)
+        {
+            //down dodge
+            transform.position += new Vector3(0, -dodgeRoll, transform.position.z);
         }
     }
 
