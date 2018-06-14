@@ -103,8 +103,8 @@ public class PlayerController : MonoBehaviour {
         float xDodge = InputCapture.hThrow;
         float yDodge = InputCapture.vThrow;
 
-        print("activeDodge: " + activeDodge);
-        print("activeBlock: " + activeBlock);
+        //print("activeDodge: " + activeDodge);
+        //print("activeBlock: " + activeBlock);
 
         bool blockDodge = Input.GetButton("BlockDodge");
 
@@ -131,13 +131,14 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (activeDodge)
-        { 
+        {
             if (dodgeAvailable)
             {
                 CalcDodge();
                 dodgeAvailable = false;
                 activeDodge = false;
                 print("Dodging");
+                //set this to have a proper cooldown
 
             }
         }
@@ -148,48 +149,55 @@ public class PlayerController : MonoBehaviour {
         float xDodge = InputCapture.hThrow;
         float yDodge = InputCapture.vThrow;
 
-        float dodgeRoll = 0.5f;
+        float dodgeRoll = 1f;
 
         if (xDodge > 0)
         {
             //right dodge
-            transform.position += new Vector3(dodgeRoll, 0, transform.position.z);
+            StartCoroutine(PerformDodge(new Vector2(dodgeRoll, 0)));
         }
         if (xDodge > 0 && yDodge > 0)
         {
             //upright dodge
-            transform.position += new Vector3(dodgeRoll, dodgeRoll, transform.position.z);
+            StartCoroutine(PerformDodge(new Vector2(dodgeRoll, dodgeRoll)));
         }
         if (xDodge > 0 && yDodge < 0)
         {
             //downright dodge
-            transform.position += new Vector3(dodgeRoll, -dodgeRoll, transform.position.z);
+            StartCoroutine(PerformDodge(new Vector2(dodgeRoll, -dodgeRoll)));
         }
         if (xDodge < 0)
         {
             //left dodge
-            transform.position += new Vector3(-dodgeRoll, 0, transform.position.z);
+            StartCoroutine(PerformDodge(new Vector2(-dodgeRoll, 0)));
         }
         if (xDodge < 0 && yDodge > 0)
         {
             //upleft dodge
-            transform.position += new Vector3(-dodgeRoll, dodgeRoll, transform.position.z);
+            StartCoroutine(PerformDodge(new Vector2(-dodgeRoll, dodgeRoll)));
         }
         if (xDodge < 0 && yDodge < 0)
         {
             //downleft dodge
-            transform.position += new Vector3(-dodgeRoll, -dodgeRoll, transform.position.z);
+            StartCoroutine(PerformDodge(new Vector2(-dodgeRoll, -dodgeRoll)));
         }
         if (yDodge > 0)
         {
             //up dodge
-            transform.position += new Vector3(0, dodgeRoll, transform.position.z);
+            StartCoroutine(PerformDodge(new Vector2(0, dodgeRoll)));
         }
         if (yDodge < 0)
         {
             //down dodge
-            transform.position += new Vector3(0, -dodgeRoll, transform.position.z);
+            StartCoroutine(PerformDodge(new Vector2(0, -dodgeRoll)));
         }
+    }
+
+    IEnumerator PerformDodge(Vector2 dodgeForce)
+    {
+        rb.AddForce(dodgeForce);
+        yield return new WaitForSeconds(0.5f);
+        rb.velocity = Vector2.zero;
     }
 
 	private void AimAndFireCheck()
