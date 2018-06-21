@@ -5,8 +5,9 @@ using UnityEngine;
 public class InputCapture {
 
 	public static float hThrow, vThrow, hAim, vAim;
-	public static bool pickup, back, fireLeftDown, fireRightDown, firingLeft, firingRight, pause, triggerRight, triggerLeft;
+	public static bool pickup, back, fireLeftDown, fireRightDown, firingLeft, firingRight, pause, triggerRight, triggerLeft, block;
 	static bool mouseIsFiringLeft, mouseIsFiringRight;
+
 
 	public static void InputCheck()
 	{
@@ -15,7 +16,7 @@ public class InputCapture {
 		pickup = Input.GetButtonDown("Pickup");
 		back = Input.GetButtonDown("Submit");
 		pause = Input.GetButtonDown("Cancel");
-		// Joystick Controls
+		block = Input.GetButtonDown("BlockDodge");
 		if (!GameManager.mouseInput)
 		{
 			fireLeftDown = Input.GetButtonDown("Fire1");

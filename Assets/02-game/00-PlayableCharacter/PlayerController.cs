@@ -13,14 +13,18 @@ public class PlayerController : MonoBehaviour {
 	RobotLoadout roLo;
 	PlayerSpecial special;
 	Vector3 rotation;
-	bool fireLeft, fireRight;
+	bool fireLeft, fireRight, blockDodge, stationary, dodgeAvailable;
+    public bool activeDodge, activeBlock;
+    Rigidbody2D rb;
+    float xSpeed, ySpeed;
 
 	void Start()
 	{		
 		roLo = GetComponent<RobotLoadout>();
 		special = GetComponent<PlayerSpecial>();
 		np = FindObjectOfType<NotificationsPanel>();
-		PlayerSpawn();
+        rb = GetComponent<Rigidbody2D>();
+        PlayerSpawn();
 
 	}
 
@@ -48,7 +52,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (RoomManager.allActive)
+        if (RoomManager.allActive)
 		{
 			if (GameManager.mouseInput)
 			{
@@ -61,14 +65,17 @@ public class PlayerController : MonoBehaviour {
 
 			if (!GameManager.paused)
 			{
-				//if (!roLo.AreYouStopped())
-				//{
-					MovementCheck();
-				//}
-				AimAndFireCheck();
-				PickupItemCheck();
+                BlockDodgeCheck();
+                if (!activeBlock && !activeDodge)
+                {
+                    MovementCheck();
+                    AimAndFireCheck();
+                    PickupItemCheck();
+                }
+                
 			}
 		}
+
 	}
 
 	private void PickupItemCheck()
@@ -91,55 +98,165 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+    public void BlockDodgeCheck()
+    {
+        float xDodge = InputCapture.hThrow;
+        float yDodge = InputCapture.vThrow;
+
+        //print("activeDodge: " + activeDodge);
+        //print("activeBlock: " + activeBlock);
+
+        bool blockDodge = Input.GetButton("BlockDodge");
+
+        activeBlock = false;
+        activeDodge = false;
+
+        //stationary is found in the movement check
+        if (blockDodge && stationary)
+        {
+            dodgeAvailable = true;
+            activeBlock = true;
+            if(xDodge != 0 || yDodge != 0)
+            {
+                activeBlock = false;
+                activeDodge = true;
+                print("block into dodge");
+            }
+                print("Blocking");
+        }
+
+        if(blockDodge && !stationary && !activeDodge)
+        {
+            //tie running dodge into animation
+        }
+
+        if (activeDodge)
+        {
+            if (dodgeAvailable)
+            {
+                CalcDodge();
+                dodgeAvailable = false;
+                activeDodge = false;
+                print("Dodging");
+                //set this to have a proper cooldown
+
+            }
+        }
+    }
+
+    public void CalcDodge()
+    {
+        float xDodge = InputCapture.hThrow;
+        float yDodge = InputCapture.vThrow;
+
+        float dodgeRoll = 1f;
+
+        if (xDodge > 0)
+        {
+            //right dodge
+            StartCoroutine(PerformDodge(new Vector2(dodgeRoll, 0)));
+        }
+        if (xDodge > 0 && yDodge > 0)
+        {
+            //upright dodge
+            StartCoroutine(PerformDodge(new Vector2(dodgeRoll, dodgeRoll)));
+        }
+        if (xDodge > 0 && yDodge < 0)
+        {
+            //downright dodge
+            StartCoroutine(PerformDodge(new Vector2(dodgeRoll, -dodgeRoll)));
+        }
+        if (xDodge < 0)
+        {
+            //left dodge
+            StartCoroutine(PerformDodge(new Vector2(-dodgeRoll, 0)));
+        }
+        if (xDodge < 0 && yDodge > 0)
+        {
+            //upleft dodge
+            StartCoroutine(PerformDodge(new Vector2(-dodgeRoll, dodgeRoll)));
+        }
+        if (xDodge < 0 && yDodge < 0)
+        {
+            //downleft dodge
+            StartCoroutine(PerformDodge(new Vector2(-dodgeRoll, -dodgeRoll)));
+        }
+        if (yDodge > 0)
+        {
+            //up dodge
+            StartCoroutine(PerformDodge(new Vector2(0, dodgeRoll)));
+        }
+        if (yDodge < 0)
+        {
+            //down dodge
+            StartCoroutine(PerformDodge(new Vector2(0, -dodgeRoll)));
+        }
+    }
+
+    IEnumerator PerformDodge(Vector2 dodgeForce)
+    {
+        rb.AddForce(dodgeForce);
+        yield return new WaitForSeconds(0.5f);
+        rb.velocity = Vector2.zero;
+    }
+
 	private void AimAndFireCheck()
 	{
-		if ((InputCapture.hAim > 0.5f || InputCapture.hAim < -0.5f) || (InputCapture.vAim > 0.5f || InputCapture.vAim < -0.5f))
-		{
-			rotation = MovementFunctions.LookAt2D(transform, InputCapture.hAim, InputCapture.vAim);
-		}
-		firingArc.eulerAngles = rotation;
-		// ATTACKING LEFT ARM
-		if (InputCapture.triggerLeft && !fireLeft)
-		{
-			if (roLo.loadout[2].itemType == ItemType.range && roLo.power[2] > 0)
-			{				
-				leftArm.RangedAttack(roLo.loadout[2]);
-			}
-			fireLeft = true;
-		}
-		else if (!InputCapture.triggerLeft)
-		{
-			fireLeft = false;
-		}
-		// ATTACKING RIGHT ARM
-		if (InputCapture.triggerRight && !fireRight)
-		{
-			if (roLo.loadout[3].itemType == ItemType.range && roLo.power[3] > 0)
-			{
-				rightArm.RangedAttack(roLo.loadout[3]);
-			}
-			fireRight = true;
-		}
-		else if (!InputCapture.triggerRight)
-		{
-			fireRight = false;			
-		}
-		rightArm.GetComponent<RobotAttack>().FiringCheck(fireRight);
-		leftArm.GetComponent<RobotAttack>().FiringCheck(fireLeft);
+            if ((InputCapture.hAim > 0.5f || InputCapture.hAim < -0.5f) || (InputCapture.vAim > 0.5f || InputCapture.vAim < -0.5f))
+            {
+                rotation = MovementFunctions.LookAt2D(transform, InputCapture.hAim, InputCapture.vAim);
+            }
+            firingArc.eulerAngles = rotation;
+            // ATTACKING LEFT ARM
+            if (InputCapture.triggerLeft && !fireLeft)
+            {
+                if (roLo.loadout[2].itemType == ItemType.range && roLo.power[2] > 0)
+                {
+                    leftArm.RangedAttack(roLo.loadout[2]);
+                }
+                fireLeft = true;
+            }
+            else if (!InputCapture.triggerLeft)
+            {
+                fireLeft = false;
+            }
+            // ATTACKING RIGHT ARM
+            if (InputCapture.triggerRight && !fireRight)
+            {
+                if (roLo.loadout[3].itemType == ItemType.range && roLo.power[3] > 0)
+                {
+                    rightArm.RangedAttack(roLo.loadout[3]);
+                }
+                fireRight = true;
+            }
+            else if (!InputCapture.triggerRight)
+            {
+                fireRight = false;
+            }
+            rightArm.GetComponent<RobotAttack>().FiringCheck(fireRight);
+            leftArm.GetComponent<RobotAttack>().FiringCheck(fireLeft);
 	}
-
 	private void MovementCheck()
 	{
-		// Sets players speed
-		float speed = 1.5f;
-		if (roLo.hitPoints[(int)ItemLoc.legs] > 0)
-		{
-			speed = roLo.loadout[(int)ItemLoc.legs].itemSpeed;
-		}
-		float xSpeed = InputCapture.hThrow * speed * Time.deltaTime;
-		float ySpeed = InputCapture.vThrow * speed * Time.deltaTime;
-		// applies movement
-		transform.position += new Vector3(xSpeed, ySpeed, transform.position.z);
+        float speed = 1.5f;
+        // Sets players speed
+        if (roLo.hitPoints[(int)ItemLoc.legs] > 0)
+            {
+                speed = roLo.loadout[(int)ItemLoc.legs].itemSpeed;
+            }
+        // applies movement
+        float xSpeed = InputCapture.hThrow * speed * Time.deltaTime;
+        float ySpeed = InputCapture.vThrow * speed * Time.deltaTime;
+        transform.position += new Vector3(xSpeed, ySpeed, transform.position.z);
+
+        if(xSpeed == 0 && ySpeed == 0)
+        {
+            stationary = true;
+        }
+        else
+        {
+            stationary = false;
+        }
 	}
 
 	private void AnimationChangeCheck()

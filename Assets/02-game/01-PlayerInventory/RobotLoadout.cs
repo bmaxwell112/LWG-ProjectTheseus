@@ -19,10 +19,12 @@ public class RobotLoadout : MonoBehaviour {
 	int basicSpeed = 5;
 	bool isPlayer;
 	public Item[] loadout = new Item[7];
+    PlayerController player;
 
 	void Start()
 	{
-		isPlayer = GetComponent<PlayerController>();		
+		isPlayer = GetComponent<PlayerController>();
+        player = FindObjectOfType<PlayerController>();
 	}
 	// Resets the player to basic loadout.
 	public void InitializeLoadout(Item head, Item body, Item leftArm, Item rightArm, Item legs, Item back, Item core)
@@ -71,7 +73,18 @@ public class RobotLoadout : MonoBehaviour {
 				}
 			}
 			int rand = Random.Range(0, liveParts.Count);
-			hitPoints[liveParts[rand]] -= damage;
+            if(!player.activeBlock && !player.activeDodge)
+            {
+                hitPoints[liveParts[rand]] -= damage;
+            }
+            else
+            {
+                //assigns a new damage value for damageText, CHANGE THIS ONCE WE IMPLEMENT ARMOR / SHIELD ARM
+                damage = (damage / 3);
+                hitPoints[liveParts[rand]] -= damage;
+                print("damage blocked");
+            }
+
 			if (hitPoints[liveParts[rand]] < 0)
 			{
 				hitPoints[liveParts[rand]] = 0;

@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour {
 	void Start()
 	{
 		RandomDropModifier = 0;		
-		mouseInput = true;
+		mouseInput = MouseCheck();
 	}
 
 	private bool MouseCheck()

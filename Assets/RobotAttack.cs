@@ -55,8 +55,11 @@ public class RobotAttack : MonoBehaviour {
 
 	public void StopMovementCheck()
 	{
-		MeleeWeapon mw = Database.instance.ItemsMeleeWeapon(roLo.loadout[armLocation]);
-		if (armLocation == 2)
+
+        bool blockDodge = Input.GetButton("BlockDodge");
+
+        MeleeWeapon mw = Database.instance.ItemsMeleeWeapon(roLo.loadout[armLocation]);
+		if (armLocation == 2 && !blockDodge)
 		{
 			roLo.stopWhileAttackingLeft = mw.meleeWeaponStopMovement;
 		}
@@ -74,7 +77,9 @@ public class RobotAttack : MonoBehaviour {
 
 	public void RangedAttack(Item weapon)
 	{
-		if (!localCooldown)
+        bool blockDodge = Input.GetButton("BlockDodge");
+
+        if (!localCooldown && !blockDodge)
 		{
 			StartCoroutine(SpawnBullets(weapon));
 		}

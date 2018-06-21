@@ -99,19 +99,26 @@ public class RobotArmsAnim : MonoBehaviour {
 	}
 	public void PlayerTracking()
 	{
-		if (PlayerMelee())
-		{
-			anim.SetBool("attackingMelee", true);
-			attack.StopMovementCheck();
-		}
-		if (PlayerRanged() && roLo.loadout[armLocation].itemType == ItemType.range && (roLo.power[armLocation] > 0 && roLo.hitPoints[armLocation] > 0))
-		{
-			anim.SetBool("attackingRange", true);
-		}
-		else if ((!PlayerRanged() && roLo.loadout[armLocation].itemType == ItemType.range) || (roLo.power[armLocation] <= 0 || roLo.hitPoints[armLocation] <= 0))
-		{
-			anim.SetBool("attackingRange", false);
-		}
+        bool blockDodge = Input.GetButton("BlockDodge");
+
+        if (!blockDodge)
+        {
+
+            if (PlayerMelee())
+            {
+                anim.SetBool("attackingMelee", true);
+                attack.StopMovementCheck();
+            }
+            if (PlayerRanged() && roLo.loadout[armLocation].itemType == ItemType.range && (roLo.power[armLocation] > 0 && roLo.hitPoints[armLocation] > 0))
+            {
+                print("doing this");
+                anim.SetBool("attackingRange", true);
+            }
+            else if ((!PlayerRanged() && roLo.loadout[armLocation].itemType == ItemType.range) || (roLo.power[armLocation] <= 0 || roLo.hitPoints[armLocation] <= 0))
+            {
+                anim.SetBool("attackingRange", false);
+            }
+        }
 	}
 
 	public void MeleeAttack()
