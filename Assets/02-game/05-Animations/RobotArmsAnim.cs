@@ -90,23 +90,22 @@ public class RobotArmsAnim : MonoBehaviour {
 	{
 		if (armLocation == 2)
 		{
-			return InputCapture.firingLeft;
+			return InputCapture.triggerLeft;
 		}
 		else
 		{
-			return InputCapture.firingRight;
+			return InputCapture.triggerRight;
 		}
 	}
 	public void PlayerTracking()
 	{
-		if (PlayerMelee() && (roLo.loadout[armLocation].itemType == ItemType.melee || (roLo.power[armLocation] <= 0 || roLo.hitPoints[armLocation] <= 0)))
+		if (PlayerMelee())
 		{
 			anim.SetBool("attackingMelee", true);
 			attack.StopMovementCheck();
 		}
 		if (PlayerRanged() && roLo.loadout[armLocation].itemType == ItemType.range && (roLo.power[armLocation] > 0 && roLo.hitPoints[armLocation] > 0))
 		{
-			print("doing this");
 			anim.SetBool("attackingRange", true);
 		}
 		else if ((!PlayerRanged() && roLo.loadout[armLocation].itemType == ItemType.range) || (roLo.power[armLocation] <= 0 || roLo.hitPoints[armLocation] <= 0))

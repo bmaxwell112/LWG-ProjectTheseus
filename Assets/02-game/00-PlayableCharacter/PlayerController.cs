@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour {
 		}
 		firingArc.eulerAngles = rotation;
 		// ATTACKING LEFT ARM
-		if (InputCapture.firingLeft && !fireLeft)
+		if (InputCapture.triggerLeft && !fireLeft)
 		{
 			if (roLo.loadout[2].itemType == ItemType.range && roLo.power[2] > 0)
 			{				
@@ -107,12 +107,12 @@ public class PlayerController : MonoBehaviour {
 			}
 			fireLeft = true;
 		}
-		else if (!InputCapture.firingLeft)
+		else if (!InputCapture.triggerLeft)
 		{
 			fireLeft = false;
 		}
 		// ATTACKING RIGHT ARM
-		if (InputCapture.firingRight  && !fireRight)
+		if (InputCapture.triggerRight && !fireRight)
 		{
 			if (roLo.loadout[3].itemType == ItemType.range && roLo.power[3] > 0)
 			{
@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour {
 			}
 			fireRight = true;
 		}
-		else if (!InputCapture.firingRight)
+		else if (!InputCapture.triggerRight)
 		{
 			fireRight = false;			
 		}

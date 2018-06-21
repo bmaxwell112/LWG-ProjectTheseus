@@ -59,12 +59,10 @@ public class RobotAttack : MonoBehaviour {
 		if (armLocation == 2)
 		{
 			roLo.stopWhileAttackingLeft = mw.meleeWeaponStopMovement;
-			print(roLo.stopWhileAttackingLeft);
 		}
 		else
 		{
 			roLo.stopWhileAttackingRight = mw.meleeWeaponStopMovement;
-			print(roLo.stopWhileAttackingRight);
 		}
 	}
 

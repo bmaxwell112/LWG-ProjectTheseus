@@ -13,7 +13,6 @@ public class Terminal : MonoBehaviour {
 
 	void OnCollisionStay2D(Collision2D collision)
 	{
-		print("Colliding");
 		if (InputCapture.pickup && !GameManager.paused && collision.gameObject.CompareTag("Player") && !touchingMe)
 		{
             //PlayerPrefsManager.SetPointValue(1);
@@ -22,7 +21,6 @@ public class Terminal : MonoBehaviour {
             if(PlayerPrefsManager.GetPointValue() > 0)
             {
                 ui.pointsAvailable = true;
-                print("Points Available!");
             }
             else
             {

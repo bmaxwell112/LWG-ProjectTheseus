@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour {
 	}
 	void Start()
 	{
-		RandomDropModifier = 0;
-		mouseInput = MouseCheck();
+		RandomDropModifier = 0;		
+		mouseInput = true;
 	}
 
 	private bool MouseCheck()
@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour {
 	void Update()
 	{
 		InputCapture.InputCheck();
+		print(InputCapture.triggerRight);
+		print(InputCapture.triggerLeft);
 	}
 
 	public static void GamePause(bool pause)
