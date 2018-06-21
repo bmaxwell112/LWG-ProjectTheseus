@@ -11,6 +11,7 @@ public class UserInterface : MonoBehaviour {
 	[SerializeField] Image[] leftArm, rightArm, leftLeg, rightLeg, liveStats;
 	[SerializeField] GameObject PauseScreen;
     [SerializeField] GameObject TechTree;
+    [SerializeField] GameObject QuestLog;
     [SerializeField] GameObject TopBtns;
     [SerializeField] GameObject PlayerLoadOut;
 	[SerializeField] Button startBtn;
@@ -29,6 +30,7 @@ public class UserInterface : MonoBehaviour {
 		PauseScreenUpdate();
 		PauseScreen.SetActive(false);
         TechTree.SetActive(false);
+        QuestLog.SetActive(false);
         TopBtns.SetActive(false);
         pointsAvailable = false;
 
@@ -68,6 +70,7 @@ public class UserInterface : MonoBehaviour {
 		PauseScreen.SetActive(false);
         TechTree.SetActive(false);
         TopBtns.SetActive(false);
+        QuestLog.SetActive(false);
         PlayerLoadOut.SetActive(true);
 		loadoutCanBeChanged = false;
         pointsAvailable = false;

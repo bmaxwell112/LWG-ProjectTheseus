@@ -7,7 +7,7 @@ public class RoomManager : MonoBehaviour {
     public static RoomManager instance = null;
 	public List<RoomGeneration> allRooms = new List<RoomGeneration>();
     enum TileSet {Fabrication, Terraforming, Disposal, Purification, Security, Medical};
-	[SerializeField] bool hub;
+	public bool hub;
 	[SerializeField] GameObject room, player, userInterface;
 	
     public int roomCap;

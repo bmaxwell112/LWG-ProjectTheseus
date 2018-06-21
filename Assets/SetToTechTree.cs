@@ -7,6 +7,7 @@ public class SetToTechTree : MonoBehaviour {
 
     [SerializeField] GameObject TechTree;
     [SerializeField] GameObject PauseScreen;
+    [SerializeField] GameObject QuestLog;
 
     // Use this for initialization
     void Start()
@@ -22,10 +23,11 @@ public class SetToTechTree : MonoBehaviour {
 
     public void MoveToTT()
     {
-        if (PauseScreen.activeSelf)
+        if (PauseScreen.activeSelf || QuestLog.activeSelf)
         {
             TechTree.SetActive(true);
             PauseScreen.SetActive(false);
+            QuestLog.SetActive(false);
         }
 
     }
