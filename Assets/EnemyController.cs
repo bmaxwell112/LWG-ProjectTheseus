@@ -17,12 +17,12 @@ public class EnemyController : MonoBehaviour {
 	CustomNavMesh cNavMesh;
 	RoomGeneration myRoom;
 	RobotLoadout roLo;
-	Collider2D coll;	
-	public bool stunned;
+	Collider2D coll;
 	bool recalculate, startMovement, reStartMovement, attacking;
 	Vector3 tracking;
 	Vector3 heightOffset = new Vector3(0, 0.45f, 0);
 	Animator[] anims;
+	public bool stunned;
 
 	// Use this for initialization
 	void Start () {
@@ -166,7 +166,7 @@ public class EnemyController : MonoBehaviour {
 		{
 			Vector2 checkFrom = new Vector2(firingArc.transform.position.x, firingArc.transform.position.y - 0.45f);
 			RaycastHit2D hit = Physics2D.CircleCast(checkFrom, 0.45f, firingArc.transform.up, 0.45f, playerMask);
-			if (hit.collider != null && !anims[1].GetBool("attackingMelee") && !roLo.stopped)
+			if (hit.collider != null && anims[1].GetInteger("action") != 2 && !roLo.stopped)
 			{				
 				StartCoroutine(EnemyAttack());
 				attacking = true;
@@ -177,8 +177,8 @@ public class EnemyController : MonoBehaviour {
 	private IEnumerator EnemyAttack()
 	{
 		yield return new WaitForSeconds(attackDelay);
-		anims[1].SetBool("attackingMelee", true);
-		anims[2].SetBool("attackingMelee", true);
+		anims[1].SetInteger("action", 1);
+		anims[2].SetInteger("action", 1);
 		yield return new WaitForSeconds(timeBetweenAttacks - attackDelay);		
 		attacking = false;
 	}

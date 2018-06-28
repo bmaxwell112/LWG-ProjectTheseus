@@ -29,9 +29,9 @@ public class RobotAnimationController : MonoBehaviour {
 	{
 		if (!GameManager.paused && RoomManager.allActive)
 		{
-			if (!arms[1].GetBool("attackingMelee"))
+			if (arms[1].GetInteger("action") == 0 || arms[1].GetInteger("action") == 3)
 			{
-				if (!arms[2].GetBool("attackingMelee"))
+				if (arms[2].GetInteger("action") == 0 || arms[2].GetInteger("action") == 3)
 				{
 					DetectFacingAndSetOrder();
 				}
@@ -110,39 +110,46 @@ public class RobotAnimationController : MonoBehaviour {
 
 	private void EnemyTracking()
 	{
-		if (!anim.GetBool("hit"))
+		if (anim.GetInteger("action") != 2)
 		{
-			anim.SetInteger("facing", (int)currentFacing);
-		}
-		if (roLo.walk && !roLo.AreYouStopped())
-		{
-			anim.SetInteger("action", 1);
-		}
-		else
-		{
-			anim.SetInteger("action", 0);
+			if (!anim.GetBool("hit"))
+			{
+				anim.SetInteger("facing", (int)currentFacing);
+			}
+			if (roLo.walk && !roLo.AreYouStopped())
+			{
+				anim.SetInteger("action", 1);
+			}
+			else
+			{
+				anim.SetInteger("action", 0);
+			}
 		}
 	}
 
 	private void PlayerTracking()
-	{
-		anim.SetInteger("facing", (int)currentFacing);
-		if ((InputCapture.hThrow != 0 || InputCapture.vThrow != 0) && !roLo.AreYouStopped())
+	{		
+		if (anim.GetInteger("action") != 2)
 		{
-			anim.SetInteger("action", 1);
+			anim.SetInteger("facing", (int)currentFacing);
+			if ((InputCapture.hThrow != 0 || InputCapture.vThrow != 0) && !roLo.AreYouStopped())
+			{
+				anim.SetInteger("action", 1);
+			}
+			else
+			{
+				anim.SetInteger("action", 0);
+			}
+
+			if (currentFacing == Facing.down || currentFacing == Facing.up)
+			{
+				anim.SetFloat("speed", InputCapture.vThrow);
+			}
+			else
+			{
+				anim.SetFloat("speed", InputCapture.hThrow);
+			}
 		}
-		else
-		{
-			anim.SetInteger("action", 0);
-		}
-		if (currentFacing == Facing.down || currentFacing == Facing.up)
-		{
-			anim.SetFloat("speed", InputCapture.vThrow);
-		}
-		else
-		{
-			anim.SetFloat("speed", InputCapture.hThrow);
-		}	
 	}
 
 
@@ -238,11 +245,11 @@ public class RobotAnimationController : MonoBehaviour {
 	public void EndHitStall()
 	{
 		roLo.stopped = false;
-		anim.SetBool("hit", false);
+		anim.SetInteger("action", 0);
 	}
 	public void StartHitStall()
 	{
 		roLo.stopped = true;
-		anim.SetBool("hit", true);
+		anim.SetInteger("action", 2);
 	}
 }

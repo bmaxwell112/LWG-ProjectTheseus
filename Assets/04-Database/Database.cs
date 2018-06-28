@@ -21,6 +21,7 @@ public class Database : MonoBehaviour {
 	public List<RangedWeapon> rangedWeapons = new List<RangedWeapon>();
 	public List<SpecialItems> specialItems = new List<SpecialItems>();
 	public List<MeleeWeapon> meleeWeapons = new List<MeleeWeapon>();
+	public AnimatorOverrideController leftRange, rightRange;
 
 	// Use this for initialization
 	void Start () {
@@ -87,6 +88,8 @@ public class Database : MonoBehaviour {
 		specialItems.Add(new SpecialItems(3, 25, new SpecialProp[] { SpecialProp.stun }, 1f, 0, 0, 0.25f));
 		specialItems.Add(new SpecialItems(4, 26, new SpecialProp[] { SpecialProp.bleed, SpecialProp.cleave }, 2f, 1, 0, 0.25f));
 		specialItems.Add(new SpecialItems(5, 27, new SpecialProp[] { SpecialProp.bleed, SpecialProp.cleave }, 2f, 1, 0, 0.25f));
+		specialItems.Add(new SpecialItems(6, 30, new SpecialProp[] { SpecialProp.powerBoost }, 0.5f, 0, 0, 0.05f));
+		specialItems.Add(new SpecialItems(7, 33, new SpecialProp[] { SpecialProp.heal }, 1.5f, 1, 1, 0.05f));
 	}
 	void SetupMeleeWeapons()
 	{

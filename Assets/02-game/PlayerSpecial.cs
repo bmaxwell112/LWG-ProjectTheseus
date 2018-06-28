@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class PlayerSpecial : MonoBehaviour {
 
+	RobotLoadout playerLo;
+
+	void Start()
+	{
+		playerLo = GetComponent<RobotLoadout>();
+	}
+
+	// Activates in drop of RobotFunctions
 	public void ActivateSpecialPassive(Item item)
 	{
+		print("special Check");
 		SpecialItems special = Database.instance.ItemSpecialItem(item);
 		for (int i = 0; i < special.specialProps.Length; i++)
 		{
@@ -13,6 +22,14 @@ public class PlayerSpecial : MonoBehaviour {
 			{
 				case SpecialProp.shield:
 					CreateShield();
+					break;
+				case SpecialProp.heal:
+					Debug.LogWarning("start heals");
+					StartCoroutine(HealOverTime(item, special));
+					break;
+				case SpecialProp.powerBoost:
+					Debug.LogWarning("start power boost");
+					StartCoroutine(PowerOverTime(item, special));
 					break;
 				default:
 					Debug.LogWarning(item.itemName + " does not have a passive special");
@@ -55,7 +72,7 @@ public class PlayerSpecial : MonoBehaviour {
 		try
 		{
 			EnemyController enemy = enemyGO.GetComponent<EnemyController>();
-			if (!enemy.stunned)
+			if (!enemy.GetComponent<RobotLoadout>().stopped)
 			{
 				StartCoroutine(UnStunEnemy(special, enemy));
 			}
@@ -105,6 +122,59 @@ public class PlayerSpecial : MonoBehaviour {
 		{
 			enemyLo.hitPoints[liveParts[rand]] -= special.specialDamage;
 			yield return new WaitForSeconds(special.specialDuration);
+		}
+	}
+
+	IEnumerator HealOverTime(Item item, SpecialItems special)
+	{
+		int thisItem = item.itemID;
+		while (thisItem == item.itemID)
+		{
+			while (playerLo.power[(int)item.itemLoc] > 0)
+			{
+				bool used = false;
+				for (int i = 0; i < playerLo.loadout.Length; i++)
+				{
+					if (playerLo.hitPoints[i] <= playerLo.loadout[i].itemHitpoints - special.specialDefence)
+					{
+						playerLo.hitPoints[i] += special.specialDefence;
+						used = true;
+					}
+				}
+				if (used)
+				{
+					playerLo.power[(int)item.itemLoc] -= special.specialPowerUse;
+				}
+				yield return new WaitForSeconds(special.specialDuration);
+			}
+			yield return null;
+		}
+	}
+	IEnumerator PowerOverTime(Item item, SpecialItems special)
+	{
+		int thisItem = item.itemID;
+		while (thisItem == item.itemID)
+		{
+			while (playerLo.power[(int)item.itemLoc] > 0)
+			{
+				int used = 0;
+				for (int i = 0; i < playerLo.loadout.Length; i++)
+				{
+					if (playerLo.power[i] <= playerLo.loadout[i].itemPower - special.specialPowerUse && playerLo.loadout[i].itemLoc != item.itemLoc)
+					{
+						playerLo.power[i] += special.specialPowerUse;
+						print("added " + special.specialDefence + " to " + playerLo.hitPoints[i]);
+						used++;
+						Debug.Log("power added");
+					}
+				}
+				if (used > 0)
+				{
+					playerLo.power[(int)item.itemLoc] -= special.specialPowerUse * used;
+				}
+				yield return new WaitForSeconds(special.specialDuration);
+			}
+			yield return null;
 		}
 	}
 }

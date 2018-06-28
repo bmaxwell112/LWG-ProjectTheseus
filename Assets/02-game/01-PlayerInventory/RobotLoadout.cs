@@ -17,7 +17,7 @@ public class RobotLoadout : MonoBehaviour {
 	public int dropOffset = 0;
 	int basicDamage = 5;
 	int basicSpeed = 5;
-	bool isPlayer;
+	bool isPlayer, dropped;
 	public Item[] loadout = new Item[7];
     PlayerController player;
 
@@ -51,6 +51,8 @@ public class RobotLoadout : MonoBehaviour {
 			RobotFunctions.MeleeAnimationSwap(this, (int)ItemLoc.leftArm);
 		if (loadout[(int)ItemLoc.rightArm].itemType == ItemType.melee)
 			RobotFunctions.MeleeAnimationSwap(this, (int)ItemLoc.rightArm);
+
+		// Check for specials		
 	}
 
 	public void TakeDamage(int damage, bool stopAction)
@@ -98,30 +100,30 @@ public class RobotLoadout : MonoBehaviour {
 		{
 			Die();
         }
-		if (stopAction)
+		if (stopAction || stopped)
 		{
-			print("Ran This");
 			RobotArmsAnim[] anims = GetComponentsInChildren<RobotArmsAnim>();
 			foreach (RobotArmsAnim a in anims)
 			{
 				a.DoneAttacking();
+				a.StartHitStall();
 			}
 			RobotAnimationController roAn = GetComponent<RobotAnimationController>();
 			roAn.StartHitStall();
 		}
 		// Creates damage text
 		GameObject damageText = Instantiate(Resources.Load("DamageText"), transform.position, Quaternion.identity) as GameObject;
-		damageText.GetComponent<DamageText>().DamageSetup(damage, damageColor, transform.position);
-		
+		damageText.GetComponent<DamageText>().DamageSetup(damage, damageColor, transform.position);		
 	}
 
 	private void Die()
 	{
         RoomGeneration parentRoom = GetComponentInParent<RoomGeneration>();
         // Add if player later
-        if (doesItDrop)
+        if (doesItDrop && !dropped)
 		{
 			DropItem(RobotFunctions.DropByID(this, dropOffset));
+			dropped = true;
 		}
 		if (!isPlayer)
 		{

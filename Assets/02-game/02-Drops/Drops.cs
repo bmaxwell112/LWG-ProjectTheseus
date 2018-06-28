@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,8 @@ public class Drops : MonoBehaviour {
 	public int databaseItemID;
 	public int hitPoints;
 	public float power;
-	bool playerCanPickup, panelEnabled;
+	public bool playerCanPickup;
+	bool panelEnabled;
 	ItemPanel itemPanel;
 	[SerializeField] SpriteRenderer[] sprites;
 	[SerializeField] LayerMask playerMask;
@@ -21,18 +23,31 @@ public class Drops : MonoBehaviour {
 		itemPanel = FindObjectOfType<ItemPanel>();
 		//Invoke("DestroyDrop", 10);
 	}
-	void FixedUpdate()
+	void Update()
 	{
-		Collider2D playerInRange = Physics2D.OverlapCircle(transform.position, 0.25f, playerMask);
+		Collider2D playerInRange = Physics2D.OverlapCircle(transform.position, 0.4f, playerMask);
 		if (playerInRange)
 		{
-			if (!panelEnabled)
+			print(thisItem.itemName + " can pickup " + PlayerFacingItem(playerInRange));
+			if (PlayerFacingItem(playerInRange))
 			{
-				var newText = thisItem.itemName + "\n" + thisItem.itemDesc;
-				itemPanel.ItemPanelSetEnable(newText);
-				panelEnabled = true;
+				if (!panelEnabled)
+				{
+					var newText = thisItem.itemName + "\n" + thisItem.itemDesc;
+					itemPanel.ItemPanelSetEnable(newText);
+					panelEnabled = true;
+				}
+				playerCanPickup = true;
 			}
-			playerCanPickup = true;
+			else
+			{
+				if (panelEnabled)
+				{
+					itemPanel.ItemPanelDisabled();
+					panelEnabled = false;
+				}
+				playerCanPickup = false;
+			}
 		}
 		else
 		{
@@ -43,6 +58,46 @@ public class Drops : MonoBehaviour {
 			}
 			playerCanPickup = false;
 		}
+	}
+
+	private bool PlayerFacingItem(Collider2D col)
+	{
+		var player = col.GetComponent<PlayerController>();
+		// Above and to the right of Item
+		if (player.transform.position.x > transform.position.x && player.transform.position.y - 0.45f > transform.position.y)
+		{
+			if (player.firingArc.eulerAngles.z > 80 && player.firingArc.eulerAngles.z <= 190)
+			{
+				return true;
+			}
+		}
+		// Above and to the left of Item
+		if (player.transform.position.x <= transform.position.x && player.transform.position.y - 0.45f > transform.position.y)
+		{
+			if (player.firingArc.eulerAngles.z > 170 && player.firingArc.eulerAngles.z <= 280)
+			{
+				return true;
+			}
+		}
+		// Below and to the right of Item
+		if (player.transform.position.x > transform.position.x && player.transform.position.y - 0.45f <= transform.position.y)
+		{
+			if (player.firingArc.eulerAngles.z >= 0 && player.firingArc.eulerAngles.z <= 100 ||
+				player.firingArc.eulerAngles.z > 350 && player.firingArc.eulerAngles.z <= 360)
+			{
+				return true;
+			}
+		}
+		// Below and to the left of Item
+		if (player.transform.position.x <= transform.position.x && player.transform.position.y - 0.45f <= transform.position.y)
+		{
+			if (player.firingArc.eulerAngles.z > 260 && player.firingArc.eulerAngles.z <= 360 ||
+				player.firingArc.eulerAngles.z >= 0 && player.firingArc.eulerAngles.z <= 10)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	void IdentifyItem(Item item, int hp, float pwr)

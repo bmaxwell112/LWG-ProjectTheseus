@@ -15,11 +15,7 @@ public class RobotFunctions {
 			target.GetComponent<RobotLoadout>().TakeDamage(damage, stopActions);
 		}
 	}
-	//public static IEnumerator CauseKnockback(int value, GameObject target, Transform origin)
-	//{
-	//
-	//}
-	
+
 	public static void ReplaceDropPart(Drops drop, RobotLoadout player)
 	{
 		Item tempItem = IdentifyReplacePart(drop.thisItem, player);
@@ -41,6 +37,15 @@ public class RobotFunctions {
 				{
 					MeleeAnimationSwap(player, i);
 				}
+				else if (player.loadout[i].itemType == ItemType.melee)
+				{
+					RangeAnimationSwap(player, i);
+				}
+				if (player.loadout[i].itemSpecial)
+				{
+					Debug.Log("Checking Specials");
+					player.GetComponent<PlayerSpecial>().ActivateSpecialPassive(player.loadout[i]);
+				}				
 				break;
 			}
 		}
@@ -77,6 +82,18 @@ public class RobotFunctions {
 			anim[1].SwapWeapons(mw.meleeWeaponAnim);			
 		}
 	}
+	public static void RangeAnimationSwap(RobotLoadout robot, int i)
+	{
+		RobotArmsAnim[] anim = robot.GetComponentsInChildren<RobotArmsAnim>();
+		if (robot.loadout[i].itemLoc == ItemLoc.leftArm)
+		{
+			anim[0].SwapWeapons(Database.instance.leftRange);
+		}
+		else if (robot.loadout[i].itemLoc == ItemLoc.rightArm)
+		{
+			anim[1].SwapWeapons(Database.instance.rightRange);
+		}
+	}
 
 	static Item IdentifyReplacePart(Item item, RobotLoadout player)
 	{
@@ -98,7 +115,6 @@ public class RobotFunctions {
 		GameManager.RandomDropModifier += 5;		
 		int dropItemID = -1;
 		int rand = Random.Range(0, 100);
-		Debug.Log(rand + GameManager.RandomDropModifier + dropOffset);
 		if (rand <= 35 + GameManager.RandomDropModifier + dropOffset)
 		{
 			GameManager.RandomDropModifier = 0;

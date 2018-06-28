@@ -7,7 +7,9 @@ public enum SpecialProp
 	shield,
 	stun,
 	bleed,
-	cleave
+	cleave,
+	heal,
+	powerBoost
 }
 
 [System.Serializable]
@@ -28,6 +30,7 @@ public class SpecialItems {
 		specialProps = properties;
 		specialDuration = duration;
 		specialDamage = damage;
+		specialDefence = defense;
 		specialPowerUse = powerUse;
 	}
 

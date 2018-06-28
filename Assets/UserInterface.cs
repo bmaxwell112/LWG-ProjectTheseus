@@ -14,6 +14,7 @@ public class UserInterface : MonoBehaviour {
     [SerializeField] GameObject TopBtns;
     [SerializeField] GameObject PlayerLoadOut;
 	[SerializeField] Button startBtn;
+	[SerializeField] PowerMeter LeftArmPower, RightArmPower, core, backpack;
 	RobotLoadout playerLo;
 	public bool loadoutCanBeChanged;
     public bool pointsAvailable;
@@ -60,7 +61,7 @@ public class UserInterface : MonoBehaviour {
 				PauseScreenUpdate();
 			}
         }
-		LoadOutCheck();
+		LoadOutCheck();		
 	}
 
 	public void ResumeGame()
@@ -171,7 +172,25 @@ public class UserInterface : MonoBehaviour {
 				}
 			}
 		}
+		// Left arm
+		UpdatePowerLevels(2, LeftArmPower);
+		UpdatePowerLevels(3, RightArmPower);
+		UpdatePowerLevels(5, backpack);
+		UpdatePowerLevels(6, core);
 	}
+	void UpdatePowerLevels(int itemLoc, PowerMeter meter)
+	{
+		if (playerLo.loadout[itemLoc].itemSpecial || playerLo.loadout[itemLoc].itemType == ItemType.range)
+		{
+			meter.gameObject.SetActive(true);
+			meter.value = playerLo.power[itemLoc] / playerLo.loadout[itemLoc].itemPower;
+		}
+		else
+		{
+			meter.gameObject.SetActive(false);
+		}
+	}
+
 	void UpdateDisplayDetails()
 	{
 		nameTxt.text = playerLo.loadout[loadoutIndex].itemName;

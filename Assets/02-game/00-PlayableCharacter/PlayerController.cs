@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour {
 		np = FindObjectOfType<NotificationsPanel>();
         rb = GetComponent<Rigidbody2D>();
         PlayerSpawn();
-
+		
 	}
 
 	private void PlayerSpawn()
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
 		if (!GameManager.instance.playerAlive)
 		{
 			roLo.InitializeLoadout(db.items[0], db.items[1], db.items[2], db.items[3], db.items[4], db.items[5], db.items[6]);
-			GameManager.instance.playerAlive = true;
+			GameManager.instance.playerAlive = true;			
 		}
 		else
 		{
@@ -47,6 +47,13 @@ public class PlayerController : MonoBehaviour {
 				GameManager.playerLoadout[5],
 				GameManager.playerLoadout[6]
 				);
+			foreach (Item gear in roLo.loadout)
+			{
+				if (gear.itemSpecial)
+				{
+					special.ActivateSpecialPassive(gear);
+				}
+			}
 		}
 	}
 
@@ -66,7 +73,7 @@ public class PlayerController : MonoBehaviour {
 			if (!GameManager.paused)
 			{
                 BlockDodgeCheck();
-                if (!activeBlock && !activeDodge)
+                if (!activeBlock && !activeDodge && !roLo.stopped)
                 {
                     MovementCheck();
                     AimAndFireCheck();
@@ -83,10 +90,10 @@ public class PlayerController : MonoBehaviour {
 		bool pickup = Input.GetButtonDown("Pickup");		
 		if (pickup)
 		{
-			Collider2D itemInRange = Physics2D.OverlapCircle(transform.position, 1, drop);
+			Collider2D itemInRange = Physics2D.OverlapCircle(transform.position, 0.4f, drop);
 			if (itemInRange)
 			{
-				if (itemInRange.gameObject.GetComponent<Drops>())
+				if (itemInRange.gameObject.GetComponent<Drops>().playerCanPickup)
 				{					
 					Drops drop = itemInRange.gameObject.GetComponent<Drops>();
 					string newText = roLo.loadout[(int)drop.thisItem.itemLoc].itemName + "\nSwitched for\n" + drop.thisItem.itemName;

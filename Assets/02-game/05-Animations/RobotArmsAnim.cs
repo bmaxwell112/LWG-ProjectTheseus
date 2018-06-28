@@ -38,7 +38,7 @@ public class RobotArmsAnim : MonoBehaviour {
 		{
 			EnemyTracking();
 		}
-		if (anim.GetBool("attackingMelee") && isPlayer)
+		if (anim.GetInteger("action") == 1 && isPlayer)
 		{
 			if ((int)animCont.currentFacing != rotationNum)
 			{
@@ -53,8 +53,7 @@ public class RobotArmsAnim : MonoBehaviour {
 
 	public void DoneAttacking()
 	{
-		anim.SetBool("attackingMelee", false);
-		anim.SetBool("attackingRange", false);
+		anim.SetInteger("action", 0);
 		attack.meleeAttacking = false;
 		attack.StartMovement();
 		animCont.DetectFacingAndSetOrder();
@@ -63,15 +62,14 @@ public class RobotArmsAnim : MonoBehaviour {
 
 	public void EnemyTracking()
 	{
-		anim.SetInteger("facing", (int)animCont.currentFacing);
-		if (roLo.loadout[armLocation].itemType == ItemType.range && (roLo.power[armLocation] > 0 && roLo.hitPoints[armLocation] > 0))
+		if (anim.GetInteger("action") != 2)
 		{
-			anim.SetBool("attackingRange", true);
+			anim.SetInteger("facing", (int)animCont.currentFacing);
+			if (roLo.loadout[armLocation].itemType == ItemType.range && (roLo.power[armLocation] > 0 && roLo.hitPoints[armLocation] > 0))
+			{
+				anim.SetInteger("action", 3);
+			}			
 		}
-		else
-		{
-			anim.SetBool("attackingRange", false);
-		}		
 	}
 
 	bool PlayerMelee()
@@ -106,18 +104,13 @@ public class RobotArmsAnim : MonoBehaviour {
 
             if (PlayerMelee())
             {
-                anim.SetBool("attackingMelee", true);
-                attack.StopMovementCheck();
+				anim.SetInteger("action", 1);
+				attack.StopMovementCheck();
             }
             if (PlayerRanged() && roLo.loadout[armLocation].itemType == ItemType.range && (roLo.power[armLocation] > 0 && roLo.hitPoints[armLocation] > 0))
             {
-                print("doing this");
-                anim.SetBool("attackingRange", true);
-            }
-            else if ((!PlayerRanged() && roLo.loadout[armLocation].itemType == ItemType.range) || (roLo.power[armLocation] <= 0 || roLo.hitPoints[armLocation] <= 0))
-            {
-                anim.SetBool("attackingRange", false);
-            }
+				anim.SetInteger("action", 3);
+			}
         }
 	}
 
@@ -137,5 +130,16 @@ public class RobotArmsAnim : MonoBehaviour {
 		}		
 		aoc.ApplyOverrides(overrides);
 		anim.Update(0f);
+	}
+
+	public void EndHitStall()
+	{
+		roLo.stopped = false;
+		anim.SetInteger("action", 2);
+	}
+	public void StartHitStall()
+	{
+		roLo.stopped = true;
+		anim.SetInteger("action", 0);
 	}
 }

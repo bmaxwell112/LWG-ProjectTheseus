@@ -47,7 +47,7 @@ public class RobotAttack : MonoBehaviour {
 						special.ActivateSpecialActive(roLo.loadout[armLocation], enemy.collider.gameObject);
 					}
 				}
-				RobotFunctions.DealDamage(Damage(), enemy.collider.gameObject, mw.meleeWeaponStopTarget);
+				RobotFunctions.DealDamage(Damage(), enemy.collider.gameObject, true);
 			}
 			meleeAttacking = true;
 		}
