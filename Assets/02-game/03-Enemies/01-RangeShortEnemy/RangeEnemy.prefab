@@ -309,7 +309,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1774056838797098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.560428, y: 10.329256, z: 0}
+  m_LocalPosition: {x: -1.2232785, y: -0.664085, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4810522363913512}
@@ -624,6 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rateOfFireOffset: 2
+  healthOffset: 0.5
   drop: {fileID: 1090207910700034, guid: dd2fed08fca70e146877d9b4fdefd994, type: 2}
   leftArm: {fileID: 1105036969557512}
   rightArm: {fileID: 1875584751643136}
@@ -780,6 +781,7 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
+  robotType: 2
 --- !u!114 &114818509082399608
 MonoBehaviour:
   m_ObjectHideFlags: 1

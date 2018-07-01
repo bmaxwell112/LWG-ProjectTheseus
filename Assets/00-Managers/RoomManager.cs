@@ -120,5 +120,4 @@ public class RoomManager : MonoBehaviour {
 	}
     //Minimap processes here
     //Track number of rooms for special rooms
-
 }

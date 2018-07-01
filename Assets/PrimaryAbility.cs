@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,9 +20,8 @@ public class PrimaryAbility : MonoBehaviour {
 
     void CheckSet()
     {
-        // Block, Hacking, Dodge Roll
-
-        if(ui.abilitySet == 0)
+		// Block, Hacking, Dodge Roll
+		if (ui.abilitySet == 0)
         {
             abtext.text = "Locked";
         }

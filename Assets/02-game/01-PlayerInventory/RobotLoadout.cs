@@ -8,22 +8,27 @@ public class RobotLoadout : MonoBehaviour {
 	[Tooltip("This bool indicates whether the robot drops items")]
 	[SerializeField] bool doesItDrop;
 	[SerializeField] Color damageColor;
+	enum RobotType { player, turret, enemy }
+	[SerializeField] RobotType robotType;
 	public float damageOffset = 1;
 	public int[] hitPoints;
 	public float[] power;
+	public bool dead = false;
+	public int dropOffset = 0;
+	public Item[] loadout = new Item[7];
+
 	[HideInInspector]
 	public bool stopped, walk, stopWhileAttackingLeft, stopWhileAttackingRight;
 	[HideInInspector]
-	public int dropOffset = 0;
 	int basicDamage = 5;
 	int basicSpeed = 5;
-	bool isPlayer, dropped;
-	public Item[] loadout = new Item[7];
+	bool dropped;
+	
     PlayerController player;
+	
 
 	void Start()
 	{
-		isPlayer = GetComponent<PlayerController>();
         player = FindObjectOfType<PlayerController>();
 	}
 	// Resets the player to basic loadout.
@@ -58,7 +63,7 @@ public class RobotLoadout : MonoBehaviour {
 	public void TakeDamage(int damage, bool stopAction)
 	{
 		stopped = stopAction;
-		if (isPlayer)
+		if (robotType == RobotType.player)
 		{
 			List<int> liveParts = new List<int>();
 			//StartCoroutine(ChangeColor(transform.Find("Body").GetComponent<SpriteRenderer>()));
@@ -98,7 +103,8 @@ public class RobotLoadout : MonoBehaviour {
 		}
 		if ((hitPoints[0] <= 0 && loadout[0].itemID != -1) || hitPoints[1] <= 0)
 		{
-			Die();
+			print("running this");
+			StartDeath();
         }
 		if (stopAction || stopped)
 		{
@@ -109,39 +115,41 @@ public class RobotLoadout : MonoBehaviour {
 				a.StartHitStall();
 			}
 			RobotAnimationController roAn = GetComponent<RobotAnimationController>();
-			roAn.StartHitStall();
+			if (robotType != RobotType.turret)
+			{
+				roAn.StartHitStall();
+			}
 		}
 		// Creates damage text
 		GameObject damageText = Instantiate(Resources.Load("DamageText"), transform.position, Quaternion.identity) as GameObject;
 		damageText.GetComponent<DamageText>().DamageSetup(damage, damageColor, transform.position);		
 	}
 
-	private void Die()
-	{
-        RoomGeneration parentRoom = GetComponentInParent<RoomGeneration>();
+	private void StartDeath()
+	{        
         // Add if player later
         if (doesItDrop && !dropped)
 		{
-			DropItem(RobotFunctions.DropByID(this, dropOffset));
+			int itemID = RobotFunctions.DropByID(this, dropOffset);
+			DropItem(itemID);
+			if (itemID != -1)
+			{
+				int itemLoc = (int)Database.instance.items[itemID].itemLoc;
+				GetComponent<RobotAnimationController>().RemoveSprite(itemLoc);
+			}
 			dropped = true;
-		}
-		if (!isPlayer)
-		{
-			parentRoom.Invoke("CheckEnemies", 0.1f);
-			Destroy(gameObject);
-		}
+		}			
 		else
 		{
 			GameManager.instance.playerAlive = false;
-			//Invoke("LoadToHub", 2);
-			LoadToHub();
 		}
-        
+		Collider2D[] colliders = GetComponents<Collider2D>();
+		foreach (Collider2D col in colliders)
+		{
+			col.enabled = false;
+		}
+		dead = true;
     }
-	void LoadToHub()
-	{
-		LevelManager.LOADLEVEL("03c Subscribe");
-	}
 
 	public static IEnumerator ChangeColor(SpriteRenderer sr)
 	{
@@ -174,5 +182,15 @@ public class RobotLoadout : MonoBehaviour {
 			return true;
 		}
 		return false;
+	}
+
+	public void DestroyRobot()
+	{
+		if (robotType == RobotType.enemy)
+		{
+			RoomGeneration parentRoom = GetComponentInParent<RoomGeneration>();
+			parentRoom.Invoke("CheckEnemies", 0.1f);
+		}
+		Destroy(gameObject);
 	}
 }

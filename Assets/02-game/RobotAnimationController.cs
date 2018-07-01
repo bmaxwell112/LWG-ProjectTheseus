@@ -12,8 +12,7 @@ public class RobotAnimationController : MonoBehaviour {
 	[SerializeField] Animator leftArm;
 	Animator anim;
 	Animator[] arms;
-	public static bool UpdatePlayerSprites;
-	public enum Facing { upperLeft, left, lowerLeft, down, lowerRight, right, UpperRight, up }
+	public static bool UpdatePlayerSprites;	
 	public Facing currentFacing;	
 	bool isPlayer, attacking, layerAbovePlayer;
 	// Use this for initialization
@@ -27,7 +26,7 @@ public class RobotAnimationController : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-		if (!GameManager.paused && RoomManager.allActive)
+		if (!GameManager.paused && RoomManager.allActive && !roLo.dead)
 		{
 			if (arms[1].GetInteger("action") == 0 || arms[1].GetInteger("action") == 3)
 			{
@@ -45,6 +44,12 @@ public class RobotAnimationController : MonoBehaviour {
 				EnemyTracking();
 			}
 			LayerChange();
+		}
+		if (roLo.dead)
+		{
+			anim.SetInteger("action", -1);
+			arms[1].SetInteger("action", -1);
+			arms[2].SetInteger("action", -1);
 		}
 	}
 
@@ -96,7 +101,7 @@ public class RobotAnimationController : MonoBehaviour {
 		{
 			// facing upper right
 			int[] order = new int[] { 4, 2, 7, 3, 4 };
-			currentFacing = Facing.UpperRight;
+			currentFacing = Facing.upperRight;
 			UpdateSprites(SpriteSetter(5, 2, 3), order);
 		}
 		else if (firingArc.eulerAngles.z >= 337.5f || firingArc.eulerAngles.z < 22.5f)
@@ -251,5 +256,37 @@ public class RobotAnimationController : MonoBehaviour {
 	{
 		roLo.stopped = true;
 		anim.SetInteger("action", 2);
+	}
+
+	public void RemoveSprite(int locationNum)
+	{
+		SpriteLoadOut[locationNum].enabled = false;
+		switch (locationNum)
+		{
+			case 0:
+				SpriteLoadOut[0].enabled = false;
+				break;
+			case 1:
+				SpriteLoadOut[1].enabled = false;				
+				break;
+			case 2:
+				SpriteLoadOut[2].enabled = false;
+				SpriteLoadOut[3].enabled = false;
+				SpriteLoadOut[4].enabled = false;
+				break;
+			case 3:
+				SpriteLoadOut[5].enabled = false;
+				SpriteLoadOut[6].enabled = false;
+				SpriteLoadOut[7].enabled = false;				
+				break;
+			case 4:
+				SpriteLoadOut[8].enabled = false;
+				SpriteLoadOut[9].enabled = false;
+				SpriteLoadOut[10].enabled = false;
+				SpriteLoadOut[11].enabled = false;
+				break;
+			default:
+				break;
+		}
 	}
 }

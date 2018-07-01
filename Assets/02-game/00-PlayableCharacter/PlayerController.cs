@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 	RobotLoadout roLo;
 	PlayerSpecial special;
 	Vector3 rotation;
-	bool fireLeft, fireRight, blockDodge, stationary, dodgeAvailable;
+	bool fireLeft, fireRight, blockDodge, stationary, dodgeAvailable, playerDead;
     public bool activeDodge, activeBlock;
     Rigidbody2D rb;
     float xSpeed, ySpeed;
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (RoomManager.allActive)
+		if (RoomManager.allActive && !roLo.dead)
 		{
 			if (GameManager.mouseInput)
 			{
@@ -77,32 +77,20 @@ public class PlayerController : MonoBehaviour {
                 {
                     MovementCheck();
                     AimAndFireCheck();
-                    PickupItemCheck();
                 }
                 
 			}
 		}
-
+		if (roLo.dead && !playerDead)
+		{
+			Invoke("LoadToHub", 2);
+			playerDead = true;
+		}
 	}
 
-	private void PickupItemCheck()
+	void LoadToHub()
 	{
-		bool pickup = Input.GetButtonDown("Pickup");		
-		if (pickup)
-		{
-			Collider2D itemInRange = Physics2D.OverlapCircle(transform.position, 0.4f, drop);
-			if (itemInRange)
-			{
-				if (itemInRange.gameObject.GetComponent<Drops>().playerCanPickup)
-				{					
-					Drops drop = itemInRange.gameObject.GetComponent<Drops>();
-					string newText = roLo.loadout[(int)drop.thisItem.itemLoc].itemName + "\nSwitched for\n" + drop.thisItem.itemName;
-					np.NotificationsPanelSetEnable(newText);					
-					RobotFunctions.ReplaceDropPart(drop, roLo);
-					drop.RenameAndReset();
-				}
-			}
-		}
+		LevelManager.LOADLEVEL("03c Subscribe");
 	}
 
     public void BlockDodgeCheck()

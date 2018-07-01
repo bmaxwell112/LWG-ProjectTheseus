@@ -30,7 +30,6 @@ public class InputCapture {
 		{
 			if (!Input.GetButton("RangeToggle"))
 			{
-				Debug.Log("running this");
 				fireLeftDown = Input.GetButtonDown("Fire1");
 				fireRightDown = Input.GetButtonDown("Fire2");
 				firingLeft = Input.GetButton("Fire1");

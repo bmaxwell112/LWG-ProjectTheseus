@@ -6,14 +6,19 @@ using UnityEngine.UI;
 public class LoadScreen : MonoBehaviour {
 
 	[SerializeField] Image loadingProgress, panel;
+	[SerializeField] Button startGame;
 	Color currentColor = Color.white;
 	float fadeInTime = 1;
 	float den;
-	bool loaded;
+	bool loaded, ready;
+	DialogueTrigger dt;
 
 	// Use this for initialization
 	void Start () {
 		den = RoomManager.instance.roomCap;
+		startGame.gameObject.SetActive(false);
+		dt = FindObjectOfType<DialogueTrigger>();
+		dt.TriggerDialogue();
 	}
 	
 	// Update is called once per frame
@@ -30,21 +35,33 @@ public class LoadScreen : MonoBehaviour {
 			xScale = 1;
 		}
 		if (xScale == 1)
+		{			
+			if (!loaded && !ready && !DialogueManager.dialogueRunning)
+			{
+				startGame.gameObject.SetActive(true);
+				startGame.Select();
+				ready = true;
+			}
+		}
+		if (loaded)
 		{
 			float alphaChange = Time.deltaTime / fadeInTime;
 			currentColor.a -= alphaChange;
 			panel.color = currentColor;
-			if (!loaded)
-			{
-				Invoke("Destroy", fadeInTime);
-				loaded = true;
-			}
 		}
-		
 	}
 
 	private void Destroy()
 	{
 		Destroy(gameObject);
+	}
+
+	public void StartGame()
+	{
+		if (!loaded && ready)
+		{
+			Invoke("Destroy", fadeInTime);
+			loaded = true;
+		}
 	}
 }

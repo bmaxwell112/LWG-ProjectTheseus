@@ -113,7 +113,6 @@ public class RoomGeneration : MonoBehaviour {
 
     public void CheckEnemies()
     {
-
         if(enemyListener == false)
         {
             RoomUnlock();

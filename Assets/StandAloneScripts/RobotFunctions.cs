@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Facing { upperLeft, left, lowerLeft, down, lowerRight, right, upperRight, up }
+
 public class RobotFunctions {
 
 	/* This function will take a value for damage to be dealt from the attacker
@@ -140,6 +142,53 @@ public class RobotFunctions {
 			}
 		}
 		return dropItemID;
+	}
+
+	public static Facing FacingDirection(Transform transformFacing)
+	{
+		if (transformFacing.eulerAngles.z >= 22.5f && transformFacing.eulerAngles.z < 67.5f)
+		{
+			// facing upper left
+			return Facing.upperLeft;
+		}
+		else if (transformFacing.eulerAngles.z >= 67.5f && transformFacing.eulerAngles.z < 112.5f)
+		{
+			// facing left
+			return Facing.left;
+		}
+		else if (transformFacing.eulerAngles.z >= 112.5f && transformFacing.eulerAngles.z < 157.5f)
+		{
+			// facing lower left
+			return Facing.lowerLeft;
+		}
+		else if (transformFacing.eulerAngles.z >= 157.5f && transformFacing.eulerAngles.z < 202.5f)
+		{
+			// facing down
+			return Facing.down;
+		}
+		else if (transformFacing.eulerAngles.z >= 202.5f && transformFacing.eulerAngles.z < 247.5f)
+		{
+			// facing lower right
+			return Facing.lowerRight;
+		}
+		else if (transformFacing.eulerAngles.z >= 247.5f && transformFacing.eulerAngles.z < 292.5f)
+		{
+			// facing right
+			return Facing.right;
+		}
+		else if (transformFacing.eulerAngles.z >= 292.5f && transformFacing.eulerAngles.z < 337.5f)
+		{
+			return Facing.upperRight;
+		}
+		else if (transformFacing.eulerAngles.z >= 337.5f || transformFacing.eulerAngles.z < 22.5f)
+		{
+			// facing up
+			return Facing.up;
+		}
+		else
+		{
+			return Facing.up;
+		}
 	}
 }
 

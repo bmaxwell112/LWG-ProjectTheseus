@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1205114613419184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6172241, y: -0.8329819, z: 0.15625}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,11 +51,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f980344604fb2ec49a6cdb71a3572c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allRooms: []
+  hub: 0
   room: {fileID: 1935376734419032, guid: 80fe5c36313597a43b75b3badd27fa1d, type: 2}
   player: {fileID: 1987759031399868, guid: 064acb4a45f04a948b9e38c0381af688, type: 2}
   userInterface: {fileID: 1872913871305282, guid: 27cf67da565b9be4fb61f934ba8063d8,
     type: 2}
-  roomCap: 25
+  roomCap: 100
   spawnConfigs:
   - {fileID: 1270131870308636, guid: 0b3a948043e62774cb15f987a4f6b522, type: 2}
   - {fileID: 1145511095167644, guid: a3fda2cb6f1da584d9e3938afd07e044, type: 2}
@@ -83,3 +85,12 @@ MonoBehaviour:
   - {fileID: 1059950236652030, guid: b7556c40d4bd6174dad0ab8c531aa2ba, type: 2}
   - {fileID: 1841699670453520, guid: 83f93e4fd3d218941845699c76137fa6, type: 2}
   - {fileID: 1841968552829544, guid: 7256b6b332ce38449a10d1f409bb12da, type: 2}
+  internalWall: {fileID: 114897217999198436, guid: 797a4a7d589031947af85468ca19d107,
+    type: 2}
+  enemySpawner: {fileID: 114815169368089620, guid: 25557f08e60889e4bb4d3bd00d396a4d,
+    type: 2}
+  turretAI: {fileID: 114689855089614696, guid: f1108e6a77623684188aaf16ca9adb1e, type: 2}
+  pillar: {fileID: 114323465947517702, guid: a06bf168625614245bcc7ea8376d319f, type: 2}
+  hole: {fileID: 114099630092022898, guid: 8d3e04403c0e83f4792577d87d1c0d17, type: 2}
+  dropSpawner: {fileID: 114645552096137702, guid: 14e41d080628c9641ba68ff6f60e380c,
+    type: 2}

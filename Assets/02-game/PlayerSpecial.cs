@@ -24,11 +24,9 @@ public class PlayerSpecial : MonoBehaviour {
 					CreateShield();
 					break;
 				case SpecialProp.heal:
-					Debug.LogWarning("start heals");
 					StartCoroutine(HealOverTime(item, special));
 					break;
 				case SpecialProp.powerBoost:
-					Debug.LogWarning("start power boost");
 					StartCoroutine(PowerOverTime(item, special));
 					break;
 				default:

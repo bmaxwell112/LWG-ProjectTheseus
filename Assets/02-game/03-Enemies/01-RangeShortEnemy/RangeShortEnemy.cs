@@ -98,7 +98,7 @@ public class RangeShortEnemy : MonoBehaviour {
 		RangedWeapon rw = Database.instance.ItemsRangedWeapon(weapon);
 		if (rw.rangedWeaponItemID != -1)
 		{
-			while (roLo.power[(int)weapon.itemLoc] > 0)
+			while (roLo.power[(int)weapon.itemLoc] > 0 && !roLo.dead)
 			{
 				for (int i = 0; i < rw.rangedWeaponSpread; i++)
 				{

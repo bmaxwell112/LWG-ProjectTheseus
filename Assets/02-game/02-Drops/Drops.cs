@@ -12,7 +12,9 @@ public class Drops : MonoBehaviour {
 	public float power;
 	public bool playerCanPickup;
 	bool panelEnabled;
+	[SerializeField] float distanceOffset = 0.435f;
 	ItemPanel itemPanel;
+	NotificationsPanel np;
 	[SerializeField] SpriteRenderer[] sprites;
 	[SerializeField] LayerMask playerMask;
 
@@ -21,14 +23,14 @@ public class Drops : MonoBehaviour {
 		Database database = Database.instance;
 		IdentifyItem(database.items[databaseItemID], database.items[databaseItemID].itemHitpoints, database.items[databaseItemID].itemPower);
 		itemPanel = FindObjectOfType<ItemPanel>();
+		np = FindObjectOfType<NotificationsPanel>();
 		//Invoke("DestroyDrop", 10);
 	}
 	void Update()
 	{
-		Collider2D playerInRange = Physics2D.OverlapCircle(transform.position, 0.4f, playerMask);
+		Collider2D playerInRange = Physics2D.OverlapCircle(transform.position, 0.55f, playerMask);
 		if (playerInRange)
 		{
-			print(thisItem.itemName + " can pickup " + PlayerFacingItem(playerInRange));
 			if (PlayerFacingItem(playerInRange))
 			{
 				if (!panelEnabled)
@@ -37,7 +39,11 @@ public class Drops : MonoBehaviour {
 					itemPanel.ItemPanelSetEnable(newText);
 					panelEnabled = true;
 				}
-				playerCanPickup = true;
+				bool pickup = Input.GetButtonDown("Pickup");
+				if(pickup)
+				{
+					PlayerPickupDrop(playerInRange.gameObject);
+				}
 			}
 			else
 			{
@@ -46,7 +52,6 @@ public class Drops : MonoBehaviour {
 					itemPanel.ItemPanelDisabled();
 					panelEnabled = false;
 				}
-				playerCanPickup = false;
 			}
 		}
 		else
@@ -56,43 +61,61 @@ public class Drops : MonoBehaviour {
 				itemPanel.ItemPanelDisabled();
 				panelEnabled = false;
 			}
-			playerCanPickup = false;
 		}
+	}
+
+	private void PlayerPickupDrop(GameObject player)
+	{
+		RobotLoadout playerLo = player.GetComponent<RobotLoadout>();
+		string newText = playerLo.loadout[(int)thisItem.itemLoc].itemName + "\nSwitched for\n" + thisItem.itemName;
+		np.NotificationsPanelSetEnable(newText);
+		RobotFunctions.ReplaceDropPart(this, playerLo);
+		RenameAndReset();
 	}
 
 	private bool PlayerFacingItem(Collider2D col)
 	{
 		var player = col.GetComponent<PlayerController>();
 		// Above and to the right of Item
-		if (player.transform.position.x > transform.position.x && player.transform.position.y - 0.45f > transform.position.y)
+		if (player.transform.position.x > transform.position.x && player.transform.position.y - distanceOffset > transform.position.y)
 		{
+			print("Above and to the right of Item");
 			if (player.firingArc.eulerAngles.z > 80 && player.firingArc.eulerAngles.z <= 190)
 			{
 				return true;
 			}
 		}
 		// Above and to the left of Item
-		if (player.transform.position.x <= transform.position.x && player.transform.position.y - 0.45f > transform.position.y)
+		if (player.transform.position.x <= transform.position.x && player.transform.position.y - distanceOffset > transform.position.y)
 		{
+			print("Above and to the left of Item");
 			if (player.firingArc.eulerAngles.z > 170 && player.firingArc.eulerAngles.z <= 280)
 			{
 				return true;
 			}
 		}
 		// Below and to the right of Item
-		if (player.transform.position.x > transform.position.x && player.transform.position.y - 0.45f <= transform.position.y)
+		if (player.transform.position.x > transform.position.x && player.transform.position.y - distanceOffset <= transform.position.y)
 		{
-			if (player.firingArc.eulerAngles.z >= 0 && player.firingArc.eulerAngles.z <= 100 ||
-				player.firingArc.eulerAngles.z > 350 && player.firingArc.eulerAngles.z <= 360)
+			print("Below and to the right of Item");
+			if (player.firingArc.eulerAngles.z >= 0 && player.firingArc.eulerAngles.z <= 100)
+			{
+				return true;
+			}
+			if (player.firingArc.eulerAngles.z > 350 && player.firingArc.eulerAngles.z <= 360)
 			{
 				return true;
 			}
 		}
 		// Below and to the left of Item
-		if (player.transform.position.x <= transform.position.x && player.transform.position.y - 0.45f <= transform.position.y)
+		if (player.transform.position.x <= transform.position.x && player.transform.position.y - distanceOffset <= transform.position.y)
 		{
-			if (player.firingArc.eulerAngles.z > 260 && player.firingArc.eulerAngles.z <= 360 ||
-				player.firingArc.eulerAngles.z >= 0 && player.firingArc.eulerAngles.z <= 10)
+			print("Below and to the left of Item");
+			if (player.firingArc.eulerAngles.z > 260 && player.firingArc.eulerAngles.z <= 360)
+			{
+				return true;
+			}
+			if (player.firingArc.eulerAngles.z >= 0 && player.firingArc.eulerAngles.z <= 10)
 			{
 				return true;
 			}

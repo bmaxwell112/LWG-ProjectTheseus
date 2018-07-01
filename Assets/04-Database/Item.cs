@@ -55,5 +55,6 @@ public class Item {
 	public Item()
 	{
 		itemID = -1;
+		itemSprite = null;
 	}
 }

@@ -201,9 +201,11 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
-  databaseItemID: 32
+  databaseItemID: 30
   hitPoints: 0
   power: 0
+  playerCanPickup: 0
+  distanceOffset: 0.435
   sprites:
   - {fileID: 212503795695336914}
   - {fileID: 212325289635973372}

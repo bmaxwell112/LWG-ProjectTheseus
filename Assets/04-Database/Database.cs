@@ -65,7 +65,7 @@ public class Database : MonoBehaviour {
 		items.Add(new Item(29, "Rollerblades", "A radical set of legs that let you move faster and look cool.", ItemLoc.legs, ItemType.speed, 3, GetSprite("Secondary/leg"), 10, 0, 3, 1, false));
 		items.Add(new Item(30, "Energy Pack", "A backpack system that increases your energy capacity.", ItemLoc.back, ItemType.aesthetic, 3, GetSprite("basicBackpack"), 10, 0, 0, 1, true));
 		items.Add(new Item(31, "Barrier Pack", "A backpack system that generates a weak, regenerating forcefield.", ItemLoc.back, ItemType.aesthetic, 4,GetSprite("basicBackpack"), 5, 0, 0, 1, true));
-		items.Add(new Item(32, "Hacking Core", "An AI core that enables the hacking of doors and chests.", ItemLoc.core, ItemType.aesthetic, 3, GetSprite("hackingCore"), 0, 0, 0, 1, true));
+		items.Add(new Item(32, "Hacking Core", "An AI core that enables the hacking of doors and chests.", ItemLoc.core, ItemType.aesthetic, 3, GetSprite("hackingCore"), 0, 0, 0, 1, false/*TODO change once empleneted*/));
 		items.Add(new Item(33, "Self-Repair Core", "An AI core that utilizes nanobots to repair chassis damage.", ItemLoc.core, ItemType.aesthetic, 4, GetSprite("aiCore"), 0, 0, 0, 1, true));
 	}
 	void SetupRangedWeapons()

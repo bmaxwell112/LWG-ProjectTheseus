@@ -96,14 +96,18 @@ public class EnemyController : MonoBehaviour {
 		while (true)
 		{
 			recalculate = false;
-			if (player && cNavMesh && RoomManager.allActive)
+			if (player && cNavMesh && RoomManager.allActive && !roLo.dead)
 			{				
 				List<Waypoint> path = pathfinding.GetPath(player.transform, cNavMesh, currentNodePos);
 				if (path.Count > 1)
 				{
 					foreach (Waypoint node in path)
 					{
-						Vector3 pos = new Vector3(node.position.x, node.position.y + 0.45f);
+						if (node == null)
+						{
+							break;
+						}
+						Vector3 pos = new Vector3(node.position.x, node.position.y + 0.45f);	
 						float checkTime = Time.time;
 						while (Vector3.Distance(pos, transform.position) > 0.2f)
 						{
@@ -112,12 +116,11 @@ public class EnemyController : MonoBehaviour {
 							roLo.walk = true;
 							if (Time.time > (checkTime + 5))
 							{
-								print("break");
 								path = pathfinding.GetPath(player.transform, cNavMesh, node);
 								break;
 							}
 							// Stop movement while attacking
-							while (roLo.AreYouStopped())
+							while (roLo.AreYouStopped() || roLo.dead)
 							{
 								yield return null;
 							}
@@ -127,7 +130,7 @@ public class EnemyController : MonoBehaviour {
 						if (recalculate || Vector3.Distance(player.transform.position, transform.position) < stoppingDistance)
 						{
 							break;
-						}
+						}						
 					}
 				}
 			}
