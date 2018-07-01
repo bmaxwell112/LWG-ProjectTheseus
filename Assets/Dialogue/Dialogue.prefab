@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224920785397143644}
-  - component: {fileID: 114159767941822134}
+  - component: {fileID: 114742475486209916}
   - component: {fileID: 95337784142161752}
   m_Layer: 5
   m_Name: Dialogue
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114159767941822134}
+      - m_Target: {fileID: 0}
         m_MethodName: DisplayNextSentence
         m_Mode: 1
         m_Arguments:
@@ -183,21 +183,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114159767941822134
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1061798666375162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cefff88ea8cdad46b67294f4e688723, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameTxt: {fileID: 114615303298064362}
-  sentenceTxt: {fileID: 114872516710912198}
-  characters: []
-  btn: {fileID: 114115119852172776}
 --- !u!114 &114372954066648816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,6 +276,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Continue
+--- !u!114 &114742475486209916
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1061798666375162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ac6d62fa17308438c5569a928f5bf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameTxt: {fileID: 0}
+  sentenceTxt: {fileID: 0}
+  characters: []
+  btn: {fileID: 0}
 --- !u!114 &114800256723376940
 MonoBehaviour:
   m_ObjectHideFlags: 1
