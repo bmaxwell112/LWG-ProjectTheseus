@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4186206236775566}
   - component: {fileID: 212260201144366612}
   - component: {fileID: 114206263456336938}
+  - component: {fileID: 114265693566526456}
   m_Layer: 0
   m_Name: EnemyConfig25
   m_TagString: SpawnConfig
@@ -50,6 +51,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a4420a09d38cfc4688f222c9661fbd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114265693566526456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1841699670453520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a54cf2e84ccaae45a6ea6ececb5b76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212260201144366612

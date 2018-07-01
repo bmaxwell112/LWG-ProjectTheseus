@@ -118,6 +118,7 @@ public class RoomManager : MonoBehaviour {
 		Debug.LogWarning("No active room");
 		return null;
 	}
+
     //Minimap processes here
     //Track number of rooms for special rooms
 

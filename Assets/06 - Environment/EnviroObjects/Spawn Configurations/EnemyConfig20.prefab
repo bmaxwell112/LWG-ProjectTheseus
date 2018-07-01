@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4574948752160206}
   - component: {fileID: 212160158147615384}
   - component: {fileID: 114238781625971180}
+  - component: {fileID: 114200425828337108}
   m_Layer: 0
   m_Name: EnemyConfig20
   m_TagString: SpawnConfig
@@ -41,6 +42,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114200425828337108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1293355365111276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a54cf2e84ccaae45a6ea6ececb5b76e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114238781625971180
 MonoBehaviour:
   m_ObjectHideFlags: 1

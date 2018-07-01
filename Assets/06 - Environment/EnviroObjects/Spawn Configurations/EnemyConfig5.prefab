@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4061511250425518}
   - component: {fileID: 212578615829075840}
   - component: {fileID: 114951325509029710}
+  - component: {fileID: 114583164049768740}
   m_Layer: 0
   m_Name: EnemyConfig5
   m_TagString: SpawnConfig
@@ -41,6 +42,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114583164049768740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1385117907226978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a54cf2e84ccaae45a6ea6ececb5b76e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114951325509029710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,10 +64,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0069e711f11218841b9c7fb2f1d42e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  internalWall: {fileID: 114897217999198436, guid: 797a4a7d589031947af85468ca19d107,
-    type: 2}
-  enemySpawner: {fileID: 114815169368089620, guid: 25557f08e60889e4bb4d3bd00d396a4d,
-    type: 2}
 --- !u!212 &212578615829075840
 SpriteRenderer:
   m_ObjectHideFlags: 1

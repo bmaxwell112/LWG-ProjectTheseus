@@ -16,7 +16,7 @@ public class QuestFunctions : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
-    public static List<QuestEvent> questEvents = new List<QuestEvent>();
+    public List<QuestEvent> questEvents = new List<QuestEvent>();
 
     // Use this for initialization
     void Start () {
@@ -42,5 +42,19 @@ public class QuestFunctions : MonoBehaviour {
         questEvents.Add((new QuestEvent(3, "Climate Control", "The climate control module in a room is malfunctioning, you will take heat damage in that room until you hack and fix it.", TriggerID.onRoomEnter, EventType.hack, 100, false)));
         questEvents.Add((new QuestEvent(4, "Treasure Defender", "A scan found that a heavily armored turret is protecting loot within itself, destroy it to take it.", TriggerID.onRoomEnter, EventType.kill, 100, false)));
         questEvents.Add((new QuestEvent(5, "Recharge Station", "A gear recharge station is in the middle of the room, prevent it from being destroyed to make use of it!", TriggerID.onRoomEnter, EventType.defend, 100, false)));
+    }
+
+    public QuestEvent GetQuestByID(int eventID)
+    {
+        QuestEvent QE = new QuestEvent();
+        for (int i = 0; i < questEvents.Count; i++)
+        {
+            if (questEvents[i].eventID == eventID)
+            {
+                QE = questEvents[i];
+                break;
+            }
+        }
+        return QE;
     }
 }

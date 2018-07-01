@@ -83,6 +83,11 @@ public class PlayerPrefsManager : MonoBehaviour {
         PlayerPrefs.GetInt(EVENT_COMPLETED + eventID);
     }
 
+    public static int ReturnEventComplete(int eventID)
+    {
+       return PlayerPrefs.GetInt(EVENT_COMPLETED + eventID);
+    }
+
     public static void ResetEventComplete(int eventID)
     {
         PlayerPrefs.GetInt(EVENT_COMPLETED + eventID, 0);
