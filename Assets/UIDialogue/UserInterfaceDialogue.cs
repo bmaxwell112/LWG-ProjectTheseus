@@ -16,30 +16,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueManager : MonoBehaviour {
-	public static DialogueManager instance = null;
+public class UserInterfaceDialogue : MonoBehaviour {
+	public static UserInterfaceDialogue instance = null;
 	public static bool dialogueRunning;
 	Queue<string> sentences = new Queue<string>();
 	float characterSpeed;
-	Animator anim;
+	//Animator anim;
 	[SerializeField] Text nameTxt, sentenceTxt;
 	[SerializeField] Image[] characters;
-	[SerializeField] Button btn;
+	//[SerializeField] Button btn;
+	[SerializeField] bool autoScroll;
 	void Awake()
 	{
 		if (instance == null)
 			instance = this;
 		else if (instance != this)
 			Destroy(gameObject);
-		anim = GetComponent<Animator>();
+		//anim = GetComponent<Animator>();
+	}
+	void Update()
+	{
+		if (InputCapture.back && dialogueRunning)
+		{
+			DisplayNextSentence();
+		}
 	}
 
 	public void StartDialogue(Dialogue dialogue)
 	{
-		btn.Select();
+		//btn.Select();
 		dialogueRunning = true;
 		CharacterImageCheck(dialogue);
-		anim.SetBool("open", true);
+		//anim.SetBool("open", true);
 		sentences.Clear();
 		nameTxt.text = dialogue.name;
 		characterSpeed = dialogue.characterSpeed;
@@ -51,7 +59,7 @@ public class DialogueManager : MonoBehaviour {
 	}
 
 	public void DisplayNextSentence()
-	{
+	{				
 		if (sentences.Count == 0)
 		{
 			EndDialogue();
@@ -70,11 +78,16 @@ public class DialogueManager : MonoBehaviour {
 			sentenceTxt.text += letter;
 			yield return new WaitForSeconds(characterSpeed);
 		}
+		if (autoScroll)
+		{
+			yield return new WaitForSeconds(1.5f);
+			DisplayNextSentence();
+		}
 	}
 
 	private void EndDialogue()
 	{
-		anim.SetBool("open", false);
+		//anim.SetBool("open", false);
 		dialogueRunning = false;
 	}
 

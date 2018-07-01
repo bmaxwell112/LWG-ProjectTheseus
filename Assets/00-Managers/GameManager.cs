@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
 	public static int RandomDropModifier;
 	public bool playerAlive;
 	public static Item[] playerLoadout = new Item[7];
+	bool dialogueFlag = false;
 
 	//Awake is always called before any Start functions
 	void Awake()
@@ -24,6 +25,25 @@ public class GameManager : MonoBehaviour {
 	{
 		RandomDropModifier = 0;		
 		mouseInput = MouseCheck();
+	}
+
+	private void DialogueTracker()
+	{
+		if (DialogueManager.dialogueRunning && !dialogueFlag)
+		{
+			StartCoroutine(PauseForDialogue());
+			dialogueFlag = true;
+		}
+		else if (!DialogueManager.dialogueRunning && dialogueFlag)
+		{
+			GamePause(false);
+			dialogueFlag = false;
+		}
+	}
+	IEnumerator PauseForDialogue()
+	{
+		yield return new WaitForSeconds(0.25f);
+		GamePause(true);
 	}
 
 	private bool MouseCheck()
@@ -42,6 +62,7 @@ public class GameManager : MonoBehaviour {
 	void Update()
 	{
 		InputCapture.InputCheck();
+		DialogueTracker();
 	}
 
 	public static void GamePause(bool pause)

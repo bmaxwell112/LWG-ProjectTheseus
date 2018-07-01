@@ -1,0 +1,185 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1636559684938840}
+  m_IsPrefabParent: 1
+--- !u!1 &1636559684938840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4349800456297094}
+  - component: {fileID: 114405277061373212}
+  - component: {fileID: 114777009615353378}
+  - component: {fileID: 114367773221204570}
+  - component: {fileID: 114926166768452470}
+  - component: {fileID: 114495760480778882}
+  - component: {fileID: 114555802572435166}
+  - component: {fileID: 114823068167271434}
+  m_Layer: 0
+  m_Name: Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4349800456297094
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1636559684938840}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.6172241, y: -0.8329819, z: 0.15625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114367773221204570
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1636559684938840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd7adbcce533a64e8aea668b4d70c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    name: Aiming
+    characterSpeed: 0
+    characterImage: {fileID: 0}
+    characterNumber: 0
+    sentences:
+    - With the gamepad you arm with the right joystick with a mouse the character
+      will look in the direction of the mouse.
+--- !u!114 &114405277061373212
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1636559684938840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d49851ee1341a4caee9faa4787bd04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114495760480778882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1636559684938840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd7adbcce533a64e8aea668b4d70c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    name: Picking Up Items
+    characterSpeed: 0
+    characterImage: {fileID: 0}
+    characterNumber: 0
+    sentences:
+    - 'Enemies have a chance to drop items. When this happens you can decide if you
+      want to replace your current part with the item. If you walk up to a dropped
+      item in the lower left a descrition will pop up allowing you to learn what it
+      is. '
+    - 'To pick it up, while it''s desciption is showing, press X on a controller or
+      E on the keyboard. You will have another popup on the right showing that it
+      switched.
+
+'
+    - Old items will be dropped and you can switch them back.
+--- !u!114 &114555802572435166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1636559684938840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd7adbcce533a64e8aea668b4d70c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    name: Ranged Attacks
+    characterSpeed: 0
+    characterImage: {fileID: 0}
+    characterNumber: 0
+    sentences:
+    - Fire with the left and right triggers using the gamepad. To fire with a mouse
+      and keyboard hold left shift and use the left and right mouse clicks to fire.
+    - 'Be aware that ranges weapons use power as indicated in the top left corner
+      by your arm that it is equipped on. Once you are out of ammo you can no longer
+      use the ranged attack on that weapon until it''s power is replinished or the
+      weapon is replaced. '
+--- !u!114 &114777009615353378
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1636559684938840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd7adbcce533a64e8aea668b4d70c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    name: Movement
+    characterSpeed: 0
+    characterImage: {fileID: 0}
+    characterNumber: 0
+    sentences:
+    - Move the player with the left Joystick on the controller or by using WASD keyboard
+      keys.
+--- !u!114 &114823068167271434
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1636559684938840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd7adbcce533a64e8aea668b4d70c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    name: Passive Equipment
+    characterSpeed: 0
+    characterImage: {fileID: 0}
+    characterNumber: 0
+    sentences:
+    - Some items such as backpacks and AI cores allow for passive buffs. Read their
+      desciption by pausing the game and looking at them for more details.
+--- !u!114 &114926166768452470
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1636559684938840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd7adbcce533a64e8aea668b4d70c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    name: Melee Attacks
+    characterSpeed: 0
+    characterImage: {fileID: 0}
+    characterNumber: 0
+    sentences:
+    - Attacks with each arm happen seperately. The left and right bumpers attack on
+      a gamepad, while the left and right mouse button attack with a mouse.

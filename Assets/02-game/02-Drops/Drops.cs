@@ -69,8 +69,19 @@ public class Drops : MonoBehaviour {
 		RobotLoadout playerLo = player.GetComponent<RobotLoadout>();
 		string newText = playerLo.loadout[(int)thisItem.itemLoc].itemName + "\nSwitched for\n" + thisItem.itemName;
 		np.NotificationsPanelSetEnable(newText);
+		if (TutorialFunctions.instance)
+		{
+			if (thisItem.itemType == ItemType.range)
+			{
+				TutorialFunctions.instance.DialogueTriggerValue(4);
+			}
+			if (thisItem.itemLoc == ItemLoc.core || thisItem.itemLoc == ItemLoc.back)
+			{
+				TutorialFunctions.instance.DialogueTriggerValue(5);
+			}
+		}
 		RobotFunctions.ReplaceDropPart(this, playerLo);
-		RenameAndReset();
+		RenameAndReset();		
 	}
 
 	private bool PlayerFacingItem(Collider2D col)
@@ -129,6 +140,10 @@ public class Drops : MonoBehaviour {
 		hitPoints = hp;
 		power = pwr;
 		SpriteSetter(item);
+		if (TutorialFunctions.instance)
+		{
+			TutorialFunctions.instance.DialogueTriggerValue(3);
+		}
 	}
 
 	private void SpriteSetter(Item item)

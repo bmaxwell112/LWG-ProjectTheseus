@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -106,7 +105,8 @@ public class Pathfinding : MonoBehaviour {
 	{
 		if (isRunning)
 		{
-			foreach (Vector2Int direction in CustomNavMesh.directions)
+
+			foreach (Vector2Int direction in RandomDirection())
 			{
 				Vector2Int neighborCoordinate = searchCenter.position + direction;
 				if (grid.ContainsKey(neighborCoordinate))
@@ -150,5 +150,22 @@ public class Pathfinding : MonoBehaviour {
 				grid.Add(waypoint, new Waypoint(waypoint));
 			}
 		}
+	}
+
+	Vector2Int[] RandomDirection()
+	{
+		Vector2Int[] newDirections = new Vector2Int[CustomNavMesh.directions.Length];
+		List<int> dirList = new List<int>();
+		for (int i = 0; i < CustomNavMesh.directions.Length; i++)
+		{
+			dirList.Add(i);
+		}
+		for(int i = 0; i < newDirections.Length; i++)
+		{
+			int randDir = dirList[Random.Range(0, dirList.Count)];
+			newDirections[i] = CustomNavMesh.directions[randDir];
+			dirList.Remove(randDir);
+		}
+		return newDirections;
 	}
 }

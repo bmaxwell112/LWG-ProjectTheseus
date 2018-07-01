@@ -11,13 +11,13 @@ public class LoadScreen : MonoBehaviour {
 	float fadeInTime = 1;
 	float den;
 	bool loaded, ready;
-	DialogueTrigger dt;
+	UserInterfaceDialogueTrigger dt;
 
 	// Use this for initialization
 	void Start () {
 		den = RoomManager.instance.roomCap;
 		startGame.gameObject.SetActive(false);
-		dt = FindObjectOfType<DialogueTrigger>();
+		dt = FindObjectOfType<UserInterfaceDialogueTrigger>();
 		dt.TriggerDialogue();
 	}
 	
@@ -36,7 +36,7 @@ public class LoadScreen : MonoBehaviour {
 		}
 		if (xScale == 1)
 		{			
-			if (!loaded && !ready && !DialogueManager.dialogueRunning)
+			if (!loaded && !ready && !UserInterfaceDialogue.dialogueRunning)
 			{
 				startGame.gameObject.SetActive(true);
 				startGame.Select();
@@ -53,6 +53,11 @@ public class LoadScreen : MonoBehaviour {
 
 	private void Destroy()
 	{
+		TutorialFunctions tutorial = FindObjectOfType<TutorialFunctions>();
+		if (tutorial)
+		{
+			tutorial.LevelLoaded();
+		}
 		Destroy(gameObject);
 	}
 
@@ -60,7 +65,7 @@ public class LoadScreen : MonoBehaviour {
 	{
 		if (!loaded && ready)
 		{
-			Invoke("Destroy", fadeInTime);
+			Invoke("Destroy", fadeInTime);	
 			loaded = true;
 		}
 	}

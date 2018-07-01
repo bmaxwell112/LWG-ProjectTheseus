@@ -57,7 +57,7 @@ MonoBehaviour:
   player: {fileID: 1987759031399868, guid: 064acb4a45f04a948b9e38c0381af688, type: 2}
   userInterface: {fileID: 1872913871305282, guid: 27cf67da565b9be4fb61f934ba8063d8,
     type: 2}
-  roomCap: 100
+  roomCap: 15
   spawnConfigs:
   - {fileID: 1270131870308636, guid: 0b3a948043e62774cb15f987a4f6b522, type: 2}
   - {fileID: 1145511095167644, guid: a3fda2cb6f1da584d9e3938afd07e044, type: 2}
