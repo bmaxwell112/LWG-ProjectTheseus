@@ -1708,17 +1708,17 @@ MonoBehaviour:
     characterImage: {fileID: 0}
     characterNumber: 0
     sentences:
-    - '~ Connecteding to Periphetes...... FAILURE
+    - '~ Connecting to Periphetes...... FAILURE
 
-      ~ Connecteding to Sinis...... FAILURE
+      ~ Connecting to Sinis...... FAILURE
 
-      ~ Connecteding to Phaea...... FAILURE
+      ~ Connecting to Phaea...... FAILURE
 
-      ~ Connecteding to Sciron...... FAILURE
+      ~ Connecting to Sciron...... FAILURE
 
-      ~ Connecteding to Cercyon...... FAILURE
+      ~ Connecting to Cercyon...... FAILURE
 
-      ~ Connecteding to Procrustus...... FAILURE
+      ~ Connecting to Procrustus...... FAILURE
 
       ~ Subroutines compromised... (6)'
     - '~ Manual Reboot of subroutines required

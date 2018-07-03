@@ -8734,7 +8734,7 @@ MonoBehaviour:
   TechTree: {fileID: 1338470746877792}
   TopBtns: {fileID: 1766687071157212}
   PlayerLoadOut: {fileID: 1980335402453158}
-  startBtn: {fileID: 0}
+  startBtn: {fileID: 114162996970468164}
   LeftArmPower: {fileID: 114812401065707114}
   RightArmPower: {fileID: 114254488605827212}
   core: {fileID: 114925460467992330}
@@ -9058,7 +9058,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Reboot Complete. Start?
+  m_Text: Loaded
 --- !u!114 &114960103161811286
 MonoBehaviour:
   m_ObjectHideFlags: 1
