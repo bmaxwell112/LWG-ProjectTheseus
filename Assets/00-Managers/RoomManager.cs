@@ -73,14 +73,17 @@ public class RoomManager : MonoBehaviour {
 		//RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
 		foreach(RoomGeneration room in allRooms)
 		{
-			DoorGen[] doors = room.GetComponentsInChildren<DoorGen>();
+            QuestController.roomList.Add(room);
+            QuestController.availConfigs.Add(room.GetComponentInChildren<spawnFunc>());
+            print(QuestController.availConfigs.Count);
+            DoorGen[] doors = room.GetComponentsInChildren<DoorGen>();
 			foreach (DoorGen door in doors)
 			{
 				door.EndSpawningCheck();
                 roomQueue.Clear();
 			}
 		}
-		CheckAllActiveRooms();
+        CheckAllActiveRooms();
 		Invoke("CheckAllActiveRooms", 0.25f);
 		allActive = true;
 	}

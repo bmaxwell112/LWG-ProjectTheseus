@@ -7,7 +7,6 @@ public class QuestController : MonoBehaviour {
     private RoomManager roomManager;
     private QuestFunctions qFunctions;
     private RoomGeneration roomGen;
-    public RoomGeneration[] roomList;
 
     private void Awake()
     {
@@ -15,8 +14,9 @@ public class QuestController : MonoBehaviour {
         //check maptype for randomization constraints, use Tileset enum in RoomManager
     }
 
-    public List<QuestEvent> activeEvents = new List<QuestEvent>();
-    public List<spawnFunc> availConfigs = new List<spawnFunc>();
+    static public List<QuestEvent> activeEvents = new List<QuestEvent>();
+    static public List<spawnFunc> availConfigs = new List<spawnFunc>();
+    static public List<RoomGeneration> roomList = new List<RoomGeneration>();
 
     // Use this for initialization
     void Start () {
@@ -29,7 +29,6 @@ public class QuestController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        RoomGeneration[] roomList = FindObjectsOfType<RoomGeneration>();
 
         if (GameManager.levelLoaded)
         {
@@ -38,9 +37,11 @@ public class QuestController : MonoBehaviour {
             if (!newRoomManager.hub)
             {
                 PullQuest();
+                print(roomList.Count);
                 GameManager.levelLoaded = false;
             }
         }
+
     }
 
     private void LoadQuestStatus()
@@ -52,7 +53,7 @@ public class QuestController : MonoBehaviour {
         }
     }
 
-    private void PullQuest()
+    public void PullQuest()
     {
         for (int i = 0; i < qFunctions.questEvents.Count; i++)
         {
@@ -63,22 +64,17 @@ public class QuestController : MonoBehaviour {
             }
         }
 
-        //pull a list of available room configurations v
-
-        for (int i = 0; i < roomList.Length; i++)
-        {
-            availConfigs.Add(roomList[i].GetComponentInChildren<spawnFunc>());
-            print("Added available spawn Configurations to list");
-        }
-
         //pull random quest that can work for an available configuration
-        //Should have something denoting if a quest has already spawned
     }
+
+
+
+    //Should have something denoting if a quest has already spawned
 
     //function to spawn items associated with quest in correct room
     //Objects need to have a property for either "activates on setactive" or "activate on interact", set as active quest when this happens
     //Objects should also have win conditions that report to this
-    
+
 
     //Set completed quest as "complete"
 
