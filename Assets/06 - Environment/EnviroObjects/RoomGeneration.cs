@@ -24,7 +24,7 @@ public class RoomGeneration : MonoBehaviour {
 
 		//QueuedStart();
 		roomsInExistence++;
-		roomActive = true;
+		roomActive = false;
 		roomListener = !roomActive;
         enemyListener = false;
 		doors = GetComponentsInChildren<DoorGen>();
@@ -58,10 +58,10 @@ public class RoomGeneration : MonoBehaviour {
         {
             spawncap = worldController.roomCap;
         }
-		//roomActive = false;
+		roomActive = false;
 		if (first)
 		{
-			//roomActive = true;
+			roomActive = true;
 			first = false;
 		}		
 		CheckDoor();
