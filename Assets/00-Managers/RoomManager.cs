@@ -11,7 +11,7 @@ public class RoomManager : MonoBehaviour {
 	[SerializeField] GameObject room, player, userInterface;
 	
     public int roomCap;
-	public static bool allActive;
+	public static bool roomsLoaded, questLoaded, gameSetupComplete;
 	static Queue<RoomGeneration> roomQueue = new Queue<RoomGeneration>();
     public GameObject[] spawnConfigs;
     //spawnConfigs array
@@ -34,22 +34,54 @@ public class RoomManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+		StartCoroutine(GameSetup());
+	}
+
+	IEnumerator GameSetup()
+	{
+		// Start UI
 		Instantiate(userInterface);
+		// Pause Game
+		GameManager.GamePause(true);
+		// If not the hub start spawning Rooms;
 		if (!hub)
 		{
 			SpawnFirstRoom();
 		}
 		else
 		{
-			allActive = true;
+			roomsLoaded = true;
 		}
+		// Until the rooms are loaded wait
+		while (!roomsLoaded) {
+			yield return null;
+		}
+		// Run Quest things here ATTN:CODY
+		// have questLoaded set to true when the quest stuff has been loaded. 
+		// Also, obviously remove my questLoaded = true that's just to this runs now.
+		questLoaded = true;
+		while (!questLoaded) {
+			yield return null;
+		}
+		// Disable all rooms but the first one.
+		bool first = false;
+		foreach (RoomGeneration room in allRooms) {
+			if (first) {
+				room.SetActive (false);
+			} else {
+				first = true;
+			}
+		}
+		// Game Unpause
+		gameSetupComplete = true;
+		GameManager.GamePause(false);
 	}
 	
 	// Update is called once per frame
 
     void SpawnFirstRoom()
     {
-		allActive = false;
+		roomsLoaded = false;
 		RoomGeneration.roomsInExistence = 0;
 		RoomGeneration.spawncap = 0;
 		RoomGeneration.first = true;
@@ -82,7 +114,7 @@ public class RoomManager : MonoBehaviour {
 		}
 		CheckAllActiveRooms();
 		Invoke("CheckAllActiveRooms", 0.25f);
-		allActive = true;
+		roomsLoaded = true;
 	}
 
 	private void CheckAllActiveRooms()
@@ -110,7 +142,7 @@ public class RoomManager : MonoBehaviour {
 		//RoomGeneration[] rooms = FindObjectsOfType<RoomGeneration>();
 		foreach (RoomGeneration room in RoomManager.instance.allRooms)
 		{
-			if (room.roomActive)
+			if (room.GetActive())
 			{
 				return room.gameObject;
 			}

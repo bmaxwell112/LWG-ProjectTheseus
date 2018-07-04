@@ -26,7 +26,7 @@ public class RobotAnimationController : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-		if (!GameManager.paused && RoomManager.allActive && !roLo.dead)
+		if (!GameManager.paused && RoomManager.gameSetupComplete && !roLo.dead)
 		{
 			if (arms[1].GetInteger("action") == 0 || arms[1].GetInteger("action") == 3)
 			{

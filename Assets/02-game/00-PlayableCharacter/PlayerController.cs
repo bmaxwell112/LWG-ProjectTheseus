@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (RoomManager.allActive && !roLo.dead)
+		if (RoomManager.gameSetupComplete && !roLo.dead)
 		{
 			if (GameManager.mouseInput)
 			{

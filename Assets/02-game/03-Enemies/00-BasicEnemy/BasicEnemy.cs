@@ -41,7 +41,7 @@ public class BasicEnemy : MonoBehaviour {
 
 	public void EnemyUpdate()
 	{
-		if (RoomManager.allActive)
+		if (RoomManager.gameSetupComplete)
 		{
 			if (player)
 			{

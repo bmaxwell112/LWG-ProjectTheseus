@@ -51,7 +51,7 @@ public class RangeShortEnemy : MonoBehaviour {
 	
 	public void EnemyUpdate()
 	{
-		if (RoomManager.allActive)
+		if (RoomManager.gameSetupComplete)
 		{
 			if (player)
 			{
@@ -77,7 +77,7 @@ public class RangeShortEnemy : MonoBehaviour {
 			// Speed of rotation
 			while (firingArc.rotation != toLoc)
 			{
-				if (RoomManager.allActive)
+				if (RoomManager.gameSetupComplete)
 				{
 					firingArc.rotation = Quaternion.Lerp(fromLoc, toLoc, Time.time * 0.5f);
 					float angle = Quaternion.Angle(firingArc.rotation, toLoc);

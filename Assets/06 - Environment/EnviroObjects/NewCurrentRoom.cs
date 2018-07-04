@@ -28,7 +28,7 @@ public class NewCurrentRoom : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Player" && RoomManager.allActive == true)
+		if (collision.gameObject.name == "Player" && RoomManager.gameSetupComplete == true)
         {
 			StartCoroutine(ActivateRoom(collision.transform));			
         }
@@ -36,9 +36,9 @@ public class NewCurrentRoom : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Player" && RoomManager.allActive == true)
+		if (collision.gameObject.name == "Player" && RoomManager.gameSetupComplete == true)
         {
-            roomGen.roomActive = false;
+			roomGen.SetActive(false);
         }
     }
 
@@ -91,11 +91,11 @@ public class NewCurrentRoom : MonoBehaviour {
     {
         GetAdjustment();
 
-        RoomManager.allActive = false;
-        roomGen.roomActive = false;
+		RoomManager.gameSetupComplete = false;
+		roomGen.SetActive(false);
 		roomGen.ToggleActiveRooms();
 		RoomGeneration nextRoom = FindNearbyRoom();
-		nextRoom.roomActive = true;		
+		nextRoom.SetActive(true);		
 		CameraController cam = FindObjectOfType<CameraController>();
         cam.MoveCamera(nextRoomPos);
         Vector3 playerStartPos = player.transform.position;
@@ -114,6 +114,6 @@ public class NewCurrentRoom : MonoBehaviour {
             yield return null;
         }
         nextRoom.CheckEnemies();		
-		RoomManager.allActive = true;
+		RoomManager.gameSetupComplete = true;
     }
 }

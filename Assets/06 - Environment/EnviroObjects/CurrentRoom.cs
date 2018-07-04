@@ -13,7 +13,7 @@ public class CurrentRoom : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.name == "Player" && RoomManager.allActive == true)
+		if(collision.gameObject.name == "Player" && RoomManager.gameSetupComplete == true)
         {
 			StartCoroutine(ActivateRoom(collision.transform));	
         }
@@ -24,16 +24,16 @@ public class CurrentRoom : MonoBehaviour {
         if (collision.gameObject.name == "Player")
         {
 			RoomGeneration parentRoom = GetComponentInParent<RoomGeneration>();
-			parentRoom.roomActive = false;            
+			parentRoom.SetActive(false);            
         }
     }
 
     //grab this
 	IEnumerator ActivateRoom(Transform player)
 	{
-		RoomManager.allActive = false;
+		RoomManager.gameSetupComplete = false;
 		RoomGeneration parentRoom = GetComponentInParent<RoomGeneration>();		
-		parentRoom.roomActive = true;
+		parentRoom.SetActive(true);
 		CameraController cam = FindObjectOfType<CameraController>();
 		cam.MoveCamera(transform.position);
 		Vector3 playerStartPos = player.transform.position;
@@ -50,7 +50,7 @@ public class CurrentRoom : MonoBehaviour {
 			distance = Vector3.Distance(transform.position, player.position);
 			yield return null;
 		}
-		RoomManager.allActive = true;
+		RoomManager.gameSetupComplete = true;
 
 	}
 

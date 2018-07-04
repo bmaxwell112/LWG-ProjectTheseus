@@ -46,6 +46,13 @@ public class EnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (RoomManager.gameSetupComplete) {
+			EnemyUpdate ();
+		}
+	}
+
+	void EnemyUpdate()
+	{
 		if (!stunned && player && !roLo.stopped)
 		{
 			if (enemyType == 0)
@@ -62,7 +69,7 @@ public class EnemyController : MonoBehaviour {
 		{
 			player = FindObjectOfType<PlayerController>();
 		}				
-		if (myRoom.roomActive && !startMovement)
+		if (myRoom.GetActive() && !startMovement)
 		{
 			StopAllCoroutines();
 			StartCoroutine(UpdateMovement());
@@ -70,7 +77,7 @@ public class EnemyController : MonoBehaviour {
 			startMovement = true;
 			attacking = false;
 		}
-		if (!myRoom.roomActive && startMovement)
+		if (!myRoom.GetActive() && startMovement)
 		{
 			StopAllCoroutines();
 			startMovement = false;
@@ -96,7 +103,7 @@ public class EnemyController : MonoBehaviour {
 		while (true)
 		{
 			recalculate = false;
-			if (player && cNavMesh && RoomManager.allActive && !roLo.dead)
+			if (player && cNavMesh && RoomManager.gameSetupComplete && !roLo.dead)
 			{				
 				List<Waypoint> path = pathfinding.GetPath(player.transform, cNavMesh, currentNodePos);
 				if (path.Count > 1)

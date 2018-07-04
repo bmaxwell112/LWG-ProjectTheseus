@@ -5,7 +5,7 @@ using UnityEngine;
 public class RoomGeneration : MonoBehaviour {
     public static int spawncap, roomsInExistence;
 	public static bool first;
-    public bool roomActive;
+    bool roomActive;
     public DoorGen[] doors;
     public static Vector3Int[] spawnLocation;
     [SerializeField] GameObject room, layout;
@@ -24,9 +24,9 @@ public class RoomGeneration : MonoBehaviour {
 
 		//QueuedStart();
 		roomsInExistence++;
-		roomActive = false;
+		roomActive = true;
 		roomListener = !roomActive;
-        enemyListener = false;
+        //enemyListener = false;
 		doors = GetComponentsInChildren<DoorGen>();
 		worldController = FindObjectOfType<RoomManager>();
 		walls = FindObjectOfType<DoorGen>();
@@ -58,10 +58,10 @@ public class RoomGeneration : MonoBehaviour {
         {
             spawncap = worldController.roomCap;
         }
-		roomActive = false;
+		//roomActive = false;
 		if (first)
 		{
-			roomActive = true;
+			//roomActive = true;
 			first = false;
 		}		
 		CheckDoor();
@@ -268,4 +268,14 @@ public class RoomGeneration : MonoBehaviour {
 			layout.SetActive(false);
 		}
     }
+
+	// Simple external functions
+	public void SetActive(bool active)
+	{
+		roomActive = active;
+	}
+	public bool GetActive()
+	{
+		return roomActive;
+	}
 }

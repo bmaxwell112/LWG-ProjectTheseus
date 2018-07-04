@@ -58,7 +58,7 @@ public class TurretAI : MonoBehaviour
             // Speed of rotation
             while (firingArc.rotation != toLoc)
             {
-				if (RoomManager.allActive)
+				if (RoomManager.gameSetupComplete)
                 {
 					TurretRotationAnimationAndBulletSpawn();
 					firingArc.rotation = Quaternion.Lerp(fromLoc, toLoc, Time.time * 0.5f);
@@ -82,7 +82,7 @@ public class TurretAI : MonoBehaviour
         RangedWeapon rw = Database.instance.ItemsRangedWeapon(weapon);
         while (true)
         {
-            if (RoomManager.allActive)
+			if (RoomManager.gameSetupComplete)
             {
                 GameObject bullet = Instantiate(Resources.Load("bulletEnemy", typeof(GameObject))) as GameObject;
                 bullet.GetComponent<BulletWeapon>().BulletSetup(rw, bulletSpawnLocation, firingArc);

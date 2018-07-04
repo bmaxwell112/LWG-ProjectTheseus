@@ -29,7 +29,7 @@ public class QuestController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        RoomGeneration[] roomList = FindObjectsOfType<RoomGeneration>();
+        //RoomGeneration[] roomList = FindObjectsOfType<RoomGeneration>();
 
         if (GameManager.levelLoaded)
         {
