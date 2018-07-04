@@ -7,7 +7,7 @@ public class RoomManager : MonoBehaviour {
     public static RoomManager instance = null;
 	public List<RoomGeneration> allRooms = new List<RoomGeneration>();
     enum TileSet {Fabrication, Terraforming, Disposal, Purification, Security, Medical};
-	[SerializeField] bool hub;
+	public bool hub;
 	[SerializeField] GameObject room, player, userInterface;
 	
     public int roomCap;
@@ -118,6 +118,7 @@ public class RoomManager : MonoBehaviour {
 		Debug.LogWarning("No active room");
 		return null;
 	}
+
     //Minimap processes here
     //Track number of rooms for special rooms
 }

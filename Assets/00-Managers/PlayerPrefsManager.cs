@@ -20,6 +20,8 @@ public class PlayerPrefsManager : MonoBehaviour {
     const string POINT_VALUE = "point_value";
     const string TREE_KEY = "techtree_unlocked_";
 
+    const string EVENT_COMPLETED = "event_completed_";
+
 	public static void SetGameCheck(int playedBool)
 	{
 		PlayerPrefs.SetInt(GAME_CHECK, playedBool);
@@ -71,5 +73,24 @@ public class PlayerPrefsManager : MonoBehaviour {
         PlayerPrefs.SetInt(POINT_VALUE, 0);
     }
 
+    public static void SetEventComplete(int eventID, int completedBool)
+    {
+        PlayerPrefs.SetInt(EVENT_COMPLETED + eventID, completedBool);
+    }
+
+    public static void GetEventComplete(int eventID)
+    {
+        PlayerPrefs.GetInt(EVENT_COMPLETED + eventID);
+    }
+
+    public static int ReturnEventComplete(int eventID)
+    {
+       return PlayerPrefs.GetInt(EVENT_COMPLETED + eventID);
+    }
+
+    public static void ResetEventComplete(int eventID)
+    {
+        PlayerPrefs.GetInt(EVENT_COMPLETED + eventID, 0);
+    }
 
 }
