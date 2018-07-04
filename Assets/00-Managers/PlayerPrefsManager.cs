@@ -73,11 +73,15 @@ public class PlayerPrefsManager : MonoBehaviour {
         PlayerPrefs.SetInt(POINT_VALUE, 0);
     }
 
+	// ATTN:CODY is there a reason you are providing the int as an argument
+	// If you are setting to complete it would always be set to 1, 
+	// therefore 1 can go into the PlayerPreds set function.
     public static void SetEventComplete(int eventID, int completedBool)
     {
         PlayerPrefs.SetInt(EVENT_COMPLETED + eventID, completedBool);
     }
 
+	// ATTN:CODY the two functions below are the same the first one is just a dead end.
     public static void GetEventComplete(int eventID)
     {
         PlayerPrefs.GetInt(EVENT_COMPLETED + eventID);

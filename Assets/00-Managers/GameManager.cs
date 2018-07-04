@@ -66,8 +66,8 @@ public class GameManager : MonoBehaviour {
 	{
 		InputCapture.InputCheck();
 		DialogueTracker();
-		print(InputCapture.triggerRight);
-		print(InputCapture.triggerLeft);
+		// print(InputCapture.triggerRight);
+		// print(InputCapture.triggerLeft);
 
         if(level != SceneManager.GetActiveScene().buildIndex)
         {

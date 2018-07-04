@@ -59,6 +59,13 @@ public class RoomManager : MonoBehaviour {
 		// Run Quest things here ATTN:CODY
 		// have questLoaded set to true when the quest stuff has been loaded. 
 		// Also, obviously remove my questLoaded = true that's just to this runs now.
+		QuestController.PullQuest();
+		// TESTING DATA
+		foreach(QuestEvent qEvent in QuestController.activeEvents)
+		{
+			print (qEvent.eventName + " Not complete");
+		}
+		// ============
 		questLoaded = true;
 		while (!questLoaded) {
 			yield return null;

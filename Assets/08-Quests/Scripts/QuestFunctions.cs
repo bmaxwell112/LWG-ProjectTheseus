@@ -5,7 +5,9 @@ using UnityEngine;
 public class QuestFunctions : MonoBehaviour {
 
     public static QuestFunctions instance = null;
-    [SerializeField] GameObject questController;
+    
+	// TODO remove this 
+	//[SerializeField] GameObject questController;
 
     void Awake()
     {
@@ -19,9 +21,12 @@ public class QuestFunctions : MonoBehaviour {
     public List<QuestEvent> questEvents = new List<QuestEvent>();
 
     // Use this for initialization
+
     void Start () {
         SetupEvents();
-        SpawnController();
+
+		// TODO remove this and it's function
+        // SpawnController();
 	}
 	
 	// Update is called once per frame
@@ -31,7 +36,7 @@ public class QuestFunctions : MonoBehaviour {
 
     private void SpawnController()
     {
-        Instantiate(questController);
+        //Instantiate(questController);
     }
 
     private void SetupEvents()
