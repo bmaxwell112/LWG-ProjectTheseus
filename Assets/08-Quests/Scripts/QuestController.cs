@@ -37,7 +37,6 @@ public class QuestController : MonoBehaviour {
             if (!newRoomManager.hub)
             {
                 PullQuest();
-                print(roomList.Count);
                 GameManager.levelLoaded = false;
             }
         }

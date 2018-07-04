@@ -75,14 +75,17 @@ public class RoomManager : MonoBehaviour {
 		{
             QuestController.roomList.Add(room);
             QuestController.availConfigs.Add(room.GetComponentInChildren<spawnFunc>());
-            print(QuestController.availConfigs.Count);
+            for(int i=0; i< QuestController.availConfigs.Count; i++)
+            {
+                print(QuestController.availConfigs[i]);
+            }
             DoorGen[] doors = room.GetComponentsInChildren<DoorGen>();
 			foreach (DoorGen door in doors)
 			{
 				door.EndSpawningCheck();
                 roomQueue.Clear();
 			}
-		}
+        }
         CheckAllActiveRooms();
 		Invoke("CheckAllActiveRooms", 0.25f);
 		allActive = true;
