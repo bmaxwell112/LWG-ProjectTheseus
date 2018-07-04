@@ -117,10 +117,6 @@ public class RobotAnimationController : MonoBehaviour {
 	{
 		if (anim.GetInteger("action") != 2)
 		{
-			if (!anim.GetBool("hit"))
-			{
-				anim.SetInteger("facing", (int)currentFacing);
-			}
 			if (roLo.walk && !roLo.AreYouStopped())
 			{
 				anim.SetInteger("action", 1);
