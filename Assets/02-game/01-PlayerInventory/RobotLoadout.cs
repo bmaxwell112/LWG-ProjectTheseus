@@ -103,7 +103,6 @@ public class RobotLoadout : MonoBehaviour {
 		}
 		if ((hitPoints[0] <= 0 && loadout[0].itemID != -1) || hitPoints[1] <= 0)
 		{
-			print("running this");
 			StartDeath();
         }
 		if (stopAction || stopped)
@@ -186,6 +185,7 @@ public class RobotLoadout : MonoBehaviour {
 
 	public void DestroyRobot()
 	{
+		print ("Running DestroyRobot");
 		if (robotType == RobotType.enemy)
 		{
 			RoomGeneration parentRoom = GetComponentInParent<RoomGeneration>();

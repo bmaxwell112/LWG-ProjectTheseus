@@ -177,13 +177,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doesItDrop: 0
   damageColor: {r: 0.78431374, g: 0, b: 0, a: 0}
+  robotType: 1
   damageOffset: 1
   hitPoints: 00000000000000000000000000000000000000000000000000000000
   power: []
-  stopped: 0
-  walk: 0
-  stopWhileAttackingLeft: 0
-  stopWhileAttackingRight: 0
+  dead: 0
   dropOffset: 0
   loadout:
   - itemID: -1
@@ -270,7 +268,10 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
-  robotType: 1
+  stopped: 0
+  walk: 0
+  stopWhileAttackingLeft: 0
+  stopWhileAttackingRight: 0
 --- !u!114 &114689855089614696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -345,7 +346,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1879711983
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c86c05b2a7bf4804e930baf85ada1951, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -389,7 +390,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1879711983
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 014ef1bc1e3ce9f46b05f6771252a103, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

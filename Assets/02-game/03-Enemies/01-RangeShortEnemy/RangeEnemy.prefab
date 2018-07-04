@@ -688,13 +688,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doesItDrop: 1
   damageColor: {r: 0.7058824, g: 0, b: 0, a: 0}
+  robotType: 2
   damageOffset: 0.5
   hitPoints: 
   power: []
-  stopped: 0
-  walk: 0
-  stopWhileAttackingLeft: 0
-  stopWhileAttackingRight: 0
+  dead: 0
   dropOffset: 0
   loadout:
   - itemID: -1
@@ -781,7 +779,10 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
-  robotType: 2
+  stopped: 0
+  walk: 0
+  stopWhileAttackingLeft: 0
+  stopWhileAttackingRight: 0
 --- !u!114 &114818509082399608
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -90,7 +90,7 @@ public class Drops : MonoBehaviour {
 		// Above and to the right of Item
 		if (player.transform.position.x > transform.position.x && player.transform.position.y - distanceOffset > transform.position.y)
 		{
-			print("Above and to the right of Item");
+
 			if (player.firingArc.eulerAngles.z > 80 && player.firingArc.eulerAngles.z <= 190)
 			{
 				return true;
@@ -99,7 +99,7 @@ public class Drops : MonoBehaviour {
 		// Above and to the left of Item
 		if (player.transform.position.x <= transform.position.x && player.transform.position.y - distanceOffset > transform.position.y)
 		{
-			print("Above and to the left of Item");
+
 			if (player.firingArc.eulerAngles.z > 170 && player.firingArc.eulerAngles.z <= 280)
 			{
 				return true;
@@ -108,7 +108,7 @@ public class Drops : MonoBehaviour {
 		// Below and to the right of Item
 		if (player.transform.position.x > transform.position.x && player.transform.position.y - distanceOffset <= transform.position.y)
 		{
-			print("Below and to the right of Item");
+
 			if (player.firingArc.eulerAngles.z >= 0 && player.firingArc.eulerAngles.z <= 100)
 			{
 				return true;
@@ -121,7 +121,7 @@ public class Drops : MonoBehaviour {
 		// Below and to the left of Item
 		if (player.transform.position.x <= transform.position.x && player.transform.position.y - distanceOffset <= transform.position.y)
 		{
-			print("Below and to the left of Item");
+
 			if (player.firingArc.eulerAngles.z > 260 && player.firingArc.eulerAngles.z <= 360)
 			{
 				return true;
