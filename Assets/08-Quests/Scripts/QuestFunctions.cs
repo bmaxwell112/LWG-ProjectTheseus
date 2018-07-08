@@ -6,8 +6,6 @@ public class QuestFunctions : MonoBehaviour {
 
     public static QuestFunctions instance = null;
     
-	// TODO remove this 
-	//[SerializeField] GameObject questController;
 
     void Awake()
     {
@@ -25,19 +23,12 @@ public class QuestFunctions : MonoBehaviour {
     void Start () {
         SetupEvents();
 
-		// TODO remove this and it's function
-        // SpawnController();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
-
-    private void SpawnController()
-    {
-        //Instantiate(questController);
-    }
 
     private void SetupEvents()
     {

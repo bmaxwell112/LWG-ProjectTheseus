@@ -56,17 +56,16 @@ public class RoomManager : MonoBehaviour {
 		while (!roomsLoaded) {
 			yield return null;
 		}
-		// Run Quest things here ATTN:CODY
-		// have questLoaded set to true when the quest stuff has been loaded. 
-		// Also, obviously remove my questLoaded = true that's just to this runs now.
+		// questLoaded being true turns off the time stop
 		QuestController.PullQuest();
-		// TESTING DATA
-		foreach(QuestEvent qEvent in QuestController.activeEvents)
-		{
-			print (qEvent.eventName + " Not complete");
-		}
-		// ============
-		questLoaded = true;
+        foreach (spawnFunc cfg in QuestController.availConfigs)
+        {
+            if (cfg.name == "EnemyConfig23" || cfg.name == "EnemyConfig4" || cfg.name == "EnemyConfig9")
+            {
+                print("Spawn locations available");
+            }
+        }
+        questLoaded = true;
 		while (!questLoaded) {
 			yield return null;
 		}
