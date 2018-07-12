@@ -28,7 +28,7 @@ public class NewCurrentRoom : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-		if (collision.gameObject.name == "Player" && RoomManager.gameSetupComplete == true)
+		if (collision.gameObject.name == "Player" && RoomManager.gameSetupComplete == true && !collision.isTrigger)
         {
 			StartCoroutine(ActivateRoom(collision.transform));			
         }
@@ -113,7 +113,8 @@ public class NewCurrentRoom : MonoBehaviour {
             distance = Vector3.Distance(nextRoomPos, player.position);
             yield return null;
         }
-        nextRoom.CheckEnemies();		
+        nextRoom.CheckEnemies();
+		FindObjectOfType<MinimapContoller>().UpdateActiveMiniRoom();
 		RoomManager.gameSetupComplete = true;
     }
 }

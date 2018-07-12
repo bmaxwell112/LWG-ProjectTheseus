@@ -5,10 +5,11 @@ using UnityEngine;
 public class RangeShortEnemy : MonoBehaviour {
 	
 	Transform player;
-	bool knockback, attacking, noPower, melee, walkTo;
+	bool knockback, attacking, noPower, melee, walkTo, active;
 	[SerializeField] float rateOfFireOffset=1, healthOffset=0.5f;
 	[SerializeField] GameObject drop, leftArm, rightArm, bulletPrefab;
 	[SerializeField] Transform firingArc;
+	RoomGeneration parentRoom;
 	RobotLoadout roLo;	
 	int attack;
 	
@@ -22,6 +23,24 @@ public class RangeShortEnemy : MonoBehaviour {
 		{
 			roLo.hitPoints[i] = Mathf.RoundToInt(roLo.hitPoints[i] / 2);
 		}
+		parentRoom = GetComponentInParent<RoomGeneration>();
+	}
+	void Update()
+	{
+		if (parentRoom.roomActive && !active && RoomManager.gameSetupComplete)
+		{
+			EnemyTrackingAndFiring();
+			active = true;
+		}
+		if (!parentRoom.roomActive && active)
+		{
+			StopAllCoroutines();
+			active = false;
+		}
+	}
+
+	private void EnemyTrackingAndFiring()
+	{
 		StartCoroutine(SpawnBullets(roLo.loadout[2], leftArm));
 		StartCoroutine(SpawnBullets(roLo.loadout[3], rightArm));
 		if (player)

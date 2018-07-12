@@ -34,6 +34,7 @@ public class RoomManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+		gameSetupComplete = false;
 		StartCoroutine(GameSetup());
 	}
 
@@ -63,7 +64,7 @@ public class RoomManager : MonoBehaviour {
 		// TESTING DATA
 		foreach(QuestEvent qEvent in QuestController.activeEvents)
 		{
-			print (qEvent.eventName + " Not complete");
+			//print (qEvent.eventName + " Not complete");
 		}
 		// ============
 		questLoaded = true;
@@ -79,8 +80,11 @@ public class RoomManager : MonoBehaviour {
 				first = true;
 			}
 		}
+		// Load MiniMap
+		FindObjectOfType<MinimapContoller>().GetRoomPos();
 		// Game Unpause
 		gameSetupComplete = true;
+		print("Game Setup " + gameSetupComplete);
 		GameManager.GamePause(false);
 	}
 	

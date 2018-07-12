@@ -39,7 +39,7 @@ public class RobotFunctions {
 				{
 					MeleeAnimationSwap(player, i);
 				}
-				else if (player.loadout[i].itemType == ItemType.melee)
+				else if (player.loadout[i].itemType == ItemType.range)
 				{
 					RangeAnimationSwap(player, i);
 				}
