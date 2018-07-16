@@ -1431,6 +1431,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114367773221204570, guid: d49e46bbcf4db1c4cafef58467246968,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114777009615353378, guid: d49e46bbcf4db1c4cafef58467246968,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4349800456297094, guid: d49e46bbcf4db1c4cafef58467246968, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.6172241
@@ -1463,7 +1473,56 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114367773221204570, guid: d49e46bbcf4db1c4cafef58467246968,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.data[0]
+      value: Welcome to your newly assembled robot body. Appendages are strange so
+        lets go through how to use them.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114367773221204570, guid: d49e46bbcf4db1c4cafef58467246968,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114777009615353378, guid: d49e46bbcf4db1c4cafef58467246968,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.data[1]
+      value: Move the player with the left Joystick on the controller or by using
+        WASD keyboard keys.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114777009615353378, guid: d49e46bbcf4db1c4cafef58467246968,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.data[2]
+      value: With the gamepad you arm with the right joystick with a mouse the character
+        will look in the direction of the mouse.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114777009615353378, guid: d49e46bbcf4db1c4cafef58467246968,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.data[0]
+      value: Welcome to your newly assembled robot body. Appendages are strange so
+        lets go through how to use them.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114777009615353378, guid: d49e46bbcf4db1c4cafef58467246968,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.data[3]
+      value: Attacks with each arm happen seperately. The left and right bumpers attack
+        on a gamepad, while the left and right mouse button attack with a mouse.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114777009615353378, guid: d49e46bbcf4db1c4cafef58467246968,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.data[4]
+      value: One last thing. Done worry to much about death. If it happens we can
+        you can build yourself a new one here in the hub. Jump on the active teleporter
+        to start seaching for what happened.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114777009615353378, guid: d49e46bbcf4db1c4cafef58467246968,
+        type: 2}
+      propertyPath: dialogue.name
+      value: Movement And Attacking
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114367773221204570, guid: d49e46bbcf4db1c4cafef58467246968, type: 2}
+    - {fileID: 114926166768452470, guid: d49e46bbcf4db1c4cafef58467246968, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d49e46bbcf4db1c4cafef58467246968, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &731107787

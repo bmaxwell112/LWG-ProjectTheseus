@@ -22,8 +22,7 @@ public class RobotLoadout : MonoBehaviour {
 	[HideInInspector]
 	int basicDamage = 5;
 	int basicSpeed = 5;
-	bool dropped;
-	
+	bool dropped;	
     PlayerController player;
 	
 
@@ -60,8 +59,9 @@ public class RobotLoadout : MonoBehaviour {
 		// Check for specials		
 	}
 
-	public void TakeDamage(int damage, bool stopAction)
+	public void TakeDamage(int rawDamage, bool stopAction)
 	{
+		int damage = rawDamage;
 		stopped = stopAction;
 		if (robotType == RobotType.player)
 		{
@@ -185,7 +185,6 @@ public class RobotLoadout : MonoBehaviour {
 
 	public void DestroyRobot()
 	{
-		print ("Running DestroyRobot");
 		if (robotType == RobotType.enemy)
 		{
 			RoomGeneration parentRoom = GetComponentInParent<RoomGeneration>();

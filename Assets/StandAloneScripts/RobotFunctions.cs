@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Facing { upperLeft, left, lowerLeft, down, lowerRight, right, upperRight, up }
+public enum Facing { upperLeft, left, lowerLeft, down, lowerRight, right, upperRight, up, none }
 
 public class RobotFunctions {
 
@@ -190,6 +190,8 @@ public class RobotFunctions {
 			return Facing.up;
 		}
 	}
+
+	
 }
 
 

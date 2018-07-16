@@ -66,7 +66,6 @@ public class QuestController : MonoBehaviour {
 		// TEST DATA
 		PlayerPrefsManager.SetEventComplete(1, 1);
 		PlayerPrefsManager.SetEventComplete(2, 1);
-		print(QuestFunctions.instance.GetQuestByID(1).eventName + " And " + QuestFunctions.instance.GetQuestByID(2).eventName + " Complete");
 		// =========
 		for (int i = 0; i < QuestFunctions.instance.questEvents.Count; i++)
         {

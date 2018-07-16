@@ -97,4 +97,21 @@ public class PlayerPrefsManager : MonoBehaviour {
         PlayerPrefs.GetInt(EVENT_COMPLETED + eventID, 0);
     }
 
+	const string TUTORIAL = "tutorial_";
+
+	public static void SetTutorialComplete(int id)
+	{
+		PlayerPrefs.SetInt(TUTORIAL + id, 1);
+	}	
+	public static int GetTutorial(int id)
+	{
+		if (PlayerPrefs.HasKey(TUTORIAL + id))
+		{
+			return PlayerPrefs.GetInt(TUTORIAL + id);
+		}
+		else
+		{
+			return 0;
+		}
+	}	
 }

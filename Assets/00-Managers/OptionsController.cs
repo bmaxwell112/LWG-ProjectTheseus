@@ -23,7 +23,7 @@ public class OptionsController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		musicManager = FindObjectOfType<MusicManager>();
-		Debug.Log(musicManager);		
+		//Debug.Log(musicManager);		
 		volumeSlider.value = PlayerPrefsManager.GetMasterVolume();
 		sfxVolumeSlider.value = PlayerPrefsManager.GetSFXVolume();		
 		confirmReset = GameObject.Find("ConfirmReset");

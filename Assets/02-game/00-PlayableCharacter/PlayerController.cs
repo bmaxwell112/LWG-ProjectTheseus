@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] LayerMask drop, enemyMask;
 	[SerializeField] GameObject bullets;
 	[SerializeField] RobotAttack leftArm, rightArm;
+	// DETERMINE HOW THIS IS SET
+	[SerializeField] float dodgeCooldown = 1;
 	NotificationsPanel np;
 	public Transform firingArc;
 	RobotLoadout roLo;
@@ -23,9 +25,9 @@ public class PlayerController : MonoBehaviour {
 		roLo = GetComponent<RobotLoadout>();
 		special = GetComponent<PlayerSpecial>();
 		np = FindObjectOfType<NotificationsPanel>();
-        rb = GetComponent<Rigidbody2D>();
-        PlayerSpawn();
-		
+        rb = GetComponent<Rigidbody2D>();		
+		PlayerSpawn();
+		dodgeAvailable = true;
 	}
 
 	private void PlayerSpawn()
@@ -92,33 +94,29 @@ public class PlayerController : MonoBehaviour {
 	{
 		LevelManager.LOADLEVEL("03c Subscribe");
 	}
-
+	
+	// Movement
     public void BlockDodgeCheck()
     {
         float xDodge = InputCapture.hThrow;
         float yDodge = InputCapture.vThrow;
 
-        //print("activeDodge: " + activeDodge);
-        //print("activeBlock: " + activeBlock);
+		bool blockDodge = InputCapture.block;
 
-        bool blockDodge = Input.GetButton("BlockDodge");
-
-        activeBlock = false;
         activeDodge = false;
+		activeBlock = false;
 
-        //stationary is found in the movement check
-        if (blockDodge && stationary)
-        {
-            dodgeAvailable = true;
-            activeBlock = true;
-            if(xDodge != 0 || yDodge != 0)
-            {
-                activeBlock = false;
-                activeDodge = true;
-                print("block into dodge");
-            }
-                print("Blocking");
-        }
+		//stationary is found in the movement check
+		if (blockDodge && stationary)
+		{
+			activeBlock = true;
+			if (xDodge != 0 || yDodge != 0)
+			{
+				activeBlock = false;
+				activeDodge = true;
+				print("block into dodge");
+			}			
+		}
 
         if(blockDodge && !stationary && !activeDodge)
         {
@@ -127,74 +125,97 @@ public class PlayerController : MonoBehaviour {
 
         if (activeDodge)
         {
-            if (dodgeAvailable)
+
+			if (dodgeAvailable && InputCapture.JoystickOverThreshold(0.5f))
             {
                 CalcDodge();
                 dodgeAvailable = false;
                 activeDodge = false;
                 print("Dodging");
                 //set this to have a proper cooldown
-
             }
         }
     }
-
-    public void CalcDodge()
+	public void CalcDodge()
     {
-        float xDodge = InputCapture.hThrow;
-        float yDodge = InputCapture.vThrow;
+		Facing moveDir = InputCapture.JoystickDirection();
 
-        float dodgeRoll = 1f;
-
-        if (xDodge > 0)
+		float dodgeRoll = 200f;
+		print(moveDir);
+		if (moveDir == Facing.right)
         {
             //right dodge
             StartCoroutine(PerformDodge(new Vector2(dodgeRoll, 0)));
         }
-        if (xDodge > 0 && yDodge > 0)
+        if (moveDir == Facing.upperRight)
         {
             //upright dodge
             StartCoroutine(PerformDodge(new Vector2(dodgeRoll, dodgeRoll)));
         }
-        if (xDodge > 0 && yDodge < 0)
+        if (moveDir == Facing.lowerRight)
         {
             //downright dodge
             StartCoroutine(PerformDodge(new Vector2(dodgeRoll, -dodgeRoll)));
         }
-        if (xDodge < 0)
+        if (moveDir == Facing.left)
         {
             //left dodge
             StartCoroutine(PerformDodge(new Vector2(-dodgeRoll, 0)));
         }
-        if (xDodge < 0 && yDodge > 0)
+        if (moveDir == Facing.upperLeft)
         {
             //upleft dodge
             StartCoroutine(PerformDodge(new Vector2(-dodgeRoll, dodgeRoll)));
         }
-        if (xDodge < 0 && yDodge < 0)
+        if (moveDir == Facing.lowerLeft)
         {
             //downleft dodge
             StartCoroutine(PerformDodge(new Vector2(-dodgeRoll, -dodgeRoll)));
         }
-        if (yDodge > 0)
+        if (moveDir == Facing.up)
         {
             //up dodge
             StartCoroutine(PerformDodge(new Vector2(0, dodgeRoll)));
         }
-        if (yDodge < 0)
+        if (moveDir == Facing.down)
         {
             //down dodge
             StartCoroutine(PerformDodge(new Vector2(0, -dodgeRoll)));
         }
     }
-
-    IEnumerator PerformDodge(Vector2 dodgeForce)
+	IEnumerator PerformDodge(Vector2 dodgeForce)
     {
         rb.AddForce(dodgeForce);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         rb.velocity = Vector2.zero;
-    }
+		dodgeAvailable = true;
+		//yield return new WaitForSeconds(dodgeCooldown);
+	}
+	private void MovementCheck()
+	{
+		float speed = 1.5f;
+		// Sets players speed
+		if (roLo.hitPoints[(int)ItemLoc.legs] > 0)
+		{
+			speed = roLo.loadout[(int)ItemLoc.legs].itemSpeed;
+		}
+		// applies movement
+		float xSpeed = InputCapture.hThrow * speed * Time.deltaTime;
 
+		float ySpeed = InputCapture.vThrow * speed * Time.deltaTime;
+		transform.position += new Vector3(xSpeed, ySpeed, transform.position.z);
+
+		if (xSpeed == 0 && ySpeed == 0)
+		{
+			stationary = true;
+		}
+		else
+		{
+			stationary = false;
+		}
+	}
+
+	// Attacking
 	private void AimAndFireCheck()
 	{
             if ((InputCapture.hAim > 0.5f || InputCapture.hAim < -0.5f) || (InputCapture.vAim > 0.5f || InputCapture.vAim < -0.5f))
@@ -231,33 +252,6 @@ public class PlayerController : MonoBehaviour {
             rightArm.GetComponent<RobotAttack>().FiringCheck(fireRight);
             leftArm.GetComponent<RobotAttack>().FiringCheck(fireLeft);
 	}
-	private void MovementCheck()
-	{
-        float speed = 1.5f;
-        // Sets players speed
-        if (roLo.hitPoints[(int)ItemLoc.legs] > 0)
-            {
-                speed = roLo.loadout[(int)ItemLoc.legs].itemSpeed;
-            }
-        // applies movement
-        float xSpeed = InputCapture.hThrow * speed * Time.deltaTime;
-        float ySpeed = InputCapture.vThrow * speed * Time.deltaTime;
-        transform.position += new Vector3(xSpeed, ySpeed, transform.position.z);
-
-        if(xSpeed == 0 && ySpeed == 0)
-        {
-            stationary = true;
-        }
-        else
-        {
-            stationary = false;
-        }
-	}
-
-	private void AnimationChangeCheck()
-	{
-		// This will be used to change the animation based on direction.
-	}
 
 	// For Mouse Controls
 	Vector2 MouseDistanceFromPlayer()
@@ -272,5 +266,5 @@ public class PlayerController : MonoBehaviour {
 
 		Vector2 distFromPlayer = new Vector2(transform.position.x - worldPos.x, transform.position.y - worldPos.y);
 		return distFromPlayer;
-	}	
+	}		
 }

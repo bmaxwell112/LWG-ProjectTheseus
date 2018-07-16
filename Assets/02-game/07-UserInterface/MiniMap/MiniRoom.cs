@@ -27,7 +27,6 @@ public class MiniRoom : MonoBehaviour {
 			// Set discovered rooms to active.
 			if (!found)
 			{
-				print("doing this");
 				room.enabled = true;
 				foreach (Image door in doors)
 				{

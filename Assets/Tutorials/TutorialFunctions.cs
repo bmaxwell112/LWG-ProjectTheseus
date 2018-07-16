@@ -8,7 +8,6 @@ public class TutorialFunctions : MonoBehaviour {
 	DialogueTrigger[] dialogueTriggers;
 	bool levelLoaded = false;
 	int onDeck = 0;
-	bool[] triggersTripped;
 
 	void Awake()
 	{
@@ -21,7 +20,6 @@ public class TutorialFunctions : MonoBehaviour {
 	void Start()
 	{
 		dialogueTriggers = GetComponents<DialogueTrigger>();
-		triggersTripped = new bool[dialogueTriggers.Length];
 	}
 	public void LevelLoaded()
 	{		
@@ -30,10 +28,6 @@ public class TutorialFunctions : MonoBehaviour {
 	}
 	void Update()
 	{
-		if (!DialogueManager.dialogueRunning && !triggersTripped[1] && levelLoaded)
-		{
-			DialogueTriggerValue(1);
-		}
 		if (onDeck > 0 && !DialogueManager.dialogueRunning)
 		{
 			dialogueTriggers[onDeck].TriggerDialogue();
@@ -42,12 +36,12 @@ public class TutorialFunctions : MonoBehaviour {
 	}
 	public void DialogueTriggerValue(int value)
 	{
-		if (!triggersTripped[value])
+		if (PlayerPrefsManager.GetTutorial(value) != 1)
 		{
 			if (!DialogueManager.dialogueRunning)
 			{
 				dialogueTriggers[value].TriggerDialogue();
-				triggersTripped[value] = true;
+				PlayerPrefsManager.SetTutorialComplete(value);
 			}
 			else
 			{

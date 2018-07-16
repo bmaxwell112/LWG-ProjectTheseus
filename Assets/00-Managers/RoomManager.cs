@@ -84,7 +84,6 @@ public class RoomManager : MonoBehaviour {
 		FindObjectOfType<MinimapContoller>().GetRoomPos();
 		// Game Unpause
 		gameSetupComplete = true;
-		print("Game Setup " + gameSetupComplete);
 		GameManager.GamePause(false);
 	}
 	
