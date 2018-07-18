@@ -26,6 +26,6 @@ public class SetToLoadout : MonoBehaviour {
             PauseScreen.SetActive(true);
             QuestLog.SetActive(false);
         }
-        
     }
+
 }

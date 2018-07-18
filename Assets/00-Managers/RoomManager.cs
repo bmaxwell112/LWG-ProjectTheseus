@@ -8,7 +8,7 @@ public class RoomManager : MonoBehaviour {
 	public List<RoomGeneration> allRooms = new List<RoomGeneration>();
     enum TileSet {Fabrication, Terraforming, Disposal, Purification, Security, Medical};
 	public bool hub;
-	[SerializeField] GameObject room, player, userInterface;
+	[SerializeField] GameObject room, player, userInterface, questController, questMarker;
 	
     public int roomCap;
 	public static bool roomsLoaded, questLoaded, gameSetupComplete;
@@ -37,47 +37,51 @@ public class RoomManager : MonoBehaviour {
 		StartCoroutine(GameSetup());
 	}
 
-	IEnumerator GameSetup()
-	{
-		// Start UI
-		Instantiate(userInterface);
-		// Pause Game
-		GameManager.GamePause(true);
-		// If not the hub start spawning Rooms;
-		if (!hub)
-		{
-			SpawnFirstRoom();
-		}
-		else
-		{
-			roomsLoaded = true;
-		}
-		// Until the rooms are loaded wait
-		while (!roomsLoaded) {
-			yield return null;
-		}
-		// questLoaded being true turns off the time stop
-		QuestController.PullQuest();
-        foreach (spawnFunc cfg in QuestController.availConfigs)
+    IEnumerator GameSetup()
+    {
+        // Start UI
+        Instantiate(userInterface);
+        // Pause Game
+        GameManager.GamePause(true);
+        // If not the hub start spawning Rooms;
+        if (!hub)
         {
-            if (cfg.name == "EnemyConfig23" || cfg.name == "EnemyConfig4" || cfg.name == "EnemyConfig9")
-            {
-                print("Spawn locations available");
-            }
+            SpawnFirstRoom();
+        }
+        else
+        {
+            roomsLoaded = true;
+        }
+        // Until the rooms are loaded wait
+        while (!roomsLoaded) {
+            yield return null;
+        }
+        // questLoaded being true turns off the time stop
+        if(!hub)
+        {
+            Instantiate(questController);
+            QuestController.PullQuest();
+            QuestSiteSetup();
         }
         questLoaded = true;
-		while (!questLoaded) {
+
+        while (!questLoaded) {
 			yield return null;
 		}
 		// Disable all rooms but the first one.
 		bool first = false;
-		foreach (RoomGeneration room in allRooms) {
-			if (first) {
-				room.SetActive (false);
-			} else {
-				first = true;
-			}
-		}
+            foreach (RoomGeneration room in allRooms)
+            {
+                if (first)
+                {
+                    room.SetActive(false);
+                }
+                else
+                {
+                    first = true;
+                }
+            }
+
 		// Game Unpause
 		gameSetupComplete = true;
 		GameManager.GamePause(false);
@@ -89,7 +93,7 @@ public class RoomManager : MonoBehaviour {
     {
 		roomsLoaded = false;
 		RoomGeneration.roomsInExistence = 0;
-		RoomGeneration.spawncap = 0;
+        RoomGeneration.spawncap = 0;
 		RoomGeneration.first = true;
         Instantiate(room, Vector3.zero, Quaternion.identity);
         StartCoroutine(ManageRoomQueue());
@@ -156,6 +160,30 @@ public class RoomManager : MonoBehaviour {
 		Debug.LogWarning("No active room");
 		return null;
 	}
+
+    void QuestSiteSetup()
+    {
+        RoomGeneration questSpawnSite;
+        List<RoomGeneration> questSpawnOptions = new List<RoomGeneration>();
+
+        foreach (spawnFunc cfg in QuestController.availConfigs)
+        {
+            if (cfg.GetComponent<Config23>() || cfg.GetComponent<Config9>() || cfg.GetComponent<Config4>())
+            {
+                questSpawnOptions.Add(cfg.GetComponentInParent<RoomGeneration>());
+            }
+
+        }
+        if(questSpawnOptions.Count > 0)
+        {
+            questSpawnSite = questSpawnOptions[Random.Range(0, questSpawnOptions.Count)];
+            print(questSpawnSite.name + " has a quest");
+            Instantiate(questMarker, questSpawnSite.transform);
+        }
+
+            print("Quest loading is complete if applicable");
+
+    }
 
     //Minimap processes here
     //Track number of rooms for special rooms

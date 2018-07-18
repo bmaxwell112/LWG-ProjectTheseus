@@ -510,6 +510,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114071580201058400, guid: 80de9e499a0350f468cd39e132bb0850,
+        type: 2}
+      propertyPath: roomCap
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114071580201058400, guid: 80de9e499a0350f468cd39e132bb0850,
+        type: 2}
+      propertyPath: hub
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80de9e499a0350f468cd39e132bb0850, type: 2}
   m_IsPrefabParent: 0

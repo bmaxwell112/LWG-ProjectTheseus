@@ -6,6 +6,8 @@ public class QuestController : MonoBehaviour {
 
     private RoomManager roomManager;
     private RoomGeneration roomGen;
+    public bool QuestActivated;
+    public static QuestEvent currentQuest;
 
         //check maptype for randomization constraints, use Tileset enum in RoomManager on Awake?
 
@@ -22,6 +24,7 @@ public class QuestController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+
     }
 
     private void LoadQuestStatus()
@@ -55,6 +58,7 @@ public class QuestController : MonoBehaviour {
         //Should have something denoting if a quest has already spawned
     }
 
+
     public static void ListActiveQuests()
     {
         foreach (QuestEvent qEvent in activeEvents)
@@ -62,6 +66,12 @@ public class QuestController : MonoBehaviour {
             print(qEvent.eventName + " Not complete");
         }
     }
+
+    public void BeginQuest()
+    {
+        print(currentQuest.eventName + " has started");
+    }
+
 
     //function to spawn items associated with quest in correct room
     //Objects need to have a property for either "activates on setactive" or "activate on interact", set as active quest when this happens

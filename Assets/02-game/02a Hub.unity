@@ -3462,6 +3462,12 @@ Prefab:
       propertyPath: hub
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114071580201058400, guid: 80de9e499a0350f468cd39e132bb0850,
+        type: 2}
+      propertyPath: questController
+      value: 
+      objectReference: {fileID: 1889118552240644, guid: d2f9a8e413ea59e4eb303aa6bc7b6887,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80de9e499a0350f468cd39e132bb0850, type: 2}
   m_IsPrefabParent: 0
