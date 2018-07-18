@@ -5,7 +5,18 @@ licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - room: {instanceID: 0}
+  - player: {instanceID: 0}
+  - userInterface: {instanceID: 0}
+  - questController: {instanceID: 0}
+  - questMarker: {instanceID: 0}
+  - internalWall: {instanceID: 0}
+  - enemySpawner: {instanceID: 0}
+  - turretAI: {instanceID: 0}
+  - pillar: {instanceID: 0}
+  - hole: {instanceID: 0}
+  - dropSpawner: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
