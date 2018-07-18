@@ -81,9 +81,9 @@ public class RoomManager : MonoBehaviour {
                     first = true;
                 }
             }
-
-		// Game Unpause
-		gameSetupComplete = true;
+        FindObjectOfType<MinimapContoller>().GetRoomPos();
+        // Game Unpause
+        gameSetupComplete = true;
 		GameManager.GamePause(false);
 	}
 	
@@ -188,3 +188,4 @@ public class RoomManager : MonoBehaviour {
     //Minimap processes here
     //Track number of rooms for special rooms
 }
+

@@ -68,7 +68,7 @@ public class MusicManager : MonoBehaviour {
 			audioSource.clip = thisLevelMusic;
 			audioSource.loop = true;
 			audioSource.Play();
-			Debug.Log("playing clip " + thisLevelMusic);
+			//Debug.Log("playing clip " + thisLevelMusic);
 			lastLevelMusic = thisLevelMusic;
 		}
 	}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Facing { upperLeft, left, lowerLeft, down, lowerRight, right, upperRight, up }
+public enum Facing { upperLeft, left, lowerLeft, down, lowerRight, right, upperRight, up, none }
 
 public class RobotFunctions {
 
@@ -39,7 +39,7 @@ public class RobotFunctions {
 				{
 					MeleeAnimationSwap(player, i);
 				}
-				else if (player.loadout[i].itemType == ItemType.melee)
+				else if (player.loadout[i].itemType == ItemType.range)
 				{
 					RangeAnimationSwap(player, i);
 				}
@@ -190,6 +190,8 @@ public class RobotFunctions {
 			return Facing.up;
 		}
 	}
+
+	
 }
 
 

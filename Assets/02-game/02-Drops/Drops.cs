@@ -11,7 +11,7 @@ public class Drops : MonoBehaviour {
 	public int hitPoints;
 	public float power;
 	public bool playerCanPickup;
-	bool panelEnabled;
+	bool panelEnabled, delayRan;
 	[SerializeField] float distanceOffset = 0.435f;
 	ItemPanel itemPanel;
 	NotificationsPanel np;
@@ -20,14 +20,20 @@ public class Drops : MonoBehaviour {
 
 	void Start()
 	{
-		Database database = Database.instance;
-		IdentifyItem(database.items[databaseItemID], database.items[databaseItemID].itemHitpoints, database.items[databaseItemID].itemPower);
 		itemPanel = FindObjectOfType<ItemPanel>();
 		np = FindObjectOfType<NotificationsPanel>();
-		//Invoke("DestroyDrop", 10);
+	}
+	void DelayedStart()
+	{
+		IdentifyItem(Database.instance.items[databaseItemID], Database.instance.items[databaseItemID].itemHitpoints, Database.instance.items[databaseItemID].itemPower);
+		delayRan = true;
 	}
 	void Update()
 	{
+		if (RoomManager.gameSetupComplete && !delayRan)
+		{
+			DelayedStart();
+		}
 		Collider2D playerInRange = Physics2D.OverlapCircle(transform.position, 0.55f, playerMask);
 		if (playerInRange)
 		{
@@ -73,11 +79,11 @@ public class Drops : MonoBehaviour {
 		{
 			if (thisItem.itemType == ItemType.range)
 			{
-				TutorialFunctions.instance.DialogueTriggerValue(4);
+				TutorialFunctions.instance.DialogueTriggerValue(2);
 			}
 			if (thisItem.itemLoc == ItemLoc.core || thisItem.itemLoc == ItemLoc.back)
 			{
-				TutorialFunctions.instance.DialogueTriggerValue(5);
+				TutorialFunctions.instance.DialogueTriggerValue(3);
 			}
 		}
 		RobotFunctions.ReplaceDropPart(this, playerLo);
@@ -142,7 +148,8 @@ public class Drops : MonoBehaviour {
 		SpriteSetter(item);
 		if (TutorialFunctions.instance)
 		{
-			TutorialFunctions.instance.DialogueTriggerValue(3);
+			print("running this");
+			TutorialFunctions.instance.DialogueTriggerValue(1);
 		}
 	}
 

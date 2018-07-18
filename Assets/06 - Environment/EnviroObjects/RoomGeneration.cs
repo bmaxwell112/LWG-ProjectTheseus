@@ -5,7 +5,7 @@ using UnityEngine;
 public class RoomGeneration : MonoBehaviour {
     public static int spawncap, roomsInExistence;
 	public static bool first;
-    bool roomActive;
+    public bool roomActive;
     public DoorGen[] doors;
     public static Vector3Int[] spawnLocation;
     [SerializeField] GameObject room, layout;
@@ -113,7 +113,6 @@ public class RoomGeneration : MonoBehaviour {
 
     public void CheckEnemies()
     {
-		print ("Are there enemies? " + enemyListener);
         if(enemyListener == false)
         {
             RoomUnlock();
@@ -277,5 +276,22 @@ public class RoomGeneration : MonoBehaviour {
 	public bool GetActive()
 	{
 		return roomActive;
+	}
+
+	public bool[] ReturnOpenDoors()
+	{
+		bool[] doorsOpen = new bool[6];
+		for (int i = 0; i < doors.Length; i++)
+		{
+			if (doors[i].doorWall)
+			{
+				doorsOpen[i] = true;
+			}
+			else
+			{
+				doorsOpen[i] = false;
+			}
+		}
+		return doorsOpen;
 	}
 }

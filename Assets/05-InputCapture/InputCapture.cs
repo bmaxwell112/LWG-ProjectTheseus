@@ -12,11 +12,11 @@ public class InputCapture {
 	public static void InputCheck()
 	{
 		hThrow = Input.GetAxis("Horizontal");
-		vThrow = Input.GetAxis("Vertical");		
+		vThrow = Input.GetAxis("Vertical");
 		pickup = Input.GetButtonDown("Pickup");
 		back = Input.GetButtonDown("Submit");
 		pause = Input.GetButtonDown("Cancel");
-		block = Input.GetButtonDown("BlockDodge");
+		block = Input.GetButton("BlockDodge");
 		if (!GameManager.mouseInput)
 		{
 			fireLeftDown = Input.GetButtonDown("Fire1");
@@ -69,5 +69,73 @@ public class InputCapture {
 	{
 		hAim = -mouseLocation.x;
 		vAim = -mouseLocation.y;
+	}
+
+	public static bool JoystickOverThreshold(float value)
+	{
+		if (hThrow > value ||
+			hThrow > value * 0.75 && vThrow > value * 0.75 ||
+			hThrow > value * 0.75 && vThrow < -value * 0.75 ||
+			hThrow < -value ||
+			hThrow < -value * 0.75 && vThrow > value * 0.75 ||
+			hThrow < -value * 0.75 && vThrow < value * 0.75 ||
+			vThrow > value ||
+			vThrow < -value)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+	}
+	public static Facing JoystickDirection()
+	{
+		float angle = Utilities.CalculateAngle(Vector2.zero, new Vector2(hThrow, vThrow));
+		Debug.Log(angle);
+		if (angle >= 22.5f && angle < 67.5f)
+		{
+			// facing upper left
+			return Facing.upperLeft;
+		}
+		else if (angle >= 67.5f && angle < 112.5f)
+		{
+			// facing left
+			return Facing.left;
+		}
+		else if (angle >= 112.5f && angle < 157.5f)
+		{
+			// facing lower left
+			return Facing.lowerLeft;
+		}
+		else if (angle >= 157.5f && angle < 202.5f)
+		{
+			// facing down
+			return Facing.down;
+		}
+		else if (angle >= 202.5f && angle < 247.5f)
+		{
+			// facing lower right
+			return Facing.lowerRight;
+		}
+		else if (angle >= 247.5f && angle < 292.5f)
+		{
+			// facing right
+			return Facing.right;
+		}
+		else if (angle >= 292.5f && angle < 337.5f)
+		{
+			return Facing.upperRight;
+		}
+		else if (angle >= 337.5f || angle < 22.5f)
+		{
+			// facing up
+			return Facing.up;
+		}
+		else
+		{
+			return Facing.none;
+		}
 	}
 }
