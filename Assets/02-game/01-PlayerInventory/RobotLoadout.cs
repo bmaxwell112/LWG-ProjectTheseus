@@ -16,6 +16,8 @@ public class RobotLoadout : MonoBehaviour {
 	public bool dead = false;
 	public int dropOffset = 0;
 	public Item[] loadout = new Item[7];
+	// TODO Maybe not this
+	public SpecialItems shield = new SpecialItems();
 
 	[HideInInspector]
 	public bool stopped, walk, stopWhileAttackingLeft, stopWhileAttackingRight;
@@ -28,7 +30,7 @@ public class RobotLoadout : MonoBehaviour {
 
 	void Start()
 	{
-        player = FindObjectOfType<PlayerController>();
+        player = FindObjectOfType<PlayerController>();		
 	}
 	// Resets the player to basic loadout.
 	public void InitializeLoadout(Item head, Item body, Item leftArm, Item rightArm, Item legs, Item back, Item core)
@@ -51,17 +53,29 @@ public class RobotLoadout : MonoBehaviour {
 		{
 			power[i] = loadout[i].itemPower;
 		}
-		if(loadout[(int)ItemLoc.leftArm].itemType == ItemType.melee)
-			RobotFunctions.MeleeAnimationSwap(this, (int)ItemLoc.leftArm);
-		if (loadout[(int)ItemLoc.rightArm].itemType == ItemType.melee)
-			RobotFunctions.MeleeAnimationSwap(this, (int)ItemLoc.rightArm);
-
+		if (robotType != RobotType.turret)
+		{
+			RobotFunctions.AnimationSwap(this, (int)ItemLoc.leftArm);
+			RobotFunctions.AnimationSwap(this, (int)ItemLoc.rightArm);
+			RobotFunctions.AnimationSwap(this, (int)ItemLoc.legs);
+		}
 		// Check for specials		
 	}
 
 	public void TakeDamage(int rawDamage, bool stopAction)
 	{
 		int damage = rawDamage;
+		if (shield.specialID >= 0)
+		{
+			int specialLoc = (int)Database.instance.items[shield.specialItemID].itemLoc;
+			if (power[specialLoc] > 0)
+			{
+				damage -= shield.specialDefence;
+				damage = (damage < 0) ? 0 : damage;
+				power[specialLoc] -= shield.specialPowerUse;
+				print("reduced damage by " + shield.specialDefence);
+			}
+		}
 		stopped = stopAction;
 		if (robotType == RobotType.player)
 		{

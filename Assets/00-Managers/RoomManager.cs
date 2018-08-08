@@ -39,8 +39,9 @@ public class RoomManager : MonoBehaviour {
 
     IEnumerator GameSetup()
     {
-        // Start UI
-        Instantiate(userInterface);
+		// Start UI
+		gameSetupComplete = false;
+		Instantiate(userInterface);
         // Pause Game
         GameManager.GamePause(true);
         // If not the hub start spawning Rooms;

@@ -54,7 +54,7 @@ public class RangeShortEnemy : MonoBehaviour {
 		Database db = Database.instance;
 		roLo.InitializeLoadout(
 			db.RandomItemOut(ItemLoc.head),
-			db.RandomItemOut(ItemLoc.body),
+			db.SudoRandomItemOut(ItemLoc.body, new int[] { 1, 8 }),
 			db.SudoRandomItemOut(ItemLoc.leftArm, new int[] { 2, 13, 15, 17 }),
 			db.SudoRandomItemOut(ItemLoc.rightArm, new int[] { 14, 16, 18 }),
 			db.SudoRandomItemOut(ItemLoc.legs, new int[] { 4 }),
@@ -79,6 +79,10 @@ public class RangeShortEnemy : MonoBehaviour {
 					GetComponent<EnemyController>().stoppingDistance = 0.5f;
 					walkTo = true;
 				}
+			}
+			else
+			{
+				player = GameObject.FindGameObjectWithTag("Player").transform;
 			}
 		}
 	}

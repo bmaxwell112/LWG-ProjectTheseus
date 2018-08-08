@@ -13,7 +13,7 @@ public class RobotFunctions {
 	public static void DealDamage(int damage, GameObject target, bool stopActions)
 	{
 		if (target.GetComponent<RobotLoadout>())
-		{
+		{			
 			target.GetComponent<RobotLoadout>().TakeDamage(damage, stopActions);
 		}
 	}
@@ -35,13 +35,9 @@ public class RobotFunctions {
 				float tempPower = player.power[i];
 				player.power[i] = drop.power;
 				drop.power = tempPower;
-				if (player.loadout[i].itemType == ItemType.melee)
+				if (player.loadout[i].itemType == ItemType.melee || player.loadout[i].itemType == ItemType.range || player.loadout[i].itemLoc == ItemLoc.legs)
 				{
-					MeleeAnimationSwap(player, i);
-				}
-				else if (player.loadout[i].itemType == ItemType.range)
-				{
-					RangeAnimationSwap(player, i);
+					AnimationSwap(player, i);
 				}
 				if (player.loadout[i].itemSpecial)
 				{
@@ -64,36 +60,37 @@ public class RobotFunctions {
 				robot.power[i] = item.itemPower;
 				if (robot.loadout[i].itemType == ItemType.melee)
 				{
-					MeleeAnimationSwap(robot, i);
+					AnimationSwap(robot, i);
+				}
+				else if (robot.loadout[i].itemType == ItemType.range)
+				{
+					AnimationSwap(robot, i);
+				}
+				if (robot.loadout[i].itemSpecial)
+				{
+					Debug.Log("Checking Specials");
+					robot.GetComponent<PlayerSpecial>().ActivateSpecialPassive(robot.loadout[i]);
 				}
 				break;
 			}
 		}
 	}
 
-	public static void MeleeAnimationSwap(RobotLoadout robot, int i)
+	public static void AnimationSwap(RobotLoadout robot, int i)
 	{
-		MeleeWeapon mw = Database.instance.ItemsMeleeWeapon(robot.loadout[i]);
-		RobotArmsAnim[] anim = robot.GetComponentsInChildren<RobotArmsAnim>();
+		RobotAnimationController mainAnim = robot.GetComponent<RobotAnimationController>();
+		RobotArmsAnim[] anim = robot.GetComponentsInChildren<RobotArmsAnim>();		
 		if (robot.loadout[i].itemLoc == ItemLoc.leftArm)
 		{
-			anim[0].SwapWeapons(mw.meleeWeaponAnim);			
+			anim[0].SwapWeapons(robot.loadout[i].itemAnim);			
 		}
-		else if (robot.loadout[i].itemLoc == ItemLoc.rightArm)
+		if (robot.loadout[i].itemLoc == ItemLoc.rightArm)
 		{
-			anim[1].SwapWeapons(mw.meleeWeaponAnim);			
+			anim[1].SwapWeapons(robot.loadout[i].itemAnim);			
 		}
-	}
-	public static void RangeAnimationSwap(RobotLoadout robot, int i)
-	{
-		RobotArmsAnim[] anim = robot.GetComponentsInChildren<RobotArmsAnim>();
-		if (robot.loadout[i].itemLoc == ItemLoc.leftArm)
+		if (robot.loadout[i].itemLoc == ItemLoc.legs)
 		{
-			anim[0].SwapWeapons(Database.instance.leftRange);
-		}
-		else if (robot.loadout[i].itemLoc == ItemLoc.rightArm)
-		{
-			anim[1].SwapWeapons(Database.instance.rightRange);
+			mainAnim.SwapLegs(robot.loadout[i].itemAnim);
 		}
 	}
 
@@ -191,7 +188,35 @@ public class RobotFunctions {
 		}
 	}
 
-	
+	public static bool FacingRobotArc(Transform source, Transform target, float rangeFromFacing)
+	{
+		float thresholdPoint;
+		if (source.eulerAngles.z >= 180)
+		{
+			thresholdPoint = source.eulerAngles.z - 180;
+		}
+		else
+		{
+			thresholdPoint = source.eulerAngles.z + 180;
+		}
+		float arcMin = Utilities.ReturnEulerAngle(target.eulerAngles.z - rangeFromFacing);
+		float arcMax = Utilities.ReturnEulerAngle(target.eulerAngles.z + rangeFromFacing);
+		if (arcMax < arcMin)
+		{
+			if (thresholdPoint > arcMin || thresholdPoint < arcMax)
+			{
+				return true;
+			}
+		}
+		else
+		{
+			if (thresholdPoint > arcMin && thresholdPoint < arcMax)
+			{
+				return true;
+			}
+		}
+		return false;
+	}	
 }
 
 

@@ -39,6 +39,7 @@ public class RobotAttack : MonoBehaviour {
 			// TODO this will need to be more universal.
 			if (enemy.collider != null)
 			{
+				print(enemy.collider.gameObject.name);
 				if (canSpecial)
 				{
 					if (roLo.loadout[armLocation].itemSpecial && roLo.power[(int)roLo.loadout[armLocation].itemLoc] > 0)
@@ -47,7 +48,7 @@ public class RobotAttack : MonoBehaviour {
 						special.ActivateSpecialActive(roLo.loadout[armLocation], enemy.collider.gameObject);
 					}
 				}
-				RobotFunctions.DealDamage(Damage(), enemy.collider.gameObject, true);
+				RobotFunctions.DealDamage(Damage(enemy.collider.gameObject), enemy.collider.gameObject, true);
 			}
 			meleeAttacking = true;
 		}
@@ -69,8 +70,9 @@ public class RobotAttack : MonoBehaviour {
 		}
 	}
 
-	private int Damage()
+	private int Damage(GameObject target)
 	{
+		var targetLo = target.GetComponent<RobotLoadout>();
 		int dmg = Mathf.RoundToInt(roLo.loadout[armLocation].itemDamage * roLo.damageOffset);
 		return dmg;
 	}

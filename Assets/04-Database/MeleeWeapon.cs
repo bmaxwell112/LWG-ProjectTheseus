@@ -10,19 +10,8 @@ public class MeleeWeapon {
 	public float meleeWeaponAnticipation;
 	public float meleeWeaponAttackTime;
 	public bool meleeWeaponStopMovement;
-	public bool meleeWeaponStopTarget;
-	public AnimatorOverrideController meleeWeaponAnim;
+	public bool meleeWeaponStopTarget;	
 
-	public MeleeWeapon(int id, int itemID, float timeInSecondsToHit, float attackTimeInSeconds, bool stopMovement, bool stopTarget, AnimatorOverrideController anim)
-	{
-		meleeWeaponID = id;
-		meleeWeaponItemID = itemID;
-		meleeWeaponAnticipation = timeInSecondsToHit;
-		meleeWeaponAttackTime = attackTimeInSeconds;
-		meleeWeaponStopMovement = stopMovement;
-		meleeWeaponStopTarget = stopTarget;
-		meleeWeaponAnim = anim;
-	}
 	public MeleeWeapon(int id, int itemID, float timeInSecondsToHit, float attackTimeInSeconds, bool stopMovement, bool stopTarget)
 	{
 		meleeWeaponID = id;
@@ -30,7 +19,7 @@ public class MeleeWeapon {
 		meleeWeaponAnticipation = timeInSecondsToHit;
 		meleeWeaponAttackTime = attackTimeInSeconds;
 		meleeWeaponStopMovement = stopMovement;
-		meleeWeaponStopTarget = stopTarget;
+		meleeWeaponStopTarget = stopTarget;		
 	}
 	public MeleeWeapon()
 	{

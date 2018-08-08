@@ -30,7 +30,7 @@ public class BasicEnemy : MonoBehaviour {
 		Database db = Database.instance;
 		roLo.InitializeLoadout(
 			db.RandomItemOut(ItemLoc.head),
-			db.RandomItemOut(ItemLoc.body),
+			db.SudoRandomItemOut(ItemLoc.body, new int[] { 1, 8 }),
 			db.SudoRandomItemOut(ItemLoc.leftArm, new int[] { 2, 22, 24, 26 }),
 			db.SudoRandomItemOut(ItemLoc.rightArm, new int[] { 3, 23, 25, 27 }),
 			db.SudoRandomItemOut(ItemLoc.legs, new int[] { 4, 9, 29 } ),
@@ -47,6 +47,10 @@ public class BasicEnemy : MonoBehaviour {
 			{
 				DefineRotation();
 			}
+			else
+			{
+				player = GameObject.FindGameObjectWithTag("Player").transform;
+			}
 		}
 	}
 
@@ -56,5 +60,4 @@ public class BasicEnemy : MonoBehaviour {
 		diff.Normalize();
 		firingArc.eulerAngles = MovementFunctions.LookAt2D(transform, diff.x, diff.y);
 	}
-
 }

@@ -35,8 +35,9 @@ public class Item {
 	public float itemSpeed;
 	public float itemPower;
 	public bool itemSpecial;
+	public AnimatorOverrideController itemAnim;
 
-	public Item(int id, string name, string desc, ItemLoc location, ItemType type, int rarity, Sprite[] sprite, int hp, int damage, float speed, float power, bool special)
+	public Item(int id, string name, string desc, ItemLoc location, ItemType type, int rarity, Sprite[] sprite, int hp, int damage, float speed, float power, bool special, AnimatorOverrideController anim)
 	{
 		itemID = id;
 		itemName = name;
@@ -50,8 +51,23 @@ public class Item {
 		itemSpeed = speed;
 		itemPower = power;
 		itemSpecial = special;
+		itemAnim = anim;
 	}
-
+	public Item(int id, string name, string desc, ItemLoc location, ItemType type, int rarity, Sprite[] sprite, int hp, int damage, float speed, float power, bool special)
+	{
+		itemID = id;
+		itemName = name;
+		itemDesc = desc;
+		itemLoc = location;
+		itemType = type;
+		itemRarity = rarity;
+		itemSprite = sprite;
+		itemHitpoints = hp;
+		itemDamage = damage;
+		itemSpeed = speed;
+		itemPower = power;
+		itemSpecial = special;
+	}
 	public Item()
 	{
 		itemID = -1;

@@ -632,7 +632,7 @@ MonoBehaviour:
   timeBetweenAttacks: 2
   playerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 66560
   stoppingDistance: 0.25
   stunned: 0
 --- !u!114 &114092057759797174
@@ -813,6 +813,14 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
+  shield:
+    specialID: -1
+    specialItemID: 0
+    specialProps: 
+    specialDuration: 0
+    specialDamage: 0
+    specialDefence: 0
+    specialPowerUse: 0
   stopped: 0
   walk: 0
   stopWhileAttackingLeft: 0

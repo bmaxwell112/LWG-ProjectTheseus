@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layersToHit:
     serializedVersion: 2
-    m_Bits: 16896
+    m_Bits: 82432
   damageOffset: 1
 --- !u!212 &212486914449393030
 SpriteRenderer:

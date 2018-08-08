@@ -8,4 +8,20 @@ public class Utilities : MonoBehaviour {
 	{
 		return Quaternion.FromToRotation(Vector3.up, to - from).eulerAngles.z;
 	}
+
+	public static float ReturnEulerAngle(float rotateValue)
+	{
+		if (rotateValue > 360)
+		{
+			return rotateValue - 360;
+		}
+		else if (rotateValue < 0)
+		{
+			return rotateValue + 360;
+		}
+		else
+		{
+			return rotateValue;
+		}
+	}
 }

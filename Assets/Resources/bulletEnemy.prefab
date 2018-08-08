@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layersToHit:
     serializedVersion: 2
-    m_Bits: 17408
+    m_Bits: 82944
   damageOffset: 1
 --- !u!212 &212638358909608930
 SpriteRenderer:
@@ -135,7 +135,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1879711983
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e2d434354f4222c4784d99bb1795ec07, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

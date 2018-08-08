@@ -21,7 +21,7 @@ public class PlayerSpecial : MonoBehaviour {
 			switch (special.specialProps[i])
 			{
 				case SpecialProp.shield:
-					CreateShield();
+					CreateShield(item, special);
 					break;
 				case SpecialProp.heal:
 					StartCoroutine(HealOverTime(item, special));
@@ -61,10 +61,12 @@ public class PlayerSpecial : MonoBehaviour {
 			}			
 		}
 	}
-	void CreateShield()
+	void CreateShield(Item item, SpecialItems special)
 	{
 		// Make a Shield
+		playerLo.shield = special;
 	}
+
 	void StunEnemy(SpecialItems special, GameObject enemyGO)
 	{
 		try

@@ -37,7 +37,7 @@ public class TurretAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (parentRoom.roomActive && !firing)
+		if (parentRoom.roomActive && !firing && RoomManager.gameSetupComplete)
 		{
 			StopAllCoroutines();
 			StartCoroutine(DefineRotation());

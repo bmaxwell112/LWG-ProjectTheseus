@@ -12,6 +12,7 @@ public class TextProperties : MonoBehaviour {
 	string txtString;
 	// Use this for initialization
 	void Start () {
+		ButtonCheckToggle(false);
 		text = GetComponent<Text>();
 		txtString = text.text;
 		text.text = "";
@@ -37,6 +38,15 @@ public class TextProperties : MonoBehaviour {
 		{
 			text.text += letter;
 			yield return new WaitForSeconds(characterSpeed);
+		}
+		ButtonCheckToggle(true);
+	}
+
+	void ButtonCheckToggle(bool toggle)
+	{
+		if (GetComponentInParent<Button>())
+		{
+			GetComponentInParent<Button>().interactable = toggle;
 		}
 	}
 }

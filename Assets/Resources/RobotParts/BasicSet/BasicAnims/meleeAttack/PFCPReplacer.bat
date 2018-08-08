@@ -1,8 +1,8 @@
 @echo off
 Setlocal enabledelayedexpansion
 
-Set "Pattern=Facing"
-Set "Replace=Blocking"
+Set "Pattern=MeleeLeft"
+Set "Replace=BML"
 
 For %%a in (*) Do (
     Set "File=%%~a"

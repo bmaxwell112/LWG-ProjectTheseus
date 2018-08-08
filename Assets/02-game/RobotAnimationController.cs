@@ -15,12 +15,16 @@ public class RobotAnimationController : MonoBehaviour {
 	public static bool UpdatePlayerSprites;	
 	public Facing currentFacing;	
 	bool isPlayer, attacking, layerAbovePlayer;
+	protected List<KeyValuePair<AnimationClip, AnimationClip>> overrides;
+	protected AnimatorOverrideController aoc;
 	// Use this for initialization
 	void Start () {
 		roLo = GetComponent<RobotLoadout>();		
 		anim = GetComponent<Animator>();
 		arms = GetComponentsInChildren<Animator>();
 		isPlayer = GetComponent<PlayerController>();
+		aoc = new AnimatorOverrideController(anim.runtimeAnimatorController);
+		anim.runtimeAnimatorController = aoc;
 	}
 	
 	// Update is called once per frame
@@ -285,5 +289,18 @@ public class RobotAnimationController : MonoBehaviour {
 			default:
 				break;
 		}
+	}
+
+	public void SwapLegs(AnimatorOverrideController rac)
+	{
+		//anim.runtimeAnimatorController = rac;		
+		overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>(rac.overridesCount);
+		rac.GetOverrides(overrides);
+		for (int i = 0; i < overrides.Count; ++i)
+		{
+			overrides[i] = new KeyValuePair<AnimationClip, AnimationClip>(overrides[i].Key, overrides[i].Value);
+		}
+		aoc.ApplyOverrides(overrides);
+		anim.Update(0f);
 	}
 }

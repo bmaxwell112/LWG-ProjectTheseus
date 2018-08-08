@@ -25,7 +25,6 @@ public class RobotArmsAnim : MonoBehaviour {
 		isPlayer = GetComponentInParent<PlayerController>();
 		aoc = new AnimatorOverrideController(anim.runtimeAnimatorController);
 		anim.runtimeAnimatorController = aoc;
-		//print(aoc.overridesCount);
 	}
 
 	void Update()

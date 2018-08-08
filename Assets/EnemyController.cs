@@ -65,16 +65,17 @@ public class EnemyController : MonoBehaviour {
 			}
 			EnemyAttackCheck();
 		}
-		else if (!player)
+		if (!player)
 		{
 			player = FindObjectOfType<PlayerController>();
 		}				
-		if (myRoom.GetActive() && !startMovement)
+		if (myRoom.GetActive() && !startMovement && RoomManager.gameSetupComplete)
 		{
 			StopAllCoroutines();
 			StartCoroutine(UpdateMovement());
 			StartCoroutine(RecalculateTime());
 			startMovement = true;
+			print("Started enemy");
 			attacking = false;
 		}
 		if (!myRoom.GetActive() && startMovement)
@@ -119,7 +120,7 @@ public class EnemyController : MonoBehaviour {
 						while (Vector3.Distance(pos, transform.position) > 0.2f)
 						{
 							currentNodePos = node;
-							transform.position = Vector3.MoveTowards(transform.position, pos, (roLo.loadout[(int)ItemLoc.legs].itemSpeed - 0.5f) * Time.deltaTime);
+							transform.position = Vector3.MoveTowards(transform.position, pos, (roLo.loadout[(int)ItemLoc.legs].itemSpeed + roLo.loadout[(int)ItemLoc.body].itemSpeed - 0.5f) * Time.deltaTime);
 							roLo.walk = true;
 							if (Time.time > (checkTime + 5))
 							{

@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour {
 	bool fireLeft, fireRight, blockDodge, stationary, dodgeAvailable, playerDead;
     public bool activeDodge, activeBlock;
     Rigidbody2D rb;
-    float xSpeed, ySpeed;
 
 	void Start()
 	{		
@@ -197,7 +196,7 @@ public class PlayerController : MonoBehaviour {
 		// Sets players speed
 		if (roLo.hitPoints[(int)ItemLoc.legs] > 0)
 		{
-			speed = roLo.loadout[(int)ItemLoc.legs].itemSpeed;
+			speed = roLo.loadout[(int)ItemLoc.legs].itemSpeed + roLo.loadout[(int)ItemLoc.body].itemSpeed;
 		}
 		// applies movement
 		float xSpeed = InputCapture.hThrow * speed * Time.deltaTime;

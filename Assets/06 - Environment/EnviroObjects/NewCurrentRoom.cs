@@ -63,7 +63,7 @@ public class NewCurrentRoom : MonoBehaviour {
     {
         if(parentWall.name == "WallTop")
         {
-            nextRoomAdjust = new Vector3(0, -2, 0);
+            nextRoomAdjust = new Vector3(0, -1, 0);
         }
         if (parentWall.name == "WallBottom")
         {
@@ -89,7 +89,8 @@ public class NewCurrentRoom : MonoBehaviour {
 
     IEnumerator ActivateRoom(Transform player)
     {
-        GetAdjustment();
+		print("Starting This");
+		GetAdjustment();
 
 		RoomManager.gameSetupComplete = false;
 		roomGen.SetActive(false);
@@ -105,16 +106,22 @@ public class NewCurrentRoom : MonoBehaviour {
         {
             Destroy(bullet.gameObject);
         }
-        float distance = Vector3.Distance(nextRoomPos, player.position);
-        float endDistance = Vector3.Distance(nextRoomPos, player.position) - 2f;
-        while (distance > endDistance)
+		print("Bullets destroyed");
+		float endDistance = Vector3.Distance(nextRoomPos, player.position) - 2f;
+		float distance = Vector3.Distance(nextRoomPos, player.position);        
+		print("end distance " + endDistance);
+		while (distance > endDistance)
         {
-            player.transform.position = Vector3.MoveTowards(player.transform.position, (nextRoomPos + nextRoomAdjust), 2 * Time.deltaTime);
+			player.transform.position = Vector3.MoveTowards(player.transform.position, (nextRoomPos + nextRoomAdjust), 2 * Time.deltaTime);
             distance = Vector3.Distance(nextRoomPos, player.position);
-            yield return null;
+			print((nextRoomPos + nextRoomAdjust));
+			print("distance " + distance);
+			yield return null;
         }
-        nextRoom.CheckEnemies();
+		print("left Loop");
+		nextRoom.CheckEnemies();
 		FindObjectOfType<MinimapContoller>().UpdateActiveMiniRoom();
 		RoomManager.gameSetupComplete = true;
-    }
+		print("Finishing This");
+	}
 }

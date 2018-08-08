@@ -16,6 +16,7 @@ public class OptionsController : MonoBehaviour {
 	public Slider volumeSlider;
 	public Slider sfxVolumeSlider;
 	public LevelManager levelManager;
+	[SerializeField] Button resetButton, backBtn, defaultBtn, resetBtn;
 
 	private GameObject confirmReset;
 	private MusicManager musicManager;
@@ -60,6 +61,9 @@ public class OptionsController : MonoBehaviour {
 		PlayerPrefs.DeleteAll();
 		SetDefaults();
 		confirmReset.SetActive(false);
+		MainSelectable(true);
+		backBtn.Select();
+
 	}
 
 
@@ -67,6 +71,8 @@ public class OptionsController : MonoBehaviour {
 	public void ResetBtn()
 	{
 		confirmReset.SetActive(true);
+		MainSelectable(false);
+		resetButton.Select();
 	}
 
 	/* turns off reset warning
@@ -75,5 +81,14 @@ public class OptionsController : MonoBehaviour {
 	public void ResetCancelBtn()
 	{
 		confirmReset.SetActive(false);
+		MainSelectable(true);
+		backBtn.Select();
+	}
+
+	public void MainSelectable(bool selectable)
+	{
+		backBtn.interactable = selectable;
+		defaultBtn.interactable = selectable;
+		resetBtn.interactable = selectable;
 	}
 }
