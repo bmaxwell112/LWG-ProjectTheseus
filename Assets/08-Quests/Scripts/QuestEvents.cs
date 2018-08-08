@@ -27,8 +27,9 @@ using UnityEngine;
         public EventType eventType;
         public int eventValue;
         public bool completed;
+        public bool active;
 
-        public QuestEvent(int id, string name, string desc, TriggerID trigID, EventType eType, int value, bool trueIfCompleted)
+        public QuestEvent(int id, string name, string desc, TriggerID trigID, EventType eType, int value, bool trueIfCompleted, bool trueIfActive)
         {
             eventID = id;
             eventName = name;
@@ -37,6 +38,7 @@ using UnityEngine;
             eventType = eType;
             eventValue = value;
             completed = trueIfCompleted;
+            active = trueIfActive;
         }
 
         public QuestEvent()

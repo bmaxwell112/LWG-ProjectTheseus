@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 08c8ad13b11aea74c9cc743ebe9fc154
+timeCreated: 1531958543
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - QuestBtn: {fileID: 1441257758940448, guid: 4429bed57a3c7a84da8d4c7d9a8babc3, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

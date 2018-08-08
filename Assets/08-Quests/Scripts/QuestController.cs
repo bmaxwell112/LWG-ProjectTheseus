@@ -19,6 +19,7 @@ public class QuestController : MonoBehaviour {
         roomManager = FindObjectOfType<RoomManager>();
         roomGen = FindObjectOfType<RoomGeneration>();
         LoadQuestStatus();
+        DeactivateAllQuests();
 	}
 	
 	// Update is called once per frame
@@ -32,6 +33,14 @@ public class QuestController : MonoBehaviour {
 		for (int i = 0; i < QuestFunctions.instance.questEvents.Count; i++)
         {
             PlayerPrefsManager.GetEventComplete(i);
+        }
+    }
+
+    private void DeactivateAllQuests()
+    {
+        for (int i = 0; i < QuestFunctions.instance.questEvents.Count; i++)
+        {
+            QuestFunctions.instance.questEvents[i].active = false;
         }
     }
 
@@ -69,7 +78,8 @@ public class QuestController : MonoBehaviour {
 
     public void BeginQuest()
     {
-        print(currentQuest.eventName + " has started");
+        currentQuest.active = true;
+        print(currentQuest.eventName + " has started and it's active status is now set to " + currentQuest.active);
     }
 
 
