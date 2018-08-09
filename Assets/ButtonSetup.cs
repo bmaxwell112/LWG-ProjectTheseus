@@ -6,12 +6,14 @@ using UnityEngine.UI;
 public class ButtonSetup : MonoBehaviour {
 
     [SerializeField] Text newButtonText;
+    QuestEvent refEvent;
     QuestController qController;
 
     // Use this for initialization
     void Start () {
-        print(QuestController.currentQuest.eventName);
-        //newButtonText.text = QuestController.currentQuest.eventName;
+        refEvent = QuestController.currentQuest;
+        newButtonText.text = QuestController.currentQuest.eventName;
+        transform.SetAsFirstSibling();
 	}
 	
 	// Update is called once per frame

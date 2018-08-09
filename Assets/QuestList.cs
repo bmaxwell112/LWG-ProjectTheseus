@@ -22,6 +22,5 @@ public class QuestList : MonoBehaviour {
     {
         newButton = Instantiate(QuestBtn);
         newButton.transform.parent = transform;
-        newButton.transform.localPosition = new Vector3(0, 0, 0);
     }
 }
