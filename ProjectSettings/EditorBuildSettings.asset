@@ -19,7 +19,7 @@ EditorBuildSettings:
     guid: 90f9938e60ad5c04d8860e403f3e3bc4
   - enabled: 1
     path: Assets/02-game/02a Game-1.unity
-    guid: 7847e01ac7996a24fa9df6f48e59e61f
+    guid: 8091b6856f58ba54098af3ecf1993b97
   - enabled: 1
     path: Assets/01-Menus/03a-Win/03a Win.unity
     guid: 4dd8af331ce2aa4438ee160cd064c629
