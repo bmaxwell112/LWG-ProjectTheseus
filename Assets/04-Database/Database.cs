@@ -37,12 +37,12 @@ public class Database : MonoBehaviour {
 		items.Add(new Item(1, "Basic Torso", "A torso taken from the only schematics you have left.", ItemLoc.body, ItemType.aesthetic, 1, GetSprite("RobotParts/BasicSet/Torso"), 50, 0, 0, 1, false));
 		items.Add(new Item(2, "Basic Left Arm", "A left arm taken from the only schematics you have left.", ItemLoc.leftArm, ItemType.melee, 1, GetSprite("RobotParts/BasicSet/Arm"), 10, 5, 0, 1, false, GetAnim("RobotParts/BasicSet/BasicLeftArm")));
 		items.Add(new Item(3, "Basic Right Arm", "A right arm taken from the only schematics you have left.", ItemLoc.rightArm, ItemType.melee, 1, GetSprite("RobotParts/BasicSet/Arm"), 10, 5, 0, 1, false, GetAnim("RobotParts/BasicSet/BasicRightArm")));
-		items.Add(new Item(4, "Basic Legs", "A pair of legs taken from the only schematics you have left.", ItemLoc.legs, ItemType.speed, 1, GetSprite("RobotParts/BasicSet/Leg"), 10, 0, 2, 1, false, GetAnim("RobotParts/BasicSet/BasicLegs")));
+		items.Add(new Item(4, "Basic Legs", "A pair of legs taken from the only schematics you have left.", ItemLoc.legs, ItemType.speed, 1, GetSprite("RobotParts/BasicSet/Leg"), 10, 0, 2, 1, false, GetAnim("RobotParts/BasicSet/BasicLegs"), GetSound("sound/Standard_walk.mp3")));
 		items.Add(new Item(5, "Basic Back", "A back taken from the only schematics you have left.", ItemLoc.back, ItemType.aesthetic, 1, GetSprite("basicBackpack"), 20, 0, 0, 1, false));
 		items.Add(new Item(6, "Basic AI Core", "An AI Core taken from the only schematics you have left.", ItemLoc.core, ItemType.aesthetic, 1, GetSprite("aiCore"), 0, 0, 0, 1, false));
 		items.Add(new Item(7, "Reinforced Head", "A head created from modifying basic schematics.", ItemLoc.head, ItemType.aesthetic, 2, GetSprite("GreenGuy/head"), 20, 0, 0, 1, false));
 		items.Add(new Item(8, "Reinforced Torso", "A torso created from modifying basic schematics.", ItemLoc.body, ItemType.aesthetic, 2, GetSprite("GreenGuy/torso"), 80, 0, 0, 1, false));
-		items.Add(new Item(9, "Reinforced Legs", "A pair of legs created from modifying basic schematics.", ItemLoc.legs, ItemType.speed, 2, GetSprite("GreenGuy/leg"), 20, 0, 2, 1, false, GetAnim("RobotParts/BasicSet/BasicLegs")));
+		items.Add(new Item(9, "Reinforced Legs", "A pair of legs created from modifying basic schematics.", ItemLoc.legs, ItemType.speed, 2, GetSprite("GreenGuy/leg"), 20, 0, 2, 1, false, GetAnim("RobotParts/BasicSet/BasicLegs"), GetSound("sound/Standard_walk.mp3")));
 		items.Add(new Item(10, "Reinforced Back", "A back created from modifying basic schematics.", ItemLoc.back, ItemType.aesthetic, 2, GetSprite("basicBackpack"), 10, 0, 0, 1, false));
 		items.Add(new Item(11, "Head Vulcans", "A head with mounted vulcans that fire as you attack.", ItemLoc.head, ItemType.range, 2, GetSprite("GreenGuy/head"), 10, 1, 0, 1, true));
 		items.Add(new Item(12, "Heavy Torso", "A bulkier, armored body that is heavy and harder to move in.", ItemLoc.body, ItemType.aesthetic, 4, GetSprite("heavyArmor"), 120, 0, -1, 1, false));
@@ -62,7 +62,7 @@ public class Database : MonoBehaviour {
 		items.Add(new Item(26, "Chainsaw L", "A melee weapon that deals damage over time and cleaves parts.", ItemLoc.leftArm, ItemType.melee, 4, GetSprite("Secondary/arm"), 20, 6, 0, 1, true, GetAnim("GreenGuy/armLeft")));
 		items.Add(new Item(27, "Chainsaw R", "A melee weapon that deals damage over time and cleaves parts.", ItemLoc.rightArm, ItemType.melee, 4, GetSprite("Secondary/arm"), 20, 6, 0, 1, true, GetAnim("GreenGuy/armRight")));
 		items.Add(new Item(28, "Bronze Club R", "A slow but massively powerful melee weapon.", ItemLoc.rightArm, ItemType.melee, 5,GetSprite("Secondary/arm"), 30, 30, 0, 1, false, GetAnim("GreenGuy/armRight")));
-		items.Add(new Item(29, "Rollerblades", "A radical set of legs that let you move faster and look cool.", ItemLoc.legs, ItemType.speed, 3, GetSprite("Secondary/leg"), 10, 0, 3, 1, false, GetAnim("RobotParts/BasicSet/BasicLegs")));
+		items.Add(new Item(29, "Rollerblades", "A radical set of legs that let you move faster and look cool.", ItemLoc.legs, ItemType.speed, 3, GetSprite("Secondary/leg"), 10, 0, 3, 1, false, GetAnim("RobotParts/BasicSet/BasicLegs"), GetSound("sound/Standard_walk.mp3")));
 		items.Add(new Item(30, "Energy Pack", "A backpack system that increases your energy capacity.", ItemLoc.back, ItemType.aesthetic, 3, GetSprite("basicBackpack"), 10, 0, 0, 1, true));
 		items.Add(new Item(31, "Barrier Pack", "A backpack system that generates a weak, regenerating forcefield.", ItemLoc.back, ItemType.aesthetic, 4,GetSprite("basicBackpack"), 5, 0, 0, 1, true));
 		items.Add(new Item(32, "Hacking Core", "An AI core that enables the hacking of doors and chests.", ItemLoc.core, ItemType.aesthetic, 3, GetSprite("hackingCore"), 0, 0, 0, 1, false/*TODO change once empleneted*/));
@@ -168,6 +168,12 @@ public class Database : MonoBehaviour {
 	{
 		AnimatorOverrideController newAnim = Resources.Load(name) as AnimatorOverrideController;
 		return newAnim;
+	}
+
+	AudioClip GetSound(string name)
+	{
+		var newSound = Resources.Load (name) as AudioClip;
+		return newSound;
 	}
 
 	public RangedWeapon ItemsRangedWeapon(Item item)

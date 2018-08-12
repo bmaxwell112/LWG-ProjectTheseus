@@ -197,6 +197,9 @@ public class PlayerController : MonoBehaviour {
 		if (roLo.hitPoints[(int)ItemLoc.legs] > 0)
 		{
 			speed = roLo.loadout[(int)ItemLoc.legs].itemSpeed + roLo.loadout[(int)ItemLoc.body].itemSpeed;
+			if (!roLo.audioSource.isPlaying) {
+				roLo.PlayAudio (roLo.loadout [(int)ItemLoc.legs].itemSound);
+			}
 		}
 		// applies movement
 		float xSpeed = InputCapture.hThrow * speed * Time.deltaTime;

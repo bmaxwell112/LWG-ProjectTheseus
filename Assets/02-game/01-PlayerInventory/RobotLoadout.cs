@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // NEEDS DATABASE PREFAB IN SCENE TO FUNCTION
+[RequireComponent(typeof(AudioSource))]
 public class RobotLoadout : MonoBehaviour {
 
 	[Tooltip("This bool indicates whether the robot drops items")]
@@ -26,11 +27,13 @@ public class RobotLoadout : MonoBehaviour {
 	int basicSpeed = 5;
 	bool dropped;	
     PlayerController player;
+	public AudioSource audioSource;
 	
 
 	void Start()
 	{
-        player = FindObjectOfType<PlayerController>();		
+        player = FindObjectOfType<PlayerController>();	
+		audioSource = GetComponent<AudioSource>();
 	}
 	// Resets the player to basic loadout.
 	public void InitializeLoadout(Item head, Item body, Item leftArm, Item rightArm, Item legs, Item back, Item core)
@@ -205,5 +208,11 @@ public class RobotLoadout : MonoBehaviour {
 			parentRoom.Invoke("CheckEnemies", 0.1f);
 		}
 		Destroy(gameObject);
+	}
+
+	public void PlayAudio(AudioClip thisSoundEffect)
+	{
+		audioSource.clip = thisSoundEffect;
+		audioSource.Play();
 	}
 }
