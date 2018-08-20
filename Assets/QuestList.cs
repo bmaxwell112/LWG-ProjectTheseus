@@ -6,21 +6,36 @@ public class QuestList : MonoBehaviour {
 
     [SerializeField] GameObject QuestBtn;
     GameObject newButton;
+    public QuestEvent lastEvent;
+    bool alreadySpawned;
 
 
 	// Use this for initialization
 	void Start () {
-		
+        alreadySpawned = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+        if(QuestController.currentQuest.eventID != lastEvent.eventID)
+        {
+            print("Refreshed button load");
+            alreadySpawned = false;
+        }
+
 	}
 
     public void SpawnButton()
     {
-        newButton = Instantiate(QuestBtn);
-        newButton.transform.parent = transform;
+        if(alreadySpawned == false)
+        {
+            newButton = Instantiate(QuestBtn);
+            newButton.transform.parent = transform;
+            alreadySpawned = true;
+        }
+
     }
+
+
 }
