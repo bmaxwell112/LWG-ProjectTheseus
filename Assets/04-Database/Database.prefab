@@ -57,3 +57,4 @@ MonoBehaviour:
   meleeWeapons: []
   leftRange: {fileID: 22100000, guid: 1f4fe24be6da6e54fadf39bbd4c4b869, type: 2}
   rightRange: {fileID: 22100000, guid: 648d0eaf201412346aea314a6d685c6f, type: 2}
+  itemsJson: {fileID: 4900000, guid: 941bc04e3502aae48adefd284a60209d, type: 3}

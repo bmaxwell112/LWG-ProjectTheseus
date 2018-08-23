@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class LoadScreen : MonoBehaviour {
 
 	[SerializeField] Image loadingProgress, panel;
-	[SerializeField] Button startGame;
 	Color currentColor = Color.white;
 	float fadeInTime = 1;
 	float den;
@@ -16,9 +15,15 @@ public class LoadScreen : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		den = RoomManager.instance.roomCap;
-		startGame.gameObject.SetActive(false);
 		dt = FindObjectOfType<UserInterfaceDialogueTrigger>();
 		dt.TriggerDialogue();
+	}
+	void Update()
+	{
+		if (RoomManager.gameSetupComplete && InputCapture.back)
+		{
+			StartGame();
+		}
 	}
 	
 	// Update is called once per frame
@@ -38,8 +43,6 @@ public class LoadScreen : MonoBehaviour {
 		{			
 			if (!loaded && !ready && !UserInterfaceDialogue.dialogueRunning)
 			{
-				startGame.gameObject.SetActive(true);
-				startGame.Select();
 				ready = true;
 			}
 		}
