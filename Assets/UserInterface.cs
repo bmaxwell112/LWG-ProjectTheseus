@@ -22,12 +22,16 @@ public class UserInterface : MonoBehaviour {
 	public int loadoutIndex;
 	int currentIndex;
     public int abilitySet;
+    QuestList qList;
+    QuestController qController;
 
 	// Use this for initialization
 	void Start () {
 
 		playerLo = FindObjectOfType<PlayerController>().GetComponent<RobotLoadout>();
-		currentIndex = -1;
+        qList = FindObjectOfType<QuestList>();
+        qController = FindObjectOfType<QuestController>();
+        currentIndex = -1;
 		PauseScreenUpdate();
 		PauseScreen.SetActive(false);
         TechTree.SetActive(false);
@@ -107,7 +111,20 @@ public class UserInterface : MonoBehaviour {
 		{
 			pageTitle.text = "PAUSED";			
 		}
-	}	
+
+        if (QuestController.activeEvents.Count > 0 && QuestController.currentQuest != null)
+        {
+            if(QuestController.currentQuest.active == true)
+            {
+                for (int i = 0; i < QuestController.activeEvents.Count; i++)
+                {
+
+                    qList.SpawnButton();
+                    print("Spawning button");
+                }
+            }
+        }
+    }	
 
     void NavigateMenu()
     {
@@ -116,7 +133,8 @@ public class UserInterface : MonoBehaviour {
 
 	void PauseScreenUpdate()
 	{
-		for (int i = 0; i < playerLo.loadout.Length; i++)
+
+        for (int i = 0; i < playerLo.loadout.Length; i++)
 		{
 			names[i].text = playerLo.loadout[i].itemName;
 		}		
@@ -141,6 +159,7 @@ public class UserInterface : MonoBehaviour {
 				"INTEGRITY: " + playerLo.hitPoints[i] + "/" + playerLo.loadout[i].itemHitpoints + "\n" +
 				"POWER: " + currentPower + "/100";
 		}
+
 	}
 
 	void LoadOutCheck()

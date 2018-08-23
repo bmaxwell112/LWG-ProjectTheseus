@@ -141,18 +141,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: TeleportInitiated
+    name: 
     characterSpeed: 0
     characterImage: {fileID: 0}
     characterNumber: 0
-    sentences:
-    - 'Teleport\ teleport.run -override -floor1
-
-      Teleport\ .........
-
-      Teleport\ Teleporting to Fabrication and Commerce.
-
-      Teleport\ Currently under the control of Periphetes.'
+    sentences: []
 --- !u!4 &745592199
 Transform:
   m_ObjectHideFlags: 0
@@ -526,7 +519,7 @@ Prefab:
     - target: {fileID: 114071580201058400, guid: 80de9e499a0350f468cd39e132bb0850,
         type: 2}
       propertyPath: roomCap
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114071580201058400, guid: 80de9e499a0350f468cd39e132bb0850,
         type: 2}
