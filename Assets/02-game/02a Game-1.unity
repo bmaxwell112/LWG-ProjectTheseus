@@ -145,7 +145,9 @@ MonoBehaviour:
     characterSpeed: 0
     characterImage: {fileID: 0}
     characterNumber: 0
-    sentences: []
+    sentences:
+    - "Brett, what went here?\t\t"
+    - I genuinely don't remember, is it written somewhere?
 --- !u!4 &745592199
 Transform:
   m_ObjectHideFlags: 0

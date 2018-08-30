@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 50527218555790112}
   - component: {fileID: 95689564433708926}
   - component: {fileID: 70256726274634092}
+  - component: {fileID: 82457568812155254}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -560,6 +561,86 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.43, y: 1.2}
   m_Direction: 0
+--- !u!82 &82457568812155254
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987759031399868}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95468463918507358
 Animator:
   serializedVersion: 3
@@ -670,6 +751,7 @@ MonoBehaviour:
     itemPower: 1
     itemSpecial: 0
     itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
   - itemID: 1
     itemName: Basic Torso
     itemDesc: A torso taken from the only schematics you have left.
@@ -691,6 +773,7 @@ MonoBehaviour:
     itemPower: 1
     itemSpecial: 0
     itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
   - itemID: 2
     itemName: Basic Left Arm
     itemDesc: A left arm taken from the only schematics you have left.
@@ -707,6 +790,7 @@ MonoBehaviour:
     itemPower: 1
     itemSpecial: 0
     itemAnim: {fileID: 22100000, guid: 388175028e5e72448837e4ccc93ec0ba, type: 2}
+    itemSound: {fileID: 0}
   - itemID: 3
     itemName: Basic Right Arm
     itemDesc: A right arm taken from the only schematics you have left.
@@ -723,6 +807,7 @@ MonoBehaviour:
     itemPower: 1
     itemSpecial: 0
     itemAnim: {fileID: 22100000, guid: 0141ee8f963804f4e95955a957f8b54c, type: 2}
+    itemSound: {fileID: 0}
   - itemID: 4
     itemName: Basic Legs
     itemDesc: A pair of legs taken from the only schematics you have left.
@@ -741,6 +826,7 @@ MonoBehaviour:
     itemPower: 1
     itemSpecial: 0
     itemAnim: {fileID: 22100000, guid: 2421d854019649347aa62ed6a120e95a, type: 2}
+    itemSound: {fileID: 0}
   - itemID: 5
     itemName: Basic Back
     itemDesc: A back taken from the only schematics you have left.
@@ -759,6 +845,7 @@ MonoBehaviour:
     itemPower: 1
     itemSpecial: 0
     itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
   - itemID: 6
     itemName: Basic AI Core
     itemDesc: An AI Core taken from the only schematics you have left.
@@ -773,6 +860,7 @@ MonoBehaviour:
     itemPower: 1
     itemSpecial: 0
     itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
   shield:
     specialID: -1
     specialItemID: 0
@@ -785,6 +873,7 @@ MonoBehaviour:
   walk: 0
   stopWhileAttackingLeft: 0
   stopWhileAttackingRight: 0
+  audioSource: {fileID: 0}
 --- !u!114 &114433773509391532
 MonoBehaviour:
   m_ObjectHideFlags: 1
