@@ -1,9 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestList : MonoBehaviour
-{
+public class QuestList : MonoBehaviour {
 
     [SerializeField] GameObject QuestBtn;
     GameObject newButton;
@@ -11,27 +10,25 @@ public class QuestList : MonoBehaviour
     bool alreadySpawned;
 
 
-    // Use this for initialization
-    void Start()
-    {
+	// Use this for initialization
+	void Start () {
         alreadySpawned = false;
-    }
+	}
+	
+	// Update is called once per frame
+	void Update () {
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        if (QuestController.currentQuest.eventID != lastEvent.eventID)
+        if(QuestController.currentQuest.eventID != lastEvent.eventID)
         {
             print("Refreshed button load");
             alreadySpawned = false;
         }
 
-    }
+	}
 
     public void SpawnButton()
     {
-        if (alreadySpawned == false)
+        if(alreadySpawned == false)
         {
             newButton = Instantiate(QuestBtn);
             newButton.transform.parent = transform;

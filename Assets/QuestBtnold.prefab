@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114415635490551054}
   - component: {fileID: 114677263446499436}
   m_Layer: 5
-  m_Name: QuestBtn
+  m_Name: QuestBtnold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +116,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcaeb3e52a101345b01ce8d49e395fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newButtonText: {fileID: 114415635490551054}
+  refEvent:
+    eventID: -1
+    eventName: 
+    eventDesc: 
+    triggerID: 0
+    eventType: 0
+    eventValue: 0
+    completed: 0
+    active: 0
 --- !u!212 &212442442770554908
 SpriteRenderer:
   m_ObjectHideFlags: 1
