@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class infodummy : MonoBehaviour {
+public class InfoDummy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

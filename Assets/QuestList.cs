@@ -23,7 +23,7 @@ public class QuestList : MonoBehaviour
 
         if (QuestController.currentQuest.eventID != lastEvent.eventID)
         {
-            print("Refreshed button load");
+            print("Refreshed button load, already spawned is " + alreadySpawned);
             alreadySpawned = false;
         }
 

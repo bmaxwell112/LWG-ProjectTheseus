@@ -22,7 +22,7 @@ public class ButtonFunc : MonoBehaviour
 
     public void ReplaceText()
     {
-        infoText = FindObjectOfType<infodummy>().GetComponent<Text>();
+        infoText = FindObjectOfType<InfoDummy>().GetComponent<Text>();
         infoText.text = QuestController.currentQuest.eventDesc;
     }
 

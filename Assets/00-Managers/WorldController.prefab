@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1205114613419184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6172241, y: -0.8329819, z: 0.15625}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -52,14 +52,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allRooms: []
-  hub: 1
+  hub: 0
   room: {fileID: 1935376734419032, guid: 80fe5c36313597a43b75b3badd27fa1d, type: 2}
   player: {fileID: 1987759031399868, guid: 064acb4a45f04a948b9e38c0381af688, type: 2}
-  userInterface: {fileID: 1872913871305282, guid: 27cf67da565b9be4fb61f934ba8063d8,
+  userInterface: {fileID: 1872913871305282, guid: f56fb8d7f0127bb4682db3e4386a3337,
+    type: 2}
+  questController: {fileID: 1889118552240644, guid: d2f9a8e413ea59e4eb303aa6bc7b6887,
     type: 2}
   questMarker: {fileID: 1119396125105566, guid: 1de2f5e6947d7b04c9127bfbcbd72cc6,
     type: 2}
-  roomCap: 0
+  roomCap: 15
   spawnConfigs:
   - {fileID: 1270131870308636, guid: 0b3a948043e62774cb15f987a4f6b522, type: 2}
   - {fileID: 1145511095167644, guid: a3fda2cb6f1da584d9e3938afd07e044, type: 2}
