@@ -106,22 +106,17 @@ public class NewCurrentRoom : MonoBehaviour {
         {
             Destroy(bullet.gameObject);
         }
-		print("Bullets destroyed");
 		float endDistance = Vector3.Distance(nextRoomPos, player.position) - 2f;
-		float distance = Vector3.Distance(nextRoomPos, player.position);        
-		print("end distance " + endDistance);
+		float distance = Vector3.Distance(nextRoomPos, player.position); 
 		while (distance > endDistance)
         {
 			player.transform.position = Vector3.MoveTowards(player.transform.position, (nextRoomPos + nextRoomAdjust), 2 * Time.deltaTime);
             distance = Vector3.Distance(nextRoomPos, player.position);
 			print((nextRoomPos + nextRoomAdjust));
-			print("distance " + distance);
 			yield return null;
         }
-		print("left Loop");
 		nextRoom.CheckEnemies();
 		FindObjectOfType<MinimapContoller>().UpdateActiveMiniRoom();
 		RoomManager.gameSetupComplete = true;
-		print("Finishing This");
 	}
 }

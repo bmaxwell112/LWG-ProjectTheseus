@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;                 //Static instance of Database which allows it to be accessed by any other script.
-	public static bool mouseInput, paused, levelLoaded;
+	public static bool mouseInput, paused, levelLoaded, slowMo;
 	public static int RandomDropModifier;
 	public bool playerAlive;
 	public static Item[] playerLoadout = new Item[7];
@@ -111,4 +111,15 @@ public class GameManager : MonoBehaviour {
         yield return null;
         levelLoaded = false;
     }
+
+	public static void EnableSlowMotion(float t)
+	{
+		slowMo = true;
+		Time.timeScale = t;
+	}
+	public static void DisableSlowMotion()
+	{
+		Time.timeScale = 1.0f;
+		slowMo = false;
+	}
 }
