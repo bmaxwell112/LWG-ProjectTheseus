@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance = null;                 //Static instance of Database which allows it to be accessed by any other script.
 	public static bool mouseInput, paused, levelLoaded, slowMo;
 	public static int RandomDropModifier;
+	public static float SoundFXVolume;
 	public bool playerAlive;
 	public static Item[] playerLoadout = new Item[7];
 	bool dialogueFlag = false;
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour {
 		RandomDropModifier = 0;		
 		mouseInput = MouseCheck();
         level = SceneManager.GetActiveScene().buildIndex;
+		SoundFXVolume = PlayerPrefsManager.GetSFXVolume();
 	}
 
 	private void DialogueTracker()

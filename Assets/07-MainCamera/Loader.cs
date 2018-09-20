@@ -5,6 +5,7 @@ using UnityEngine;
 public class Loader : MonoBehaviour {
 
 	[SerializeField] GameObject database, gameManager, levelManager, musicManager, questFunctions, itemWheel;
+	
 
 	void Awake () {
 		if (Database.instance == null)

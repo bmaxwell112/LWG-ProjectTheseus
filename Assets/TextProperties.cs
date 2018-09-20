@@ -7,8 +7,9 @@ public class TextProperties : MonoBehaviour {
 
 	[Tooltip("Character per Second")][SerializeField] float characterSpeed;
 	Text text;
-	[SerializeField] bool TextAtStart;
+	[SerializeField] bool textAtStart;
 	[SerializeField] float delayInSeconds;
+	[SerializeField] AudioClip typing;
 	string txtString;
 	// Use this for initialization
 	void Start () {
@@ -16,7 +17,7 @@ public class TextProperties : MonoBehaviour {
 		text = GetComponent<Text>();
 		txtString = text.text;
 		text.text = "";
-		if (TextAtStart)
+		if (textAtStart)
 		{
 			StartSentence();
 		}
@@ -28,6 +29,10 @@ public class TextProperties : MonoBehaviour {
 
 	public void StartSentence()
 	{
+		if (typing != null)
+		{
+			Utilities.PlaySoundEffect(typing);
+		}
 		StartCoroutine(TypeSentence(txtString));
 	}
 

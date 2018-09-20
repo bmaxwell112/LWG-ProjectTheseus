@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 	bool moveInProgress;
+	public static Vector3 CAMPOS;
+
+	void Update()
+	{
+		CAMPOS = transform.position;
+	}
 
 	public void MoveCamera(Vector3 roomLocation)
 	{

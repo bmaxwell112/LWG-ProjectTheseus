@@ -262,8 +262,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSpeed: 0.1
-  TextAtStart: 1
+  textAtStart: 1
   delayInSeconds: 0
+  typing: {fileID: 0}
 --- !u!222 &77374639
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -328,6 +329,7 @@ GameObject:
   - component: {fileID: 388756407}
   - component: {fileID: 388756406}
   - component: {fileID: 388756405}
+  - component: {fileID: 388756408}
   m_Layer: 5
   m_Name: Reset
   m_TagString: Untagged
@@ -402,7 +404,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 02a Hub
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -440,6 +442,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 388756403}
+--- !u!114 &388756408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 388756403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967e89996bc5fd4ca1bb6a6fb5aed7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &431746837
 Prefab:
   m_ObjectHideFlags: 0
@@ -491,6 +504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 446676685}
   - component: {fileID: 446676684}
+  - component: {fileID: 446676686}
   m_Layer: 5
   m_Name: SFX Volume Slider
   m_TagString: Untagged
@@ -543,7 +557,18 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 446676686}
+        m_MethodName: StartClickNoise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!224 &446676685
@@ -567,6 +592,17 @@ RectTransform:
   m_AnchoredPosition: {x: 549.9, y: 0}
   m_SizeDelta: {x: 411.2, y: 44.2}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &446676686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 446676683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967e89996bc5fd4ca1bb6a6fb5aed7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &483998416
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,6 +637,38 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &603501049 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1791058235699138, guid: 98831f192c2bcbc46956275c9b035e27,
+    type: 2}
+  m_PrefabInternal: {fileID: 1375375195}
+--- !u!114 &603501054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 603501049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967e89996bc5fd4ca1bb6a6fb5aed7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &643440956 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1426338916792942, guid: 98831f192c2bcbc46956275c9b035e27,
+    type: 2}
+  m_PrefabInternal: {fileID: 1375375195}
+--- !u!114 &643440960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 643440956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967e89996bc5fd4ca1bb6a6fb5aed7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &709993555
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,6 +678,7 @@ GameObject:
   m_Component:
   - component: {fileID: 709993557}
   - component: {fileID: 709993556}
+  - component: {fileID: 709993558}
   m_Layer: 5
   m_Name: Volume Slider
   m_TagString: Untagged
@@ -662,7 +731,18 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 446676686}
+        m_MethodName: StartClickNoise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!224 &709993557
@@ -686,6 +766,17 @@ RectTransform:
   m_AnchoredPosition: {x: 549.9001, y: -0.000045776367}
   m_SizeDelta: {x: 411.2, y: 44.2}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &709993558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 709993555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967e89996bc5fd4ca1bb6a6fb5aed7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &767942475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,6 +1212,7 @@ GameObject:
   - component: {fileID: 1289906660}
   - component: {fileID: 1289906659}
   - component: {fileID: 1289906658}
+  - component: {fileID: 1289906661}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -1195,7 +1287,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 02a Hub
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1233,6 +1325,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1289906656}
+--- !u!114 &1289906661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1289906656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967e89996bc5fd4ca1bb6a6fb5aed7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1321248448
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,6 +1463,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1653948392}
     m_Modifications:
+    - target: {fileID: 114299260837896158, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114818378197233406, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 224968312760335356, guid: 98831f192c2bcbc46956275c9b035e27,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -1454,15 +1567,117 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1321248449}
+      objectReference: {fileID: 603501054}
     - target: {fileID: 114818378197233406, guid: 98831f192c2bcbc46956275c9b035e27,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 643440960}
+    - target: {fileID: 224496395435659210, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224496395435659210, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224496395435659210, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 288.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 224496395435659210, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 224171733572086850, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224171733572086850, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224171733572086850, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 866.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 224171733572086850, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 114299260837896158, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114299260837896158, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114299260837896158, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
       objectReference: {fileID: 1321248449}
-    m_RemovedComponents:
-    - {fileID: 114275184477724022, guid: 98831f192c2bcbc46956275c9b035e27, type: 2}
-    - {fileID: 114013091626710086, guid: 98831f192c2bcbc46956275c9b035e27, type: 2}
+    - target: {fileID: 114299260837896158, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ResetAll
+      objectReference: {fileID: 0}
+    - target: {fileID: 114299260837896158, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114299260837896158, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartClickNoise
+      objectReference: {fileID: 0}
+    - target: {fileID: 114818378197233406, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114818378197233406, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114818378197233406, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1321248449}
+    - target: {fileID: 114818378197233406, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ResetCancelBtn
+      objectReference: {fileID: 0}
+    - target: {fileID: 114818378197233406, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114818378197233406, guid: 98831f192c2bcbc46956275c9b035e27,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartClickNoise
+      objectReference: {fileID: 0}
+    - target: {fileID: 1645895525087930, guid: 98831f192c2bcbc46956275c9b035e27, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98831f192c2bcbc46956275c9b035e27, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1398865761
@@ -1813,8 +2028,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSpeed: 0.1
-  TextAtStart: 1
+  textAtStart: 1
   delayInSeconds: 0
+  typing: {fileID: 0}
 --- !u!222 &1785944441
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1983,6 +2199,7 @@ GameObject:
   - component: {fileID: 1960108985}
   - component: {fileID: 1960108984}
   - component: {fileID: 1960108983}
+  - component: {fileID: 1960108986}
   m_Layer: 5
   m_Name: Default
   m_TagString: Untagged
@@ -2057,7 +2274,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 02a Hub
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2095,6 +2312,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1960108981}
+--- !u!114 &1960108986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1960108981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967e89996bc5fd4ca1bb6a6fb5aed7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1992009586
 GameObject:
   m_ObjectHideFlags: 0
@@ -2244,8 +2472,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSpeed: 0.1
-  TextAtStart: 1
+  textAtStart: 1
   delayInSeconds: 0
+  typing: {fileID: 0}
 --- !u!222 &2080609044
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2333,8 +2562,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSpeed: 0.075
-  TextAtStart: 1
+  textAtStart: 0
   delayInSeconds: 0
+  typing: {fileID: 0}
 --- !u!222 &2123313587
 CanvasRenderer:
   m_ObjectHideFlags: 0
