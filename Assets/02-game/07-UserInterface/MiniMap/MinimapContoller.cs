@@ -8,20 +8,24 @@ public class MinimapContoller : MonoBehaviour {
 	[SerializeField] MiniRoom mapRoom;	
 	List<MiniRoom> miniRooms = new List<MiniRoom>();
 	Vector3 startPos;
+    bool questRoom;
 
 	void Start()
 	{
 		startPos = transform.localPosition;
+        
 	}
 
 	public void GetRoomPos()
 	{
 		foreach (RoomGeneration room in RoomManager.instance.allRooms)
 		{
-			var spawnLoc = new Vector3(room.transform.position.x, room.transform.position.y);
-			MiniRoom miniRoom = Instantiate(mapRoom, transform) as MiniRoom;
-			miniRoom.transform.localPosition = spawnLoc*7;
-			miniRoom.SpawnConfig();
+            questRoom = room.GetComponentInChildren<QuestMarker>();
+            print(questRoom);
+            var spawnLoc = new Vector3(room.transform.position.x, room.transform.position.y);
+            MiniRoom miniRoom = Instantiate(mapRoom, transform) as MiniRoom;
+            miniRoom.transform.localPosition = spawnLoc*7;
+            miniRoom.SpawnConfig(questRoom);
 			miniRooms.Add(miniRoom);
 		}
 		UpdateActiveMiniRoom();

@@ -79,6 +79,7 @@ public class QuestController : MonoBehaviour {
     public void BeginQuest()
     {
         currentQuest.active = true;
+        //MiniRoom.lastEnabled.color = Color.blue;
         print(currentQuest.eventName + " has started and it's active status is now set to " + currentQuest.active);
     }
 

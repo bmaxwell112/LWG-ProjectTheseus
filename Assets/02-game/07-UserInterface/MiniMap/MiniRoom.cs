@@ -9,15 +9,19 @@ public class MiniRoom : MonoBehaviour {
 	[SerializeField] Image[] doors;
 	bool found;
 	bool[] doorsOpen;
+    bool quest;
 
-	public void SpawnConfig()
+	public void SpawnConfig(bool argQuest)
 	{
 		found = false;
 		room.enabled = false;
+        quest = argQuest;
 		foreach (Image door in doors)
 		{
 			door.gameObject.SetActive(false);
 		}
+
+
 	}
 
 	public void UpdateActive(bool current)
@@ -33,10 +37,16 @@ public class MiniRoom : MonoBehaviour {
 					door.enabled = true;					
 				}
 				found = true;
+
 			}
-			room.color = Color.green;			
+			room.color = Color.green;
 		}
-		else
+		else if (!current && room.enabled && quest) 
+        {
+            room.color = Color.blue;
+        }
+
+        else
 		{
 			room.color = Color.white;
 		}
