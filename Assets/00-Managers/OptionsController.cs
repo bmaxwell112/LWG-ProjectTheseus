@@ -39,6 +39,7 @@ public class OptionsController : MonoBehaviour {
 		}
 		PlayerPrefsManager.SetMasterVolume (volumeSlider.value);
 		PlayerPrefsManager.SetSFXVolume(sfxVolumeSlider.value);
+		GameManager.SoundFXVolume = sfxVolumeSlider.value;
 	}
 	
 	// Used on the exit button for the scene

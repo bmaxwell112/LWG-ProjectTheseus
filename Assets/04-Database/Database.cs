@@ -253,4 +253,43 @@ public class Database : MonoBehaviour {
 		}
 		return item;
 	}
+
+	public bool ArmIsambidextrous(Item item)
+	{
+		if (item.itemID + 1 <= items.Count && item.itemID - 1 >= 0)
+		{
+			if (item.itemName == items[item.itemID - 1].itemName || item.itemName == items[item.itemID + 1].itemName)
+				return true;
+			else
+				return false;
+		}
+		else
+			return false;		
+	}
+
+	public Item GetArmByLocation(Item item, ItemLoc loc)
+	{
+		if (item.itemLoc == loc)
+		{
+			return item;
+		}		
+		else
+		{
+			if (ArmIsambidextrous(item))
+			{
+				if (item.itemName == items[item.itemID - 1].itemName)
+				{
+					return (items[item.itemID - 1]);
+				}
+				else
+				{
+					return (items[item.itemID + 1]);
+				}
+			}
+			else
+			{
+				return new Item();
+			}
+		}
+	}
 }

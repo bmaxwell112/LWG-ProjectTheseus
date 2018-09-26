@@ -39,15 +39,18 @@ public class RobotAnimationController : MonoBehaviour {
 					DetectFacingAndSetOrder();
 				}
 			}
-			if (isPlayer)
+			if (isPlayer && !ItemWheel.active)
 			{
 				PlayerTracking();
 			}
 			else
 			{
+				if (!player)
+					FirstLayerSetup();
+				else
+					LayerChange();
 				EnemyTracking();
-			}
-			LayerChange();
+			}			
 		}
 		if (roLo.dead)
 		{
@@ -214,37 +217,53 @@ public class RobotAnimationController : MonoBehaviour {
 
 
 	public void LayerChange()
-	{
-		if (!GetComponent<PlayerController>())
+	{		
+		if (transform.position.y < player.transform.position.y && layerAbovePlayer)
 		{
-			if (!player)
+			foreach (SpriteRenderer sr in SpriteLoadOut)
 			{
-				if (FindObjectOfType<PlayerController>())
-				{
-					player = FindObjectOfType<PlayerController>().transform;
-				}
-				else
-				{
-					return;
-				}
+				sr.sortingLayerName = "BelowPlayer";
 			}
-			
-			if (transform.position.y < player.transform.position.y && layerAbovePlayer)
+			layerAbovePlayer = false;
+		}
+		else if (transform.position.y > player.transform.position.y && !layerAbovePlayer)
+		{
+			foreach (SpriteRenderer sr in SpriteLoadOut)
 			{
-				foreach (SpriteRenderer sr in SpriteLoadOut)
-				{
-					sr.sortingLayerName = "BelowPlayer";
-				}
-				layerAbovePlayer = false;
+				sr.sortingLayerName = "AbovePlayer";
 			}
-			else if (transform.position.y > player.transform.position.y && !layerAbovePlayer)
+			layerAbovePlayer = true;
+		}
+	}
+
+	private void FirstLayerSetup()
+	{
+		if (!player)
+		{
+			if (FindObjectOfType<PlayerController>())
 			{
-				foreach (SpriteRenderer sr in SpriteLoadOut)
-				{
-					sr.sortingLayerName = "AbovePlayer";
-				}
-				layerAbovePlayer = true;
+				player = FindObjectOfType<PlayerController>().transform;
 			}
+			else
+			{
+				return;
+			}
+		}
+		if (transform.position.y < player.transform.position.y)
+		{
+			foreach (SpriteRenderer sr in SpriteLoadOut)
+			{
+				sr.sortingLayerName = "BelowPlayer";
+			}
+			layerAbovePlayer = false;
+		}
+		else if (transform.position.y > player.transform.position.y)
+		{
+			foreach (SpriteRenderer sr in SpriteLoadOut)
+			{
+				sr.sortingLayerName = "AbovePlayer";
+			}
+			layerAbovePlayer = true;
 		}
 	}
 
