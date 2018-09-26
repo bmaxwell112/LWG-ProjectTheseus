@@ -125,6 +125,7 @@ MonoBehaviour:
     type: 2}
   questFunctions: {fileID: 1172136511053044, guid: d13d4dd2d63730448b8f1fa1efaf4464,
     type: 2}
+  itemWheel: {fileID: 1692083256739950, guid: 5790dba7eddba954f9ef5e4f773cde30, type: 2}
 --- !u!124 &124217824817368438
 Behaviour:
   m_ObjectHideFlags: 1

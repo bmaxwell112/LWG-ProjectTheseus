@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Loader : MonoBehaviour {
 
-	[SerializeField] GameObject database, gameManager, levelManager, musicManager, questFunctions;
+	[SerializeField] GameObject database, gameManager, levelManager, musicManager, questFunctions, itemWheel;
+	
 
 	void Awake () {
 		if (Database.instance == null)
@@ -26,6 +27,10 @@ public class Loader : MonoBehaviour {
         if (!FindObjectOfType<LevelManager>())
 		{
 			Instantiate(levelManager);
+		}
+		if (!FindObjectOfType<ItemWheel>())
+		{
+			Instantiate(itemWheel);
 		}
 	}	
 }

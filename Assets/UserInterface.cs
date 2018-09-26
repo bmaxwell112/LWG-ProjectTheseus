@@ -44,11 +44,11 @@ public class UserInterface : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {			
-		if (InputCapture.pause && GameManager.paused)
+		if (InputCapture.pause && GameManager.paused && !GameManager.slowMo)
 		{
 			ResumeGame();
 		}
-		else if (InputCapture.pause && !GameManager.paused)
+		else if (InputCapture.pause && !GameManager.paused && !GameManager.slowMo)
 		{
 			PauseGame();
 		}
@@ -175,22 +175,27 @@ public class UserInterface : MonoBehaviour {
 				if (hitPointPercent <= 0)
 				{
 					liveStats[i].color = Color.grey;
+					RobotFunctions.itemDropMultiplier[i] = 5;
 				}
 				else if (hitPointPercent <= 0.25f && hitPointPercent > 0)
 				{
 					liveStats[i].color = Color.red;
+					RobotFunctions.itemDropMultiplier[i] = 4;
 				}
 				else if (hitPointPercent <= 0.50f && hitPointPercent > 0.25f)
 				{
-					liveStats[i].color = new Color(1, 0.65f, 0, 1); ;
+					liveStats[i].color = new Color(1, 0.65f, 0, 1);
+					RobotFunctions.itemDropMultiplier[i] = 3;
 				}
 				else if (hitPointPercent <= 0.75f && hitPointPercent > 0.50f)
 				{
 					liveStats[i].color = Color.yellow;
+					RobotFunctions.itemDropMultiplier[i] = 2;
 				}
 				else 
 				{
 					liveStats[i].color = Color.green;
+					RobotFunctions.itemDropMultiplier[i] = 1;
 				}
 			}
 		}

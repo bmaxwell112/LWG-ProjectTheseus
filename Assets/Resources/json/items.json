@@ -34,7 +34,7 @@
 		},
 		{
 			"itemID": 2,
-			"itemName": "Basic Left Arm",
+			"itemName": "Basic Arm",
 			"itemDesc": "A left arm taken from the only schematics you have left.",
 			"itemLoc": "leftArm",
 			"itemType": "melee",
@@ -50,7 +50,7 @@
 		},
 		{
 			"itemID": 3,
-			"itemName": "Basic Right Arm",
+			"itemName": "Basic Arm",
 			"itemDesc": "A right arm taken from the only schematics you have left.",
 			"itemLoc": "rightArm",
 			"itemType": "melee",
@@ -210,7 +210,7 @@
 		},
 		{
 			"itemID": 13,
-			"itemName": "Mounted Gun L",
+			"itemName": "Mounted Gun",
 			"itemDesc": "A basic semi-automatic firearm for ranged combat.",
 			"itemLoc": "leftArm",
 			"itemType": "range",
@@ -226,7 +226,7 @@
 		},
 		{
 			"itemID": 14,
-			"itemName": "Mounted Gun R",
+			"itemName": "Mounted Gun",
 			"itemDesc": "A basic semi-automatic firearm for ranged combat.",
 			"itemLoc": "rightArm",
 			"itemType": "range",
@@ -242,7 +242,7 @@
 		},
 		{
 			"itemID": 15,
-			"itemName": "Shotgun L",
+			"itemName": "Shotgun",
 			"itemDesc": "A powerful firearm with restricted range and a cooldown between shots.",
 			"itemLoc": "leftArm",
 			"itemType": "range",
@@ -258,7 +258,7 @@
 		},
 		{
 			"itemID": 16,
-			"itemName": "Shotgun R",
+			"itemName": "Shotgun",
 			"itemDesc": "A powerful firearm with restricted range and a cooldown between shots.",
 			"itemLoc": "rightArm",
 			"itemType": "range",
@@ -274,7 +274,7 @@
 		},
 		{
 			"itemID": 17,
-			"itemName": "Machinegun L",
+			"itemName": "Machinegun",
 			"itemDesc": "A ranged weapon with a rapid rate of fire.",
 			"itemLoc": "leftArm",
 			"itemType": "range",
@@ -290,7 +290,7 @@
 		},
 		{
 			"itemID": 18,
-			"itemName": "Machinegun R",
+			"itemName": "Machinegun",
 			"itemDesc": "A ranged weapon with a rapid rate of fire.",
 			"itemLoc": "rightArm",
 			"itemType": "range",
@@ -322,7 +322,7 @@
 		},
 		{
 			"itemID": 20,
-			"itemName": "Shield L",
+			"itemName": "Shield",
 			"itemDesc": "A defensive item that guards you from damage in the front.",
 			"itemLoc": "leftArm",
 			"itemType": "aesthetic",
@@ -338,7 +338,7 @@
 		},
 		{
 			"itemID": 21,
-			"itemName": "Shield R",
+			"itemName": "Shield",
 			"itemDesc": "A defensive item that guards you from damage in the front.",
 			"itemLoc": "rightArm",
 			"itemType": "aesthetic",
@@ -354,7 +354,7 @@
 		},
 		{
 			"itemID": 22,
-			"itemName": "Blade L",
+			"itemName": "Blade",
 			"itemDesc": "A melee weapon that deals decent damage in a swinging arc.",
 			"itemLoc": "leftArm",
 			"itemType": "melee",
@@ -370,7 +370,7 @@
 		},
 		{
 			"itemID": 23,
-			"itemName": "Blade R",
+			"itemName": "Blade",
 			"itemDesc": "A melee weapon that deals decent damage in a swinging arc.",
 			"itemLoc": "rightArm",
 			"itemType": "melee",
@@ -386,7 +386,7 @@
 		},
 		{
 			"itemID": 24,
-			"itemName": "Stun Baton L",
+			"itemName": "Stun Baton",
 			"itemDesc": "A melee weapon that stuns enemies that get too close.",
 			"itemLoc": "leftArm",
 			"itemType": "melee",
@@ -402,7 +402,7 @@
 		},
 		{
 			"itemID": 25,
-			"itemName": "Stun Baton R",
+			"itemName": "Stun Baton",
 			"itemDesc": "A melee weapon that stuns enemies that get too close.",
 			"itemLoc": "rightArm",
 			"itemType": "melee",
@@ -418,7 +418,7 @@
 		},
 		{
 			"itemID": 26,
-			"itemName": "Chainsaw L",
+			"itemName": "Chainsaw",
 			"itemDesc": "A melee weapon that deals damage over time and cleaves parts.",
 			"itemLoc": "leftArm",
 			"itemType": "melee",
@@ -434,7 +434,7 @@
 		},
 		{
 			"itemID": 27,
-			"itemName": "Chainsaw R",
+			"itemName": "Chainsaw",
 			"itemDesc": "A melee weapon that deals damage over time and cleaves parts.",
 			"itemLoc": "rightArm",
 			"itemType": "melee",
@@ -450,7 +450,7 @@
 		},
 		{
 			"itemID": 28,
-			"itemName": "Bronze Club R",
+			"itemName": "Bronze Club",
 			"itemDesc": "A slow but massively powerful melee weapon.",
 			"itemLoc": "rightArm",
 			"itemType": "melee",
