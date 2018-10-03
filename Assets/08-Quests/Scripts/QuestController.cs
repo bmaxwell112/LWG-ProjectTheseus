@@ -83,6 +83,12 @@ public class QuestController : MonoBehaviour {
         print(currentQuest.eventName + " has started and it's active status is now set to " + currentQuest.active);
     }
 
+    public void CompleteQuest()
+    {
+        currentQuest.active = false;
+        currentQuest.completed = true;
+    }
+
 
     //function to spawn items associated with quest in correct room
     //Objects need to have a property for either "activates on setactive" or "activate on interact", set as active quest when this happens
