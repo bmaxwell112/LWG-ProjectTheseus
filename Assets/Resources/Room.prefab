@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212458201564755294}
   - component: {fileID: 61635795856328260}
   - component: {fileID: 114789166453200320}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: ClosedDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4437191671847538}
   - component: {fileID: 114400269309967206}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: WallBR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4277448049716348}
   - component: {fileID: 61412538957516204}
   - component: {fileID: 114983964260908890}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: RoomExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 212589664318958376}
   - component: {fileID: 61672444843151924}
   - component: {fileID: 50978848332903496}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: Closed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4516872337423772}
   - component: {fileID: 61702885670073956}
   - component: {fileID: 114590781289713800}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: RoomExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 50242064187370848}
   - component: {fileID: 60701126159723404}
   - component: {fileID: 60765456353122570}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 212142093524696310}
   - component: {fileID: 61403500975107986}
   - component: {fileID: 114664077771271232}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: ClosedDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4368642812767510}
   - component: {fileID: 114035389273667278}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: OpenDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 212769015982277940}
   - component: {fileID: 61262885409468262}
   - component: {fileID: 114076958027781368}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: ClosedDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 212464205157531092}
   - component: {fileID: 61822466011125216}
   - component: {fileID: 50499896216325014}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: Closed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 212188678973019948}
   - component: {fileID: 61313091333887792}
   - component: {fileID: 50331256885442888}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: Closed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 4192670525486562}
   - component: {fileID: 61329505883348408}
   - component: {fileID: 114414764342776166}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: RoomExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4975344552227994}
   - component: {fileID: 114352595162650532}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: WallTL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 212800624033917084}
   - component: {fileID: 61801502962417502}
   - component: {fileID: 50047649571195724}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: Closed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 4658198727270782}
   - component: {fileID: 61053793955519084}
   - component: {fileID: 114903898107541190}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: RoomExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4637908307752574}
   - component: {fileID: 114297726076891988}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: WallTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4583959471044976}
   - component: {fileID: 114070852667185124}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: WallTR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 50543095717645344}
   - component: {fileID: 60170585230327246}
   - component: {fileID: 60851808313079774}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 50984421795592796}
   - component: {fileID: 60305635879971842}
   - component: {fileID: 60172383289901128}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 212293668375797032}
   - component: {fileID: 61828153183511124}
   - component: {fileID: 114471740436608424}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: ClosedDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 50639945363736162}
   - component: {fileID: 60799703610583622}
   - component: {fileID: 60598717610337658}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 4625387984356902}
   - component: {fileID: 61718670839260372}
   - component: {fileID: 114937177444256048}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: RoomExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4706251159382666}
   - component: {fileID: 114892288787163572}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: OpenDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +423,7 @@ GameObject:
   - component: {fileID: 212298374707630108}
   - component: {fileID: 61026174876407564}
   - component: {fileID: 50980561049787290}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: Closed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 4817546484360668}
   - component: {fileID: 61667404878146250}
   - component: {fileID: 114152758882603240}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: RoomExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,7 +456,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4643738786320746}
   - component: {fileID: 114223043821088808}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: OpenDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,7 +472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4720843541399978}
   - component: {fileID: 114388160049412992}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: WallBL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -491,7 +491,7 @@ GameObject:
   - component: {fileID: 50033857718585380}
   - component: {fileID: 60589703480970370}
   - component: {fileID: 60335361027101094}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,7 +507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4100690396458094}
   - component: {fileID: 114384332507072138}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: WallBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -525,7 +525,7 @@ GameObject:
   - component: {fileID: 212419034075461944}
   - component: {fileID: 61637873310277930}
   - component: {fileID: 114727059056998918}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: ClosedDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,7 +544,7 @@ GameObject:
   - component: {fileID: 50016246302428972}
   - component: {fileID: 60253839412685658}
   - component: {fileID: 60472430840771242}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,7 +560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4757902796120922}
   - component: {fileID: 114011377117613230}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: OpenDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +576,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4597634965703628}
   - component: {fileID: 114662839286414554}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: OpenDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -611,7 +611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4948906914628878}
   - component: {fileID: 114780930064844710}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: OpenDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -629,7 +629,7 @@ GameObject:
   - component: {fileID: 212147010718669400}
   - component: {fileID: 61192070871617502}
   - component: {fileID: 114066891001382332}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: ClosedDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -647,7 +647,7 @@ GameObject:
   - component: {fileID: 212288133693114034}
   - component: {fileID: 61672494719150554}
   - component: {fileID: 50329040176387158}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: Closed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
