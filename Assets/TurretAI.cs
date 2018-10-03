@@ -8,6 +8,7 @@ public class TurretAI : MonoBehaviour
     Transform player;
     [SerializeField] Transform firingArc;
     private RobotLoadout rolo;
+	[SerializeField] float turnDelay = 0.5f;
 	[SerializeField] Vector2[] bulletSpawnLocations;
 	Vector3 bulletSpawnLocation;
 	Facing turretFacing;
@@ -67,7 +68,7 @@ public class TurretAI : MonoBehaviour
 			Vector3 diff = player.transform.position - transform.position;
             diff.Normalize();
             // delay to rotate in seconds
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(turnDelay);
             Quaternion toLoc = Quaternion.Euler(MovementFunctions.LookAt2D(transform, diff.x, diff.y));
             Quaternion fromLoc = firingArc.rotation;
             // Speed of rotation
@@ -134,11 +135,11 @@ public class TurretAI : MonoBehaviour
 					bulletSpawnLocation = SpawnLocationFromOffser(bulletSpawnLocations[5]);
 					break;
 				case Facing.upperRight:
-					turretBody.sprite = turretSprites[0];
+					turretBody.sprite = turretSprites[6];
 					bulletSpawnLocation = SpawnLocationFromOffser(bulletSpawnLocations[6]);
 					break;
 				case Facing.up:
-					turretBody.sprite = turretSprites[0];
+					turretBody.sprite = turretSprites[7];
 					bulletSpawnLocation = SpawnLocationFromOffser(bulletSpawnLocations[7]);
 					break;
 			}
