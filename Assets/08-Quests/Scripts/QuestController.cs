@@ -93,8 +93,6 @@ public class QuestController : MonoBehaviour {
     //function to spawn items associated with quest in correct room
     //Objects need to have a property for either "activates on setactive" or "activate on interact", set as active quest when this happens
     //Objects should also have win conditions that report to this
-    
-
-    //Set completed quest as "complete"
+   
 
 }
