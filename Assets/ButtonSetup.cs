@@ -9,14 +9,13 @@ public class ButtonSetup : MonoBehaviour
     Text newButtonText;
     public QuestEvent refEvent;
     QuestController qController;
-    QuestList qList;
+    public int thisQuestID;
 
     // Use this for initialization
     void Start()
     {
         refEvent = QuestController.currentQuest;
-        qList = FindObjectOfType<QuestList>();
-        qList.lastEvent = refEvent;
+        QuestList.lastEvent = refEvent;
         newButtonText = GetComponentInChildren<Text>();
         newButtonText.text = QuestController.currentQuest.eventName;
     }

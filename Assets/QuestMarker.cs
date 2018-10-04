@@ -45,7 +45,7 @@ public class QuestMarker : MonoBehaviour {
     {
         if (questReady && questDrop1 == null)
         {
-            qController.CompleteQuest();
+            QuestController.CompleteCurrentQuest();
         }
     }
 
@@ -65,7 +65,6 @@ public class QuestMarker : MonoBehaviour {
             Transform currentRoom = RoomManager.GetCurrentActiveRoom().transform;
             questDrop1 = Instantiate(Resources.Load("Drops"), transform.position, Quaternion.identity, currentRoom) as GameObject;
             questDrop1.GetComponent<Drops>().databaseItemID = 26;
-
             //Set item to special name or identifier? Once that special item is destroyed (picked up), complete quest
         }
     }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class TutorialFunctions : MonoBehaviour {
 
 	public static TutorialFunctions instance = null;
+    public QuestEvent tutorialEv;
+    public QuestController qController;
 	DialogueTrigger[] dialogueTriggers;
 	bool levelLoaded = false;
 	int onDeck = 0;
@@ -19,12 +21,13 @@ public class TutorialFunctions : MonoBehaviour {
 	}
 	void Start()
 	{
-		dialogueTriggers = GetComponents<DialogueTrigger>();
+        dialogueTriggers = GetComponents<DialogueTrigger>();
 	}
 	public void LevelLoaded()
 	{		
 		DialogueTriggerValue(0);
 		levelLoaded = true;
+        TutorialSetup();
 	}
 	void Update()
 	{
@@ -49,4 +52,14 @@ public class TutorialFunctions : MonoBehaviour {
 			}
 		}
 	}
+
+    public void TutorialSetup()
+    {
+        qController = FindObjectOfType<QuestController>();
+        tutorialEv = QuestFunctions.instance.questEvents[0];
+        QuestController.PullQuest();
+        QuestController.currentQuest = tutorialEv;
+        QuestList.lastEvent = tutorialEv;
+        qController.BeginQuest();
+    }
 }

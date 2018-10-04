@@ -79,16 +79,15 @@ public class QuestController : MonoBehaviour {
     public void BeginQuest()
     {
         currentQuest.active = true;
-        //MiniRoom.lastEnabled.color = Color.blue;
         print(currentQuest.eventName + " has started and it's active status is now set to " + currentQuest.active);
     }
 
-    public void CompleteQuest()
+    public static void CompleteCurrentQuest()
     {
-        currentQuest.active = false;
         currentQuest.completed = true;
+        currentQuest.active = false;
+        print(currentQuest.eventName + " has been resolved and completion is now set to " + currentQuest.completed);
     }
-
 
     //function to spawn items associated with quest in correct room
     //Objects need to have a property for either "activates on setactive" or "activate on interact", set as active quest when this happens
