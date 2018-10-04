@@ -62,16 +62,14 @@ public class QuestMarker : MonoBehaviour {
     {
         if(QuestController.currentQuest.eventID == 1)
         {
-            //instantiate a drop item as the child of this object, set drop object to chainsaw (itemID 26)
             Transform currentRoom = RoomManager.GetCurrentActiveRoom().transform;
             questDrop1 = Instantiate(Resources.Load("Drops"), transform.position, Quaternion.identity, currentRoom) as GameObject;
             questDrop1.GetComponent<Drops>().databaseItemID = 26;
-            //Set item to special name or identifier? Once that special item is destroyed (picked up), complete quest
         }
 
         if (QuestController.currentQuest.eventID == 2)
         {
-            //spawns an enemy spawner, which makes a drone, need to make a special drone for this later
+            //Need to make a special drone for this later, 100% drop rate
             //set a boolean and an ID to specify if there is a specific drop by ID
             Transform currentRoom = RoomManager.GetCurrentActiveRoom().transform;
             specialDrone = Instantiate(Resources.Load("Drone"), transform.position, Quaternion.identity, currentRoom) as GeneralAI;
@@ -81,18 +79,24 @@ public class QuestMarker : MonoBehaviour {
         if(QuestController.currentQuest.eventID == 3)
         {
             print("heat damage");
+            //need something that does continuous damage based on the current room
+            //this will need UI components, red around the sides?
+            //Do we implement hacking as planned?
         }
 
         if (QuestController.currentQuest.eventID == 4)
         {
             Transform currentRoom = RoomManager.GetCurrentActiveRoom().transform;
             specialTurret = Instantiate(Resources.Load("Turret"), transform.position, Quaternion.identity, currentRoom) as GameObject;
-            //set turret to have higher health
+            
+            //set turret to have higher health, see how to change initialize loadout to give heavy torso? 100% drop
         }
 
         if (QuestController.currentQuest.eventID == 5)
         {
             print("Spawn recharging station");
+            //This recharging station has to have health, also spawn random enemies?
+            //Use the same way as the console to recharge all items (once?)
         }
     }
 }

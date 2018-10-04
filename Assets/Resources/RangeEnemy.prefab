@@ -707,6 +707,8 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
+    itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -719,6 +721,8 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
+    itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -731,6 +735,8 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
+    itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -743,6 +749,8 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
+    itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -755,6 +763,8 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
+    itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -767,6 +777,8 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
+    itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -779,6 +791,8 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
+    itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
   shield:
     specialID: -1
     specialItemID: 0
@@ -791,6 +805,7 @@ MonoBehaviour:
   walk: 0
   stopWhileAttackingLeft: 0
   stopWhileAttackingRight: 0
+  audioSource: {fileID: 0}
 --- !u!114 &114818509082399608
 MonoBehaviour:
   m_ObjectHideFlags: 1
