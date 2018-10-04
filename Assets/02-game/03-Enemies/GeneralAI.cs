@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GeneralAI : MonoBehaviour {
 
-	enum Behaviour { random };
+	public enum Behaviour { random };
 	[SerializeField] Behaviour behaviour = Behaviour.random;
 	[SerializeField] float baseSpeed = 1;
 	[SerializeField] float randomDirectionChangeSpeed = 2;	
@@ -98,5 +98,12 @@ public class GeneralAI : MonoBehaviour {
 			}			
 		}
 	}
+
+    public void EnemySetup(float bSpeed, float randSpeed, Behaviour behave)
+    {
+        baseSpeed = bSpeed;
+        randomDirectionChangeSpeed = randSpeed;
+        behaviour = behave;
+    }
 
 }
