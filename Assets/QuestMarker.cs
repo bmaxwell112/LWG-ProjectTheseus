@@ -6,9 +6,10 @@ public class QuestMarker : MonoBehaviour {
     RoomGeneration containingRoom;
     QuestController qController;
     QuestEvent qMarked;
-    GameObject questDrop1, specialTurret;
+    GameObject questDrop1, specialTurret, cStation;
     GeneralAI specialDrone;
-    private bool firstTimeSetup, questReady;
+    Sprite questDrop1spr;
+    private bool firstTimeSetup, questReady, dropGet, setupDone;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +17,7 @@ public class QuestMarker : MonoBehaviour {
         questReady = false;
         qController = FindObjectOfType<QuestController>();
         containingRoom = GetComponentInParent<RoomGeneration>();
+        setupDone = false;
 
         qMarked = QuestController.activeEvents[Random.Range(1, QuestController.activeEvents.Count)];
     }
@@ -44,9 +46,21 @@ public class QuestMarker : MonoBehaviour {
 
     void CheckForCompletion()
     {
-        if (QuestController.currentQuest.eventID == 1 && questReady && questDrop1 == null)
+        if (setupDone)
         {
-            QuestController.CompleteCurrentQuest();
+
+            if (QuestController.currentQuest.eventID == 1 && questReady && questDrop1.GetComponentInChildren<SpriteRenderer>().sprite != questDrop1spr)
+            {
+                QuestController.CompleteCurrentQuest();
+            }
+            if (QuestController.currentQuest.eventID == 2 && questReady && specialDrone == null)
+            {
+                QuestController.CompleteCurrentQuest();
+            }
+            if (QuestController.currentQuest.eventID == 4 && questReady && specialTurret == null)
+            {
+                QuestController.CompleteCurrentQuest();
+            }
         }
     }
 
@@ -65,6 +79,7 @@ public class QuestMarker : MonoBehaviour {
             Transform currentRoom = RoomManager.GetCurrentActiveRoom().transform;
             questDrop1 = Instantiate(Resources.Load("Drops"), transform.position, Quaternion.identity, currentRoom) as GameObject;
             questDrop1.GetComponent<Drops>().databaseItemID = 26;
+            questDrop1.GetComponentInChildren<SpriteRenderer>().sprite = questDrop1spr;
         }
 
         if (QuestController.currentQuest.eventID == 2)
@@ -78,7 +93,7 @@ public class QuestMarker : MonoBehaviour {
 
         if(QuestController.currentQuest.eventID == 3)
         {
-            print("heat damage");
+            print("heat damage, this quest does not function yet");
             //need something that does continuous damage based on the current room
             //this will need UI components, red around the sides?
             //Do we implement hacking as planned?
@@ -88,15 +103,20 @@ public class QuestMarker : MonoBehaviour {
         {
             Transform currentRoom = RoomManager.GetCurrentActiveRoom().transform;
             specialTurret = Instantiate(Resources.Load("Turret"), transform.position, Quaternion.identity, currentRoom) as GameObject;
+            specialTurret.GetComponent<RobotLoadout>().loadout[1].itemHitpoints = 75;
+            specialTurret.GetComponentInChildren<SpriteRenderer>().color = Color.red;
             
-            //set turret to have higher health, see how to change initialize loadout to give heavy torso? 100% drop
+            //100% drop, deactivate color and give a special sprite later?
         }
 
         if (QuestController.currentQuest.eventID == 5)
         {
+            Transform currentRoom = RoomManager.GetCurrentActiveRoom().transform;
+            cStation = Instantiate(Resources.Load("ChargingStation"), transform.position, Quaternion.identity, currentRoom) as GameObject;
             print("Spawn recharging station");
-            //This recharging station has to have health, also spawn random enemies?
-            //Use the same way as the console to recharge all items (once?)
+            Instantiate(Resources.Load("Drone"), transform.position + new Vector3(10, 5, 0), Quaternion.identity, currentRoom);
+            //Give station health
         }
+        setupDone = true;
     }
 }

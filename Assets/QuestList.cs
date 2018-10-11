@@ -25,7 +25,7 @@ public class QuestList : MonoBehaviour
     {
         buttonsAlive = FindObjectsOfType<ButtonSetup>();
 
-        if (QuestController.currentQuest.eventID != lastEvent.eventID)
+        if (QuestController.currentQuest.eventID > -1 && QuestController.currentQuest.eventID != lastEvent.eventID)
         {
             print("Refreshed button load, already spawned is " + alreadySpawned);
             alreadySpawned = false;
