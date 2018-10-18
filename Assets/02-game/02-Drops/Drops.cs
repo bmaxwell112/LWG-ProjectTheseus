@@ -46,7 +46,7 @@ public class Drops : MonoBehaviour {
 					panelEnabled = true;
 				}
 				bool pickup = Input.GetButtonDown("Pickup");
-				if(pickup)
+				if(pickup && !ItemWheel.active)
 				{
 					PlayerPickupDrop(playerInRange.gameObject);
 				}
@@ -73,8 +73,7 @@ public class Drops : MonoBehaviour {
 	private void PlayerPickupDrop(GameObject player)
 	{
 		RobotLoadout playerLo = player.GetComponent<RobotLoadout>();
-		string newText = playerLo.loadout[(int)thisItem.itemLoc].itemName + "\nSwitched for\n" + thisItem.itemName;
-		np.NotificationsPanelSetEnable(newText);
+		
 		if (TutorialFunctions.instance)
 		{
 			if (thisItem.itemType == ItemType.range)
@@ -86,8 +85,24 @@ public class Drops : MonoBehaviour {
 				TutorialFunctions.instance.DialogueTriggerValue(3);
 			}
 		}
+		if (Database.instance.ArmIsambidextrous(thisItem))
+		{
+			print("Item can go on either arm.");
+			ItemWheel itemWheel = FindObjectOfType<ItemWheel>();
+			itemWheel.PickupWeaponWheel(thisItem, this);
+		}
+		else
+		{
+			PerformTheItemSwitch(playerLo);
+		}
+	}
+
+	public void PerformTheItemSwitch(RobotLoadout playerLo)
+	{
+		string newText = playerLo.loadout[(int)thisItem.itemLoc].itemName + "\nSwitched for\n" + thisItem.itemName;
+		np.NotificationsPanelSetEnable(newText);
 		RobotFunctions.ReplaceDropPart(this, playerLo);
-		RenameAndReset();		
+		RenameAndReset();
 	}
 
 	private bool PlayerFacingItem(Collider2D col)
@@ -148,7 +163,6 @@ public class Drops : MonoBehaviour {
 		SpriteSetter(item);
 		if (TutorialFunctions.instance)
 		{
-			print("running this");
 			TutorialFunctions.instance.DialogueTriggerValue(1);
 		}
 	}

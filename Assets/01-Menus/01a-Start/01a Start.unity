@@ -493,8 +493,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSpeed: 0.1
-  TextAtStart: 0
-  delayInSeconds: 2.75
+  textAtStart: 0
+  delayInSeconds: 2.5
+  typing: {fileID: 0}
 --- !u!1 &822728645
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,6 +621,7 @@ GameObject:
   - component: {fileID: 1046171188}
   - component: {fileID: 1046171187}
   - component: {fileID: 1046171186}
+  - component: {fileID: 1046171189}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -732,6 +734,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1046171184}
+--- !u!114 &1046171189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1046171184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967e89996bc5fd4ca1bb6a6fb5aed7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1094375401
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,8 +826,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSpeed: 0.075
-  TextAtStart: 1
+  textAtStart: 1
   delayInSeconds: 0
+  typing: {fileID: 8300000, guid: 2f7794438c90a294f9ff4b87d6bbfe01, type: 3}
 --- !u!222 &1094375405
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -832,6 +846,7 @@ GameObject:
   - component: {fileID: 1458139518}
   - component: {fileID: 1458139517}
   - component: {fileID: 1458139516}
+  - component: {fileID: 1458139519}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -944,6 +959,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1458139514}
+--- !u!114 &1458139519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1458139514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967e89996bc5fd4ca1bb6a6fb5aed7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1577961586
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,6 +981,7 @@ GameObject:
   - component: {fileID: 1577961590}
   - component: {fileID: 1577961589}
   - component: {fileID: 1577961588}
+  - component: {fileID: 1577961591}
   m_Layer: 5
   m_Name: Playground
   m_TagString: Untagged
@@ -1056,6 +1083,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1577961586}
+--- !u!114 &1577961591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1577961586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967e89996bc5fd4ca1bb6a6fb5aed7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1599677108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,8 +1181,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSpeed: 0.1
-  TextAtStart: 0
-  delayInSeconds: 2.5
+  textAtStart: 0
+  delayInSeconds: 2
+  typing: {fileID: 0}
 --- !u!1 &1668394843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,6 +1195,7 @@ GameObject:
   - component: {fileID: 1668394847}
   - component: {fileID: 1668394846}
   - component: {fileID: 1668394845}
+  - component: {fileID: 1668394848}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -1230,7 +1270,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 01b Options
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1268,6 +1308,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1668394843}
+--- !u!114 &1668394848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1668394843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967e89996bc5fd4ca1bb6a6fb5aed7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1784570501
 Prefab:
   m_ObjectHideFlags: 0
@@ -1397,8 +1448,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSpeed: 0.1
-  TextAtStart: 0
-  delayInSeconds: 3
+  textAtStart: 0
+  delayInSeconds: 2.75
+  typing: {fileID: 0}
 --- !u!1 &2143687896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,5 +1538,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSpeed: 0.1
-  TextAtStart: 0
-  delayInSeconds: 3.25
+  textAtStart: 0
+  delayInSeconds: 3
+  typing: {fileID: 0}

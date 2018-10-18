@@ -10,6 +10,8 @@ public class RobotFunctions {
 	 * as well as the hitpoints and loadout of the affected object and a bool for 
 	 * if the effected object should be knocked back and one for if it drops an item. 
 	 */
+	public static int[] itemDropMultiplier = new int[7] { 1, 1, 1, 1, 1, 1, 1 };
+
 	public static void DealDamage(int damage, GameObject target, bool stopActions)
 	{
 		if (target.GetComponent<RobotLoadout>())
@@ -119,16 +121,21 @@ public class RobotFunctions {
 			GameManager.RandomDropModifier = 0;
 			List<int> avalibleItems = new List<int>();
 			//Item[] playerInv = player.GetComponent<RobotLoadout>().loadout;
+			int maxMultiplier = 5;
 			for (int i = 0; i < roLo.loadout.Length; i++)
 			{
 				// If the item is not one of the basics.
-				if (roLo.loadout[i].itemID > 6)
+				if (roLo.loadout[i].itemID > 6 || itemDropMultiplier[i] >= maxMultiplier)
 				{
 					// If the player doesn't have the item TODO remove this maybe. 
 					//if (roLo.loadout[i].itemID != playerInv[i].itemID)
 					//{
-						// add that items ID to a List
+					// add that items ID to a List
+					for (int j = 0; j < itemDropMultiplier[i]; j++)
+					{
+						Debug.Log("Doing this thing");
 						avalibleItems.Add(roLo.loadout[i].itemID);
+					}
 					//}
 				}
 			}

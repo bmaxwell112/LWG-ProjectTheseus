@@ -84,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1040527390137408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.08, y: -0.57, z: 0}
+  m_LocalPosition: {x: -1.634, y: -0.563, z: 0}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children:
   - {fileID: 4297715522855780}
@@ -196,6 +196,8 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
+    itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -208,6 +210,8 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
+    itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -220,6 +224,8 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
+    itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -232,6 +238,8 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
+    itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -244,6 +252,8 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
+    itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -256,6 +266,8 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
+    itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -268,10 +280,21 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
+    itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
+  shield:
+    specialID: -1
+    specialItemID: 0
+    specialProps: 
+    specialDuration: 0
+    specialDamage: 0
+    specialDefence: 0
+    specialPowerUse: 0
   stopped: 0
   walk: 0
   stopWhileAttackingLeft: 0
   stopWhileAttackingRight: 0
+  audioSource: {fileID: 0}
 --- !u!114 &114689855089614696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -284,6 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firingArc: {fileID: 4297715522855780}
+  turnDelay: 0.5
   bulletSpawnLocations:
   - {x: -0.3, y: 0.425}
   - {x: -0.3, y: 0.035}
@@ -299,6 +323,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c86c05b2a7bf4804e930baf85ada1951, type: 3}
   - {fileID: 21300000, guid: 9380c0c7b0845254ba1edaa0475a1dea, type: 3}
   - {fileID: 21300000, guid: feba8b47de1738a4a872a6f405d8f638, type: 3}
+  - {fileID: 21300000, guid: d9fe9d6f64f9a124d9e1ab71bea4fdef, type: 3}
+  - {fileID: 21300000, guid: d9fe9d6f64f9a124d9e1ab71bea4fdef, type: 3}
   - {fileID: 21300000, guid: d9fe9d6f64f9a124d9e1ab71bea4fdef, type: 3}
   turretBody: {fileID: 212308600117403558}
 --- !u!114 &114885267858835810

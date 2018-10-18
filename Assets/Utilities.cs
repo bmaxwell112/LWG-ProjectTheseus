@@ -24,4 +24,9 @@ public class Utilities : MonoBehaviour {
 			return rotateValue;
 		}
 	}
+
+	public static void PlaySoundEffect(AudioClip audio)
+	{
+		AudioSource.PlayClipAtPoint(audio, CameraController.CAMPOS, GameManager.SoundFXVolume);
+	}
 }

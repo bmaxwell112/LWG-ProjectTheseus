@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputCapture {
 
 	public static float hThrow, vThrow, hAim, vAim;
-	public static bool pickup, back, fireLeftDown, fireRightDown, firingLeft, firingRight, pause, triggerRight, triggerLeft, block;
+	public static bool pickup, back, fireLeftDown, fireRightDown, firingLeft, firingRight, pause, triggerRight, triggerLeft, block, pickupUp;
 	static bool mouseIsFiringLeft, mouseIsFiringRight;
 
 
@@ -14,6 +14,7 @@ public class InputCapture {
 		hThrow = Input.GetAxis("Horizontal");
 		vThrow = Input.GetAxis("Vertical");
 		pickup = Input.GetButtonDown("Pickup");
+		pickupUp = Input.GetButtonUp("Pickup");
 		back = Input.GetButtonDown("Submit");
 		pause = Input.GetButtonDown("Cancel");
 		block = Input.GetButton("BlockDodge");

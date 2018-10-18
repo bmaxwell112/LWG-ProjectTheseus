@@ -201,7 +201,9 @@ MonoBehaviour:
     itemSpeed: 0
     itemPower: 0
     itemSpecial: 0
-  databaseItemID: 30
+    itemAnim: {fileID: 0}
+    itemSound: {fileID: 0}
+  databaseItemID: 13
   hitPoints: 0
   power: 0
   playerCanPickup: 0
