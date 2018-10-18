@@ -3212,7 +3212,7 @@ Prefab:
         type: 2}
       propertyPath: userInterface
       value: 
-      objectReference: {fileID: 1872913871305282, guid: f20eb8245090ca44a87b79bf12034e53,
+      objectReference: {fileID: 1872913871305282, guid: f56fb8d7f0127bb4682db3e4386a3337,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80de9e499a0350f468cd39e132bb0850, type: 2}

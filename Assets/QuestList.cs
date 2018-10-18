@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestList : MonoBehaviour
 {
 
     [SerializeField] GameObject QuestBtn;
     GameObject newButton;
-    public QuestEvent lastEvent;
+    public static QuestEvent lastEvent;
+    public ButtonSetup[] buttonsAlive;
+    public InfoDummy currentInfo;
     bool alreadySpawned;
 
 
@@ -20,12 +23,15 @@ public class QuestList : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        buttonsAlive = FindObjectsOfType<ButtonSetup>();
 
-        if (QuestController.currentQuest.eventID != lastEvent.eventID)
+        if (QuestController.currentQuest.eventID > -1 && QuestController.currentQuest.eventID != lastEvent.eventID)
         {
             print("Refreshed button load, already spawned is " + alreadySpawned);
             alreadySpawned = false;
         }
+
+        RemoveCompletedQuests();
 
     }
 
@@ -37,8 +43,18 @@ public class QuestList : MonoBehaviour
             newButton.transform.parent = transform;
             alreadySpawned = true;
         }
-
     }
 
-
+    public void RemoveCompletedQuests()
+    {
+        for (int i = 0; i < buttonsAlive.Length; i++)
+        {
+            if (buttonsAlive[i].refEvent.completed == true)
+            {
+                Destroy(buttonsAlive[i].gameObject);
+                currentInfo = FindObjectOfType<InfoDummy>();
+                currentInfo.GetComponent<Text>().text = "";
+            }
+        }
+    }
 }

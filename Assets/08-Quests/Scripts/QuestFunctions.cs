@@ -22,8 +22,8 @@ public class QuestFunctions : MonoBehaviour {
 
     void Start () {
         SetupEvents();
-
-	}
+        print("Setting up events");
+    }
 	
 	// Update is called once per frame
 	void Update () {

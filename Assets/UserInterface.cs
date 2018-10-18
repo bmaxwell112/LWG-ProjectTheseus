@@ -118,7 +118,6 @@ public class UserInterface : MonoBehaviour {
             {
                 for (int i = 0; i < QuestController.activeEvents.Count; i++)
                 {
-
                     qList.SpawnButton();
                     print("Spawning button");
                 }

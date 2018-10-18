@@ -27,6 +27,12 @@ public class Terminal : MonoBehaviour {
                 ui.loadoutCanBeChanged = true;
             }
 
+            if(QuestController.currentQuest.eventID == 0)
+            {
+                print("Completed tutorial");
+                QuestController.CompleteCurrentQuest();
+            }
+
 			ui.PauseGame();
 			touchingMe = true;
 		}

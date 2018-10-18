@@ -58,10 +58,12 @@ public class RoomManager : MonoBehaviour {
             yield return null;
         }
         // questLoaded being true turns off the time stop
-        if(!hub)
+
+        Instantiate(questController);
+        QuestController.PullQuest();
+
+        if (!hub)
         {
-            Instantiate(questController);
-            QuestController.PullQuest();
             QuestSiteSetup();
         }
         questLoaded = true;
