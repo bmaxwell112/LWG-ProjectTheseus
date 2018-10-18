@@ -31,7 +31,7 @@ public class GeneralAI : MonoBehaviour {
 			{				
 				float xSpeed = direction.x * baseSpeed * Time.deltaTime;
 				float ySpeed = direction.y * baseSpeed * Time.deltaTime;
-				transform.position += new Vector3(xSpeed, ySpeed, transform.position.z);
+				transform.position += new Vector3(xSpeed, ySpeed, 0);
 			}
 		}
 		else if (gameLoaded && GameManager.paused)

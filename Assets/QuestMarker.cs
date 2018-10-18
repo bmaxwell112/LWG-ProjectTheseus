@@ -9,7 +9,7 @@ public class QuestMarker : MonoBehaviour {
     GameObject questDrop1, specialTurret, cStation;
     GeneralAI specialDrone;
     Sprite questDrop1spr;
-    private bool firstTimeSetup, questReady, dropGet, setupDone;
+    private bool firstTimeSetup, questReady, dropGet, setupDone, droneUp;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +18,7 @@ public class QuestMarker : MonoBehaviour {
         qController = FindObjectOfType<QuestController>();
         containingRoom = GetComponentInParent<RoomGeneration>();
         setupDone = false;
+        droneUp = false;
 
         qMarked = QuestController.activeEvents[Random.Range(1, QuestController.activeEvents.Count)];
     }
@@ -53,9 +54,10 @@ public class QuestMarker : MonoBehaviour {
             {
                 QuestController.CompleteCurrentQuest();
             }
-            if (QuestController.currentQuest.eventID == 2 && questReady && specialDrone == null)
+            if (QuestController.currentQuest.eventID == 2 && questReady && droneUp && specialDrone == null)
             {
                 QuestController.CompleteCurrentQuest();
+                droneUp = false;
             }
             if (QuestController.currentQuest.eventID == 4 && questReady && specialTurret == null)
             {
@@ -88,7 +90,11 @@ public class QuestMarker : MonoBehaviour {
             //set a boolean and an ID to specify if there is a specific drop by ID
             Transform currentRoom = RoomManager.GetCurrentActiveRoom().transform;
             specialDrone = Instantiate(Resources.Load("Drone"), transform.position, Quaternion.identity, currentRoom) as GeneralAI;
-            specialDrone.EnemySetup(2, 1, GeneralAI.Behaviour.random);
+            if (specialDrone != null)
+            {
+                droneUp = true;
+                specialDrone.EnemySetup(2, 1, GeneralAI.Behaviour.random);
+            }
         }
 
         if(QuestController.currentQuest.eventID == 3)
