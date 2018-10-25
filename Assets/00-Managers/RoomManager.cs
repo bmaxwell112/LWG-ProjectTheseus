@@ -180,11 +180,11 @@ public class RoomManager : MonoBehaviour {
         if(questSpawnOptions.Count > 0)
         {
             questSpawnSite = questSpawnOptions[Random.Range(0, questSpawnOptions.Count)];
-            print(questSpawnSite.name + " has a quest");
+            //print(questSpawnSite.name + " has a quest");
             Instantiate(questMarker, questSpawnSite.transform);
         }
 
-            print("Quest loading is complete if applicable");
+           // print("Quest loading is complete if applicable");
 
     }
 

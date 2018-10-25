@@ -22,14 +22,14 @@ public class UserInterface : MonoBehaviour {
 	public int loadoutIndex;
 	int currentIndex;
     public int abilitySet;
-    QuestList qList;
+    //QuestList qList;
     QuestController qController;
 
 	// Use this for initialization
 	void Start () {
 
 		playerLo = FindObjectOfType<PlayerController>().GetComponent<RobotLoadout>();
-        qList = FindObjectOfType<QuestList>();
+        //qList = FindObjectOfType<QuestList>();
         qController = FindObjectOfType<QuestController>();
         currentIndex = -1;
 		PauseScreenUpdate();
@@ -118,7 +118,7 @@ public class UserInterface : MonoBehaviour {
             {
                 for (int i = 0; i < QuestController.activeEvents.Count; i++)
                 {
-                    qList.SpawnButton();
+                    //qList.SpawnButton();
                     print("Spawning button");
                 }
             }

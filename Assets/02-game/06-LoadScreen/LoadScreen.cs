@@ -16,10 +16,14 @@ public class LoadScreen : MonoBehaviour {
 	void Start () {
 		den = RoomManager.instance.roomCap;
 		dt = FindObjectOfType<UserInterfaceDialogueTrigger>();
-		dt.TriggerDialogue();
+		if (dt)
+		{
+			dt.TriggerDialogue();
+		}
 	}
 	void Update()
 	{
+		
 		if (RoomManager.gameSetupComplete && InputCapture.back)
 		{
 			StartGame();
@@ -39,7 +43,7 @@ public class LoadScreen : MonoBehaviour {
 		{
 			xScale = 1;
 		}
-		if (xScale == 1)
+		if (xScale >= 1)
 		{			
 			if (!loaded && !ready && !UserInterfaceDialogue.dialogueRunning)
 			{
@@ -52,6 +56,7 @@ public class LoadScreen : MonoBehaviour {
 			currentColor.a -= alphaChange;
 			panel.color = currentColor;
 		}
+		print(xScale);
 	}
 
 	private void Destroy()

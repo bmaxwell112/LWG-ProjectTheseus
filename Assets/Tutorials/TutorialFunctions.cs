@@ -59,7 +59,7 @@ public class TutorialFunctions : MonoBehaviour {
         tutorialEv = QuestFunctions.instance.questEvents[0];
         QuestController.PullQuest();
         QuestController.currentQuest = tutorialEv;
-        QuestList.lastEvent = tutorialEv;
+        //QuestList.lastEvent = tutorialEv;
         qController.BeginQuest();
     }
 }
