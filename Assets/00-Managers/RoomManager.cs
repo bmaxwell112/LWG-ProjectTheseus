@@ -14,7 +14,7 @@ public class RoomManager : MonoBehaviour {
 	public static bool roomsLoaded, questLoaded, gameSetupComplete;
 	static Queue<RoomGeneration> roomQueue = new Queue<RoomGeneration>();
     public GameObject[] spawnConfigs;
-    //spawnConfigs array
+    public GameObject configContainer;
 
     //Objects to Spawn
     public WallHealth internalWall;
@@ -164,6 +164,8 @@ public class RoomManager : MonoBehaviour {
 		return null;
 	}
 
+
+    //REDO THIS
     void QuestSiteSetup()
     {
         RoomGeneration questSpawnSite;
