@@ -254,8 +254,7 @@ public class RoomGeneration : MonoBehaviour {
 
     public void GetSpawnConfigs()
     {
-        configScript = Instantiate(configScript) as AllConfig;
-        configScript.SetConfigurationNumber(0);
+        configScript = FindObjectOfType<AllConfig>();
 
 		if (first)
 		{

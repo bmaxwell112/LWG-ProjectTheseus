@@ -16,7 +16,7 @@ public class AllConfig : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        RunConfiguration();
 	}
 
 
@@ -30,7 +30,6 @@ public class AllConfig : MonoBehaviour {
     {
         if(RoomManager.gameSetupComplete && !alreadySpawned && isActiveAndEnabled)
         {
-
 
         if(configNumber == 0)
         {
@@ -374,8 +373,10 @@ public class AllConfig : MonoBehaviour {
         }
         if (configNumber == 25)
         {
-            //THIS NEEDS TO BE THE ENDING ROOM
-            alreadySpawned = true;
+                wController = FindObjectOfType<RoomManager>();
+
+                Instantiate(wController.wCondition, new Vector3(transform.position.x + 0f, transform.position.y + 0f, 0), Quaternion.identity, transform);
+                alreadySpawned = true;
         }
 
         }

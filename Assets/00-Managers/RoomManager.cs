@@ -23,6 +23,7 @@ public class RoomManager : MonoBehaviour {
     public Pillar pillar;
     public HoleCollisions hole;
     public DropSpawner dropSpawner;
+    public WinConditionTEMP wCondition;
 
     void Awake()
     {
@@ -173,7 +174,7 @@ public class RoomManager : MonoBehaviour {
 
         foreach (spawnFunc cfg in QuestController.availConfigs)
         {
-            if (cfg.GetComponent<Config23>() || cfg.GetComponent<Config9>() || cfg.GetComponent<Config4>())
+            if (cfg.GetComponent<AllConfig>().configNumber == 23 || cfg.GetComponent<AllConfig>().configNumber == 9 || cfg.GetComponent<AllConfig>().configNumber == 4)
             {
                 questSpawnOptions.Add(cfg.GetComponentInParent<RoomGeneration>());
             }
