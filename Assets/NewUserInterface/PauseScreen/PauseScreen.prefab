@@ -1101,6 +1101,7 @@ MonoBehaviour:
   techTree: {fileID: 1665926936413174}
   questLog: {fileID: 1110720720108448}
   loadout: {fileID: 114185398901748948}
+  headerTxt: {fileID: 114886758312166892}
 --- !u!114 &114341148585410260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1307,7 +1308,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224268548397181008}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.59072304
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2263,7 +2264,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 107.49004}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224834718044894610

@@ -56,7 +56,6 @@ public class LoadScreen : MonoBehaviour {
 			currentColor.a -= alphaChange;
 			panel.color = currentColor;
 		}
-		print(xScale);
 	}
 
 	private void Destroy()

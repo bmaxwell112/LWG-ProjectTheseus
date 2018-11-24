@@ -8,6 +8,7 @@ public class PauseScreen : MonoBehaviour {
 	[SerializeField] GameObject header, loadOut, techTree, questLog;
 	QuestListRE questList;
 	[SerializeField] Button loadout;
+	[SerializeField] Text headerTxt;
 
 	// Use this for initialization
 	void Start () {
@@ -24,32 +25,41 @@ public class PauseScreen : MonoBehaviour {
 			PauseScreenActive();
 			//GameManager.GamePause(true);
 		}
+		else if (InputCapture.pause && GameManager.paused)
+		{
+			BackButton();
+		}
 	}
 
 	public void LoudoutButton()
 	{
 		ActiveScreen(true, false, false);
+		headerTxt.text = "LOADOUT";
 	}
 	public void TechTreeButton()
 	{
 		ActiveScreen(false, true, false);
+		headerTxt.text = "TECH TREE";
 	}
 	public void QuestButton()
 	{
 		ActiveScreen(false, false, true);
 		questList.LoadActiveQuests();
+		headerTxt.text = "QUEST LOG";
 	}
 	public void BackButton()
 	{
 		header.SetActive(false);
 		ActiveScreen(false, false, false);
-		//GameManager.GamePause(false);
+		GameManager.GamePause(false);
 	}
 	public void PauseScreenActive()
 	{
 		header.SetActive(true);
 		questLog.SetActive(true);
 		loadout.Select();
+		LoudoutButton();
+		GameManager.GamePause(true);
 	}
 
 	public void ActiveScreen(bool lo, bool tt, bool ql)

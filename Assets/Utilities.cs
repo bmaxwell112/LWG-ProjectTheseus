@@ -27,6 +27,8 @@ public class Utilities : MonoBehaviour {
 
 	public static void PlaySoundEffect(AudioClip audio)
 	{
+		print(CameraController.CAMPOS);
+		print(GameManager.SoundFXVolume);
 		AudioSource.PlayClipAtPoint(audio, CameraController.CAMPOS, GameManager.SoundFXVolume);
 	}
 }
