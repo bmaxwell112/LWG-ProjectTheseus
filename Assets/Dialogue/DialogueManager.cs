@@ -25,6 +25,8 @@ public class DialogueManager : MonoBehaviour {
 	[SerializeField] Text nameTxt, sentenceTxt;
 	[SerializeField] Image[] characters;
 	[SerializeField] Button btn;
+	bool finishEarly, runningSentence;
+
 	void Awake()
 	{
 		if (instance == null)
@@ -52,24 +54,41 @@ public class DialogueManager : MonoBehaviour {
 
 	public void DisplayNextSentence()
 	{
-		if (sentences.Count == 0)
+		if (!runningSentence)
 		{
-			EndDialogue();
-			return;
+			if (sentences.Count == 0)
+			{
+				EndDialogue();
+				return;
+			}
+			string sentence = sentences.Dequeue();
+			StopAllCoroutines();
+			StartCoroutine(TypeSentence(sentence));
 		}
-		string sentence = sentences.Dequeue();
-		StopAllCoroutines();
-		StartCoroutine(TypeSentence(sentence));
+		else
+		{
+			finishEarly = true;
+		}
 	}
 
 	IEnumerator TypeSentence(string sentence)
 	{
+		runningSentence = true;
 		sentenceTxt.text = "";
 		foreach(char letter in sentence.ToCharArray())
 		{
 			sentenceTxt.text += letter;
-			yield return new WaitForSeconds(characterSpeed);
+			if (!finishEarly)
+				yield return new WaitForSeconds(characterSpeed);
+			else				
+				break;
 		}
+		if (finishEarly)
+		{
+			sentenceTxt.text = sentence; 
+		}
+		finishEarly = false;
+		runningSentence = false;
 	}
 
 	private void EndDialogue()

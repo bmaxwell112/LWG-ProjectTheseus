@@ -17,23 +17,22 @@ public class Terminal : MonoBehaviour {
 		{
             //PlayerPrefsManager.SetPointValue(1);
             PlayerPrefsManager.ResetPointValue();
-			UserInterface ui = FindObjectOfType<UserInterface>();
-            if(PlayerPrefsManager.GetPointValue() > 0)
-            {
-                ui.pointsAvailable = true;
-            }
-            else
-            {
-                ui.loadoutCanBeChanged = true;
-            }
+			TechTree ui = FindObjectOfType<TechTree>();
+			// TODO Fix points
+            //if(PlayerPrefsManager.GetPointValue() > 0)
+            //{
+            //    ui.pointsAvailable = true;
+            //}
+            //else
+            //{
+            //    ui.loadoutCanBeChanged = true;
+            //}
 
             if(QuestController.currentQuest.eventID == 0)
             {
                 print("Completed tutorial");
                 QuestController.CompleteCurrentQuest();
             }
-
-			ui.PauseGame();
 			touchingMe = true;
 		}
 		if (GameManager.paused && touchingMe)

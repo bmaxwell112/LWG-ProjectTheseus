@@ -73,18 +73,19 @@ public class RoomManager : MonoBehaviour {
 		}
 		// Disable all rooms but the first one.
 		bool first = false;
-            foreach (RoomGeneration room in allRooms)
+        foreach (RoomGeneration room in allRooms)
+        {
+            if (first)
             {
-                if (first)
-                {
-                    room.SetActive(false);
-                }
-                else
-                {
-                    first = true;
-                }
+                room.SetActive(false);
             }
-        FindObjectOfType<MinimapContoller>().GetRoomPos();
+            else
+            {
+                first = true;
+            }
+        }
+		if(FindObjectOfType<MinimapContoller>())
+			FindObjectOfType<MinimapContoller>().GetRoomPos();
         // Game Unpause
         gameSetupComplete = true;
 		GameManager.GamePause(false);

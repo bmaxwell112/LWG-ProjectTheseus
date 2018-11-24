@@ -7,11 +7,11 @@ using UnityEngine.EventSystems;
 public class LoadoutBtn : MonoBehaviour, ISelectHandler {
 
 	[SerializeField] int indexValue;
-	UserInterface loadoutGUI;
+	LoadoutScreen loadoutGUI;
 
 	// Use this for initialization
 	void Start () {
-		loadoutGUI = FindObjectOfType<UserInterface>();
+		loadoutGUI = FindObjectOfType<LoadoutScreen>();
 	}
 
 	public void OnSelect(BaseEventData eventData)

@@ -1,15 +1,15 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MageBtn : MonoBehaviour {
 
-    private UserInterface ui;
+    private TechTree ui;
 
     // Use this for initialization
     void Start()
     {
-        ui = FindObjectOfType<UserInterface>();
+        ui = FindObjectOfType<TechTree>();
     }
 
     // Update is called once per frame
