@@ -32,3 +32,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01-Menus/03d-IdlePlay/03d IdlePlay.unity
     guid: d61cdf8f91b467c4c8eac8c8dcc213e4
+  m_configObjects: {}

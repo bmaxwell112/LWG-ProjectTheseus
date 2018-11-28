@@ -37,7 +37,7 @@ public class LoadScreen : MonoBehaviour {
 		if (den > 0)
 		{
 			xScale = num / den;
-			loadingProgress.transform.localScale = new Vector3(xScale, 1, 1);
+			loadingProgress.fillAmount = xScale;
 		}
 		else
 		{

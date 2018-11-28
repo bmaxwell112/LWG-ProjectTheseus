@@ -63,6 +63,7 @@ public class PauseScreen : MonoBehaviour {
 	public void ExitButton()
 	{
 		GameManager.GamePause(false);
+		GameManager.instance.playerAlive = false;
 		LevelManager.LOADLEVEL("01a Start");
 	}
 	public void PauseScreenActive()
