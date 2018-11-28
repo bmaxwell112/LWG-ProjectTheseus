@@ -12,6 +12,7 @@ public class RoomGeneration : MonoBehaviour {
 	[SerializeField] ClosedDoor[] closedDoors;
     [SerializeField] OpenDoor[] openDoors;
     private RoomManager worldController;
+    private AllConfig configScript;
     private int minDoors, totalRooms;
     private DoorGen walls;
 	public bool roomListener, enemyListener;
@@ -253,18 +254,25 @@ public class RoomGeneration : MonoBehaviour {
 
     public void GetSpawnConfigs()
     {
+        configScript = FindObjectOfType<AllConfig>();
+
 		if (first)
 		{
-			layout = Instantiate(RoomManager.instance.spawnConfigs[0], new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, transform);
+			layout = Instantiate(RoomManager.instance.configContainer, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, transform);
+            layout.GetComponent<AllConfig>().SetConfigurationNumber(0);
 		}
 		else if (roomsInExistence == RoomManager.instance.roomCap)
-		{			
-			layout = Instantiate(RoomManager.instance.spawnConfigs[25], new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, transform);
-		}
+		{
+            layout = Instantiate(RoomManager.instance.configContainer, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, transform);
+            layout.GetComponent<AllConfig>().SetConfigurationNumber(25);
+            //THIS IS LISTED AS 3 IN THE OLD SYSTEM
+        }
 		else
 		{
-			layout = Instantiate(RoomManager.instance.GetRandomRoom(), new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, transform);
-			layout.SetActive(false);
+            layout = Instantiate(RoomManager.instance.configContainer, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, transform);
+            layout.GetComponent<AllConfig>().SetConfigurationNumber(Random.Range(0, 24));
+
+            layout.SetActive(false);
 		}
     }
 

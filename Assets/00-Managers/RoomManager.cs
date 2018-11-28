@@ -14,7 +14,7 @@ public class RoomManager : MonoBehaviour {
 	public static bool roomsLoaded, questLoaded, gameSetupComplete;
 	static Queue<RoomGeneration> roomQueue = new Queue<RoomGeneration>();
     public GameObject[] spawnConfigs;
-    //spawnConfigs array
+    public GameObject configContainer;
 
     //Objects to Spawn
     public WallHealth internalWall;
@@ -23,6 +23,7 @@ public class RoomManager : MonoBehaviour {
     public Pillar pillar;
     public HoleCollisions hole;
     public DropSpawner dropSpawner;
+    public WinConditionTEMP wCondition;
 
     void Awake()
     {
@@ -73,19 +74,18 @@ public class RoomManager : MonoBehaviour {
 		}
 		// Disable all rooms but the first one.
 		bool first = false;
-        foreach (RoomGeneration room in allRooms)
-        {
-            if (first)
+            foreach (RoomGeneration room in allRooms)
             {
-                room.SetActive(false);
+                if (first)
+                {
+                    room.SetActive(false);
+                }
+                else
+                {
+                    first = true;
+                }
             }
-            else
-            {
-                first = true;
-            }
-        }
-		if(FindObjectOfType<MinimapContoller>())
-			FindObjectOfType<MinimapContoller>().GetRoomPos();
+        FindObjectOfType<MinimapContoller>().GetRoomPos();
         // Game Unpause
         gameSetupComplete = true;
 		GameManager.GamePause(false);
@@ -172,7 +172,7 @@ public class RoomManager : MonoBehaviour {
 
         foreach (spawnFunc cfg in QuestController.availConfigs)
         {
-            if (cfg.GetComponent<Config23>() || cfg.GetComponent<Config9>() || cfg.GetComponent<Config4>())
+            if (cfg.GetComponent<AllConfig>().configNumber == 23 || cfg.GetComponent<AllConfig>().configNumber == 9 || cfg.GetComponent<AllConfig>().configNumber == 4)
             {
                 questSpawnOptions.Add(cfg.GetComponentInParent<RoomGeneration>());
             }
@@ -181,14 +181,13 @@ public class RoomManager : MonoBehaviour {
         if(questSpawnOptions.Count > 0)
         {
             questSpawnSite = questSpawnOptions[Random.Range(0, questSpawnOptions.Count)];
-            //print(questSpawnSite.name + " has a quest");
+            print(questSpawnSite.name + " has a quest");
             Instantiate(questMarker, questSpawnSite.transform);
         }
 
-           // print("Quest loading is complete if applicable");
+            print("Quest loading is complete if applicable");
 
     }
 
     //Track number of rooms for special rooms
 }
-

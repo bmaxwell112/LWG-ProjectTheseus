@@ -61,6 +61,8 @@ MonoBehaviour:
     type: 2}
   questMarker: {fileID: 1119396125105566, guid: 1de2f5e6947d7b04c9127bfbcbd72cc6,
     type: 2}
+  configContainer: {fileID: 1270131870308636, guid: ca1ee1c180f3c1c48a8af3edc9f170ac,
+    type: 2}
   roomCap: 15
   spawnConfigs:
   - {fileID: 1270131870308636, guid: 0b3a948043e62774cb15f987a4f6b522, type: 2}
