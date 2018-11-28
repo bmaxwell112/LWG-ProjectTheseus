@@ -89,7 +89,6 @@ public class NewCurrentRoom : MonoBehaviour {
 
     IEnumerator ActivateRoom(Transform player)
     {
-		print("Starting This");
 		GetAdjustment();
 
 		RoomManager.gameSetupComplete = false;
@@ -112,7 +111,6 @@ public class NewCurrentRoom : MonoBehaviour {
         {
 			player.transform.position = Vector3.MoveTowards(player.transform.position, (nextRoomPos + nextRoomAdjust), 2 * Time.deltaTime);
             distance = Vector3.Distance(nextRoomPos, player.position);
-			print((nextRoomPos + nextRoomAdjust));
 			yield return null;
         }
 		nextRoom.CheckEnemies();

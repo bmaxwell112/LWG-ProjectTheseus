@@ -29,7 +29,8 @@ public class Buttons : MonoBehaviour, ISelectHandler
 
 	public void OnSelect(BaseEventData eventData)
 	{
-		
+		if(hover == null)
+			hover = Resources.Load<AudioClip>("sound/Menu Effects/Hover");
 		Utilities.PlaySoundEffect(hover);
 	}
 	

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +22,7 @@ public class QuestFunctions : MonoBehaviour {
 
     void Start () {
         SetupEvents();
-        print("Setting up events");
+        //print("Setting up events");
     }
 	
 	// Update is called once per frame

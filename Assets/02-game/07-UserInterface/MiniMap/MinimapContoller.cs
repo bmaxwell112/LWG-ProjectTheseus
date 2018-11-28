@@ -21,7 +21,6 @@ public class MinimapContoller : MonoBehaviour {
 		foreach (RoomGeneration room in RoomManager.instance.allRooms)
 		{
             questRoom = room.GetComponentInChildren<QuestMarker>();
-            print(questRoom);
             var spawnLoc = new Vector3(room.transform.position.x, room.transform.position.y);
             MiniRoom miniRoom = Instantiate(mapRoom, transform) as MiniRoom;
             miniRoom.transform.localPosition = spawnLoc*7;

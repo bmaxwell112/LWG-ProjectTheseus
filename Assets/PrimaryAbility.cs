@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class PrimaryAbility : MonoBehaviour {
 
-    private UserInterface ui;
+    private TechTree ui;
     [SerializeField] Text abtext;
 
     // Use this for initialization
     void Start () {
-        ui = FindObjectOfType<UserInterface>();
+        ui = FindObjectOfType<TechTree>();
     }
 	
 	// Update is called once per frame

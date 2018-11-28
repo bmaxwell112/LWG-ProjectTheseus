@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,21 +8,19 @@ public class ButtonSetup : MonoBehaviour
 
     Text newButtonText;
     public QuestEvent refEvent;
-    QuestController qController;
-    public int thisQuestID;
+	QuestDisplay display;
+	
+	public void SetupQuestButton(QuestEvent quest)
+	{		
+		refEvent = quest;
+		newButtonText = GetComponentInChildren<Text>();
+		display = FindObjectOfType<QuestDisplay>();
+		newButtonText.text = refEvent.eventName;
+	}
 
-    // Use this for initialization
-    void Start()
-    {
-        refEvent = QuestController.currentQuest;
-        QuestList.lastEvent = refEvent;
-        newButtonText = GetComponentInChildren<Text>();
-        newButtonText.text = QuestController.currentQuest.eventName;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+	public void ActivateButton()
+	{
+		display.UpdateDisplay(refEvent);
+		QuestController.currentQuest = GetComponent<ButtonSetup>().refEvent;
+	}
 }

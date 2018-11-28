@@ -165,8 +165,6 @@ public class RoomManager : MonoBehaviour {
 		return null;
 	}
 
-
-    //REDO THIS
     void QuestSiteSetup()
     {
         RoomGeneration questSpawnSite;
@@ -193,4 +191,3 @@ public class RoomManager : MonoBehaviour {
 
     //Track number of rooms for special rooms
 }
-
