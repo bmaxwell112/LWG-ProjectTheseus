@@ -17,4 +17,11 @@ public class QuestDisplay : MonoBehaviour {
 		text[0].text = quest.eventName;
 		text[1].text = quest.eventDesc;
 	}
+
+    public void DefaultDisplay()
+    {
+        text = GetComponentsInChildren<Text>();
+        text[0].text = "No current quest";
+        text[1].text = "When you have an active quest, information will appear here.";
+    }
 }

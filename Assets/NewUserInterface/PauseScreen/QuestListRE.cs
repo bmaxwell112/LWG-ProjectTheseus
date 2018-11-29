@@ -6,12 +6,15 @@ public class QuestListRE : MonoBehaviour {
 
 	[SerializeField] ButtonSetup questButton;
 	RectTransform rt;
+    QuestDisplay displayObj;
 
     public void LoadActiveQuests()
 	{
+        displayObj = FindObjectOfType<QuestDisplay>();
         // Find old buttons
         rt = GetComponent<RectTransform>();
         ButtonSetup[] oldBtn = GetComponentsInChildren<ButtonSetup>();
+        
         foreach (ButtonSetup btn in oldBtn)
         {
             Destroy(btn.gameObject);
@@ -30,14 +33,19 @@ public class QuestListRE : MonoBehaviour {
                     newBtn.SetupQuestButton(quest);
                     i++;
                     // Make first item spawned display on the panel
-                    //if (!display)
-                    //{
-                    //	print(quest.eventName);
-                    //	newBtn.ActivateButton();
-                    //	display = true;
-                    //}
+                    if (!display)
+                    {
+                    	newBtn.ActivateButton();
+                    	display = true;
+                    }
                 }
             }
+
+        if(i == 0)
+        {
+            displayObj.DefaultDisplay();
+        }
+
 		rt.sizeDelta = new Vector2(0, 150 * i);
     }
 }
