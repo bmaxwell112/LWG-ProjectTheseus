@@ -13,8 +13,14 @@ public class GeneralAI : MonoBehaviour {
 	Collider2D col;
 	RoomGeneration myRoom;
 
-	// Update is called once per frame
-	void Update () {
+
+    void Start()
+    {
+        StartCoroutine(RandomObjectMovement());
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if (RoomManager.gameSetupComplete && !gameLoaded && !GameManager.paused)
 		{
 			LoadObject();

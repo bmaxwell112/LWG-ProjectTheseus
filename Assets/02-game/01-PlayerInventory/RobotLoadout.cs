@@ -164,6 +164,10 @@ public class RobotLoadout : MonoBehaviour {
 		{
 			col.enabled = false;
 		}
+        if (robotType == RobotType.turret)
+        {
+            Destroy(gameObject);
+        }
 		dead = true;
     }
 
