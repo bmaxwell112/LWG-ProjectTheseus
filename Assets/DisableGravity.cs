@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DisableGravity : MonoBehaviour {
+    // !! DO NOT USE THIS FOR ANYTHING THAT ISN'T JUNK, PERIPHETES LOOKS FOR THIS !!
 
     private Rigidbody2D rBody;
 

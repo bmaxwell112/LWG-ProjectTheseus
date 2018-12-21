@@ -13,4 +13,7 @@ public class BossBehavior : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    //Do we want the boss to spawn its junk zones or do we want them to just be part of the object?
+
 }
