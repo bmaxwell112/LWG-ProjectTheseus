@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class BossBehavior : MonoBehaviour {
 
+    //Make a real reason to start the junk belts
+
+    public bool beginSequence;
+
 	// Use this for initialization
 	void Start () {
-		
+        beginSequence = false;
+        StartCoroutine(Wait());
 	}
 	
 	// Update is called once per frame
@@ -14,6 +19,10 @@ public class BossBehavior : MonoBehaviour {
 		
 	}
 
-    //Do we want the boss to spawn its junk zones or do we want them to just be part of the object?
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(30);
+        beginSequence = true;
+    }
 
 }

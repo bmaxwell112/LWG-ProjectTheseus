@@ -48,19 +48,19 @@ public class Collector : MonoBehaviour {
        switch (collectorSide)
         {
             case Side.Top:
-                droneSpawn = new Vector3(transform.position.x, transform.position.y + 4f, 0);
+                droneSpawn = new Vector3(transform.position.x, transform.position.y + 2f, 0);
                 break;
 
             case Side.Bottom:
-                droneSpawn = new Vector3(transform.position.x, transform.position.y - 4f, 0);
+                droneSpawn = new Vector3(transform.position.x, transform.position.y - 2f, 0);
                 break;
 
             case Side.Left:
-                droneSpawn = new Vector3(transform.position.x - 4f, transform.position.y, 0);
+                droneSpawn = new Vector3(transform.position.x - 2f, transform.position.y, 0);
                 break;
 
             case Side.Right:
-                droneSpawn = new Vector3(transform.position.x + 4f, transform.position.y, 0);
+                droneSpawn = new Vector3(transform.position.x + 2f, transform.position.y, 0);
                 break;
 
             default:

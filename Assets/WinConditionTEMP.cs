@@ -8,8 +8,8 @@ public class WinConditionTEMP : MonoBehaviour {
 	{
 		if (coll.gameObject.tag == "Player")
 		{
-            //change this to Hub
-			GameManager.LoadLevelInGame("03c Subscribe");
+            //change this to Next in Load Order
+			GameManager.LoadLevelInGame("02a Periphetes");
 		}
 	}
 }
