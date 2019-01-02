@@ -7,7 +7,7 @@ public class RoomManager : MonoBehaviour {
     public static RoomManager instance = null;
 	public List<RoomGeneration> allRooms = new List<RoomGeneration>();
     enum TileSet {Fabrication, Terraforming, Disposal, Purification, Security, Medical};
-	public bool hub;
+	public bool preset;
 	[SerializeField] GameObject room, player, userInterface, questController, questMarker;
 	
     public int roomCap;
@@ -46,7 +46,7 @@ public class RoomManager : MonoBehaviour {
         // Pause Game
         GameManager.GamePause(true);
         // If not the hub start spawning Rooms;
-        if (!hub)
+        if (!preset)
         {
             SpawnFirstRoom();
         }
@@ -63,7 +63,7 @@ public class RoomManager : MonoBehaviour {
         Instantiate(questController);
         QuestController.PullQuest();
 
-        if (!hub)
+        if (!preset)
         {
             QuestSiteSetup();
         }

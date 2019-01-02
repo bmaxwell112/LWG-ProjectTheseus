@@ -543,6 +543,22 @@
 			"itemSpecial": true,
 			"itemAnim": "",
 			"itemSound": ""
+		},
+		{
+			"itemID": 34,
+			"itemName": "Battery",
+			"itemDesc": "Recovers weapon energy.",
+			"itemLoc": "consumable",
+			"itemType": "aesthetic",
+			"itemRarity": 4,
+			"itemSprite": "aiCore",
+			"itemHitpoints": 0,
+			"itemDamage": 0,
+			"itemSpeed": 0,
+			"itemPower": 1,
+			"itemSpecial": true,
+			"itemAnim": "",
+			"itemSound": ""
 		}
 	]
 }

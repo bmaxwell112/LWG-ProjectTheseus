@@ -8,6 +8,7 @@ public class RobotLoadout : MonoBehaviour {
 
 	[Tooltip("This bool indicates whether the robot drops items")]
 	[SerializeField] bool doesItDrop;
+    [SerializeField] bool bossSpawned;
 	[SerializeField] Color damageColor;
 	enum RobotType { player, turret, enemy }
 	[SerializeField] RobotType robotType;
@@ -146,13 +147,21 @@ public class RobotLoadout : MonoBehaviour {
         // Add if player later
         if (doesItDrop && !dropped)
 		{
-			int itemID = RobotFunctions.DropByID(this, dropOffset);
-			DropItem(itemID);
-			if (itemID != -1)
-			{
-				int itemLoc = (int)Database.instance.items[itemID].itemLoc;
-				GetComponent<RobotAnimationController>().RemoveSprite(itemLoc);
-			}
+            if (bossSpawned)
+            {
+                int itemID = RobotFunctions.DropByID(this, 34);
+                DropItem(itemID);
+            }
+            else
+            {
+                int itemID = RobotFunctions.DropByID(this, dropOffset);
+                DropItem(itemID);
+                if (itemID != -1)
+                {
+                    int itemLoc = (int)Database.instance.items[itemID].itemLoc;
+                    GetComponent<RobotAnimationController>().RemoveSprite(itemLoc);
+                }
+            }
 			dropped = true;
 		}			
 		else

@@ -9,6 +9,7 @@ TagManager:
   - room
   - SpawnConfig
   - Hole
+  - Converter
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Walls
   - Background
   - Shield
-  - 
+  - Converter
   - 
   - 
   - 
@@ -58,11 +59,9 @@ TagManager:
   - name: BelowPlayer
     uniqueID: 177430579
     locked: 0
-
   - name: Override
     uniqueID: 462704663
-
+    locked: 0
   - name: UIElements
     uniqueID: 307712305
-
     locked: 0

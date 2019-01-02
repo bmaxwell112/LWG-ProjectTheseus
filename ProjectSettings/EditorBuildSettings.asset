@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/02-game/02a Game-1.unity
     guid: 8091b6856f58ba54098af3ecf1993b97
   - enabled: 1
+    path: Assets/02-game/02a Periphetes.unity
+    guid: eb4d0d22b118abd46b6a337b5cdb84fe
+  - enabled: 1
     path: Assets/01-Menus/03a-Win/03a Win.unity
     guid: 4dd8af331ce2aa4438ee160cd064c629
   - enabled: 1
