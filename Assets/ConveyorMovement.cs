@@ -19,7 +19,10 @@ public class ConveyorMovement : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        if(!other.isTrigger)
+        {
         StopCoroutine(StopForce(other));
+
 
         switch (directionEnum)
         {
@@ -42,6 +45,7 @@ public class ConveyorMovement : MonoBehaviour {
             default:
                 Debug.Log("Conveyor Belt doesn't have a direction!!!");
                 break;
+        }
         }
     }
 
