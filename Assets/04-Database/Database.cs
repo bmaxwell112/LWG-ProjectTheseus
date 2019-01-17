@@ -134,9 +134,9 @@ public class Database : MonoBehaviour {
 		return newAnim;
 	}
 
-	AudioClip GetSound(string name)
+	AudioClip[] GetSound(string name)
 	{
-		var newSound = Resources.Load(name) as AudioClip;
+		var newSound = Resources.LoadAll(name, typeof(AudioClip)).Cast<AudioClip>().ToArray();
 		return newSound;
 	}
 

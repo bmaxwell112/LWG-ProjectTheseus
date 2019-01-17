@@ -36,9 +36,9 @@ public class Item {
 	public float itemPower;
 	public bool itemSpecial;
 	public AnimatorOverrideController itemAnim;
-	public AudioClip itemSound;
+	public AudioClip[] itemSound;
 
-	public Item(int id, string name, string desc, ItemLoc location, ItemType type, int rarity, Sprite[] sprite, int hp, int damage, float speed, float power, bool special, AnimatorOverrideController anim, AudioClip sound)
+	public Item(int id, string name, string desc, ItemLoc location, ItemType type, int rarity, Sprite[] sprite, int hp, int damage, float speed, float power, bool special, AnimatorOverrideController anim, AudioClip[] sound)
 	{
 		itemID = id;
 		itemName = name;
