@@ -51,6 +51,10 @@ public class RobotAttack : MonoBehaviour {
 				RobotFunctions.DealDamage(Damage(enemy.collider.gameObject), enemy.collider.gameObject, true);
 				Utilities.PlaySoundEffect(Database.instance.items[3].itemSound[0]);
 			}
+			else
+			{
+				Utilities.PlaySoundEffect(Database.instance.items[3].itemSound[1]);
+			}
 			meleeAttacking = true;
 		}
 	}
