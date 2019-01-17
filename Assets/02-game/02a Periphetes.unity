@@ -3526,6 +3526,7 @@ GameObject:
   - component: {fileID: 1805551630}
   - component: {fileID: 1805551629}
   - component: {fileID: 1805551627}
+  - component: {fileID: 1805551628}
   m_Layer: 15
   m_Name: Room (0,0)
   m_TagString: room
@@ -3553,6 +3554,27 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 20480
   points: []
+--- !u!114 &1805551628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1805551626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a41452eacbd38c742a95375b947a5364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomActive: 1
+  doors: []
+  room: {fileID: 0}
+  layout: {fileID: 0}
+  closedDoors: []
+  openDoors: []
+  roomListener: 0
+  enemyListener: 0
+  manualUnlock: 0
+  adjCheckedTrue: 0
 --- !u!23 &1805551629
 MeshRenderer:
   m_ObjectHideFlags: 0

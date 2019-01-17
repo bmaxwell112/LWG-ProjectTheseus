@@ -34,7 +34,7 @@ public class Collector : MonoBehaviour {
     {
         if(junkConversion >= 5)
         {
-            Instantiate(Resources.Load("DroneBossSpawn"), droneSpawn, Quaternion.identity);
+            Instantiate(Resources.Load("DroneBossSpawn"), droneSpawn, Quaternion.identity, FindObjectOfType<RoomEditor>().transform);
             junkConversion = 0;
         }
         else
