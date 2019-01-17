@@ -39,14 +39,14 @@
 			"itemLoc": "leftArm",
 			"itemType": "melee",
 			"itemRarity": 1,
-			"itemSprite": "RobotParts/BasicSet/Arm",
+			"itemSprite": "RobotParts/BasicSet/Arm/Sprites",
 			"itemHitpoints": 10,
 			"itemDamage": 5,
 			"itemSpeed": 0,
 			"itemPower": 1,
 			"itemSpecial": false,
 			"itemAnim": "RobotParts/BasicSet/BasicLeftArm",
-			"itemSound": ""
+			"itemSound": "RobotParts/BasicSet/Arm/Audio/Punch"
 		},
 		{
 			"itemID": 3,
@@ -55,14 +55,14 @@
 			"itemLoc": "rightArm",
 			"itemType": "melee",
 			"itemRarity": 1,
-			"itemSprite": "RobotParts/BasicSet/Arm",
+			"itemSprite": "RobotParts/BasicSet/Arm/Sprites",
 			"itemHitpoints": 10,
 			"itemDamage": 5,
 			"itemSpeed": 0,
 			"itemPower": 1,
 			"itemSpecial": false,
 			"itemAnim": "RobotParts/BasicSet/BasicRightArm",
-			"itemSound": ""
+			"itemSound": "RobotParts/BasicSet/Arm/Audio/Punch"
 		},
 		{
 			"itemID": 4,
@@ -78,7 +78,7 @@
 			"itemPower": 1,
 			"itemSpecial": false,
 			"itemAnim": "RobotParts/BasicSet/BasicLegs",
-			"itemSound": "sound/Standard_walk.mp3"
+			"itemSound": "sound/Standard_walk"
 		},
 		{
 			"itemID": 5,
@@ -158,7 +158,7 @@
 			"itemPower": 1,
 			"itemSpecial": false,
 			"itemAnim": "RobotParts/BasicSet/BasicLegs",
-			"itemSound": "sound/Standard_walk.mp3"
+			"itemSound": "sound/Standard_walk"
 		},
 		{
 			"itemID": 10,
@@ -222,7 +222,7 @@
 			"itemPower": 1,
 			"itemSpecial": false,
 			"itemAnim": "RangeWeaponOverrideL",
-			"itemSound": ""
+			"itemSound": "RobotParts/MountedGun/Audio/Handgun"
 		},
 		{
 			"itemID": 14,
@@ -238,7 +238,7 @@
 			"itemPower": 1,
 			"itemSpecial": false,
 			"itemAnim": "RangeWeaponOverrideR",
-			"itemSound": ""
+			"itemSound": "RobotParts/MountedGun/Audio/Handgun"
 		},
 		{
 			"itemID": 15,
@@ -254,7 +254,7 @@
 			"itemPower": 1,
 			"itemSpecial": false,
 			"itemAnim": "RangeWeaponOverrideL",
-			"itemSound": ""
+			"itemSound": "RobotParts/Shotgun/Audio/Shotgun"
 		},
 		{
 			"itemID": 16,
@@ -270,7 +270,7 @@
 			"itemPower": 1,
 			"itemSpecial": false,
 			"itemAnim": "RangeWeaponOverrideR",
-			"itemSound": ""
+			"itemSound": "RobotParts/Shotgun/Audio/Shotgun"
 		},
 		{
 			"itemID": 17,
@@ -286,7 +286,7 @@
 			"itemPower": 1,
 			"itemSpecial": false,
 			"itemAnim": "RangeWeaponOverrideR",
-			"itemSound": ""
+			"itemSound": "/RobotParts/MachineGun/Audio/Machine_gun_loop"
 		},
 		{
 			"itemID": 18,
@@ -302,7 +302,7 @@
 			"itemPower": 1,
 			"itemSpecial": false,
 			"itemAnim": "RangeWeaponOverrideR",
-			"itemSound": ""
+			"itemSound": "/RobotParts/MachineGun/Audio/Machine_gun_loop"
 		},
 		{
 			"itemID": 19,
