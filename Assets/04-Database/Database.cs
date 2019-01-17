@@ -137,7 +137,12 @@ public class Database : MonoBehaviour {
 	AudioClip[] GetSound(string name)
 	{
 		var newSound = Resources.LoadAll(name, typeof(AudioClip)).Cast<AudioClip>().ToArray();
-		return newSound;
+		AudioClip[] soundArray = new AudioClip[3];
+		for(int i=0; i < newSound.Length; i++)
+		{
+			soundArray[i] = newSound[i];
+		}
+		return soundArray;
 	}
 
 	public RangedWeapon ItemsRangedWeapon(Item item)
