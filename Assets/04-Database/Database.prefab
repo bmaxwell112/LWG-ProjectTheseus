@@ -8,15 +8,15 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1807370797953798}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1
 --- !u!1 &1807370797953798
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4102307507416880}
   - component: {fileID: 114927108586320080}
@@ -30,7 +30,7 @@ GameObject:
 --- !u!4 &4102307507416880
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1807370797953798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -43,7 +43,7 @@ Transform:
 --- !u!114 &114927108586320080
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1807370797953798}
   m_Enabled: 1
@@ -57,4 +57,4 @@ MonoBehaviour:
   meleeWeapons: []
   leftRange: {fileID: 22100000, guid: 1f4fe24be6da6e54fadf39bbd4c4b869, type: 2}
   rightRange: {fileID: 22100000, guid: 648d0eaf201412346aea314a6d685c6f, type: 2}
-  itemsJson: {fileID: 4900000, guid: 941bc04e3502aae48adefd284a60209d, type: 3}
+  itemsJson: {fileID: 4900000, guid: 8d514ff14fd88ee4aae211b4cf8e31ce, type: 3}
