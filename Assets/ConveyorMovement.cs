@@ -57,7 +57,10 @@ public class ConveyorMovement : MonoBehaviour {
     IEnumerator StopForce(Collider2D other)
     {
         yield return new WaitForSeconds(0.5f);
+        if(other != null)
+        {
         other.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
-        
+        }
+
     }
 }

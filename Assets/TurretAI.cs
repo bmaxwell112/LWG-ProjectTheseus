@@ -22,6 +22,7 @@ public class TurretAI : MonoBehaviour
     {
         rolo = GetComponent<RobotLoadout>();
 		parentRoom = GetComponentInParent<RoomGeneration>();
+
 		rolo.InitializeLoadout(
 			new Item(),
 			Database.instance.items[1],
