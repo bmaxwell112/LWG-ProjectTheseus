@@ -19,7 +19,7 @@ public class LayerChangeBasedOnPlayer : MonoBehaviour {
 		{
 			foreach (SpriteRenderer sr in SpritesToTrack)
 			{
-				if (sr.transform.position.y < player.transform.position.y)
+				if (transform.position.y < player.transform.position.y)
 				{
 					sr.sortingLayerName = "BelowPlayer";
 					layerAbovePlayer = false;
@@ -30,7 +30,7 @@ public class LayerChangeBasedOnPlayer : MonoBehaviour {
 		{
 			foreach (SpriteRenderer sr in SpritesToTrack)
 			{
-				if (sr.transform.position.y > player.transform.position.y)
+				if (transform.position.y > player.transform.position.y)
 				{
 					sr.sortingLayerName = "AbovePlayer";
 					layerAbovePlayer = true;
