@@ -139,11 +139,9 @@ public class Database : MonoBehaviour {
 		AudioClip[] soundArray = new AudioClip[3];
 		if(name != "")
 		{
-			Debug.Log(name);
 			var newSound = Resources.LoadAll(name, typeof(AudioClip)).Cast<AudioClip>().ToArray();			
 			for(int i=0; i < newSound.Length; i++)
 			{
-				Debug.Log(i);
 				soundArray[i] = newSound[i];
 			}
 		}

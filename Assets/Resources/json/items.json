@@ -366,7 +366,7 @@
 			"itemPower": 1,
 			"itemSpecial": false,
 			"itemAnim": "armBlade/anim/BladeLeft",
-			"itemSound": ""
+			"itemSound": "RobotParts/Arm/SwordArm/Audio"
 		},
 		{
 			"itemID": 23,
@@ -382,7 +382,7 @@
 			"itemPower": 1,
 			"itemSpecial": false,
 			"itemAnim": "armBlade/anim/BladeRight",
-			"itemSound": ""
+			"itemSound": "RobotParts/Arm/SwordArm/Audio"
 		},
 		{
 			"itemID": 24,
