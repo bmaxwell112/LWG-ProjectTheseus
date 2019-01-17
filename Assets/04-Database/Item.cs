@@ -70,6 +70,7 @@ public class Item {
 		itemPower = power;
 		itemSpecial = special;
 		itemAnim = anim;
+		itemSound = new AudioClip[3];
 	}
 	public Item(int id, string name, string desc, ItemLoc location, ItemType type, int rarity, Sprite[] sprite, int hp, int damage, float speed, float power, bool special)
 	{
@@ -85,6 +86,7 @@ public class Item {
 		itemSpeed = speed;
 		itemPower = power;
 		itemSpecial = special;
+		itemSound = new AudioClip[3];
 	}
 	public Item()
 	{
