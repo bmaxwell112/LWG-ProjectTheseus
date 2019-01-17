@@ -49,9 +49,9 @@ public class RobotAttack : MonoBehaviour {
 					}
 				}
 				RobotFunctions.DealDamage(Damage(enemy.collider.gameObject), enemy.collider.gameObject, true);
+				Utilities.PlaySoundEffect(Database.instance.items[3].itemSound[0]);
 			}
 			meleeAttacking = true;
-			Utilities.PlaySoundEffect(Database.instance.items[3].itemSound[0]);
 		}
 	}
 
@@ -101,7 +101,8 @@ public class RobotAttack : MonoBehaviour {
 			for (int i = 0; i < rw.rangedWeaponSpread; i++)
 			{
 				GameObject bullet = Instantiate(Resources.Load("bulletFriendly", typeof(GameObject))) as GameObject;
-				bullet.GetComponent<BulletWeapon>().BulletSetup(rw, transform.position, FiringArc);					
+				bullet.GetComponent<BulletWeapon>().BulletSetup(rw, transform.position, FiringArc);	
+				Utilities.PlaySoundEffect(roLo.loadout[armLocation].itemSound[0]);				
 			}
 			roLo.power[itemLoc] -= rw.rangeWeaponPowerUse;
 			yield return new WaitForSeconds(rw.rangeWeaponRateOfFire);
