@@ -286,7 +286,7 @@
 			"itemPower": 1,
 			"itemSpecial": false,
 			"itemAnim": "RangeWeaponOverrideR",
-			"itemSound": "/RobotParts/Arm/MachineGun/Audio"
+			"itemSound": "RobotParts/Arm/MachineGun/Audio"
 		},
 		{
 			"itemID": 18,
@@ -302,7 +302,7 @@
 			"itemPower": 1,
 			"itemSpecial": false,
 			"itemAnim": "RangeWeaponOverrideR",
-			"itemSound": "/RobotParts/Arm/MachineGun/Audio"
+			"itemSound": "RobotParts/Arm/MachineGun/Audio"
 		},
 		{
 			"itemID": 19,
@@ -398,7 +398,7 @@
 			"itemPower": 1,
 			"itemSpecial": true,
 			"itemAnim": "GreenGuy/armLeft",
-			"itemSound": "/RobotParts/Arm/StunBaton/Audio"
+			"itemSound": "RobotParts/Arm/StunBaton/Audio"
 		},
 		{
 			"itemID": 25,
@@ -414,7 +414,7 @@
 			"itemPower": 1,
 			"itemSpecial": true,
 			"itemAnim": "GreenGuy/armRight",
-			"itemSound": "/RobotParts/Arm/StunBaton/Audio"
+			"itemSound": "RobotParts/Arm/StunBaton/Audio"
 		},
 		{
 			"itemID": 26,
@@ -430,7 +430,7 @@
 			"itemPower": 1,
 			"itemSpecial": true,
 			"itemAnim": "GreenGuy/armLeft",
-			"itemSound": "/RobotParts/Arm/ChainSawArm/Audio"
+			"itemSound": "RobotParts/Arm/ChainSawArm/Audio"
 		},
 		{
 			"itemID": 27,
@@ -446,7 +446,7 @@
 			"itemPower": 1,
 			"itemSpecial": true,
 			"itemAnim": "GreenGuy/armRight",
-			"itemSound": "/RobotParts/Arm/ChainSawArm/Audio"
+			"itemSound": "RobotParts/Arm/ChainSawArm/Audio"
 		},
 		{
 			"itemID": 28,
@@ -462,7 +462,7 @@
 			"itemPower": 1,
 			"itemSpecial": false,
 			"itemAnim": "GreenGuy/armRight",
-			"itemSound": "/RobotParts/Arm/ChainSawArm/Audio"
+			"itemSound": "RobotParts/Arm/ChainSawArm/Audio"
 		},
 		{
 			"itemID": 29,
