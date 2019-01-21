@@ -4,27 +4,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class IdleTimer : MonoBehaviour {
+namespace Theseus.Core {
+  public class IdleTimer : MonoBehaviour {
 
-  public float secondsToWait = 10;
-  private float elapsed;
+    public float secondsToWait = 10;
+    private float elapsed;
 
-  [Serializable]
-  public class IdleEvent : UnityEvent<GameObject> { }
+    [Serializable]
+    public class IdleEvent : UnityEvent<GameObject> { }
 
-  public IdleEvent onIdle;
+    public IdleEvent onIdle;
 
-  void Start() {
-  }
+    void Start () { }
 
-  void Update() {
-    elapsed += Mathf.Clamp(Time.deltaTime, 0f, 1f/30f);
-    if (Input.anyKey || Input.touchCount > 0 || InputCapture.hThrow != 0 || InputCapture.vThrow !=0) {
-      elapsed = 0;
-    }
-    if (elapsed > secondsToWait) {
-      onIdle.Invoke(gameObject);
-      enabled = false;
+    void Update () {
+      elapsed += Mathf.Clamp (Time.deltaTime, 0f, 1f / 30f);
+      if (Input.anyKey || Input.touchCount > 0 || InputCapture.hThrow != 0 || InputCapture.vThrow != 0) {
+        elapsed = 0;
+      }
+      if (elapsed > secondsToWait) {
+        onIdle.Invoke (gameObject);
+        enabled = false;
+      }
     }
   }
 }

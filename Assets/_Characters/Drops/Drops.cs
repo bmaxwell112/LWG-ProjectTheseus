@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//TODO look at later
+using Theseus.Core;
+
 namespace Theseus.Character {
 	public class Drops : MonoBehaviour {
 

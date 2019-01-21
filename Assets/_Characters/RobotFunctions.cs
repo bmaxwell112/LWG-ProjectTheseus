@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Theseus.Core;
+
 namespace Theseus.Character {
 	public enum Facing { upperLeft, left, lowerLeft, down, lowerRight, right, upperRight, up, none }
 

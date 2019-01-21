@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TechTree : MonoBehaviour {
+namespace Theseus.Core {
+	public class TechTree : MonoBehaviour {
 
-	public int abilitySet;
+		public int abilitySet;
 
-	void Start()
-	{
-		abilitySet = 0; 
+		void Start () {
+			abilitySet = 0;
+		}
 	}
 }

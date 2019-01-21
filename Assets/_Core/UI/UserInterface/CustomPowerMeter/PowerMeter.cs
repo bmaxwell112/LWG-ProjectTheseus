@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PowerMeter : MonoBehaviour {
+namespace Theseus.Core {
+	public class PowerMeter : MonoBehaviour {
 
-	[SerializeField] Image fill;
-	public float value = 1;
+		[SerializeField] Image fill;
+		public float value = 1;
 
-	void Update()
-	{
-		fill.transform.localScale = new Vector3(1, value, 1);
+		void Update () {
+			fill.transform.localScale = new Vector3 (1, value, 1);
+		}
 	}
 }

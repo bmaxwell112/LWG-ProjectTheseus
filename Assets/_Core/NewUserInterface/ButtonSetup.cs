@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Theseus.Core;
+
 public class ButtonSetup : MonoBehaviour
 {
 

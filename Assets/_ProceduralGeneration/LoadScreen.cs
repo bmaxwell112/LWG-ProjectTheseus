@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Theseus.Core;
+
+// TODO look at later
+using Theseus.Core.DialogueSystem;
+
 public class LoadScreen : MonoBehaviour {
 
 	[SerializeField] Image loadingProgress, panel;

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Theseus.Core;
+
 public class EnterDungeonTrigger : MonoBehaviour {
 
 	[SerializeField] int dungeon;

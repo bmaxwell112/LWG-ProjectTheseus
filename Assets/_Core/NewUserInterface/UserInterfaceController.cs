@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UserInterfaceController : MonoBehaviour {
+namespace Theseus.Core {
+	public class UserInterfaceController : MonoBehaviour {
 
-	[SerializeField] GameObject playerLoadOut, dialogue, loadScreen, pauseMenu;
+		[SerializeField] GameObject playerLoadOut, dialogue, loadScreen, pauseMenu;
 
-	// Use this for initialization
-	void Start () {
-		// This Tracks Loadout, Minimap, Items and Notificaitons
-		// TODO hook up loadout images
-		Instantiate(playerLoadOut, transform);
-		Instantiate(dialogue, transform);
-		Instantiate(pauseMenu, transform);
-		Instantiate(loadScreen, transform);		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		// Use this for initialization
+		void Start () {
+			// This Tracks Loadout, Minimap, Items and Notificaitons
+			// TODO hook up loadout images
+			Instantiate (playerLoadOut, transform);
+			Instantiate (dialogue, transform);
+			Instantiate (pauseMenu, transform);
+			Instantiate (loadScreen, transform);
+		}
+
+		// Update is called once per frame
+		void Update () {
+
+		}
 	}
 }

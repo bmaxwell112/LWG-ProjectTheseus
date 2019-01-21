@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Theseus.Core;
+
 namespace Theseus.Character {
 	// NEEDS DATABASE PREFAB IN SCENE TO FUNCTION
 	[RequireComponent (typeof (AudioSource))]

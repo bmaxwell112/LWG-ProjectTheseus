@@ -4,6 +4,8 @@ using UnityEngine;
 // TODO possibly change later
 using Theseus.Character;
 
+using Theseus.Core;
+
 public class CurrentRoom : MonoBehaviour {
 
     private RoomGeneration roomGen;

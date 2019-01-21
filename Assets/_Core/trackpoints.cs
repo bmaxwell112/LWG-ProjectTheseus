@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Theseus.Core;
+using UnityEngine.UI;
 
-namespace Theseus.Character {
-	public class BossChecker : MonoBehaviour {
+namespace Theseus.Core {
+
+	public class trackpoints : MonoBehaviour {
+
+		[SerializeField] Text thisText;
 
 		// Use this for initialization
 		void Start () {
@@ -13,9 +16,7 @@ namespace Theseus.Character {
 
 		// Update is called once per frame
 		void Update () {
-			if (!FindObjectOfType<BossBehavior> ()) {
-				GameManager.LoadLevelInGame ("03c Subscribe");
-			}
+			thisText.text = "Points: " + PlayerPrefsManager.GetPointValue ();
 		}
 	}
 }

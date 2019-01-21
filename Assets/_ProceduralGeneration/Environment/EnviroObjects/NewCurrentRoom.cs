@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 // TODO possibly change later
 using Theseus.Character;
+using Theseus.Core;
 
 public class NewCurrentRoom : MonoBehaviour {
 

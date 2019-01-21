@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Theseus.Core;
+
 public class QuestController : MonoBehaviour {
 
     private RoomManager roomManager;

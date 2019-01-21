@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace Theseus.Core.DialogueSystem {
 public class UserInterfaceDialogue : MonoBehaviour {
 	public static UserInterfaceDialogue instance = null;
 	public static bool dialogueRunning;
@@ -98,4 +99,5 @@ public class UserInterfaceDialogue : MonoBehaviour {
 			characters[dialogue.characterNumber].sprite = dialogue.characterImage;
 		}
 	}
+}
 }

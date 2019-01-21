@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Theseus.Core;
+
 // TODO look at this later
 using Theseus.Character;
 

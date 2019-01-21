@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueTrigger : MonoBehaviour {
+namespace Theseus.Core.DialogueSystem {
+	public class DialogueTrigger : MonoBehaviour {
 
-	[SerializeField] Dialogue dialogue;
+		[SerializeField] Dialogue dialogue;
 
-	public void TriggerDialogue()
-	{
-		DialogueManager.instance.StartDialogue(dialogue);
+		public void TriggerDialogue () {
+			DialogueManager.instance.StartDialogue (dialogue);
+		}
 	}
 }
