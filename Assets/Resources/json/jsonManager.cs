@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Theseus.DatabaseSystem;
+
 public class jsonManager : MonoBehaviour {
 
 	List<StingItems> newItems;

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Theseus.DatabaseSystem;
+
 namespace Theseus.Character {
 	public class BulletWeapon : MonoBehaviour {
 

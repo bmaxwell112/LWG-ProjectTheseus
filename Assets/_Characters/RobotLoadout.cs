@@ -4,6 +4,7 @@ using UnityEngine;
 
 using Theseus.Core;
 using Theseus.ProGen;
+using Theseus.DatabaseSystem;
 
 namespace Theseus.Character {
 	// NEEDS DATABASE PREFAB IN SCENE TO FUNCTION

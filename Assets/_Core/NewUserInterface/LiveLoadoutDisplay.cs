@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 // TODO look at this later
 using Theseus.Character;
+using Theseus.DatabaseSystem;
 
 namespace Theseus.Core {
 	public class LiveLoadoutDisplay : MonoBehaviour {

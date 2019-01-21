@@ -5,6 +5,7 @@ using UnityEngine;
 
 using Theseus.Core;
 using Theseus.ProGen;
+using Theseus.DatabaseSystem;
 
 namespace Theseus.Character {
 	public class PlayerController : MonoBehaviour {

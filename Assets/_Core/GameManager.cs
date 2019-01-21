@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 // TODO possibly change later
 using Theseus.Character;
 using Theseus.Core.DialogueSystem;
+using Theseus.DatabaseSystem;
 
 namespace Theseus.Core {
 	public class GameManager : MonoBehaviour {

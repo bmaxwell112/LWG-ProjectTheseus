@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using Theseus.Core;
+using Theseus.DatabaseSystem;
 
 namespace Theseus.Character {
 	public class RobotArmsAnim : MonoBehaviour {
