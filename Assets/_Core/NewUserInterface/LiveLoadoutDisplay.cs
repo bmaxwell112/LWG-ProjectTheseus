@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+// TODO look at this later
+using Theseus.Character;
 
 public class LiveLoadoutDisplay : MonoBehaviour {
 

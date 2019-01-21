@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO look at this later
+using Theseus.Character;
+
 public class RoomManager : MonoBehaviour {
 
     public static RoomManager instance = null;

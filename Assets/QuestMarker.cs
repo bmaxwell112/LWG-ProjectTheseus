@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO possibly change later
+using Theseus.Character;
+
 public class QuestMarker : MonoBehaviour {
     RoomGeneration containingRoom;
     QuestController qController;

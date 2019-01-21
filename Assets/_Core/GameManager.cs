@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+// TODO possibly change later
+using Theseus.Character;
 
 public class GameManager : MonoBehaviour {
 

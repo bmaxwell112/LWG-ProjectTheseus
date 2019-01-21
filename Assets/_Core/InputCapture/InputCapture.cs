@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO look at this later
+using Theseus.Character;
+
 public class InputCapture {
 
 	public static float hThrow, vThrow, hAim, vAim;

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+// TODO possibly change later
+using Theseus.Character;
 
 public class CurrentRoom : MonoBehaviour {
 
