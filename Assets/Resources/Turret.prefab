@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doesItDrop: 0
+  bossSpawned: 0
   damageColor: {r: 0.78431374, g: 0, b: 0, a: 0}
   robotType: 1
   damageOffset: 1
@@ -197,7 +198,8 @@ MonoBehaviour:
     itemPower: 0
     itemSpecial: 0
     itemAnim: {fileID: 0}
-    itemSound: {fileID: 0}
+    itemSound:
+    - {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -211,7 +213,8 @@ MonoBehaviour:
     itemPower: 0
     itemSpecial: 0
     itemAnim: {fileID: 0}
-    itemSound: {fileID: 0}
+    itemSound:
+    - {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -225,7 +228,8 @@ MonoBehaviour:
     itemPower: 0
     itemSpecial: 0
     itemAnim: {fileID: 0}
-    itemSound: {fileID: 0}
+    itemSound:
+    - {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -239,7 +243,8 @@ MonoBehaviour:
     itemPower: 0
     itemSpecial: 0
     itemAnim: {fileID: 0}
-    itemSound: {fileID: 0}
+    itemSound:
+    - {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -253,7 +258,8 @@ MonoBehaviour:
     itemPower: 0
     itemSpecial: 0
     itemAnim: {fileID: 0}
-    itemSound: {fileID: 0}
+    itemSound:
+    - {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -267,7 +273,8 @@ MonoBehaviour:
     itemPower: 0
     itemSpecial: 0
     itemAnim: {fileID: 0}
-    itemSound: {fileID: 0}
+    itemSound:
+    - {fileID: 0}
   - itemID: -1
     itemName: 
     itemDesc: 
@@ -281,7 +288,8 @@ MonoBehaviour:
     itemPower: 0
     itemSpecial: 0
     itemAnim: {fileID: 0}
-    itemSound: {fileID: 0}
+    itemSound:
+    - {fileID: 0}
   shield:
     specialID: -1
     specialItemID: 0
@@ -303,7 +311,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1040527390137408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70ef0d353315725459c72526635dd039, type: 3}
+  m_Script: {fileID: 11500000, guid: 652cb7bc1865e7744ad8a2d6a2da64b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   firingArc: {fileID: 4297715522855780}
