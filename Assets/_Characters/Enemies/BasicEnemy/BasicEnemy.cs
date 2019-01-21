@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Theseus.ProGen;
+
 namespace Theseus.Character {
 	public class BasicEnemy : MonoBehaviour {
 

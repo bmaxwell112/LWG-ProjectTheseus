@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-    public enum TriggerID
-    {
+namespace Theseus.ProGen {
+    public enum TriggerID {
         pickup = 0,
         onRoomEnter = 1
     }
 
-    public enum EventType
-    {
+    public enum EventType {
         kill,
         fetch,
         hack,
@@ -18,8 +16,7 @@ using UnityEngine;
     }
 
     [System.Serializable]
-    public class QuestEvent
-    {
+    public class QuestEvent {
         public int eventID;
         public string eventName;
         public string eventDesc;
@@ -29,8 +26,7 @@ using UnityEngine;
         public bool completed;
         public bool active;
 
-        public QuestEvent(int id, string name, string desc, TriggerID trigID, EventType eType, int value, bool trueIfCompleted, bool trueIfActive)
-        {
+        public QuestEvent (int id, string name, string desc, TriggerID trigID, EventType eType, int value, bool trueIfCompleted, bool trueIfActive) {
             eventID = id;
             eventName = name;
             eventDesc = desc;
@@ -41,8 +37,8 @@ using UnityEngine;
             active = trueIfActive;
         }
 
-        public QuestEvent()
-        {
+        public QuestEvent () {
             eventID = -1;
         }
     }
+}

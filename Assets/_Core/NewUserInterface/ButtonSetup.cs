@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using Theseus.Core;
+using Theseus.ProGen;
 
 public class ButtonSetup : MonoBehaviour
 {

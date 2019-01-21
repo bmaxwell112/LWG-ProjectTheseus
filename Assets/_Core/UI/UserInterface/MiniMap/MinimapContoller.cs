@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Theseus.ProGen;
+
 namespace Theseus.Core {
 	public class MinimapContoller : MonoBehaviour {
 

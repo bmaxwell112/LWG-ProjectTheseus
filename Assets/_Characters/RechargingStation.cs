@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Theseus.Core;
+using Theseus.ProGen;
 
 namespace Theseus.Character {
     public class RechargingStation : MonoBehaviour {

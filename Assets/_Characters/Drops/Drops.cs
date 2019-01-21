@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 //TODO look at later
 using Theseus.Core;
+using Theseus.ProGen;
 
 namespace Theseus.Character {
 	public class Drops : MonoBehaviour {

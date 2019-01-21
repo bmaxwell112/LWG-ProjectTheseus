@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using Theseus.Core;
+using Theseus.ProGen;
 
 namespace Theseus.Character {
 	public class RobotAnimationController : MonoBehaviour {

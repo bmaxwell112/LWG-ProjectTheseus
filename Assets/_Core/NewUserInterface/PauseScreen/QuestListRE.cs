@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Theseus.ProGen;
+
 namespace Theseus.Core {
     public class QuestListRE : MonoBehaviour {
 

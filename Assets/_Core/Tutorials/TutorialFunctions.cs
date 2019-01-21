@@ -4,6 +4,7 @@ using UnityEngine;
 
 // TODO look at later
 using Theseus.Core.DialogueSystem;
+using Theseus.ProGen;
 
 namespace Theseus.Core {
 	public class TutorialFunctions : MonoBehaviour {

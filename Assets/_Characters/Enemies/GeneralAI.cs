@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using Theseus.Core;
 using UnityEngine;
 
+using Theseus.ProGen;
+
 namespace Theseus.Character {
 	public class GeneralAI : MonoBehaviour {
 
 		public enum Behaviour { random };
- [SerializeField] Behaviour behaviour = Behaviour.random;
- [SerializeField] float baseSpeed = 1;
- [SerializeField] float randomDirectionChangeSpeed = 2;
- bool gameLoaded, stopped = true;
- Vector2 direction = Vector2.down;
- Collider2D col;
- RoomGeneration myRoom;
+ 		[SerializeField] Behaviour behaviour = Behaviour.random;
+ 		[SerializeField] float baseSpeed = 1;
+ 		[SerializeField] float randomDirectionChangeSpeed = 2;
+ 		bool gameLoaded, stopped = true;
+ 		Vector2 direction = Vector2.down;
+ 		Collider2D col;
+ 		RoomGeneration myRoom;
 
- void Start () {
- StartCoroutine (RandomObjectMovement ());
+ 		void Start () {
+ 			StartCoroutine (RandomObjectMovement ());
 		}
 
 		// Update is called once per frame
