@@ -6,15 +6,28 @@ using Theseus.Core;
 namespace Theseus.Character {
 	public class BossChecker : MonoBehaviour {
 
+		Theseus.ProGen.QuestController questController;
+		NotificationsPanel notifPanel;
+
 		// Use this for initialization
 		void Start () {
-
+			
 		}
 
 		// Update is called once per frame
 		void Update () {
-			if (!FindObjectOfType<BossBehavior> ()) {
-				GameManager.LoadLevelInGame ("03c Subscribe");
+			EndOfGame();
+		}
+
+		void EndOfGame()
+		{
+		if (!FindObjectOfType<BossBehavior> ()) {
+			notifPanel = FindObjectOfType<NotificationsPanel>();
+			string newText = "You can now find Periphetes' Bronze Pipe!";
+            notifPanel.NotificationsPanelSetEnable(newText);
+			Theseus.Core.PlayerPrefsManager.SetBossBeaten(1);
+			GameManager.LoadLevelInGame ("03c Subscribe");
+		
 			}
 		}
 	}

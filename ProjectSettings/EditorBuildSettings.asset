@@ -6,33 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/01-Menus/00-SpashScreen/00 splash-screen.unity
-    guid: 0f6ab13bde0d7f847a23df93368cfcc6
-  - enabled: 1
-    path: Assets/01-Menus/01a-Start/01a Start.unity
-    guid: eec16c7ae4bc2af4a978e8d8b9e2b5ba
-  - enabled: 1
-    path: Assets/01-Menus/01b-Options/01b Options.unity
-    guid: a4f8bd5c9cdcba443be407eacfbed54d
-  - enabled: 1
-    path: Assets/02-game/02a Hub.unity
+    path: Assets/_Levels/GameScenes/02a Hub.unity
     guid: 90f9938e60ad5c04d8860e403f3e3bc4
   - enabled: 1
-    path: Assets/02-game/02a Game-1.unity
+    path: Assets/_Levels/GameScenes/02a Game-1.unity
     guid: 8091b6856f58ba54098af3ecf1993b97
   - enabled: 1
-    path: Assets/02-game/02a Periphetes.unity
-    guid: eb4d0d22b118abd46b6a337b5cdb84fe
-  - enabled: 1
-    path: Assets/01-Menus/03a-Win/03a Win.unity
-    guid: 4dd8af331ce2aa4438ee160cd064c629
-  - enabled: 1
-    path: Assets/01-Menus/03b-Lose/03b Lose.unity
-    guid: 2e8b4fd6c78187c40a2920f93125d954
-  - enabled: 1
-    path: Assets/01-Menus/03c-Subscibe/03c Subscribe.unity
+    path: Assets/_Levels/Menus/03c Subscribe.unity
     guid: 20b487c5335ff4d4c9a0694d401822ff
-  - enabled: 1
-    path: Assets/01-Menus/03d-IdlePlay/03d IdlePlay.unity
-    guid: d61cdf8f91b467c4c8eac8c8dcc213e4
   m_configObjects: {}

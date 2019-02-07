@@ -7,10 +7,13 @@ namespace Theseus.ProGen {
 	public class Terminal : MonoBehaviour {
 
 		BoxCollider2D bc2D;
+
+		QuestController qController;
 		bool touchingMe;
 		// Use this for initialization
 		void Start () {
 			bc2D = GetComponent<BoxCollider2D> ();
+			qController = FindObjectOfType<QuestController>();
 		}
 
 		void OnCollisionStay2D (Collision2D collision) {
@@ -30,7 +33,7 @@ namespace Theseus.ProGen {
 
 				if (QuestController.currentQuest.eventID == 0) {
 					print ("Completed tutorial");
-					QuestController.CompleteCurrentQuest ();
+					qController.CompleteCurrentQuest ();
 				}
 				touchingMe = true;
 			}

@@ -12,10 +12,13 @@ namespace Theseus.Character {
         bool touchingMe;
         PlayerController player;
 
+        QuestController qController;
+
         // Use this for initialization
         void Start () {
             bc2D = GetComponent<BoxCollider2D> ();
             player = FindObjectOfType<PlayerController> ();
+            qController = FindObjectOfType<QuestController>();
 
             //TAKE INPUT CAPTURE FROM TERMINAL
         }
@@ -32,7 +35,7 @@ namespace Theseus.Character {
 
                 }
                 print ("Equipment power restored");
-                QuestController.CompleteCurrentQuest ();
+                qController.CompleteCurrentQuest ();
                 touchingMe = true;
             }
             if (GameManager.paused && touchingMe) {

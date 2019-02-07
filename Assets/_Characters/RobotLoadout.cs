@@ -15,7 +15,7 @@ namespace Theseus.Character {
 		[SerializeField] bool doesItDrop;
 		[SerializeField] bool bossSpawned;
 		[SerializeField] Color damageColor;
-		enum RobotType { player, turret, enemy }
+		enum RobotType { player, turret, enemy, boss }
 
 		[SerializeField] RobotType robotType;
 		public float damageOffset = 1;
@@ -103,7 +103,12 @@ namespace Theseus.Character {
 				if (hitPoints[liveParts[rand]] < 0) {
 					hitPoints[liveParts[rand]] = 0;
 				}
-			} else {
+			} 
+			else
+			if (robotType == RobotType.boss) {
+			hitPoints[(int) ItemLoc.body] -= damage;
+			}
+			else {
 				hitPoints[(int) ItemLoc.body] -= damage;
 			}
 			if ((hitPoints[0] <= 0 && loadout[0].itemID != -1) || hitPoints[1] <= 0) {
@@ -116,7 +121,7 @@ namespace Theseus.Character {
 					a.StartHitStall ();
 				}
 				RobotAnimationController roAn = GetComponent<RobotAnimationController> ();
-				if (robotType != RobotType.turret) {
+				if (robotType != RobotType.turret && robotType != RobotType.boss) {
 					roAn.StartHitStall ();
 				}
 			}
@@ -149,6 +154,9 @@ namespace Theseus.Character {
 			}
 			if (robotType == RobotType.turret) {
 				Destroy (gameObject);
+			}
+			if (robotType == RobotType.boss) {
+			Destroy (gameObject);
 			}
 			dead = true;
 		}

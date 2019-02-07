@@ -524,7 +524,7 @@
 			"itemDamage": 0,
 			"itemSpeed": 0,
 			"itemPower": 1,
-			"itemSpecial": "false/*TODO change once empleneted*/",
+			"itemSpecial": "false/*TODO change once implemented*/",
 			"itemAnim": "",
 			"itemSound": ""
 		},

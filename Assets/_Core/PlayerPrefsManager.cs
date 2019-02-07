@@ -23,6 +23,8 @@ namespace Theseus.Core {
 
 		const string EVENT_COMPLETED = "event_completed_";
 
+		const string BOSS_BEATEN = "boss_beaten_";
+
 		public static void SetGameCheck (int playedBool) {
 			PlayerPrefs.SetInt (GAME_CHECK, playedBool);
 		}
@@ -95,6 +97,19 @@ namespace Theseus.Core {
 			} else {
 				return 0;
 			}
+		}
+
+		public static void SetBossBeaten (int id)
+		{
+			PlayerPrefs.SetInt (BOSS_BEATEN + id, 1);
+		}
+
+		public static int GetBossBeaten (){
+				return PlayerPrefs.GetInt (BOSS_BEATEN);
+		}
+		
+		public static void ResetBossBeaten (int id) {
+			PlayerPrefs.GetInt (BOSS_BEATEN + id, 0);
 		}
 	}
 }

@@ -50,14 +50,14 @@ namespace Theseus.ProGen {
             if (setupDone) {
 
                 if (QuestController.currentQuest.eventID == 1 && questReady && questDrop1.GetComponentInChildren<SpriteRenderer> ().sprite != questDrop1spr) {
-                    QuestController.CompleteCurrentQuest ();
+                    qController.CompleteCurrentQuest ();
                 }
                 if (QuestController.currentQuest.eventID == 2 && questReady && droneUp && specialDrone == null) {
-                    QuestController.CompleteCurrentQuest ();
+                    qController.CompleteCurrentQuest ();
                     droneUp = false;
                 }
                 if (QuestController.currentQuest.eventID == 4 && questReady && specialTurret == null) {
-                    QuestController.CompleteCurrentQuest ();
+                    qController.CompleteCurrentQuest ();
                 }
             }
         }

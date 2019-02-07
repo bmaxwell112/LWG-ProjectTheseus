@@ -8,6 +8,7 @@ namespace Theseus.ProGen {
 
         private RoomManager roomManager;
         private RoomGeneration roomGen;
+        private NotificationsPanel notifPanel;
         public bool QuestActivated;
         public static QuestEvent currentQuest;
 
@@ -22,6 +23,7 @@ namespace Theseus.ProGen {
             roomGen = FindObjectOfType<RoomGeneration> ();
             LoadQuestStatus ();
             DeactivateAllQuests ();
+            notifPanel = FindObjectOfType<NotificationsPanel>();
         }
 
         // Update is called once per frame
@@ -69,12 +71,26 @@ namespace Theseus.ProGen {
         public void BeginQuest () {
             currentQuest.active = true;
             print (currentQuest.eventName + " has started and it's active status is now set to " + currentQuest.active);
+            BeginAlert();
         }
 
-        public static void CompleteCurrentQuest () {
+        public void BeginAlert()
+        {
+            string newText = "The Quest " + currentQuest.eventName + " has been added to your log.";
+            notifPanel.NotificationsPanelSetEnable(newText);
+        }
+
+        public void CompleteCurrentQuest () {
             currentQuest.completed = true;
             currentQuest.active = false;
             print (currentQuest.eventName + " has been resolved and completion is now set to " + currentQuest.completed);
+            CompleteAlert();
+        }
+
+        public void CompleteAlert()
+        {
+            string newText = "The Quest " + currentQuest.eventName + " has been completed.";
+            notifPanel.NotificationsPanelSetEnable(newText);
         }
 
         //function to spawn items associated with quest in correct room
