@@ -31,6 +31,7 @@ namespace Theseus.Core {
 		void Start () {
 			RandomDropModifier = 0;
 			mouseInput = MouseCheck ();
+			Debug.Log(mouseInput);
 			level = SceneManager.GetActiveScene ().buildIndex;
 			SoundFXVolume = PlayerPrefsManager.GetSFXVolume ();
 		}
@@ -51,6 +52,11 @@ namespace Theseus.Core {
 
 		private bool MouseCheck () {
 			string[] joysticks = Input.GetJoystickNames ();
+			foreach(string j in joysticks)
+			{
+				Debug.Log(j);	
+			}
+			
 			if (joysticks.Length > 0) {
 				return false;
 			} else {
