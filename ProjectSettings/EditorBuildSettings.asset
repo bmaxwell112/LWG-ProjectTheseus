@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/_Levels/GameScenes/02a Game-1.unity
     guid: 8091b6856f58ba54098af3ecf1993b97
   - enabled: 1
+    path: Assets/_Levels/GameScenes/02a Periphetes.unity
+    guid: eb4d0d22b118abd46b6a337b5cdb84fe
+  - enabled: 1
     path: Assets/_Levels/Menus/03c Subscribe.unity
     guid: 20b487c5335ff4d4c9a0694d401822ff
   m_configObjects: {}

@@ -1141,32 +1141,63 @@ Prefab:
     - target: {fileID: 114777009615353378, guid: d49e46bbcf4db1c4cafef58467246968,
         type: 2}
       propertyPath: dialogue.sentences.Array.data[2]
-      value: With the gamepad you arm with the right joystick with a mouse the character
+      value: With the gamepad you aim with the right joystick, with a mouse the character
         will look in the direction of the mouse.
       objectReference: {fileID: 0}
     - target: {fileID: 114777009615353378, guid: d49e46bbcf4db1c4cafef58467246968,
         type: 2}
       propertyPath: dialogue.sentences.Array.data[0]
       value: Welcome to your newly assembled robot body. Appendages are strange so
-        lets go through how to use them.
+        let's go through how to use them.
       objectReference: {fileID: 0}
     - target: {fileID: 114777009615353378, guid: d49e46bbcf4db1c4cafef58467246968,
         type: 2}
       propertyPath: dialogue.sentences.Array.data[3]
-      value: Attacks with each arm happen seperately. The left and right bumpers attack
+      value: Attacks with each arm happen separately. The left and right bumpers attack
         on a gamepad, while the left and right mouse button attack with a mouse.
       objectReference: {fileID: 0}
     - target: {fileID: 114777009615353378, guid: d49e46bbcf4db1c4cafef58467246968,
         type: 2}
       propertyPath: dialogue.sentences.Array.data[4]
-      value: One last thing. Done worry to much about death. If it happens we can
-        you can build yourself a new one here in the hub. Jump on the active teleporter
-        to start seaching for what happened.
+      value: One last thing. Don't worry to much about death. If it happens you can
+        build yourself a new one here in the hub. Jump on the active teleporter to
+        start searching for what happened.
       objectReference: {fileID: 0}
     - target: {fileID: 114777009615353378, guid: d49e46bbcf4db1c4cafef58467246968,
         type: 2}
       propertyPath: dialogue.name
       value: Movement And Attacking
+      objectReference: {fileID: 0}
+    - target: {fileID: 114495760480778882, guid: d49e46bbcf4db1c4cafef58467246968,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.data[0]
+      value: 'Enemies have a chance to drop items. When this happens you can decide
+        if you want to replace your current part with the item. If you walk up to
+        a dropped item in the lower left a description will pop up allowing you to
+        learn what it is. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 114495760480778882, guid: d49e46bbcf4db1c4cafef58467246968,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.data[1]
+      value: 'To pick it up, while it''s description is showing, press X on a controller
+        or E on the keyboard. You will have another popup on the right showing that
+        it equipped.
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114555802572435166, guid: d49e46bbcf4db1c4cafef58467246968,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.data[1]
+      value: 'Be aware that ranged weapons use power as indicated in the top left
+        corner by your arm that it is equipped on. Once you are out of ammo you can
+        no longer use the ranged attack on that weapon until it''s power is replenished
+        or the weapon is replaced. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 114823068167271434, guid: d49e46bbcf4db1c4cafef58467246968,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.data[0]
+      value: Some items such as backpacks and AI cores allow for passive buffs. Read
+        their description by pausing the game and looking at them for more details.
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114367773221204570, guid: d49e46bbcf4db1c4cafef58467246968, type: 2}
