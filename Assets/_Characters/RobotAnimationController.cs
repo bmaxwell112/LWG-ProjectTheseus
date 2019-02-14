@@ -32,7 +32,7 @@ namespace Theseus.Character {
 		}
 
 		// Update is called once per frame
-		void Update () {
+		/*void Update () {
 			if (!GameManager.paused && RoomManager.gameSetupComplete && !roLo.dead) {
 				if (arms[1].GetInteger ("action") == 0 || arms[1].GetInteger ("action") == 3) {
 					if (arms[2].GetInteger ("action") == 0 || arms[2].GetInteger ("action") == 3) {
@@ -54,7 +54,7 @@ namespace Theseus.Character {
 				arms[1].SetInteger ("action", -1);
 				arms[2].SetInteger ("action", -1);
 			}
-		}
+		}*/
 
 		public void DetectFacingAndSetOrder () {
 			if (firingArc.eulerAngles.z >= 22.5f && firingArc.eulerAngles.z < 67.5f) {

@@ -60,7 +60,6 @@ namespace Theseus.Core {
 		}
 
 		public static void MouseAim (Vector2 mouseLocation) {
-			Debug.Log("Mouse Aim");
 			hAim = -mouseLocation.x;
 			vAim = -mouseLocation.y;
 		}

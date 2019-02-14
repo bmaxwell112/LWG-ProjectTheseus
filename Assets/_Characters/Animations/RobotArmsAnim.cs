@@ -20,7 +20,7 @@ namespace Theseus.Character {
 		protected List<KeyValuePair<AnimationClip, AnimationClip>> overrides;
 		protected AnimatorOverrideController aoc;
 
-		void Start () {
+		/* void Start () {
 			attack = GetComponentInChildren<RobotAttack> ();
 			animCont = GetComponentInParent<RobotAnimationController> ();
 			anim = GetComponent<Animator> ();
@@ -43,7 +43,7 @@ namespace Theseus.Character {
 			} else {
 				rotationNum = (int) animCont.currentFacing;
 			}
-		}
+		}*/
 
 		public void DoneAttacking () {
 			anim.SetInteger ("action", 0);

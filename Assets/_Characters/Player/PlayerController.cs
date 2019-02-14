@@ -8,57 +8,42 @@ using Theseus.ProGen;
 using Theseus.DatabaseSystem;
 
 namespace Theseus.Character {
-	public class PlayerController : MonoBehaviour {
+	public class PlayerController : MonoBehaviour, IDamageable {
 
+		[SerializeField] RobotParts head;
+		[SerializeField] RobotParts body;
+		[SerializeField] RobotArm leftArm;
+		[SerializeField] RobotArm rightArm;
+		[SerializeField] RobotLegs legs;
+		[SerializeField] RobotParts back;
+		[SerializeField] RobotParts core;
 		[SerializeField] LayerMask drop, enemyMask;
 		[SerializeField] GameObject bullets;
-		[SerializeField] RobotAttack leftArm, rightArm;
 		// DETERMINE HOW THIS IS SET
-		[SerializeField] float dodgeCooldown = 1;
+		[SerializeField] float dodgeCooldown = 1;		
 		NotificationsPanel np;
 		public Transform firingArc;
-		RobotLoadout roLo;
-		PlayerSpecial special;
 		Vector3 rotation;
 		bool fireLeft, fireRight, blockDodge, stationary, dodgeAvailable, playerDead;
 		public bool activeDodge, activeBlock;
-		Rigidbody2D rb;
+		Rigidbody2D rb;		
 
 		void Start () {
-			roLo = GetComponent<RobotLoadout> ();
-			special = GetComponent<PlayerSpecial> ();
 			np = FindObjectOfType<NotificationsPanel> ();
 			rb = GetComponent<Rigidbody2D> ();
 			PlayerSpawn ();
 			dodgeAvailable = true;
+			leftArm.AttachAbilityTo(this.gameObject);
+			rightArm.AttachAbilityTo(this.gameObject);
 		}
 
 		private void PlayerSpawn () {
-			Database db = Database.instance;
-			if (!GameManager.instance.playerAlive) {
-				roLo.InitializeLoadout (db.items[0], db.items[1], db.items[2], db.items[3], db.items[4], db.items[5], db.items[6]);
-				GameManager.instance.playerAlive = true;
-			} else {
-				roLo.InitializeLoadout (
-					GameManager.playerLoadout[0],
-					GameManager.playerLoadout[1],
-					GameManager.playerLoadout[2],
-					GameManager.playerLoadout[3],
-					GameManager.playerLoadout[4],
-					GameManager.playerLoadout[5],
-					GameManager.playerLoadout[6]
-				);
-				foreach (Item gear in roLo.loadout) {
-					if (gear.itemSpecial) {
-						special.ActivateSpecialPassive (gear);
-					}
-				}
-			}
+
 		}
 
 		// Update is called once per frame
 		void Update () {
-			if (RoomManager.gameSetupComplete && !roLo.dead) {
+			if (RoomManager.gameSetupComplete) {
 				if (GameManager.mouseInput) {
 					InputCapture.MouseAim (MouseDistanceFromPlayer ());
 				} else {
@@ -67,21 +52,24 @@ namespace Theseus.Character {
 
 				if (!GameManager.paused && !ItemWheel.active) {
 					BlockDodgeCheck ();
-					if (!activeBlock && !activeDodge && !roLo.stopped) {
+					if (!activeBlock && !activeDodge) {
 						MovementCheck ();
 						AimAndFireCheck ();
 					}
 
 				}
 			}
-			if (roLo.dead && !playerDead) {
-				Invoke ("LoadToHub", 2);
-				playerDead = true;
-			}
+			// END GAME ON DEATH
+			//if (roLo.dead && !playerDead) {
+			//	Invoke ("LoadToHub", 2);
+			//	playerDead = true;
+			//}
 		}
 
-		void LoadToHub () {
-			LevelManager.LOADLEVEL ("03c Subscribe");
+		public void TakeDamage(float damage)
+		{
+			// Pick Random Thing to Take Damage later
+			body.TakeDamage(damage);
 		}
 
 		// Movement
@@ -167,8 +155,9 @@ namespace Theseus.Character {
 		private void MovementCheck () {
 			float speed = 1.5f;
 			// Sets players speed
-			if (roLo.hitPoints[(int) ItemLoc.legs] > 0) {
-				speed = roLo.loadout[(int) ItemLoc.legs].itemSpeed + roLo.loadout[(int) ItemLoc.body].itemSpeed;
+			if(legs.GetCurrentHitPoints() > 0)
+			{
+				speed = legs.GetSpeed();
 			}
 			// applies movement
 			float xSpeed = InputCapture.hThrow * speed * Time.deltaTime;
@@ -190,25 +179,15 @@ namespace Theseus.Character {
 			}
 			firingArc.eulerAngles = rotation;
 			// ATTACKING LEFT ARM
-			if (InputCapture.triggerLeft && !fireLeft) {
-				if (roLo.loadout[2].itemType == ItemType.range && roLo.power[2] > 0) {
-					leftArm.RangedAttack (roLo.loadout[2]);
-				}
-				fireLeft = true;
-			} else if (!InputCapture.triggerLeft) {
-				fireLeft = false;
-			}
+			if (InputCapture.triggerLeft)
+			{
+				leftArm.Attack();
+			}			
 			// ATTACKING RIGHT ARM
-			if (InputCapture.triggerRight && !fireRight) {
-				if (roLo.loadout[3].itemType == ItemType.range && roLo.power[3] > 0) {
-					rightArm.RangedAttack (roLo.loadout[3]);
-				}
-				fireRight = true;
-			} else if (!InputCapture.triggerRight) {
-				fireRight = false;
+			if (InputCapture.triggerRight)
+			{
+				rightArm.Attack();
 			}
-			rightArm.GetComponent<RobotAttack> ().FiringCheck (fireRight);
-			leftArm.GetComponent<RobotAttack> ().FiringCheck (fireLeft);
 		}
 
 		// For Mouse Controls

@@ -20,7 +20,7 @@ namespace Theseus.Core {
 
 		// Update is called once per frame
 		void Update () {
-			LoadOutCheck ();
+			//LoadOutCheck ();
 		}
 		void LoadOutCheck () {
 			for (int i = 0; i < playerLo.loadout.Length; i++) {
