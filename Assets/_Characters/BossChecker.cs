@@ -23,12 +23,17 @@ namespace Theseus.Character {
 		{
 		if (!FindObjectOfType<BossBehavior> ()) {
 			notifPanel = FindObjectOfType<NotificationsPanel>();
-			string newText = "You can now find Periphetes' Bronze Pipe!";
+			string newText = "Enemies can now drop Periphetes' Bronze Pipe!";
             notifPanel.NotificationsPanelSetEnable(newText);
 			Theseus.Core.PlayerPrefsManager.SetBossBeaten(1);
-			GameManager.LoadLevelInGame ("03c Subscribe");
+			StartCoroutine(WaitAndEndScene());
 		
 			}
+		}
+
+		IEnumerator WaitAndEndScene(){
+			yield return new WaitForSeconds(5);
+			GameManager.LoadLevelInGame ("03c Subscribe");
 		}
 	}
 }
