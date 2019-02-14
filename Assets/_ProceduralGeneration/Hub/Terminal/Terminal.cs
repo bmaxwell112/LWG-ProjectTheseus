@@ -20,7 +20,6 @@ namespace Theseus.ProGen {
 			if (InputCapture.pickup && !GameManager.paused && collision.gameObject.CompareTag ("Player") && !touchingMe) {
 				//PlayerPrefsManager.SetPointValue(1);
 				PlayerPrefsManager.ResetPointValue ();
-				TechTree ui = FindObjectOfType<TechTree> ();
 				// TODO Fix points
 				//if(PlayerPrefsManager.GetPointValue() > 0)
 				//{

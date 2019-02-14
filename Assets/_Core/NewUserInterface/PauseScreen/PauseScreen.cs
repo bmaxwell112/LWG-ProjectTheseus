@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace Theseus.Core {
 	public class PauseScreen : MonoBehaviour {
 
-		[SerializeField] GameObject header, loadOut, techTree, questLog;
+		[SerializeField] GameObject header, loadOut, questLog;
 		QuestListRE questList;
 		LoadoutScreen loScreen;
 		[SerializeField] Button loadout;
@@ -18,7 +18,6 @@ namespace Theseus.Core {
 			loScreen = GetComponentInChildren<LoadoutScreen> ();
 			header.SetActive (false);
 			loadOut.SetActive (false);
-			techTree.SetActive (false);
 			questLog.SetActive (false);
 		}
 		void Update () {
@@ -31,18 +30,14 @@ namespace Theseus.Core {
 		}
 
 		public void LoudoutButton () {
-			ActiveScreen (true, false, false);
+			ActiveScreen (true, false);
 			if (loScreen == null)
 				loScreen = GetComponentInChildren<LoadoutScreen> ();
 			loScreen.LoadLoadoutScreen ();
 			headerTxt.text = "LOADOUT";
 		}
-		public void TechTreeButton () {
-			ActiveScreen (false, true, false);
-			headerTxt.text = "TECH TREE";
-		}
 		public void QuestButton () {
-			ActiveScreen (false, false, true);
+			ActiveScreen (false, true);
 			if (questList == null)
 				questList = GetComponentInChildren<QuestListRE> ();
 			questList.LoadActiveQuests ();
@@ -50,7 +45,7 @@ namespace Theseus.Core {
 		}
 		public void BackButton () {
 			header.SetActive (false);
-			ActiveScreen (false, false, false);
+			ActiveScreen (false, false);
 			GameManager.GamePause (false);
 		}
 		public void ExitButton () {
@@ -66,9 +61,8 @@ namespace Theseus.Core {
 			GameManager.GamePause (true);
 		}
 
-		public void ActiveScreen (bool lo, bool tt, bool ql) {
+		public void ActiveScreen (bool lo, bool ql) {
 			loadOut.SetActive (lo);
-			techTree.SetActive (tt);
 			questLog.SetActive (ql);
 		}
 	}

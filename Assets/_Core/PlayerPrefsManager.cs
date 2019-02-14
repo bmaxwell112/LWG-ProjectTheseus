@@ -19,7 +19,6 @@ namespace Theseus.Core {
 		const string SFX_VOLUME_KEY = "SFX_volume";
 
 		const string POINT_VALUE = "point_value";
-		const string TREE_KEY = "techtree_unlocked_";
 
 		const string EVENT_COMPLETED = "event_completed_";
 
