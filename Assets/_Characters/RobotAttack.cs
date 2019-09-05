@@ -101,7 +101,8 @@ namespace Theseus.Character {
 				for (int i = 0; i < rw.rangedWeaponSpread; i++) {
 					GameObject bullet = Instantiate (Resources.Load ("bulletFriendly", typeof (GameObject))) as GameObject;
 					bullet.GetComponent<BulletWeapon> ().BulletSetup (rw, transform.position, FiringArc);
-					Utilities.PlaySoundEffect (roLo.loadout[armLocation].itemSound[0]);
+					//COMMENTED OUT FOR SOUND BUG, REPEATS ON EVERY SHOT AT MAX VOLUME
+                    //Utilities.PlaySoundEffect (roLo.loadout[armLocation].itemSound[0]);
 				}
 				roLo.power[itemLoc] -= rw.rangeWeaponPowerUse;
 				yield return new WaitForSeconds (rw.rangeWeaponRateOfFire);
